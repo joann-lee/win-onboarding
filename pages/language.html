@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Language</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+<body data-page-id="language" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+        <div class="content-wrapper">
+          <div class="oobe-content">
+            <header class="oobe-header margin-48px">
+              <!-- <h1>Is this the right country or region?</h1> -->
+            </header>
+
+            <ul class="country-list" aria-label="Country or region choices" role="listbox" id="country-list">
+              <li role="option" aria-selected="true" data-value="English" class="is-active">English</li>
+              <li role="option" data-value="español">español</li>
+              <li role="option" data-value="français">français</li>
+
+            </ul>
+          </div>
+
+          <div class="footer">
+            <button id="region-yes" class="button-primary" type="button" data-cta="next">Continue in English</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+  <script src="/assets/animations/Language.js"></script>
+  <script src="/js/scrollbar.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+</body>
+
+</html>

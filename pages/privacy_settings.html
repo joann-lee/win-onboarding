@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Privacy Settings</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+<body data-page-id="privacy_settings" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <header class="oobe-header">
+            <h1>Choose privacy settings for your device</h1>
+            <div class="subtitle">Microsoft puts you in control of your privacy. Choose your settings, and then select <strong>Accept</strong> to save them. Select <strong>Learn more</strong> for additional info on these settings.</div>
+          </header>
+          <div class="oobe-body" data-scrollbar-visible="false">
+            <div class="privacy-settings-container">
+              <!-- Location -->
+              <div class="privacy-setting">
+                <h3>Location</h3>
+                <p class="privacy-setting-description">Get location-based experiences like directions and weather. Let Windows and apps request your location and allow Microsoft to use your location data to improve location services.</p>
+                <div class="privacy-toggle-group">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="location-toggle" class="toggle-input" checked>
+                    <label for="location-toggle" class="toggle-label"></label>
+                  </div>
+                  <span class="toggle-state" id="location-state">Yes</span>
+                </div>
+              </div>
+
+              <!-- Find my device -->
+              <div class="privacy-setting">
+                <h3>Find my device</h3>
+                <p class="privacy-setting-description">Turn on Find my device and use your device's location data to help you find your device if you lose it. You must sign in to Windows with your Microsoft account to use this feature.</p>
+                <div class="privacy-toggle-group">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="find-device-toggle" class="toggle-input" checked>
+                    <label for="find-device-toggle" class="toggle-label"></label>
+                  </div>
+                  <span class="toggle-state" id="find-device-state">Yes</span>
+                </div>
+              </div>
+
+              <!-- Diagnostic data -->
+              <div class="privacy-setting">
+                <h3>Diagnostic data</h3>
+                <p class="privacy-setting-description">Send info about the websites you browse and how you use apps and features, plus additional info about device health, device activity, and enhanced error reporting. Required diagnostic data will always be included when you choose to send Optional diagnostic data.</p>
+                <div class="privacy-toggle-group">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="diagnostic-toggle" class="toggle-input" checked>
+                    <label for="diagnostic-toggle" class="toggle-label"></label>
+                  </div>
+                  <span class="toggle-state" id="diagnostic-state">Include Optional</span>
+                </div>
+              </div>
+
+              <!-- Inking & typing -->
+              <div class="privacy-setting">
+                <h3>Inking & typing</h3>
+                <p class="privacy-setting-description">Send inking & typing data to help improve the language recognition and suggestion capabilities of Microsoft apps and services.</p>
+                <div class="privacy-toggle-group">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="inking-toggle" class="toggle-input" checked>
+                    <label for="inking-toggle" class="toggle-label"></label>
+                  </div>
+                  <span class="toggle-state" id="inking-state">Yes</span>
+                </div>
+              </div>
+
+              <!-- Tailored experiences -->
+              <div class="privacy-setting">
+                <h3>Tailored experiences</h3>
+                <p class="privacy-setting-description">Let Microsoft offer me tailored experiences based on the diagnostic data I've chosen (either Basic or Full). Tailored experiences means personalized tips, offers, and recommendations to enhance Microsoft products and services for my needs.</p>
+                <div class="privacy-toggle-group">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="tailored-toggle" class="toggle-input" checked>
+                    <label for="tailored-toggle" class="toggle-label"></label>
+                  </div>
+                  <span class="toggle-state" id="tailored-state">Yes</span>
+                </div>
+              </div>
+
+              <p class="privacy-footer">Select <a href="#" class="link-primary">Learn more</a> for info on the above settings, how Windows helps protect you from unsafe apps and web content, and the related transfers and uses.</p>
+            </div>
+          </div>
+          <div class="oobe-ctas">
+            <a class="button-secondary" >Learn more</a>
+            <a class="button-primary" id="privacy-cta">Next</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+  <script src="/assets/animations/Privacy.js"></script>
+  <script src="/js/scrollbar.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+  <script>
+    const locationToggle = document.getElementById('location-toggle');
+    const findDeviceToggle = document.getElementById('find-device-toggle');
+    const diagnosticToggle = document.getElementById('diagnostic-toggle');
+    const inkingToggle = document.getElementById('inking-toggle');
+    const tailoredToggle = document.getElementById('tailored-toggle');
+
+    const descriptions = {
+      location: {
+        on: 'Get location-based experiences like directions and weather. Let Windows and apps request your location and allow Microsoft to use your location data to improve location services.',
+        off: 'You won\'t be able to get location-based experiences like weather or enjoy other services that require your location to work.'
+      },
+      findDevice: {
+        on: 'Turn on Find my device and use your device\'s location data to help you find your device if you lose it. You must sign in to Windows with your Microsoft account to use this feature.',
+        off: 'Windows won\'t be able to help you keep track of your device if you lose it.'
+      },
+      diagnostic: {
+        on: 'Send info about the websites you browse and how you use apps and features, plus additional info about device health, device activity, and enhanced error reporting. Required diagnostic data will always be included when you choose to send Optional diagnostic data.',
+        off: 'Send only about your device, its settings and capabilities, and whether it is performing properly. Diagnostic data is used to help keep Windows secure and up to date, troubleshoot problems, and make product improvements.'
+      },
+      inking: {
+        on: 'Send inking & typing data to help improve the language recognition and suggestion capabilities of Microsoft apps and services.',
+        off: 'Don\'t use my diagnostic data to help improve the language recognition and suggestion capabilities of Microsoft apps and services.'
+      },
+      tailored: {
+        on: 'Let Microsoft offer me tailored experiences based on the diagnostic data I\'ve chosen (either Basic or Full). Tailored experiences means personalized tips, offers, and recommendations to enhance Microsoft products and services for my needs.',
+        off: 'The tips, ads, and recommendations you see will be more generic and may be less relevant to you.'
+      }
+    };
+
+    function updateToggleState(toggle, stateSpan, descriptionElement) {
+      const checked = toggle.checked;
+      const stateId = stateSpan.id;
+      
+      // Update state text
+      if (stateId === 'diagnostic-state') {
+        stateSpan.textContent = checked ? 'Include Optional' : 'Required only';
+      } else {
+        stateSpan.textContent = checked ? 'Yes' : 'No';
+      }
+
+      // Update description
+      if (descriptionElement) {
+        let descKey = stateId.replace('-state', '');
+        if (descKey === 'find-device') descKey = 'findDevice';
+        if (descKey === 'diagnostic') descKey = 'diagnostic';
+        if (descKey === 'inking') descKey = 'inking';
+        if (descKey === 'tailored') descKey = 'tailored';
+        if (descKey === 'location') descKey = 'location';
+
+        if (descriptions[descKey]) {
+          descriptionElement.textContent = checked ? descriptions[descKey].on : descriptions[descKey].off;
+        }
+      }
+    }
+
+    function getDescriptionElement(toggle) {
+      return toggle.closest('.privacy-setting').querySelector('.privacy-setting-description');
+    }
+
+    locationToggle.addEventListener('change', () => {
+      updateToggleState(locationToggle, document.getElementById('location-state'), getDescriptionElement(locationToggle));
+    });
+
+    findDeviceToggle.addEventListener('change', () => {
+      updateToggleState(findDeviceToggle, document.getElementById('find-device-state'), getDescriptionElement(findDeviceToggle));
+    });
+
+    diagnosticToggle.addEventListener('change', () => {
+      updateToggleState(diagnosticToggle, document.getElementById('diagnostic-state'), getDescriptionElement(diagnosticToggle));
+    });
+
+    inkingToggle.addEventListener('change', () => {
+      updateToggleState(inkingToggle, document.getElementById('inking-state'), getDescriptionElement(inkingToggle));
+    });
+
+    tailoredToggle.addEventListener('change', () => {
+      updateToggleState(tailoredToggle, document.getElementById('tailored-state'), getDescriptionElement(tailoredToggle));
+    });
+
+    // Privacy settings scroll-to-accept functionality
+    const privacyContent = document.querySelector('.oobe-body');
+    const privacySettingsContainer = document.querySelector('.privacy-settings-container');
+    const privacyCta = document.getElementById('privacy-cta');
+    let hasScrolledToBottom = false;
+
+    // Function to check if scrolled to bottom
+    function isScrolledToBottom() {
+      if (!privacyContent) return false;
+      const { scrollTop, scrollHeight, clientHeight } = privacyContent;
+      return scrollHeight - scrollTop - clientHeight < 50; // 50px threshold
+    }
+
+    // Update button state based on scroll position
+    function updateButtonState() {
+      if (isScrolledToBottom()) {
+        privacyCta.textContent = 'Accept';
+        privacyCta.setAttribute('data-cta', 'next');
+        
+        // Convert <a> tag to <button>
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = privacyCta.className;
+        button.id = privacyCta.id;
+        button.textContent = privacyCta.textContent;
+        button.setAttribute('data-cta', 'next');
+        privacyCta.replaceWith(button);
+        
+        // Re-run applyCtas to set up navigation for the new button
+        if (window.OOBEFlow && typeof window.OOBEFlow.apply === 'function') {
+          window.OOBEFlow.apply();
+        }
+        
+        hasScrolledToBottom = true;
+      }
+    }
+
+    // Listen for scroll events
+    privacyContent.addEventListener('scroll', updateButtonState);
+
+    // Handle Next button click - scroll to bottom
+    privacyCta.addEventListener('click', (e) => {
+      if (privacyCta.textContent === 'Next' && !hasScrolledToBottom) {
+        e.preventDefault();
+        e.stopPropagation();
+        privacyContent.scrollTo({
+          top: privacyContent.scrollHeight,
+          behavior: 'smooth'
+        });
+        // Check after scroll animation completes
+        setTimeout(updateButtonState, 600);
+      }
+    });
+  </script>
+</body>
+
+</html>

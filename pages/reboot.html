@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Reboot</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+<body data-page-id="reboot" data-oobe>
+  <div class="reboot-container">
+    <div class="reboot-content">
+      <div class="microsoft-logo-frame">
+        <svg class="microsoft-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <!-- Microsoft Four-Square Logo -->
+          <rect x="10" y="10" width="30" height="30" fill="#FFFFFF" />
+          <rect x="55" y="10" width="30" height="30" fill="#FFFFFF" />
+          <rect x="10" y="55" width="30" height="30" fill="#FFFFFF" />
+          <rect x="55" y="55" width="30" height="30" fill="#FFFFFF" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/flow.js"></script>
+  <script>
+    (function initReboot() {
+      const container = document.querySelector('.reboot-container');
+      const content = document.querySelector('.reboot-content');
+
+      // Always prepend pages/ for iframe compatibility
+      const shouldPrependPages = true;
+
+      // Timeline: fade out (500ms) -> black (800ms) -> fade in logo (500ms) -> hold (500ms) -> next
+      const totalDuration = 500 + 800 + 500 + 500; // 2300ms total
+
+      async function executeReboot() {
+        // Phase 1: Fade to black (500ms)
+        await new Promise(resolve => {
+          content.style.opacity = '0';
+          setTimeout(resolve, 500);
+        });
+
+        // Phase 2: Black screen (800ms) - logo already hidden
+        await new Promise(resolve => {
+          setTimeout(resolve, 800);
+        });
+
+        // Phase 3: Fade in Windows logo (500ms)
+        await new Promise(resolve => {
+          content.style.opacity = '1';
+          setTimeout(resolve, 500);
+        });
+
+        // Phase 4: Hold on logo (500ms)
+        await new Promise(resolve => {
+          setTimeout(resolve, 500);
+        });
+
+        // Navigate to next page
+        const nextId = sessionStorage.getItem('oobeRestartDestination');
+        sessionStorage.removeItem('oobeRestartDestination');
+        
+        if (nextId && window.getPageFile && window.getPagePath) {
+          const nextFile = window.getPageFile(nextId);
+          window.location.href = window.getPagePath(nextFile);
+        } else {
+          // Fallback to desktop if no destination
+          window.location.href = '/assets/desktop.html';
+        }
+      }
+
+      // Start reboot sequence when page loads
+      executeReboot();
+    })();
+  </script>
+
+  <style>
+    body[data-page-id="reboot"] {
+      background: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .reboot-container {
+      width: 100%;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .reboot-content {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .microsoft-logo-frame {
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .microsoft-logo {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+    }
+  </style>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | NDUP</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <link rel="stylesheet" href="/css/ndup.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+<body data-page-id="ndup" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div class="ndup-content">
+          <div class="ndup-header">
+            <video class="carousel-icon" autoplay muted loop>
+              <source src="/assets/icons/NDUP_Windows_logo.mp4" type="video/mp4">
+            </video>
+            <div class="carousel-header">
+              <h2>We're getting you the latest features</h2>
+              <p>Check out what your new Copilot+ PC is capable of while you wait</p>
+            </div>
+          </div>
+          <button id="ndup-next-btn" class="ndup-next-button">Next</button>
+        </div>
+      </div>
+
+      <div class="ndup-footer">
+        <div class="ndup-footer-header">
+        Your update is in progress—this could take a while. Please keep your PC on and plugged in.
+        </div>
+        <span id="progress-label">Step 1 of 3: Downloading (0%)</span>
+          
+        <div class="ndup-progress-bar">
+          <div class="progress-segment">
+            <div class="progress-fill" id="segment-download"></div>
+          </div>
+          <div class="progress-segment">
+            <div class="progress-fill" id="segment-install"></div>
+          </div>
+          <div class="progress-segment">
+            <div class="progress-fill" id="segment-setup"></div>
+          </div>
+        </div>
+ <a href="#" id="cancel-link" class="ndup-cancel-link">Update later</a>
+
+      </div>
+
+       
+
+    </div>
+  </div>
+
+
+
+  <div class="oobe-below-actions">
+    <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+    <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg"
+        alt="" /></button>
+    <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+  <script src="/assets/animations/NDUP.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
+  <script>
+    let currentStage = parseInt(sessionStorage.getItem('ndup-currentStage') || '0');
+    let stageProgress = parseInt(sessionStorage.getItem('ndup-stageProgress') || '0');
+
+    // Timing configuration (in milliseconds)
+    const PROGRESS_INCREMENT_INTERVAL = 800; // How often to increment progress
+    const STAGE_TRANSITION_DELAY = 500; // Delay before moving to next stage
+
+    function updateProgressBar() {
+      const stages = ['download', 'install', 'setup'];
+      const stepLabels = ['Downloading', 'Installing', 'Setting up'];
+      
+      // Update segments based on current stage and progress
+      stages.forEach((stage, idx) => {
+        const segment = document.getElementById(`segment-${stage}`);
+        if (idx < currentStage) {
+          // Previous stages are complete - fill 100%
+          segment.style.width = '100%';
+        } else if (idx === currentStage) {
+          // Current stage is animating - fill based on progress
+          segment.style.width = stageProgress + '%';
+        } else {
+          // Future stages are empty
+          segment.style.width = '0%';
+        }
+      });
+
+      // Update label
+      document.getElementById('progress-label').textContent = `Step ${currentStage + 1} of 3: ${stepLabels[currentStage]} (${Math.floor(stageProgress)}%)`;
+
+      // Save state to sessionStorage
+      sessionStorage.setItem('ndup-currentStage', currentStage.toString());
+      sessionStorage.setItem('ndup-stageProgress', stageProgress.toString());
+    }
+
+    // Simulate loading bar progression
+    function simulateLoading() {
+      if (currentStage < 3) {
+        stageProgress += Math.random() * 15 + 5; // Increment by 5-20%
+        
+        if (stageProgress >= 100) {
+          stageProgress = 100;
+          updateProgressBar();
+          
+          // Move to next stage after a delay
+          setTimeout(() => {
+            if (currentStage < 2) {
+              currentStage++;
+              stageProgress = 0;
+              updateProgressBar();
+            } else if (currentStage === 2) {
+              // All stages complete - trigger restart
+              clearInterval(loadingInterval);
+              sessionStorage.removeItem('ndup-currentStage');
+              sessionStorage.removeItem('ndup-stageProgress');
+              // Navigate to reboot page as per NDUP's restartAfter setting
+              const currentId = 'ndup';
+              const nextId = window.nextPageId && window.nextPageId(currentId);
+              if (nextId) {
+                sessionStorage.setItem('oobeRestartDestination', nextId);
+              }
+              window.location.href = window.getPagePath('reboot.html');
+            }
+          }, STAGE_TRANSITION_DELAY);
+        } else {
+          updateProgressBar();
+        }
+      }
+    }
+
+    // Initialize progress bar segments
+    updateProgressBar();
+
+    // Start loading simulation
+    const loadingInterval = setInterval(simulateLoading, PROGRESS_INCREMENT_INTERVAL);
+
+    document.getElementById('ndup-next-btn').addEventListener('click', () => {
+      // Navigate to ndup_0.html
+      window.location.href = window.getPagePath('ndup_0.html');
+    });
+
+    document.getElementById('cancel-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      clearInterval(loadingInterval);
+      // Clear the progress state
+      sessionStorage.removeItem('ndup-currentStage');
+      sessionStorage.removeItem('ndup-stageProgress');
+      // Navigate to reboot page as per NDUP's restartAfter setting
+      const currentId = 'ndup';
+      const nextId = window.nextPageId && window.nextPageId(currentId);
+      if (nextId) {
+        sessionStorage.setItem('oobeRestartDestination', nextId);
+      }
+      window.location.href = '/pages/reboot.html';
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Device Name</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+<body data-page-id="device-name" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <header class="oobe-header">
+            <h1>Let's name your device</h1>
+            <div class="subtitle">Make it yours with a unique name that's easy to recognize when connecting to it from other devices.</div>
+              <p class="device-name-note" id="restart-message"><strong>Your device will restart after you name it.</strong></p>
+              
+          </header>
+          <div class="oobe-body">
+            <div class="device-name-section">
+         
+              <div class="device-name-input-wrapper">
+                <input 
+                  type="text" 
+                  id="device-name-input" 
+                  class="device-name-input" 
+                  placeholder="Enter device name"
+                  maxlength="15"
+                  aria-label="Device name"
+                />
+              </div>
+
+              <div class="device-name-rules">
+                <p data-rule="numbers">Can't contain only numbers</p>
+                <p data-rule="characters">No spaces or special characters other than hyphen (-), dashes (– and —), and underscore (_)</p>
+              </div>
+            </div>
+          </div>
+          <div class="oobe-ctas">
+            <a class="button-secondary" data-cta="skip">Skip for now</a>
+            <button class="button-primary" data-cta="next" id="device-name-next" disabled>Next</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+  <script src="/assets/animations/Device_name.js"></script>
+  <script src="/js/scrollbar.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
+  <script>
+    // Hide restart message if restart is disabled for this page
+    (function initRestartMessage() {
+      const restartMessage = document.getElementById('restart-message');
+      if (restartMessage && typeof window.OOBEFlow !== 'undefined') {
+        const currentPageId = document.body.getAttribute('data-page-id');
+        if (!window.OOBEFlow.shouldRestart(currentPageId)) {
+          restartMessage.style.display = 'none';
+        }
+      }
+    })();
+
+    // Device name validation logic
+    (function initDeviceNameValidation() {
+      const input = document.getElementById('device-name-input');
+      const clearBtn = document.getElementById('device-name-clear');
+      const nextBtn = document.getElementById('device-name-next');
+
+      // Check specific validation rules
+      function checkRules(name) {
+        const rules = {
+          numbers: !/^\d+$/.test(name), // passes if NOT only numbers
+          characters: /^[a-zA-Z0-9_\-–—]*$/.test(name) // passes if only valid chars
+        };
+        return rules;
+      }
+
+      function isValidDeviceName(name) {
+        if (!name) return false;
+        
+        const rules = checkRules(name);
+        
+        // All rules must pass
+        return Object.values(rules).every(rule => rule === true);
+      }
+
+      function updateValidationDisplay() {
+        const name = input.value;
+        const rules = checkRules(name);
+        
+        // Update rule styling
+        document.querySelectorAll('.device-name-rules p').forEach(ruleEl => {
+          const ruleType = ruleEl.getAttribute('data-rule');
+          const passed = rules[ruleType];
+          
+          if (name) {
+            // Show error state only if rule failed and there's input
+            ruleEl.classList.toggle('rule-error', !passed);
+          } else {
+            // Clear error state when input is empty
+            ruleEl.classList.remove('rule-error');
+          }
+        });
+      }
+
+      function updateButtonState() {
+        const isValid = isValidDeviceName(input.value);
+        nextBtn.disabled = !isValid;
+        nextBtn.classList.toggle('disabled', !isValid);
+        clearBtn.style.display = input.value ? 'block' : 'none';
+        updateValidationDisplay();
+      }
+
+      // Input event listener
+      input.addEventListener('input', updateButtonState);
+
+      // Clear button
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        updateButtonState();
+        input.focus();
+      });
+
+      // Initial state
+      updateButtonState();
+    })();
+  </script>
+
+</body>
+
+</html>

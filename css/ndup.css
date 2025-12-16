@@ -1,0 +1,314 @@
+:root{
+    --ndup-footer-height: 165px;
+    --ndup-footer-gap: 21px;
+    --oobe-main-height-ndup:802px;
+    --oobe-card-height-ndup:calc(var(--oobe-main-height-ndup) - var(--ndup-footer-height) - var(--ndup-footer-gap));
+}
+
+/* NDUP Page Styles */
+
+body[data-page-id="ndup"] .oobe-main,
+body[data-page-id="ndup_0"] .oobe-main {
+  width: var(--oobe-card-width);
+  max-width: none;
+  height: var(--oobe-main-height-ndup);
+  display: flex;
+  gap: var(--ndup-footer-gap);
+}
+
+body[data-page-id="ndup"] .oobe-below-actions,
+body[data-page-id="ndup_0"] .oobe-below-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+}
+
+.oobe-card{
+  background: #fafafa;
+  /* border-radius: var(--radius-l); */
+  box-shadow: var(--elevation-card);
+}
+
+/* Account for spacing - other pages have .oobe-below-actions below the card */
+/* Add invisible placeholder to maintain consistent card positioning */
+.oobe-main::after {
+  content: "";
+  display: block;
+  height: 30px;
+  margin-top: auto;
+}
+
+.oobe-below-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  flex-direction: row;
+  gap: 0px;
+}
+
+.ndup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100%;
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+.ndup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ndup-next-button {
+  padding: 8px 32px;
+  background: white;
+  color: black;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.ndup-next-button:hover {
+  opacity: 0.9;
+}
+
+.ndup-footer{
+  height: var(--ndup-footer-height);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 32px;
+  background: #fafafa;
+  border-top: 1px solid #e0e0e0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--radius-standard);
+}
+
+.ndup-footer-header {
+  /* font-size: 16px; */
+  font-weight: 500;
+  color: var(--oobe-text-primary);
+}
+
+#progress-label {
+  font-size: 13px;
+  /* font-weight: 500; */
+  color: var(--oobe-text-primary);
+}
+
+.ndup-cancel-link {
+  font-size: 13px;
+  color: var(--oobe-accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ndup-cancel-link:hover {
+  text-decoration: underline;
+}
+
+.ndup-progress-bar {
+  display: flex;
+  gap: 4px;
+  height: 4px;
+  width: 25%;
+}
+
+.progress-segment {
+  flex: 1;
+  background: #d0d0d0;
+  overflow: hidden;
+}
+
+.progress-segment:first-child {
+  border-radius: 2px 0 0 2px;
+}
+
+.progress-segment:last-child {
+  border-radius: 0 2px 2px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--oobe-accent);
+  transition: width 0.6s ease;
+}
+
+@keyframes pulse-progress {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.oobe-card:not(.ndup-footer){
+    height: var( --oobe-card-height-ndup);
+}
+.ndup-carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 40px 0; */
+  position: relative;
+}
+
+.carousel-arrows {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--oobe-text-secondary);
+  transition: color 0.2s;
+  pointer-events: all;
+}
+
+.carousel-arrow:hover {
+  color: var(--oobe-text-primary);
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.carousel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.carousel-icon {
+  width: 160px;
+  height: 160px;
+}
+
+.carousel-video {
+  width: 600px;
+  height: 338px;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--oobe-text-secondary);
+  font-size: 14px;
+}
+
+.carousel-header {
+  text-align: center;
+}
+
+.carousel-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: var(--oobe-text-primary);
+}
+
+.carousel-header p {
+  font-size: 16px;
+  color: var(--oobe-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 6px;
+}
+
+.carousel-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #808080;  border-color: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-dot.active {
+
+  width: 6px;
+  height: 6px;
+}
+
+.progress-label {
+  font-size: 12px;
+  color: var(--oobe-text-secondary);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-sections {
+  display: flex;
+  gap: 0;
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-section {
+  flex: 1;
+  background: #e0e0e0;
+  transition: background 0.3s;
+}
+
+.progress-section.downloading {
+  background: var(--oobe-accent);
+}
+
+.progress-section.installing {
+  background: var(--oobe-accent);
+}
+
+.progress-section.setting-up {
+  background: var(--oobe-accent);
+}
+
+.progress-info {
+  font-size: 12px;
+  color: var(--oobe-text-secondary);
+  margin-top: 8px;
+  text-align: center;
+}

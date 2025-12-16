@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | ZDP</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+
+<body data-page-id="zdp" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <div class="oobe-body">
+            <div class="spinner-section scanner-page">
+              <div class="loading-spinner"></div>
+              <p class="spinner-text">Checking for updates</p>
+            </div>
+          </div>
+          <div class="oobe-ctas" style="display: none;">
+            <button class="button-primary" data-cta="next">Next</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+  <script src="/assets/animations/ZDP.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
+</body>
+
+</html>

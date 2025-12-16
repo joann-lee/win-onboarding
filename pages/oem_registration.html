@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | OEM Registration</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+</head>
+
+<body data-page-id="oem_registration" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <header class="oobe-header">
+            <h1>Get more from ASUS device</h1>
+            <div class="subtitle">Welcome to your new device! By registering your device and providing your information
+              here, you can more easily keep track of your warranty, get faster service, and learn about new exciting
+              products. Click the link below to learn more about our data collection practices.</div>
+          </header>
+          <div class="oobe-body">
+            <form class="oem-registration-form">
+              <!-- Name Fields -->
+              <div>
+                <label for="first-name">Name</label>
+                <div class="form-row">
+                  <div class="form-group">
+                    <input type="text" id="first-name" placeholder="Tia" class="form-input" />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="last-name" placeholder="S" class="form-input" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Email Field -->
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="tiasemail@contoso.com" class="form-input" />
+              </div>
+
+              <!-- Country/Region Field -->
+              <div class="form-group">
+                <label for="country">Country or Region</label>
+                <select id="country" class="form-select">
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>Mexico</option>
+                  <option>United Kingdom</option>
+                  <option>Germany</option>
+                  <option>France</option>
+                  <option>Japan</option>
+                  <option>Australia</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <!-- Phone Fields -->
+              <div>
+                <label for="phone-country">Phone</label>
+                <div class="form-row">
+                  <div class="form-group">
+                    <select id="phone-country" class="form-select">
+                      <option>United States (+1)</option>
+                      <option>Canada (+1)</option>
+                      <option>Mexico (+52)</option>
+                      <option>United Kingdom (+44)</option>
+                      <option>Germany (+49)</option>
+                      <option>France (+33)</option>
+                      <option>Japan (+81)</option>
+                      <option>Australia (+61)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <input type="tel" id="phone-number" placeholder="Phone number" class="form-input" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Data Collection Notice -->
+              <div class="data-collection-notice">
+              
+                <a href="#" class="link-primary">IMPORTANT: Click here to read data collection messages before you visit the next page.</a>
+              </div>
+            </form>
+          </div>
+          <div class="oobe-ctas">
+            <a class="button-secondary" data-cta="skip" href="#">Skip</a>
+            <button class="button-primary" data-cta="next" disabled>Next</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+  <script src="/assets/animations/OEM_Registration.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
+</body>
+
+</html>

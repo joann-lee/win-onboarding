@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title>💻 OOBE Sandbox | Set up pin</title>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
+  <style>
+    body[data-page-id="pin_0"] .oobe-body {
+      margin-top: 100px;
+    }
+  </style>
+</head>
+
+<body data-page-id="pin_0" data-oobe>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <header class="oobe-header">
+            <h1>Set up a pin</h1>
+            <div class="subtitle">A Windows Hello PIN is a quick, secure way to sign in to your device, apps, and services.</div>
+          </header>
+          <div class="oobe-body">
+            <div class="pin-input-group">
+              <label for="pin-input">New PIN</label>
+              <div class="fluent-input-wrapper">
+                <input 
+                  type="password" 
+                  id="pin-input" 
+                  class="fluent-input" 
+                  placeholder="Enter PIN"
+                  inputmode="numeric"
+                  aria-label="New PIN"
+                />
+              </div>
+            </div>
+
+            <div class="pin-input-group">
+              <label for="pin-confirm">Confirm PIN</label>
+              <div class="fluent-input-wrapper">
+                <input 
+                  type="password" 
+                  id="pin-confirm" 
+                  class="fluent-input" 
+                  placeholder="Confirm PIN"
+                  inputmode="numeric"
+                  aria-label="Confirm PIN"
+                />
+              </div>
+            </div>
+
+            <div class="pin-checkbox-group">
+              <input 
+                type="checkbox" 
+                id="pin-letters-checkbox"
+                aria-label="Include letters and symbols"
+              />
+              <label for="pin-letters-checkbox">Include letters and symbols</label>
+            </div>
+          </div>
+          <div class="oobe-ctas">
+             <button class="button-secondary" id="cancel-btn" style="view-transition-name: none;">Cancel</button>
+            <button class="button-primary" data-cta="next">OK</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
+        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+  <script src="/assets/animations/Pin.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+  <script>
+    const pinInput = document.getElementById('pin-input');
+    const pinConfirm = document.getElementById('pin-confirm');
+    const pinToggle = document.getElementById('pin-toggle');
+    const pinConfirmToggle = document.getElementById('pin-confirm-toggle');
+    const lettersCheckbox = document.getElementById('pin-letters-checkbox');
+    const nextBtn = document.querySelector('[data-cta="next"]');
+    const cancelBtn = document.getElementById('cancel-btn');
+
+    // Cancel button: go back to parent page (pin.html)
+    cancelBtn.addEventListener('click', () => {
+      window.location.href = 'pin.html';
+    });
+
+    // Password visibility toggle for first PIN input
+    pinToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (pinInput.type === 'password') {
+        pinInput.type = 'text';
+      } else {
+        pinInput.type = 'password';
+      }
+    });
+
+    // Password visibility toggle for confirm PIN input
+    pinConfirmToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (pinConfirm.type === 'password') {
+        pinConfirm.type = 'text';
+      } else {
+        pinConfirm.type = 'password';
+      }
+    });
+
+    // Update visibility of toggle buttons based on content
+    function updateToggleVisibility() {
+      if (pinInput.value.length > 0) {
+        pinToggle.classList.add('has-content');
+      } else {
+        pinToggle.classList.remove('has-content');
+      }
+      
+      if (pinConfirm.value.length > 0) {
+        pinConfirmToggle.classList.add('has-content');
+      } else {
+        pinConfirmToggle.classList.remove('has-content');
+      }
+    }
+
+    function validatePin(value, allowLetters) {
+      if (allowLetters) {
+        // Allow letters, numbers, and common special characters
+        return /^[a-zA-Z0-9!@#$%^&*()_+=\-\[\]{};:'",.<>?/\\|`~]*$/.test(value);
+      } else {
+        // Only numbers
+        return /^[0-9]*$/.test(value);
+      }
+    }
+
+    function checkPinMatch() {
+      const pin1 = pinInput.value;
+      const pin2 = pinConfirm.value;
+      
+      if (pin1 && pin2 && pin1 === pin2 && pin1.length >= 4) {
+        nextBtn.disabled = false;
+      } else {
+        nextBtn.disabled = true;
+      }
+    }
+
+    pinInput.addEventListener('input', (e) => {
+      const allowLetters = lettersCheckbox.checked;
+      if (!validatePin(e.target.value, allowLetters)) {
+        e.target.value = e.target.value.slice(0, -1);
+      }
+      updateToggleVisibility();
+      checkPinMatch();
+    });
+
+    pinConfirm.addEventListener('input', (e) => {
+      const allowLetters = lettersCheckbox.checked;
+      if (!validatePin(e.target.value, allowLetters)) {
+        e.target.value = e.target.value.slice(0, -1);
+      }
+      updateToggleVisibility();
+      checkPinMatch();
+    });
+
+    lettersCheckbox.addEventListener('change', () => {
+      checkPinMatch();
+    });
+  </script>
+</body>
+
+</html>

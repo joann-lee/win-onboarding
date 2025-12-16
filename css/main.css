@@ -1,0 +1,572 @@
+/*
+Variables and other items used across all the pages
+*/
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Disable the default root transition so the background doesn't flash */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Target the card contents for the transition, NOT the card itself */
+/* We target the second child to handle both .oobe-content and .content-wrapper structures */
+.oobe-card> :nth-child(2) {
+  view-transition-name: oobe-content-area;
+}
+
+.lottie-container {
+  view-transition-name: oobe-lottie;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure .oobe-content doesn't accidentally trigger a nested transition */
+.oobe-content {
+  view-transition-name: none;
+}
+
+/* Animate the contents */
+::view-transition-old(oobe-content-area),
+::view-transition-new(oobe-content-area),
+::view-transition-old(oobe-lottie),
+::view-transition-new(oobe-lottie) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+::view-transition-old(oobe-content-area),
+::view-transition-old(oobe-lottie) {
+  animation-name: fade-out;
+}
+
+::view-transition-new(oobe-content-area),
+::view-transition-new(oobe-lottie) {
+  animation-name: fade-in;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+:root {
+  --font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --font-size-body: 14px;
+  --font-size-title: 28px;
+  --font-size-subtitle: 14px;
+  --radius-l: 24px;
+  --radius-m: 12px;
+  --radius-s: 4px;
+  --radius-standard: 8px;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-s: 12px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --elevation-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --dur-fast: 120ms;
+  --ease-standard: cubic-bezier(.17, .67, .35, .93);
+
+  /* Light theme */
+  --color-bg-app: #e9eef5;
+  --color-bg-card: #ffffff;
+  --color-bg-subtle: #f7f9fc;
+  --color-bg-inset: #f2f5fa;
+  --color-text-primary: #1b1b1f;
+  --color-text-secondary: #5a5a62;
+  --color-border: #d0d7e2;
+  --color-accent: #115ea3;
+  --color-accent-hover: #0f4e87;
+  --color-accent-active: #0e467a;
+  --color-accent-alt: #0078d4;
+  --color-shadow-strong: rgba(0, 0, 0, 0.26);
+}
+
+.dark {
+  --color-bg-app: #0f1113;
+  --color-bg-card: #1e1f22;
+  --color-bg-subtle: #25262a;
+  --color-bg-inset: #141518;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3ba;
+  --color-border: #383a40;
+  --color-accent: #3b83d5;
+  --color-accent-hover: #2f6aad;
+  --color-accent-active: #295d96;
+  --color-accent-alt: #4090ff;
+  --color-shadow-strong: rgba(0, 0, 0, 0.5);
+}
+
+.rose-gold {
+  --color-bg-app: #fdf5f0;
+  --color-bg-card: #fffbf8;
+  --color-bg-subtle: #faf4f0;
+  --color-bg-inset: #f5ebe5;
+  --color-text-primary: #3d2817;
+  --color-text-secondary: #7a5a47;
+  --color-border: #e8d4c4;
+  --color-accent: #c9926a;
+  --color-accent-hover: #d4a574;
+  --color-accent-active: #b8860b;
+  --color-accent-alt: #dba876;
+  --color-shadow-strong: rgba(0, 0, 0, 0.12);
+}
+
+.moss-green {
+  --color-bg-app: #f0f5f0;
+  --color-bg-card: #fafbfa;
+  --color-bg-subtle: #f5faf5;
+  --color-bg-inset: #f0f7f0;
+  --color-text-primary: #2d3b2d;
+  --color-text-secondary: #5a6b5a;
+  --color-border: #d4e0d4;
+  --color-accent: #6b8e5f;
+  --color-accent-hover: #7a9e6f;
+  --color-accent-active: #5a7d4f;
+  --color-accent-alt: #7fa86f;
+  --color-shadow-strong: rgba(0, 0, 0, 0.1);
+}
+
+.dark.moss-green {
+  --color-bg-app: #0d140d;
+  --color-bg-card: #151d15;
+  --color-bg-subtle: #1a221a;
+  --color-bg-inset: #0f1810;
+  --color-text-primary: #e8ede8;
+  --color-text-secondary: #9da89d;
+  --color-border: #384738;
+  --color-accent: #8fb894;
+  --color-accent-hover: #9dc78f;
+  --color-accent-active: #7da684;
+  --color-accent-alt: #a8d99f;
+  --color-shadow-strong: rgba(0, 0, 0, 0.4);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  background: transparent;
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f5fa;
+  background: url('/assets/visuals/background-blurred.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed;
+  will-change: none;
+  z-index: -1;
+  transform: scale(1.1) translateZ(0);
+  /* Scale up to hide edges, translateZ for GPU acceleration */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  filter: brightness(1);
+  transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.dark body::before {
+  background-color: #0a0a0a;
+  filter: brightness(0.4) contrast(1.2) saturate(0.8);
+}
+
+.rose-gold body::before {
+  background-color: #fdf5f0;
+  filter: brightness(1.1) contrast(0.95) saturate(1.2) sepia(0.15);
+}
+
+.moss-green body::before {
+  background-color: #f0f5f0;
+  filter: brightness(1.08) contrast(1) saturate(1.3) hue-rotate(130deg);
+}
+
+.dark.moss-green body::before {
+  background-color: #0d140d;
+  filter: brightness(0.38) contrast(1.2) saturate(1.1) hue-rotate(130deg);
+}
+
+.oobe-shell {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl) var(--space-xl) var(--space-l);
+  box-sizing: border-box;
+}
+
+.oobe-card {
+  /* Removed flex:1 so card no longer stretches as a flex item */
+  background: var(--color-bg-card);
+  border-radius: var(--radius-l);
+  box-shadow: var(--elevation-card);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .oobe-card {
+    grid-template-columns: 1fr;
+  }
+
+  .oobe-visual {
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-border);
+  }
+}
+
+.oobe-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--color-bg-subtle), var(--color-bg-inset));
+  border-right: 1px solid var(--color-border);
+  padding: var(--space-xl);
+}
+
+#lottie-container {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+#lottie {
+  width: 100%;
+  height: 100%;
+}
+
+.oobe-content {
+  padding: var(--space-xl) var(--space-xxl) var(--space-xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.oobe-header h1 {
+  font-size: var(--font-size-title);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 var(--space-m);
+}
+
+/* If there's no subtitle after h1, use larger margin */
+.oobe-header h1:not(:has(+ .subtitle)) {
+  margin-bottom: 40px;
+}
+
+.oobe-header .subtitle {
+  font-size: var(--font-size-subtitle);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-l);
+}
+
+.oobe-body {
+  flex: 1;
+}
+
+.list-block {
+  margin: 0 0 var(--space-xl);
+  padding: 0;
+  list-style: none;
+}
+
+.list-block li {
+  display: flex;
+  gap: var(--space-m);
+  padding: var(--space-s) 0;
+}
+
+.list-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.oobe-ctas {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-m);
+  margin-top: var(--space-l);
+}
+
+.button-primary,
+.button-secondary {
+  font: inherit;
+  border-radius: var(--radius-s);
+  padding: 6px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.button-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.button-primary:active {
+  background: var(--color-accent-active);
+}
+
+.button-primary[disabled],
+.button-primary:disabled {
+  background: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+  cursor: default;
+  pointer-events: none;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.button-secondary:hover {
+  background: var(--color-accent-hover);
+  color: #fff;
+  border-color: var(--color-accent-hover);
+}
+
+.button-secondary:active {
+  background: var(--color-accent-active);
+}
+
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-m);
+  box-sizing: border-box;
+  z-index: 10;
+  pointer-events: none;
+  /* allow focusing inside panel only */
+}
+
+.nav-bar-inner {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  padding: 4px 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: var(--elevation-card);
+}
+
+.dark .nav-bar-inner {
+  background: rgba(34, 34, 38, 0.85);
+}
+
+.nav-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font: inherit;
+  padding: 6px 10px;
+  border-radius: var(--radius-s);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-bar button:hover {
+  background: var(--color-bg-subtle);
+}
+
+.flow-panel {
+  position: fixed;
+  top: 64px;
+  right: 32px;
+  width: 320px;
+  max-height: 70vh;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--elevation-card);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  z-index: 100;
+}
+
+.flow-panel-header {
+  padding: var(--space-m) var(--space-l);
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flow-panel-body {
+  padding: var(--space-m) var(--space-l);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.flow-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flow-panel-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  cursor: grab;
+}
+
+.flow-panel-list input[type=checkbox] {
+  margin-right: 4px;
+}
+
+.drag-handle {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  opacity: .6;
+}
+
+.accessibility-bar {
+  margin-top: var(--space-m);
+  display: flex;
+  gap: var(--space-s);
+}
+
+.accessibility-button {
+  background: var(--color-bg-inset);
+  border: 1px solid var(--color-border);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.accessibility-button:hover {
+  background: var(--color-bg-subtle);
+}
+
+.accessibility-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+.fullscreen-active .nav-bar-inner {
+  outline: 2px solid var(--color-accent-alt);
+}
+
+/* Utility */
+.hidden {
+  display: none !important;
+}
+
+/* Scrollbar styling - visible on hover only */
+[data-scrollbar-visible] {
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+}
+
+[data-scrollbar-visible="true"] {
+  scrollbar-color: #c5c5c5 transparent;
+  scrollbar-width: thin;
+}
+
+[data-scrollbar-visible="true"]::-webkit-scrollbar {
+  width: 10px;
+}
+
+[data-scrollbar-visible="true"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-scrollbar-visible="true"]::-webkit-scrollbar-thumb {
+  background-color: #c5c5c5;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+[data-scrollbar-visible="true"]::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+[data-scrollbar-visible="false"]::-webkit-scrollbar {
+  width: 10px;
+}
+
+[data-scrollbar-visible="false"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-scrollbar-visible="false"]::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
