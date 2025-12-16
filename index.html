@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Set up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <!-- <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" /> -->
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/index.css" type="text/css" />
+</head>
+
+<body>
+  <div class="landing-shell">
+    <div class="landing-card">
+      <h1>OOBE Sandbox</h1>
+      <div class="landing-sub">This is an entirely HTML and CSS recreation of OOBE. This does not reflect PROD code, only a reverse-engineering of pages for prototyping purposes.</div>
+
+      <div class="flow-preview" id="flow-preview" aria-label="Current flow order and editor">
+        <strong style="display:block; margin-bottom:6px; font-size:13px;">Flow Editor</strong>
+        <ul id="flow-list"></ul>
+
+      </div>
+      <!-- <div class="presets-subtitle">Presets</div> -->
+      <div class="presets-row">
+        <div class="theme-controls">
+          <div class="mode-toggle-group">
+            <label for="mode-toggle" class="toggle-label">Light/Dark</label>
+            <input type="checkbox" id="mode-toggle" class="toggle-checkbox">
+            <label for="mode-toggle" class="toggle-switch-label"></label>
+          </div>
+          <select id="color-palette" class="color-palette-dropdown">
+            <option value="standard">Standard (Blue)</option>
+            <option value="rose-gold">Rose Gold</option>
+            <option value="moss-green">Moss Green</option>
+          </select>
+        </div>
+        <a id="reset-flow" class="button-secondary" href="#">Reset</a>
+        <!-- <a id="holiday-25" class="button-secondary" href="#">Holiday 25</a> -->
+        <!-- <a id="spring-26" class="button-secondary" href="#">Spring 26</a> -->
+        <!-- <a id="fall-26" class="button-secondary" href="#">Fall 26</a> -->
+
+      </div>
+
+            <div class="start-row">
+
+        <a id="start-btn" class="button-primary" href="#">Start</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/js/flow.js"></script>
+  <script src="/js/index.js"></script>
+  <script>
+    // Preload and cache the background image in memory
+    (function preloadBackground() {
+      const bgImg = new Image();
+      bgImg.src = '/assets/visuals/background-blurred.jpg';
+      // Store reference to keep it in memory
+      window.__CACHED_BG = bgImg;
+    })();
+  </script>
+</body>
+
+</html>
