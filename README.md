@@ -1,7 +1,7 @@
 # OOBE, SCOOBE, Nth LOGON PROTOTYPE
 by nina navazio
 
-This is not production code!!1!!!! this is HTML, CSS, and JS. But when you full-screen the browser page, it does look like production code :) 
+This is not production code! this is HTML, CSS, and JS. But when you full-screen the browser page, it does look like production code :) 
 
 This uses the real Lottie animations that are in prod.
 
