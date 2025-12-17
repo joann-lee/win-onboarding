@@ -228,7 +228,7 @@ function applyTheme(mode, palette) {
   const root = document.documentElement;
   
   // Remove all palette classes
-  root.classList.remove('rose-gold', 'moss-green');
+  root.classList.remove('rose-gold', 'forest-green');
   root.classList.remove('dark');
   
   // Apply mode
@@ -239,8 +239,8 @@ function applyTheme(mode, palette) {
   // Apply palette (standard has no class, others need the class)
   if (palette === 'rose-gold') {
     root.classList.add('rose-gold');
-  } else if (palette === 'moss-green') {
-    root.classList.add('moss-green');
+  } else if (palette === 'forest-green') {
+    root.classList.add('forest-green');
   }
 }
 

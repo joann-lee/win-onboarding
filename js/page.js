@@ -7,7 +7,7 @@
   const root = document.documentElement;
   
   // Remove all theme classes first
-  root.classList.remove('dark', 'rose-gold', 'moss-green');
+  root.classList.remove('dark', 'rose-gold', 'forest-green');
   
   // Apply saved mode
   if (savedMode === 'dark') {
@@ -17,8 +17,8 @@
   // Apply saved palette
   if (savedPalette === 'rose-gold') {
     root.classList.add('rose-gold');
-  } else if (savedPalette === 'moss-green') {
-    root.classList.add('moss-green');
+  } else if (savedPalette === 'forest-green') {
+    root.classList.add('forest-green');
   }
 })();
 
