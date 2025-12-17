@@ -1,0 +1,209 @@
+/* Forest Green Theme Variables */
+
+.dark.forest-green {
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: #5a8a2b;
+  --color-accent-hover: #6d9a38;
+  --color-accent-active: #4a7420;
+  --color-bg-primary: #0f1810;
+  --color-bg-gradient: linear-gradient(135deg, #0f1810 0%, #1a2514 100%);
+  --color-card-bg: rgba(25, 34, 24, 0.98);
+  
+  /* ==================== TEXT COLORS ==================== */
+  --color-text-primary: #e8f0e8;
+  --color-text-secondary: #a8b8a8;
+  --color-text-error: #ff6b6b;
+  --color-text-warning: #ffb03b;
+  --color-text-success: #51cf66;
+  --color-text-disabled: #8a9a8a;
+  
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: #3d5a34;
+  --color-border-input: #3d5a34;
+  --color-border-strong: #e8f0e8;
+  
+  /* ==================== PRIMARY BUTTON ==================== */
+  --color-button-primary-bg: #5a8a2b;
+  --color-button-primary-text: #ffffff;
+  --color-button-primary-bg-hover: #6d9a38;
+  --color-button-primary-bg-active: #4a7420;
+  --color-button-primary-bg-disabled: #3d5a34;
+  --color-button-primary-border: #5a8a2b;
+  --color-button-primary-border-hover: #6d9a38;
+  --color-button-primary-border-disabled: #3d5a34;
+  
+  /* ==================== SECONDARY BUTTON ==================== */
+  --color-button-secondary-text: #7aa055;
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text-hover: #8fb96f;
+  --color-button-secondary-text-active: #8fb96f;
+  --color-button-secondary-text-disabled: #8a9a8a;
+  --color-button-secondary-bg-hover: rgba(90, 138, 43, 0.1);
+  --color-button-secondary-bg-focus: transparent;
+  
+  /* ==================== INPUT FIELDS ==================== */
+  --color-input-bg: #1f2f1e;
+  --color-input-text: #e8f0e8;
+  --color-input-border: #3d5a34;
+  --color-input-border-focus: #5a8a2b;
+  --color-input-placeholder: #8a9a8a;
+  --color-input-disabled-bg: #1f2f1e;
+  --color-input-disabled-text: #8a9a8a;
+  
+  /* ==================== FORM COMPONENTS ==================== */
+  --color-checkbox-bg: #1f2f1e;
+  --color-checkbox-border: #3d5a34;
+  --color-checkbox-bg-checked: #5a8a2b;
+  --color-checkbox-border-checked: #5a8a2b;
+  --color-checkbox-text-checked: #ffffff;
+  
+  --color-radio-bg: #1f2f1e;
+  --color-radio-border: #3d5a34;
+  --color-radio-bg-checked: #5a8a2b;
+  --color-radio-border-checked: #5a8a2b;
+  
+  --color-toggle-bg: #3d5a34;
+  --color-toggle-bg-checked: #5a8a2b;
+  --color-toggle-handle-bg: #e8f0e8;
+  
+  /* ==================== LINKS ==================== */
+  --color-hyperlink: #7aa055;
+  --color-hyperlink-hover: #8fb96f;
+  --color-hyperlink-active: #a4d488;
+  
+  /* ==================== MESSAGE STATES ==================== */
+  --color-error-text: #ff6b6b;
+  --color-error-bg: rgba(255, 107, 107, 0.1);
+  --color-warning-text: #ffb03b;
+  --color-warning-bg: rgba(255, 176, 59, 0.1);
+  --color-success-text: #51cf66;
+  --color-info-text: #e8f0e8;
+  --color-info-bg: rgba(90, 138, 43, 0.1);
+  --color-info-border: #5a8a2b;
+  
+  /* ==================== COMPONENT SPECIFIC ==================== */
+  --color-country-pill-bg: #3d5a34;
+  --color-country-pill-text: #e8f0e8;
+  --color-country-pill-bg-hover: #5a8a2b;
+  --color-country-list-bg: var(--smtc-background-card-secondary-rest, #192318);
+  --color-country-list-border: var(--smtc-stroke-divider-default, #3d5a34);
+  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #1f2f1e);
+  --color-country-list-active-bg: #5a8a2b;
+  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  --color-wifi-item-bg-selected: rgba(90, 138, 43, 0.15);
+  --color-wifi-item-bg-hover: rgba(90, 138, 43, 0.08);
+  --color-wifi-accent-line: #5a8a2b;
+  
+  --color-device-name-note: #7aa055;
+  
+  --color-focus-ring-text: #e8f0e8;
+}
+
+.forest-green {
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: #3d6b1f;
+  --color-accent-hover: #4a7c2c;
+  --color-accent-active: #2d5016;
+  --color-bg-primary: #ffffff;
+  --color-bg-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  --color-card-bg: rgba(255, 255, 255, 0.95);
+  
+  /* ==================== TEXT COLORS ==================== */
+  --color-text-primary: #000000;
+  --color-text-secondary: #666666;
+  --color-text-error: #d9534f;
+  --color-text-warning: #f0ad4e;
+  --color-text-success: #5cb85c;
+  --color-text-disabled: #999999;
+  
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: #cccccc;
+  --color-border-input: #999999;
+  --color-border-strong: #000000;
+  
+  /* ==================== PRIMARY BUTTON ==================== */
+  --color-button-primary-bg: #3d6b1f;
+  --color-button-primary-text: #ffffff;
+  --color-button-primary-bg-hover: #4a7c2c;
+  --color-button-primary-bg-active: #2d5016;
+  --color-button-primary-bg-disabled: #cccccc;
+  --color-button-primary-border: #3d6b1f;
+  --color-button-primary-border-hover: #4a7c2c;
+  --color-button-primary-border-disabled: #cccccc;
+  
+  /* ==================== SECONDARY BUTTON ==================== */
+  --color-button-secondary-text: #3d6b1f;
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text-hover: #2d5016;
+  --color-button-secondary-text-active: #2d5016;
+  --color-button-secondary-text-disabled: #999999;
+  --color-button-secondary-bg-hover: transparent;
+  --color-button-secondary-bg-focus: transparent;
+  
+  /* ==================== INPUT FIELDS ==================== */
+  --color-input-bg: #ffffff;
+  --color-input-text: #000000;
+  --color-input-border: #999999;
+  --color-input-border-focus: #3d6b1f;
+  --color-input-placeholder: #999999;
+  --color-input-disabled-bg: #f5f5f5;
+  --color-input-disabled-text: #999999;
+  
+  /* ==================== FORM COMPONENTS ==================== */
+  --color-checkbox-bg: #ffffff;
+  --color-checkbox-border: #cccccc;
+  --color-checkbox-bg-checked: #3d6b1f;
+  --color-checkbox-border-checked: #3d6b1f;
+  --color-checkbox-text-checked: #ffffff;
+  
+  --color-radio-bg: #ffffff;
+  --color-radio-border: #cccccc;
+  --color-radio-bg-checked: #3d6b1f;
+  --color-radio-border-checked: #3d6b1f;
+  
+  --color-toggle-bg: #cccccc;
+  --color-toggle-bg-checked: #3d6b1f;
+  --color-toggle-handle-bg: #ffffff;
+  
+  /* ==================== LINKS ==================== */
+  --color-hyperlink: #3d6b1f;
+  --color-hyperlink-hover: #4a7c2c;
+  --color-hyperlink-active: #2d5016;
+  
+  /* ==================== MESSAGE STATES ==================== */
+  --color-error-text: #d9534f;
+  --color-error-bg: rgba(217, 83, 79, 0.1);
+  --color-warning-text: #f0ad4e;
+  --color-warning-bg: rgba(240, 173, 78, 0.1);
+  --color-success-text: #5cb85c;
+  --color-info-text: #000000;
+  --color-info-bg: rgba(61, 107, 31, 0.1);
+  --color-info-border: #3d6b1f;
+  
+  /* ==================== COMPONENT SPECIFIC ==================== */
+  --color-country-pill-bg: #3d6b1f;
+  --color-country-pill-text: #ffffff;
+  --color-country-pill-bg-hover: #4a7c2c;
+  --color-country-list-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
+  --color-country-list-border: var(--smtc-stroke-ctrl-neutral-border-rest, #cccccc);
+  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #f5f5f5);
+  --color-country-list-active-bg: #3d6b1f;
+  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  --color-wifi-item-bg-selected: rgba(61, 107, 31, 0.15);
+  --color-wifi-item-bg-hover: rgba(61, 107, 31, 0.08);
+  --color-wifi-accent-line: #3d6b1f;
+  
+  --color-device-name-note: #3d6b1f;
+  
+  --color-focus-ring-text: #000000;
+}
+
+.forest-green .oobe-background, .forest-green #lottie {
+  filter: hue-rotate(-130deg) saturate(1.3) brightness(0.92) !important;
+}
+
+.dark.forest-green .oobe-visual {
+  background: linear-gradient(180deg, rgba(25, 34, 24, 0.8), rgba(15, 24, 15, 0.8));
+}

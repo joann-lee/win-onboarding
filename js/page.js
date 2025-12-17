@@ -9,7 +9,11 @@
   // Remove all theme classes first
   root.classList.remove('dark', 'rose-gold', 'forest-green');
   
-  // Apply saved mode
+  // Apply saved mode to body
+  document.body.classList.remove('light', 'dark');
+  document.body.classList.add(savedMode);
+  
+  // Apply saved mode to root (for backward compatibility)
   if (savedMode === 'dark') {
     root.classList.add('dark');
   }
@@ -20,6 +24,41 @@
   } else if (savedPalette === 'forest-green') {
     root.classList.add('forest-green');
   }
+})();
+
+// Mode toggle button functionality
+(function initModeToggle() {
+  document.addEventListener('DOMContentLoaded', () => {
+    // Find the mode button by its aria-label or icon
+    const modeButton = document.querySelector('[aria-label="Mode settings"]');
+    
+    if (modeButton) {
+      modeButton.addEventListener('click', () => {
+        const body = document.body;
+        const root = document.documentElement;
+        const isLight = body.classList.contains('light');
+        
+        // Toggle between light and dark
+        if (isLight) {
+          body.classList.remove('light');
+          body.classList.add('dark');
+          root.classList.add('dark');
+          localStorage.setItem('themeMode', 'dark');
+          modeButton.setAttribute('aria-pressed', 'true');
+        } else {
+          body.classList.remove('dark');
+          body.classList.add('light');
+          root.classList.remove('dark');
+          localStorage.setItem('themeMode', 'light');
+          modeButton.setAttribute('aria-pressed', 'false');
+        }
+      });
+      
+      // Set initial aria-pressed state
+      const currentMode = localStorage.getItem('themeMode') || 'light';
+      modeButton.setAttribute('aria-pressed', currentMode === 'dark' ? 'true' : 'false');
+    }
+  });
 })();
 
 // Shared per-page initialization: lottie animation & accessibility

@@ -1,0 +1,49 @@
+{
+  "accentLightness": {
+    "light3": {
+      "name": "Accent Light 3",
+      "lightness": 91,
+      "usage": "Text: Rest, Hover. Acrylic: Base, Default (Flyout)",
+      "hex": "#E7DDEE",
+      "contrast": 4.5
+    },
+    "light2": {
+      "name": "Accent Light 2",
+      "lightness": 79,
+      "usage": "Text: Press. Fill: Rest, Hover (90%), Pressed (80%)",
+      "hex": "#C78CD8",
+      "contrast": 3
+    },
+    "light1": {
+      "name": "Accent Light 1",
+      "lightness": 58,
+      "hex": "#8F82B2"
+    },
+    "base": {
+      "name": "Accent Base",
+      "lightness": 49.50,
+      "hex": "#795CA3"
+    },
+    "dark1": {
+      "name": "Accent Dark 1",
+      "lightness": 39,
+      "usage": "Fill: Rest, Hover (90%), Pressed (80%). Acrylic: Default (Flyout)",
+      "hex": "#615589",
+      "contrast": 3
+    },
+    "dark2": {
+      "name": "Accent Dark 2",
+      "lightness": 25,
+      "usage": "Text: Rest. Acrylic: Base",
+      "hex": "#403667",
+      "contrast": 4.5
+    },
+    "dark3": {
+      "name": "Accent Dark 3",
+      "lightness": 9,
+      "usage": "Text: Hover",
+      "hex": "#1C1441",
+      "contrast": 7
+    }
+  }
+}

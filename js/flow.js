@@ -272,16 +272,33 @@
         // Check if current page should trigger a restart
         if (shouldRestart(currentId)) {
           const rebootHref = window.getPagePath('reboot.html');
-          nextLink.setAttribute('href', rebootHref);
           sessionStorage.setItem('oobeRestartDestination', nextId);
+          
+          // Handle both regular links and web components
+          if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
+            nextLink.onclick = () => window.location.href = rebootHref;
+          } else {
+            nextLink.setAttribute('href', rebootHref);
+          }
         } else {
           const nextFile = getPageFile(nextId);
           const nextHref = window.getPagePath(nextFile);
-          nextLink.setAttribute('href', nextHref);
+          
+          // Handle both regular links and web components
+          if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
+            nextLink.onclick = () => window.location.href = nextHref;
+          } else {
+            nextLink.setAttribute('href', nextHref);
+          }
         }
         nextLink.classList.remove('disabled');
       } else {
-        nextLink.setAttribute('href', '/assets/desktop.html');
+        // End of flow - go to desktop
+        if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
+          nextLink.onclick = () => window.location.href = '/assets/desktop.html';
+        } else {
+          nextLink.setAttribute('href', '/assets/desktop.html');
+        }
         nextLink.classList.remove('disabled');
       }
     }
@@ -290,9 +307,19 @@
       if (skipId) {
         const skipFile = getPageFile(skipId);
         const skipHref = window.getPagePath(skipFile);
-        skipLink.setAttribute('href', skipHref);
+        
+        // Handle both regular links and web components
+        if (skipLink.tagName.toLowerCase() === 'mai-button' || skipLink.tagName.toLowerCase().includes('-')) {
+          skipLink.onclick = () => window.location.href = skipHref;
+        } else {
+          skipLink.setAttribute('href', skipHref);
+        }
       } else {
-        skipLink.setAttribute('href', '/assets/desktop.html');
+        if (skipLink.tagName.toLowerCase() === 'mai-button' || skipLink.tagName.toLowerCase().includes('-')) {
+          skipLink.onclick = () => window.location.href = '/assets/desktop.html';
+        } else {
+          skipLink.setAttribute('href', '/assets/desktop.html');
+        }
       }
     }
     renderProgress(currentId, nextId);

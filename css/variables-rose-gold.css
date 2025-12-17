@@ -1,0 +1,109 @@
+/* Rose Gold Theme Variables */
+
+.rose-gold {
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: #c9926a;
+  --color-accent-hover: #d4a574;
+  --color-accent-active: #b8860b;
+  --color-bg-primary: #ffffff;
+  --color-bg-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  --color-card-bg: rgba(255, 255, 255, 0.95);
+  
+  /* ==================== TEXT COLORS ==================== */
+  --color-text-primary: #000000;
+  --color-text-secondary: #666666;
+  --color-text-error: #d9534f;
+  --color-text-warning: #f0ad4e;
+  --color-text-success: #5cb85c;
+  --color-text-disabled: #999999;
+  
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: #cccccc;
+  --color-border-input: #999999;
+  --color-border-strong: #000000;
+  
+  /* ==================== PRIMARY BUTTON ==================== */
+  --color-button-primary-bg: #c9926a;
+  --color-button-primary-text: #ffffff;
+  --color-button-primary-bg-hover: #d4a574;
+  --color-button-primary-bg-active: #b8860b;
+  --color-button-primary-bg-disabled: #cccccc;
+  --color-button-primary-border: #c9926a;
+  --color-button-primary-border-hover: #d4a574;
+  --color-button-primary-border-disabled: #cccccc;
+  
+  /* ==================== SECONDARY BUTTON ==================== */
+  --color-button-secondary-text: #c9926a;
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text-hover: #b8860b;
+  --color-button-secondary-text-active: #b8860b;
+  --color-button-secondary-text-disabled: #999999;
+  --color-button-secondary-bg-hover: transparent;
+  --color-button-secondary-bg-focus: transparent;
+  
+  /* ==================== INPUT FIELDS ==================== */
+  --color-input-bg: #ffffff;
+  --color-input-text: #000000;
+  --color-input-border: #999999;
+  --color-input-border-focus: #c9926a;
+  --color-input-placeholder: #999999;
+  --color-input-disabled-bg: #f5f5f5;
+  --color-input-disabled-text: #999999;
+  
+  /* ==================== FORM COMPONENTS ==================== */
+  --color-checkbox-bg: #ffffff;
+  --color-checkbox-border: #cccccc;
+  --color-checkbox-bg-checked: #c9926a;
+  --color-checkbox-border-checked: #c9926a;
+  --color-checkbox-text-checked: #ffffff;
+  
+  --color-radio-bg: #ffffff;
+  --color-radio-border: #cccccc;
+  --color-radio-bg-checked: #c9926a;
+  --color-radio-border-checked: #c9926a;
+  
+  --color-toggle-bg: #cccccc;
+  --color-toggle-bg-checked: #c9926a;
+  --color-toggle-handle-bg: #ffffff;
+  
+  /* ==================== LINKS ==================== */
+  --color-hyperlink: #c9926a;
+  --color-hyperlink-hover: #d4a574;
+  --color-hyperlink-active: #b8860b;
+  
+  /* ==================== MESSAGE STATES ==================== */
+  --color-error-text: #d9534f;
+  --color-error-bg: rgba(217, 83, 79, 0.1);
+  --color-warning-text: #f0ad4e;
+  --color-warning-bg: rgba(240, 173, 78, 0.1);
+  --color-success-text: #5cb85c;
+  --color-info-text: #000000;
+  --color-info-bg: rgba(201, 146, 106, 0.1);
+  --color-info-border: #c9926a;
+  
+  /* ==================== COMPONENT SPECIFIC ==================== */
+  --color-country-pill-bg: #c9926a;
+  --color-country-pill-text: #ffffff;
+  --color-country-pill-bg-hover: #d4a574;
+  --color-country-list-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
+  --color-country-list-border: var(--smtc-stroke-ctrl-neutral-border-rest, #cccccc);
+  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #f5f5f5);
+  --color-country-list-active-bg: #c9926a;
+  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  --color-wifi-item-bg-selected: rgba(201, 146, 106, 0.15);
+  --color-wifi-item-bg-hover: rgba(201, 146, 106, 0.08);
+  --color-wifi-accent-line: #c9926a;
+  
+  --color-device-name-note: #c9926a;
+  
+  --color-focus-ring-text: #000000;
+}
+
+.rose-gold .oobe-background, .rose-gold #lottie {
+  filter: hue-rotate(-195deg) saturate(1.2) brightness(0.95) !important;
+}
+
+.rose-gold .oobe-visual {
+  background: linear-gradient(180deg, rgba(250, 244, 240, 0.9), rgba(245, 235, 229, 0.85));
+}
