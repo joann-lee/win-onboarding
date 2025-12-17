@@ -1,41 +1,22 @@
-# Overview
-## Purpose
+# OOBE, SCOOBE, Nth LOGON PROTOTYPE
+by nina navazio
 
-## How it was built
+This is not production code!!1!!!! this is HTML, CSS, and JS. But when you full-screen the browser page, it does look like production code :) 
 
-# How to use (coding side)
-## Adding a page
+This uses the real Lottie animations that are in prod.
 
-### Adding a child page
+The color themes are NOT official, just fan-made ones from nina navazio and Jason Geiger. 
 
-## Adding a new control
+## KNOWN BUGS
+- NDUP breaks the flow, you can't get past it right now. It does a fake reboot but then just goes back to the NDUP page. Sorry! 
+- Windows Hello face and fingerprint don't have the set up flows fully implemented.
+- Service pages and partner pages aren't implemented, like OneDrive Camera Roll Backup, Phone Link setup, M365 family / basic / free informational, and Gamepass.
+- Accessibility flyouts, virtual keyboard, and volume control aren't implemented yet. 
+- The design is not accurately dynamic to portrait mode as OOBE is today. 
+- Back buttons aren't implemented on the pages that have back buttons.
+- Secondary pages, like "learn more" pages aren't implemented.
 
-# How to use (demo side)
-## Setting up a flow
+## HOW TO ADD YOUR OWN PAGE
+Duplicaete "0 template.html", rename it to a helpful semantic name for your page, then follow the "TODO" comments. This will include adding it to the JSON array in flow.js and updating the lottie animation.
 
-## Going full screen
-
-# Other things to know
-
-# Stretch goals
-## Definitely possible
-- Switch between themes (dark / light to start with) mid-prototype
-- Presets for different SKUs (personal, pro)
-- Presets for OEMs (first party, third party)
-
-## Sorta possible
-- Persistent flow setting mid-prototype
-
-## Not possible due to content
-- Preset for enterprise
-- Presets for "flavors" (CP+, Regions)
-
--- -- --
-# Bugs
-## Page-specific
-NEXT UP: NDUP pages
-- Fingerprint: missing child pages.
-
-## General
-- Dynamic scaling for portrait mode? Smaller screens?
-- Accessibility flyouts
+To add a new lottie animation, find the actual lottie code either in prod or exported from AfterEffects. Then, create a new javascript file with a helpful semantic name in assets/animations. Then, in the JS file write "window.lottieAnimationData = " and then paste the copied lottie code. It should look similar to the other JS files, with {}s. Then use that file on your page and you're good to go! 

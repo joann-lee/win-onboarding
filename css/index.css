@@ -212,7 +212,7 @@
 .color-palette-dropdown {
   padding: 8px 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -250,6 +250,7 @@
 .dark .color-palette-dropdown {
   background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
   box-shadow: 0 4px 12px rgba(118, 75, 162, 0.4);
+  color: white;
 }
 
 .dark .color-palette-dropdown:hover {
@@ -263,6 +264,7 @@
 .rose-gold .color-palette-dropdown {
   background: linear-gradient(135deg, #c9926a 0%, #d4a574 100%);
   box-shadow: 0 4px 12px rgba(201, 146, 106, 0.4);
+  color: white;
 }
 
 .rose-gold .color-palette-dropdown:hover {
@@ -276,6 +278,7 @@
 .moss-green .color-palette-dropdown {
   background: linear-gradient(135deg, #6b8e5f 0%, #7a9e6f 100%);
   box-shadow: 0 4px 12px rgba(107, 142, 95, 0.4);
+  color: white;
 }
 
 .moss-green .color-palette-dropdown:hover {
