@@ -3,10 +3,19 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | NDUP</title>  <link rel="stylesheet" href="/css/win11.css" type="text/css" />
-  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" />
-  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" />  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <title>💻 OOBE Sandbox | NDUP</title>  <script>
+    // Load CSS files based on saved style preference - runs synchronously during page parsing
+    (function() {
+      const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      const cssLinks = {
+        win11: '<link rel=\"stylesheet\" href=\"/css/win11.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.dark.css\" type=\"text/css\" />',
+        evolved: '<link rel=\"stylesheet\" href=\"/css/evolved.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.dark.css\" type=\"text/css\" />'
+      };
+      document.write(cssLinks[savedCssStyle] || cssLinks.win11);
+    })();
+  </script>  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" />  <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <link rel="stylesheet" href="/css/ndup.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,7 +23,7 @@
   <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
 </head>
 
-<body class="win11 light" data-page-id="ndup" data-oobe>
+<body data-page-id="ndup" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
@@ -71,9 +80,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/NDUP.js"></script>
   <script src="/js/flow.js"></script>
-  <script src="/js/page.js"></script>
-
-  <script>
+<script>
     let currentStage = parseInt(sessionStorage.getItem('ndup-currentStage') || '0');
     let stageProgress = parseInt(sessionStorage.getItem('ndup-stageProgress') || '0');
 

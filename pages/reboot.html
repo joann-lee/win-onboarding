@@ -3,19 +3,26 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | Reboot</title>
-  <link rel="stylesheet" href="/css/win11.css" type="text/css" />
-  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" />
-  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" />
-  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <title>💻 OOBE Sandbox | Reboot</title>  <script>
+    // Load CSS files based on saved style preference - runs synchronously during page parsing
+    (function() {
+      const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      const cssLinks = {
+        win11: '<link rel=\"stylesheet\" href=\"/css/win11.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.dark.css\" type=\"text/css\" />',
+        evolved: '<link rel=\"stylesheet\" href=\"/css/evolved.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.dark.css\" type=\"text/css\" />'
+      };
+      document.write(cssLinks[savedCssStyle] || cssLinks.win11);
+    })();
+  </script>  <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
   <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
 </head>
 
-<body class="win11 light" data-page-id="reboot" data-oobe>
+<body data-page-id="reboot" data-oobe>
   <div class="oobe-background"></div>
   <div class="reboot-container">
     <div class="reboot-content">
@@ -33,54 +40,12 @@
 
   <script src="/js/flow.js"></script>
   <script>
-    (function initReboot() {
-      const container = document.querySelector('.reboot-container');
-      const content = document.querySelector('.reboot-content');
-
-      // Always prepend pages/ for iframe compatibility
-      const shouldPrependPages = true;
-
-      // Timeline: fade out (500ms) -> black (800ms) -> fade in logo (500ms) -> hold (500ms) -> next
-      const totalDuration = 500 + 800 + 500 + 500; // 2300ms total
-
-      async function executeReboot() {
-        // Phase 1: Fade to black (500ms)
-        await new Promise(resolve => {
-          content.style.opacity = '0';
-          setTimeout(resolve, 500);
-        });
-
-        // Phase 2: Black screen (800ms) - logo already hidden
-        await new Promise(resolve => {
-          setTimeout(resolve, 800);
-        });
-
-        // Phase 3: Fade in Windows logo (500ms)
-        await new Promise(resolve => {
-          content.style.opacity = '1';
-          setTimeout(resolve, 500);
-        });
-
-        // Phase 4: Hold on logo (500ms)
-        await new Promise(resolve => {
-          setTimeout(resolve, 500);
-        });
-
-        // Navigate to next page
-        const nextId = sessionStorage.getItem('oobeRestartDestination');
-        sessionStorage.removeItem('oobeRestartDestination');
-        
-        if (nextId && window.getPageFile && window.getPagePath) {
-          const nextFile = window.getPageFile(nextId);
-          window.location.href = window.getPagePath(nextFile);
-        } else {
-          // Fallback to desktop if no destination
-          window.location.href = '/assets/desktop.html';
-        }
-      }
-
-      // Start reboot sequence when page loads
-      executeReboot();
+    (function() {
+      var style = localStorage.getItem('cssStyle') || 'win11';
+      var links = style === 'evolved' 
+        ? '<link rel="stylesheet" href="/css/evolved.css"><link rel="stylesheet" href="/css/evolved.light.css"><link rel="stylesheet" href="/css/evolved.dark.css">'
+        : '<link rel="stylesheet" href="/css/win11.css"><link rel="stylesheet" href="/css/win11.light.css"><link rel="stylesheet" href="/css/win11.dark.css">';
+      document.write(links);
     })();
   </script>
 

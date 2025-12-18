@@ -167,68 +167,93 @@ function enableDnD(container) {
 }
 function wireStart() {
   const firstId = computeFirst();
-  const startHref = firstId ? mapIdToFile(firstId) : '#';
+  const startHref = firstId ? mapIdToFile(firstId) : 'assets/desktop.html';
   const startBtn = document.getElementById('start-btn');
   const firstLink = document.getElementById('first-link');
-  if (firstId) {
-    startBtn.href = startHref;
-    if (firstLink) firstLink.href = startHref;
+  
+  // For mai-button, add click handler for navigation
+  if (startBtn) {
+    startBtn.onclick = (e) => {
+      e.preventDefault();
+      flashStart();
+      window.location.href = startHref;
+    };
     startBtn.classList.remove('disabled');
-    if (firstLink) firstLink.classList.remove('disabled');
-  } else {
-    startBtn.href = 'assets/desktop.html';
-    if (firstLink) firstLink.href = 'assets/desktop.html';
-    startBtn.classList.remove('disabled');
-    if (firstLink) firstLink.classList.remove('disabled');
+  }
+  
+  // For regular anchor tags
+  if (firstLink) {
+    firstLink.href = startHref;
+    firstLink.classList.remove('disabled');
   }
 }
 function flashStart() { const btn = document.getElementById('start-btn'); btn.style.outline = '2px solid #4caf50'; setTimeout(() => btn.style.outline = 'none', 600); }
 
-// Theme management - light/dark toggle + color palette
+// Theme management - light/dark toggle + color palette + CSS style
 function initThemeControls() {
   const modeToggle = document.getElementById('mode-toggle');
   const colorPalette = document.getElementById('color-palette');
+  const cssStyle = document.getElementById('css-style');
   
   const savedMode = localStorage.getItem('themeMode') || 'light';
   const savedPalette = localStorage.getItem('themePalette') || 'standard';
+  const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
   
-  // Set initial state
-  if (modeToggle) {
-    modeToggle.checked = (savedMode === 'dark');
-  }
-  if (colorPalette) {
-    colorPalette.value = savedPalette;
-  }
+  // Wait for web components to be ready
+  customElements.whenDefined('mai-switch').then(() => {
+    // Set initial state for mai-switch
+    if (modeToggle) {
+      modeToggle.checked = (savedMode === 'dark');
+    }
+    
+    // Handle mode toggle (light/dark) with mai-switch
+    if (modeToggle) {
+      modeToggle.addEventListener('change', (e) => {
+        const mode = e.target.checked ? 'dark' : 'light';
+        const palette = colorPalette ? colorPalette.value : 'standard';
+        localStorage.setItem('themeMode', mode);
+        applyTheme(mode, palette);
+      });
+    }
+  });
+  
+  customElements.whenDefined('mai-dropdown').then(() => {
+    // Set initial value for color palette dropdown
+    if (colorPalette) {
+      colorPalette.value = savedPalette;
+    }
+    if (cssStyle) {
+      cssStyle.value = savedCssStyle;
+    }
+    
+    // Handle color palette dropdown
+    if (colorPalette) {
+      colorPalette.addEventListener('change', (e) => {
+        const mode = modeToggle && modeToggle.checked ? 'dark' : 'light';
+        const palette = e.target.value;
+        localStorage.setItem('themePalette', palette);
+        applyTheme(mode, palette);
+      });
+    }
+    
+    // Handle CSS style dropdown
+    if (cssStyle) {
+      cssStyle.addEventListener('change', (e) => {
+        const style = e.target.value;
+        localStorage.setItem('cssStyle', style);
+      });
+    }
+  });
   
   // Apply saved theme
   applyTheme(savedMode, savedPalette);
-  
-  // Handle mode toggle (light/dark)
-  if (modeToggle) {
-    modeToggle.addEventListener('change', (e) => {
-      const mode = e.target.checked ? 'dark' : 'light';
-      const palette = colorPalette ? colorPalette.value : 'standard';
-      localStorage.setItem('themeMode', mode);
-      applyTheme(mode, palette);
-    });
-  }
-  
-  // Handle color palette dropdown
-  if (colorPalette) {
-    colorPalette.addEventListener('change', (e) => {
-      const mode = modeToggle && modeToggle.checked ? 'dark' : 'light';
-      const palette = e.target.value;
-      localStorage.setItem('themePalette', palette);
-      applyTheme(mode, palette);
-    });
-  }
 }
 
 function applyTheme(mode, palette) {
   const root = document.documentElement;
   
   // Remove all palette classes
-  root.classList.remove('rose-gold', 'forest-green');
+  root.classList.remove('rose-gold', 'forest-green', 'purple');
   root.classList.remove('dark');
   
   // Apply mode
@@ -241,6 +266,8 @@ function applyTheme(mode, palette) {
     root.classList.add('rose-gold');
   } else if (palette === 'forest-green') {
     root.classList.add('forest-green');
+  } else if (palette === 'purple') {
+    root.classList.add('purple');
   }
 }
 

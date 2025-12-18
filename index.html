@@ -4,11 +4,31 @@
 <head>
   <meta charset="UTF-8" />
   <title>💻 OOBE Sandbox | Set up</title>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <script>
+    (function() {
+      var style = localStorage.getItem('cssStyle') || 'win11';
+      if (style === 'evolved') {
+        document.getElementById('style-base').href = '/css/evolved.css';
+        document.getElementById('style-light').href = '/css/evolved.light.css';
+        document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
   <!-- <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" /> -->
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <link rel="stylesheet" href="/css/index.css" type="text/css" />
 </head>
 
@@ -27,33 +47,41 @@
       <!-- <div class="presets-subtitle">Presets</div> -->
       <div class="presets-row">
         <div class="theme-controls">
-          <div class="mode-toggle-group">
-            <label for="mode-toggle" class="toggle-label">Light/Dark</label>
-            <input type="checkbox" id="mode-toggle" class="toggle-checkbox">
-            <label for="mode-toggle" class="toggle-switch-label"></label>
-          </div>
-          <select id="color-palette" class="color-palette-dropdown">
-            <option value="standard">Standard (Blue)</option>
-            <option value="rose-gold">Rose Gold</option>
-            <option value="forest-green">Forest Green</option>
-          </select>
+          <mai-field label-position="after">
+            <label slot="label">Light/Dark</label>
+            <mai-switch id="mode-toggle" name="mode-toggle" slot="input"></mai-switch>
+          </mai-field>
+          <mai-dropdown id="css-style" placeholder="Win11">
+            <mai-listbox>
+              <mai-option value="win11">Win11</mai-option>
+              <mai-option value="evolved">Evolved</mai-option>
+            </mai-listbox>
+          </mai-dropdown>
+          <mai-dropdown id="color-palette" placeholder="Standard (Blue)">
+            <mai-listbox>
+              <mai-option value="standard">Standard (Blue)</mai-option>
+              <mai-option value="purple">Purple</mai-option>
+            </mai-listbox>
+          </mai-dropdown>
         </div>
-        <a id="reset-flow" class="button-secondary" href="#">Reset</a>
+        <mai-button id="reset-flow" appearance="secondary" size="large">Reset</mai-button>
         <!-- <a id="holiday-25" class="button-secondary" href="#">Holiday 25</a> -->
         <!-- <a id="spring-26" class="button-secondary" href="#">Spring 26</a> -->
         <!-- <a id="fall-26" class="button-secondary" href="#">Fall 26</a> -->
 
       </div>
 
-            <div class="start-row">
+      <div class="start-row">
 
-        <a id="start-btn" class="button-primary" href="#">Start</a>
+        <mai-button id="start-btn" appearance="primary" size="large">Start</mai-button>
       </div>
 
     </div>
   </div>
 
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
   <script src="/js/index.js"></script>
   <script>
     // Preload and cache the background image in memory

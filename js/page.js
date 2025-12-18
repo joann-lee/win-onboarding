@@ -4,14 +4,19 @@
 (function initTheme() {
   const savedMode = localStorage.getItem('themeMode') || 'light';
   const savedPalette = localStorage.getItem('themePalette') || 'standard';
+  const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
   const root = document.documentElement;
   
   // Remove all theme classes first
-  root.classList.remove('dark', 'rose-gold', 'forest-green');
+  root.classList.remove('dark', 'rose-gold', 'forest-green', 'purple', 'win11', 'evolved');
+  document.body.classList.remove('purple', 'rose-gold', 'forest-green', 'win11', 'evolved');
   
   // Apply saved mode to body
   document.body.classList.remove('light', 'dark');
   document.body.classList.add(savedMode);
+  
+  // Apply saved CSS style to body
+  document.body.classList.add(savedCssStyle);
   
   // Apply saved mode to root (for backward compatibility)
   if (savedMode === 'dark') {
@@ -21,8 +26,13 @@
   // Apply saved palette
   if (savedPalette === 'rose-gold') {
     root.classList.add('rose-gold');
+    document.body.classList.add('rose-gold');
   } else if (savedPalette === 'forest-green') {
     root.classList.add('forest-green');
+    document.body.classList.add('forest-green');
+  } else if (savedPalette === 'purple') {
+    root.classList.add('purple');
+    document.body.classList.add('purple');
   }
 })();
 
