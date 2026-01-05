@@ -9,13 +9,14 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" />
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
   <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
 </head>
 
-<body class="win11 light" data-page-id="privacy_settings" data-oobe>
+<body class="win11 light purple" data-page-id="privacy_settings" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
@@ -107,9 +108,10 @@
       </div>
       <div class="oobe-below-actions">
         <!-- Accessibility section, no need to update -->
-        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 
@@ -118,6 +120,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/Privacy.js"></script>
   <script src="/js/scrollbar.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
   <script src="/js/page.js"></script>
   <script>

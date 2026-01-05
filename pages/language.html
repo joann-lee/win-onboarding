@@ -6,6 +6,7 @@
   <title>💻 OOBE Sandbox | Language</title>
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <link rel="stylesheet" href="/css/win11.css" type="text/css" />
   <link rel="stylesheet" href="/css/win11.light.css" type="text/css" />
@@ -15,7 +16,7 @@
   <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
 </head>
 
-<body data-page-id="language" data-oobe>
+<body class="win11 light purple" data-page-id="language" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
@@ -37,17 +38,17 @@
           </div>
 
           <div class="footer">
-            <button id="region-yes" class="button-primary" type="button" data-cta="next">Continue in English</button>
+            <mai-button id="region-yes" appearance="primary" size="large" type="button" data-cta="next">Continue in English</mai-button>
           </div>
 
         </div>
       </div>
       <div class="oobe-below-actions">
         <!-- Accessibility section, no need to update -->
-        <button type="button a11y" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
   </div>
