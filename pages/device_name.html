@@ -3,17 +3,11 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | Device Name</title>  <script>
-    // Load CSS files based on saved style preference - runs synchronously during page parsing
-    (function() {
-      const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
-      const cssLinks = {
-        win11: '<link rel=\"stylesheet\" href=\"/css/win11.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.dark.css\" type=\"text/css\" />',
-        evolved: '<link rel=\"stylesheet\" href=\"/css/evolved.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.dark.css\" type=\"text/css\" />'
-      };
-      document.write(cssLinks[savedCssStyle] || cssLinks.win11);
-    })();
-  </script>  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <title>💻 OOBE Sandbox | Device Name</title>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" />
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
@@ -22,7 +16,7 @@
   <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
 </head>
 
-<body data-page-id="device-name" data-oobe>
+<body class="win11 light purple" data-page-id="device-name" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
@@ -59,17 +53,17 @@
           </div>
           <div class="oobe-ctas">
             <a class="button-secondary" data-cta="skip">Skip for now</a>
-            <button class="button-primary" data-cta="next" id="device-name-next" disabled>Next</button>
+            <mai-button appearance="primary" size="large" data-cta="next" id="device-name-next" disabled>Next</mai-button>
           </div>
         </div>
 
       </div>
       <div class="oobe-below-actions">
         <!-- Accessibility section, no need to update -->
-        <button type="button a11y" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 
@@ -78,8 +72,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/Device_name.js"></script>
   <script src="/js/scrollbar.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
-<script>
+  <script src="/js/page.js"></script>
+
+  <script>
     // Hide restart message if restart is disabled for this page
     (function initRestartMessage() {
       const restartMessage = document.getElementById('restart-message');
