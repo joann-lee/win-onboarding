@@ -3,19 +3,25 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | PC Restore</title>  <script>
-    // Load CSS files based on saved style preference - runs synchronously during page parsing
+  <title>💻 OOBE Sandbox | PC Restore</title>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <script>
     (function() {
-      const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
-      const cssLinks = {
-        win11: '<link rel=\"stylesheet\" href=\"/css/win11.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/win11.dark.css\" type=\"text/css\" />',
-        evolved: '<link rel=\"stylesheet\" href=\"/css/evolved.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.light.css\" type=\"text/css\" /><link rel=\"stylesheet\" href=\"/css/evolved.dark.css\" type=\"text/css\" />'
-      };
-      document.write(cssLinks[savedCssStyle] || cssLinks.win11);
+      var style = localStorage.getItem('cssStyle');
+      if (style === 'evolved') {
+        document.getElementById('style-base').href = '/css/evolved.css';
+        document.getElementById('style-light').href = '/css/evolved.light.css';
+        document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      }
     })();
-  </script>  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  </script>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />

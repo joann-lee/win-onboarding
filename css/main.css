@@ -557,3 +557,58 @@ body::before {
 mai-dropdown::after {background: transparent !important;}
 mai-dropdown:focus::after {background: transparent !important;}
 mai-dropdown:focus-visible::after {background: transparent !important;}
+mai-dropdown:hover::after {background: transparent !important;}
+
+/* Remove focus stroke from dropdown */
+mai-dropdown:focus {
+  outline: none !important;
+  border: var(--smtc-stroke-ctrl-on-neutral-rest) solid 1px !important;
+}
+mai-dropdown:focus-visible {
+  outline: none !important;
+  border: var(--smtc-stroke-ctrl-on-neutral-rest) solid 1px !important;
+}
+
+/* Windows 11 style dropdown using CSS custom properties */
+:root {
+  /* Force dropdown positioning to overlay */
+  --mai-dropdown-listbox-inset-block-start: 0px;
+  --mai-dropdown-listbox-inset-inline-start: 0px;
+  --mai-dropdown-listbox-inline-size: 100%;
+  --mai-dropdown-listbox-min-inline-size: 100%;
+  
+  /* Remove option bullets via mai properties */
+  --mai-smtc-ctrl-option-bullet-display: none;
+  --mai-option-list-style: none;
+  --mai-option-marker-display: none;
+  
+  /* Selected option styling */
+  --mai-option-selected-border-inline-start: 3px solid var(--smtc-foreground-ctrl-brand-rest, #005FB8);
+  --mai-option-selected-background: var(--smtc-background-ctrl-subtle-selected-rest, rgba(0, 95, 184, 0.1));
+  --mai-option-border-inline-start: 3px solid transparent;
+  --mai-option-padding-inline-start: 12px;
+}
+
+/* Force styles using JavaScript approach - force override shadow DOM */
+mai-dropdown {
+  --listbox-positioning: overlay !important;
+}
+
+mai-listbox {
+  --positioning: overlay !important;
+}
+
+mai-option {
+  --list-style-type: none !important;
+  --marker-display: none !important;
+  --bullet-display: none !important;
+}
+
+/* Windows 11 style dropdown - listbox overlays the button */
+mai-listbox[popover] {
+  top: anchor(top) !important;
+  left: anchor(left) !important;
+  width: anchor-size(width) !important;
+  min-width: anchor-size(width) !important;
+  transform: translateY(0) !important;
+}

@@ -360,4 +360,64 @@ document.addEventListener('DOMContentLoaded', () => {
   if (reset) { reset.onclick = () => { OOBEFlow.setOrder(OOBEFlow.default); OOBEFlow.setHidden([]); OOBEFlow.setRestartConfig({ disabledRestarts: [] }); OOBEFlow.setDisabledFirstPages({ disabledFirstPages: [] }); renderFlow(); wireStart(); }; }
   const startBtn = document.getElementById('start-btn');
   if (startBtn) { startBtn.addEventListener('click', () => { wireStart(); flashStart(); }); }
+  
+  // Fix dropdown styling for Windows 11 behavior
+  setTimeout(() => {
+    fixDropdownStyling();
+  }, 100);
 });
+
+// Function to apply Windows 11 dropdown styling
+function fixDropdownStyling() {
+  // Fix dropdown positioning to overlay
+  const dropdowns = document.querySelectorAll('mai-dropdown');
+  dropdowns.forEach(dropdown => {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+          const listbox = dropdown.querySelector('mai-listbox[popover]');
+          if (listbox && dropdown.hasAttribute('open')) {
+            // Force listbox to overlay the dropdown button
+            const dropdownRect = dropdown.getBoundingClientRect();
+            listbox.style.setProperty('top', `${dropdownRect.top}px`, 'important');
+            listbox.style.setProperty('left', `${dropdownRect.left}px`, 'important');
+            listbox.style.setProperty('width', `${dropdownRect.width}px`, 'important');
+            listbox.style.setProperty('min-width', `${dropdownRect.width}px`, 'important');
+          }
+        }
+      });
+    });
+    observer.observe(dropdown, { attributes: true });
+  });
+
+  // Remove bullets from options and add Windows 11 selection style
+  const options = document.querySelectorAll('mai-option');
+  options.forEach(option => {
+    // Try to access shadow DOM if possible
+    try {
+      const shadowRoot = option.shadowRoot || option.attachedShadow;
+      if (shadowRoot) {
+        const style = document.createElement('style');
+        style.textContent = `
+          :host {
+            list-style: none !important;
+            border-left: 3px solid transparent;
+            padding-left: 12px;
+          }
+          :host([aria-selected="true"]), :host([selected]) {
+            border-left: 3px solid var(--smtc-foreground-ctrl-brand-rest, #005FB8);
+            background: var(--smtc-background-ctrl-subtle-selected-rest, rgba(0, 95, 184, 0.1));
+          }
+          .control::before {
+            display: none !important;
+            content: none !important;
+          }
+        `;
+        shadowRoot.appendChild(style);
+      }
+    } catch (e) {
+      // Shadow DOM not accessible, try other approaches
+      console.log('Shadow DOM not accessible for option:', option);
+    }
+  });
+}
