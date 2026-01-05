@@ -31,9 +31,9 @@
   --smtc-background-card-on-flyout-default-disabled: #ffffff08;
   --smtc-background-flyout-lum-blend: #f3f3f380;
   --smtc-background-flyout-color-blend: #f3f3f3;
-  --smtc-background-ctrl-brand-rest: #23272b;
-  --smtc-background-ctrl-brand-hover: #282c30;
-  --smtc-background-ctrl-brand-pressed: #3a3d42;
+  --smtc-background-ctrl-brand-rest: #005FB8;
+  --smtc-background-ctrl-brand-hover: #006cbe;
+  --smtc-background-ctrl-brand-pressed: #005fa8;
   --smtc-background-ctrl-brand-disabled: #23272b0f;
   --smtc-background-ctrl-neutral-rest: #ffffff0f;
   --smtc-background-ctrl-neutral-hover: #ffffff14;
@@ -106,9 +106,9 @@
   --smtc-foreground-ctrl-icon-on-transparent-rest: #ffffff;
   --smtc-foreground-ctrl-icon-on-transparent-hover: #ffffff;
   --smtc-foreground-ctrl-icon-on-transparent-pressed: #ffffffc7;
-  --smtc-foreground-ctrl-brand-rest: #464feb;
-  --smtc-foreground-ctrl-brand-hover: #464feb;
-  --smtc-foreground-ctrl-brand-pressed: #464feb;
+  --smtc-foreground-ctrl-brand-rest: #60cdff;
+  --smtc-foreground-ctrl-brand-hover: #99ebff;
+  --smtc-foreground-ctrl-brand-pressed: #60cdff;
   --smtc-foreground-ctrl-brand-disabled: #0000004d;
   --smtc-foreground-ctrl-on-brand-rest: #ffffff;
   --smtc-foreground-ctrl-on-brand-hover: #000000;

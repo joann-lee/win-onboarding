@@ -2,6 +2,25 @@
 Variables and other items used across all the pages
 */
 
+/* Prevent white flash during navigation by setting background on html and body */
+html {
+  background-color: var(--smtc-background-web-page-secondary, #f0f5fa);
+  background-image: var(--background-image, url('/assets/visuals/background-blurred.jpg'));
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+body {
+  background: transparent;
+}
+
+/* Dark mode default background */
+html.dark {
+  background-color: #0a0a0a;
+}
+
 @view-transition {
   navigation: auto;
 }
@@ -123,7 +142,7 @@ Variables and other items used across all the pages
   --color-shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
-.rose-gold {
+.dune {
   --color-bg-app: #fdf5f0;
   --color-bg-card: #fffbf8;
   --color-bg-subtle: #faf4f0;
@@ -138,7 +157,7 @@ Variables and other items used across all the pages
   --color-shadow-strong: rgba(0, 0, 0, 0.12);
 }
 
-.dark.forest-green {
+.dark.sapphire {
   --color-bg-app: #0f1810;
   --color-bg-card: #192318;
   --color-bg-subtle: #1f2f1e;
@@ -207,7 +226,6 @@ body::before {
   background-size: cover;
   background-attachment: fixed;
   will-change: none;
-  z-index: -1;
   transform: scale(1.1) translateZ(0);
   /* Scale up to hide edges, translateZ for GPU acceleration */
   backface-visibility: hidden;

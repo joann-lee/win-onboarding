@@ -1,0 +1,89 @@
+/*
+
+VIOLET THEME - SMTC Token Overrides
+
+This file overrides Win11 SMTC design tokens to create a violet color theme.
+Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (light 1), #796CA3 (base), #615589 (dark 1), #403667 (dark 2), #1C1441 (dark 3)
+
+*/
+
+:root.light.violet,
+.light.violet {
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #615589;
+  --smtc-foreground-ctrl-brand-rest: #615589;
+  --smtc-foreground-ctrl-brand-hover: #796CA3;
+  --smtc-foreground-ctrl-brand-pressed: #403667;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-violet-light.png');
+  --smtc-background-layer-solid: #faf9fb;
+  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-ctrl-brand-rest: #615589;
+  --smtc-background-ctrl-brand-hover: #796CA3;
+  --smtc-background-ctrl-brand-pressed: #403667;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #796CA3;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #403667;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #615589;
+  --smtc-stroke-ctrl-brand-hover: #796CA3;
+  --smtc-stroke-ctrl-brand-pressed: #403667;
+  
+  /* ==================== LINKS & INTERACTIVE ==================== */
+  --smtc-foreground-ctrl-hint-default: #796CA3;
+  
+  /* ==================== STATUS COLORS (keep original) ==================== */
+  /* Error, warning, success colors remain unchanged */
+}
+
+:root.dark.violet,
+.dark.violet {
+  /* ==================== TEXT COLORS ==================== */
+  --smtc-foreground-content-neutral-primary: #ffffff;
+  --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
+  --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
+  
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #8F8282;
+  --smtc-foreground-ctrl-brand-rest: #8F8282;
+  --smtc-foreground-ctrl-brand-hover: #C7BCD8;
+  --smtc-foreground-ctrl-brand-pressed: #796CA3;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-violet-dark.png');
+  --smtc-background-layer-solid: #0f1113;
+  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-ctrl-brand-rest: #8F8282;
+  --smtc-background-ctrl-brand-hover: #C7BCD8;
+  --smtc-background-ctrl-brand-pressed: #796CA3;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #C7BCD8;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #796CA3;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #8F8282;
+  --smtc-stroke-ctrl-brand-hover: #C7BCD8;
+  --smtc-stroke-ctrl-brand-pressed: #796CA3;
+  
+  /* ==================== LINKS & INTERACTIVE ==================== */
+  --smtc-foreground-ctrl-hint-default: #8F8282;
+  
+  /* ==================== STATUS COLORS (Violet tint for info) ==================== */
+  --smtc-status-brand-tint-foreground: #8F8282;
+  --smtc-status-brand-tint-background: rgba(143, 130, 130, 0.1);
+}
+
+
+/* ==================== VISUAL EFFECTS & FILTERS ==================== */
+.violet #lottie {
+  filter: hue-rotate(45deg) saturate(1.1) brightness(0.98);
+}
+
+.violet .oobe-visual {
+  background: linear-gradient(180deg, rgba(250, 249, 251, 0.8), rgba(231, 221, 238, 0.8));
+}
+
+.dark.violet .oobe-visual {
+  background: linear-gradient(180deg, rgba(28, 20, 65, 0.8), rgba(15, 17, 19, 0.8));
+}
+

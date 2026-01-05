@@ -1,0 +1,88 @@
+/*
+
+DUNE THEME - SMTC Token Overrides
+
+This file overrides Win11 SMTC design tokens to create a dune color theme.
+Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (light 1), #96605F (base), #7D554A (dark 1), #5D3730 (dark 2), #371310 (dark 3)
+
+*/
+
+:root.light.dune,
+.light.dune {
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #7D554A;
+  --smtc-foreground-ctrl-brand-rest: #7D554A;
+  --smtc-foreground-ctrl-brand-hover: #96605F;
+  --smtc-foreground-ctrl-brand-pressed: #5D3730;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-dune-light.png');
+  --smtc-background-layer-solid: #fdfbf8;
+  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-ctrl-brand-rest: #7D554A;
+  --smtc-background-ctrl-brand-hover: #96605F;
+  --smtc-background-ctrl-brand-pressed: #5D3730;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #96605F;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #5D3730;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #7D554A;
+  --smtc-stroke-ctrl-brand-hover: #96605F;
+  --smtc-stroke-ctrl-brand-pressed: #5D3730;
+  
+  /* ==================== LINKS & INTERACTIVE ==================== */
+  --smtc-foreground-ctrl-hint-default: #96605F;
+  
+  /* ==================== STATUS COLORS (keep original) ==================== */
+  /* Error, warning, success colors remain unchanged */
+}
+
+:root.dark.dune,
+.dark.dune {
+  /* ==================== TEXT COLORS ==================== */
+  --smtc-foreground-content-neutral-primary: #ffffff;
+  --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
+  --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
+  
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #A78273;
+  --smtc-foreground-ctrl-brand-rest: #A78273;
+  --smtc-foreground-ctrl-brand-hover: #D3BCAB;
+  --smtc-foreground-ctrl-brand-pressed: #96605F;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-dune-dark.png');
+  --smtc-background-layer-solid: #1a1612;
+  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-ctrl-brand-rest: #A78273;
+  --smtc-background-ctrl-brand-hover: #D3BCAB;
+  --smtc-background-ctrl-brand-pressed: #96605F;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #D3BCAB;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #96605F;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #A78273;
+  --smtc-stroke-ctrl-brand-hover: #D3BCAB;
+  --smtc-stroke-ctrl-brand-pressed: #96605F;
+  
+  /* ==================== LINKS & INTERACTIVE ==================== */
+  --smtc-foreground-ctrl-hint-default: #A78273;
+  
+  /* ==================== STATUS COLORS (Dune tint for info) ==================== */
+  --smtc-status-brand-tint-foreground: #A78273;
+  --smtc-status-brand-tint-background: rgba(167, 130, 115, 0.1);
+}
+
+
+/* ==================== VISUAL EFFECTS & FILTERS ==================== */
+.dune #lottie {
+  filter: hue-rotate(-195deg) saturate(0.8) brightness(1.02);
+}
+
+.dune .oobe-visual {
+  background: linear-gradient(180deg, rgba(253, 251, 248, 0.8), rgba(236, 220, 204, 0.8));
+}
+
+.dark.dune .oobe-visual {
+  background: linear-gradient(180deg, rgba(55, 19, 16, 0.8), rgba(26, 22, 18, 0.8));
+}

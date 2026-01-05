@@ -1,7 +1,7 @@
 /**
  * Do not edit directly, this file was auto-generated.
  */
-.win11 {
+.evolved {
   --smtc-text-global-display1-font-size: 74px;
   --smtc-text-global-display1-line-height: 112px;
   --smtc-text-global-display2-font-size: 74px;
@@ -140,18 +140,18 @@
   --smtc-corner-circular: 999px;
   --smtc-corner-zero: 4px;
   --smtc-corner-bezel: 16px;
-  --smtc-corner-window-default: 8px;
-  --smtc-corner-flyout-rest: 8px;
-  --smtc-corner-layer-default: 8px;
+  --smtc-corner-window-default: 20px;
+  --smtc-corner-flyout-rest: 20px;
+  --smtc-corner-layer-default: 20px;
   --smtc-corner-layer-intersection: 0px;
-  --smtc-corner-card-rest: 8px;
-  --smtc-corner-image-on-page: 4px;
-  --smtc-corner-image-in-card: 4px;
-  --smtc-corner-ctrl-rest: 4px;
-  --smtc-corner-ctrl-sm-rest: 2px;
-  --smtc-corner-ctrl-sm-pressed: 4px;
-  --smtc-corner-ctrl-lg-rest: 4px;
-  --smtc-corner-ctrl-lg-pressed: 4px;
+  --smtc-corner-card-rest: 20px;
+  --smtc-corner-image-on-page: 12px;
+  --smtc-corner-image-in-card: 12px;
+  --smtc-corner-ctrl-rest: 12px;
+  --smtc-corner-ctrl-sm-rest: 8px;
+  --smtc-corner-ctrl-sm-pressed: 12px;
+  --smtc-corner-ctrl-lg-rest: 12px;
+  --smtc-corner-ctrl-lg-pressed: 12px;
   --smtc-shadow-card-rest-key: 0px 2px 4px 0px #0000000a;
   --smtc-shadow-card-rest-ambient: 0px 0px 1px 0px #00000000;
   --smtc-shadow-card-hover-key: 0px 2px 4px 0px #0000000a;

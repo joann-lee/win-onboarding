@@ -1,13 +1,14 @@
 /*
 
-VARIABLES + COLOR THEMES
+STANDARD THEME - SMTC Token Overrides
 
-At the top: variables that don't change between themes
-Then: Color themes: Standard, Rose gold, forest green 
-Bottom: Special changes for color themes, like the background image filter and Lottie filter
+This file overrides Win11 SMTC design tokens to create the standard (default) color theme.
+Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #005fa8 (pressed)
 
 */
-:root {
+
+:root.light.standard,
+.light.standard {
   /* CONSTANTS: Design tokens that don't change across themes */
   /* These values are shared by all theme variants */
   
@@ -38,7 +39,7 @@ Bottom: Special changes for color themes, like the background image filter and L
   --color-accent-active: var(--smtc-ctrl-slider-bar-foreground-filled-pressed, #005fa8);
   --color-bg-primary: var(--smtc-background-layer-solid, #f3f7fb);
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(180, 208, 240, 0.55), rgba(240, 245, 250, 0.85));
-  --color-card-bg: var(--smtc-background-card-secondary-rest, rgba(255, 255, 255, 0.9));
+  --color-card-bg: #1e1f22;
   
   /* ==================== TEXT COLORS ==================== */
   --color-text-primary: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
@@ -127,8 +128,37 @@ Bottom: Special changes for color themes, like the background image filter and L
   --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #005FB8);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-blurred.jpg');
 }
 
+:root.dark.standard,
+.dark.standard {
+  /* ==================== TEXT COLORS ==================== */
+  --smtc-foreground-content-neutral-primary: #ffffff;
+  --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
+  --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
+  
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: var(--smtc-foreground-ctrl-hint-default, #4090ff);
+  --color-accent-hover: var(--smtc-foreground-ctrl-brand-hover, #5ca3ff);
+  --color-accent-active: var(--smtc-foreground-ctrl-brand-pressed, #3385ff);
+  --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(64, 144, 255, 0.2), rgba(15, 17, 19, 0.6));
+  --color-card-bg: #1e1f22;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-blurred.jpg');
+}
+
+/* ==================== VISUAL EFFECTS & FILTERS ==================== */
+.standard .oobe-visual,
 .oobe-visual {
   background: linear-gradient(180deg, rgba(245, 249, 252, 0.8), rgba(237, 242, 247, 0.8));
+}
+
+.dark.standard .oobe-visual,
+.dark .oobe-visual {
+  background: linear-gradient(180deg, rgba(15, 17, 19, 0.8), rgba(30, 31, 34, 0.8));
 }

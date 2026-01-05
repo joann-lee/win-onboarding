@@ -1,0 +1,88 @@
+/*
+
+SAPPHIRE THEME - SMTC Token Overrides
+
+This file overrides Win11 SMTC design tokens to create a sapphire blue color theme.
+Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (light 1), #6271AA (base), #4D5990 (dark 1), #30396E (dark 2), #121546 (dark 3)
+
+*/
+
+:root.light.sapphire,
+.light.sapphire {
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #4D5990;
+  --smtc-foreground-ctrl-brand-rest: #4D5990;
+  --smtc-foreground-ctrl-brand-hover: #6271AA;
+  --smtc-foreground-ctrl-brand-pressed: #30396E;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-sapphire-light.png');
+  --smtc-background-layer-solid: #f8fafc;
+  --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
+  --smtc-background-ctrl-brand-rest: #4D5990;
+  --smtc-background-ctrl-brand-hover: #6271AA;
+  --smtc-background-ctrl-brand-pressed: #30396E;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #6271AA;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #30396E;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #4D5990;
+  --smtc-stroke-ctrl-brand-hover: #6271AA;
+  --smtc-stroke-ctrl-brand-pressed: #30396E;
+  
+  /* ==================== LINKS & INTERACTIVE ==================== */
+  --smtc-foreground-ctrl-hint-default: #6271AA;
+  
+  /* ==================== STATUS COLORS (keep original) ==================== */
+  /* Error, warning, success colors remain unchanged */
+}
+
+:root.dark.sapphire,
+.dark.sapphire {
+  /* ==================== TEXT COLORS ==================== */
+  --smtc-foreground-content-neutral-primary: #ffffff;
+  --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
+  --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
+  
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #7987B8;
+  --smtc-foreground-ctrl-brand-rest: #7987B8;
+  --smtc-foreground-ctrl-brand-hover: #B5C2DB;
+  --smtc-foreground-ctrl-brand-pressed: #6271AA;
+  
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/visuals/background-sapphire-dark.png');
+  --smtc-background-layer-solid: #0f1318;
+  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-ctrl-brand-rest: #7987B8;
+  --smtc-background-ctrl-brand-hover: #B5C2DB;
+  --smtc-background-ctrl-brand-pressed: #6271AA;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #B5C2DB;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #6271AA;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #7987B8;
+  --smtc-stroke-ctrl-brand-hover: #B5C2DB;
+  --smtc-stroke-ctrl-brand-pressed: #6271AA;
+  
+  /* ==================== LINKS & INTERACTIVE ==================== */
+  --smtc-foreground-ctrl-hint-default: #7987B8;
+  
+  /* ==================== STATUS COLORS (Sapphire tint for info) ==================== */
+  --smtc-status-brand-tint-foreground: #7987B8;
+  --smtc-status-brand-tint-background: rgba(121, 135, 184, 0.1);
+}
+
+
+/* ==================== VISUAL EFFECTS & FILTERS ==================== */
+.sapphire #lottie {
+  filter: hue-rotate(220deg) saturate(1.1) brightness(0.98);
+}
+
+.sapphire .oobe-visual {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.8), rgba(214, 226, 240, 0.8));
+}
+
+.dark.sapphire .oobe-visual {
+  background: linear-gradient(180deg, rgba(18, 21, 70, 0.8), rgba(15, 19, 24, 0.8));
+}

@@ -26,56 +26,61 @@
   <meta name="view-transition" content="same-origin" />
   <!-- <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" /> -->
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-purple.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <link rel="stylesheet" href="/css/index.css" type="text/css" />
 </head>
 
 <body>
   <div class="oobe-background"></div>
-  <div class="landing-shell">
-    <div class="landing-card">
-      <h1>OOBE Sandbox</h1>
-      <div class="landing-sub">This is an entirely HTML and CSS recreation of OOBE. This does not reflect PROD code, only a reverse-engineering of pages for prototyping purposes.</div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <h1>OOBE Sandbox</h1>
+        <div class="landing-sub">This is an entirely HTML and CSS recreation of OOBE. This does not reflect PROD code, only a reverse-engineering of pages for prototyping purposes.</div>
 
-      <div class="flow-preview" id="flow-preview" aria-label="Current flow order and editor">
-        <strong style="display:block; margin-bottom:6px; font-size:13px;">Flow Editor</strong>
-        <ul id="flow-list"></ul>
+        <div class="flow-preview" id="flow-preview" aria-label="Current flow order and editor">
+          <strong style="display:block; margin-bottom:6px; font-size:13px;">Flow Editor</strong>
+          <ul id="flow-list"></ul>
 
-      </div>
-      <!-- <div class="presets-subtitle">Presets</div> -->
-      <div class="presets-row">
-        <div class="theme-controls">
-          <mai-field label-position="after">
-            <label slot="label">Light/Dark</label>
-            <mai-switch id="mode-toggle" name="mode-toggle" slot="input"></mai-switch>
-          </mai-field>
-          <mai-dropdown id="css-style" placeholder="Win11">
-            <mai-listbox>
-              <mai-option value="win11">Win11</mai-option>
-              <mai-option value="evolved">Evolved</mai-option>
-            </mai-listbox>
-          </mai-dropdown>
-          <mai-dropdown id="color-palette" placeholder="Standard (Blue)">
-            <mai-listbox>
-              <mai-option value="standard">Standard (Blue)</mai-option>
-              <mai-option value="purple">Purple</mai-option>
-            </mai-listbox>
-          </mai-dropdown>
         </div>
-        <mai-button id="reset-flow" appearance="secondary" size="large">Reset</mai-button>
-        <!-- <a id="holiday-25" class="button-secondary" href="#">Holiday 25</a> -->
-        <!-- <a id="spring-26" class="button-secondary" href="#">Spring 26</a> -->
-        <!-- <a id="fall-26" class="button-secondary" href="#">Fall 26</a> -->
+        <!-- <div class="presets-subtitle">Presets</div> -->
+        <div class="presets-row">
+          <div class="theme-controls">
+            <mai-field label-position="after">
+              <label slot="label">Dark mode</label>
+              <mai-switch id="mode-toggle" name="mode-toggle" slot="input"></mai-switch>
+            </mai-field>
+            <mai-dropdown id="css-style" placeholder="Win11">
+              <mai-listbox>
+                <mai-option value="win11">Win11</mai-option>
+                <mai-option value="evolved">Evolved</mai-option>
+              </mai-listbox>
+            </mai-dropdown>
+            <mai-dropdown id="color-palette" placeholder="Standard (Blue)">
+              <mai-listbox>
+                <mai-option value="standard">Standard (Blue)</mai-option>
+                <mai-option value="violet">Violet</mai-option>
+                <mai-option value="dune">Dune</mai-option>
+                <mai-option value="sapphire">Sapphire</mai-option>
+              </mai-listbox>
+            </mai-dropdown>
+          </div>
+          <!-- <a id="holiday-25" class="button-secondary" href="#">Holiday 25</a> -->
+          <!-- <a id="spring-26" class="button-secondary" href="#">Spring 26</a> -->
+          <!-- <a id="fall-26" class="button-secondary" href="#">Fall 26</a> -->
+
+        </div>
+
+        <div class="start-row">
+          <mai-button id="reset-flow" appearance="secondary" size="large">Reset</mai-button>
+          <mai-button id="start-btn" appearance="primary" size="large">Start</mai-button>
+        </div>
 
       </div>
-
-      <div class="start-row">
-
-        <mai-button id="start-btn" appearance="primary" size="large">Start</mai-button>
-      </div>
-
     </div>
   </div>
 

@@ -7,32 +7,22 @@
   const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
   const root = document.documentElement;
   
-  // Remove all theme classes first
-  root.classList.remove('dark', 'rose-gold', 'forest-green', 'purple', 'win11', 'evolved');
-  document.body.classList.remove('purple', 'rose-gold', 'forest-green', 'win11', 'evolved');
+  // Remove all theme classes from html element
+  root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
   
-  // Apply saved mode to body
-  document.body.classList.remove('light', 'dark');
-  document.body.classList.add(savedMode);
+  // Apply saved CSS style to html element
+  root.classList.add(savedCssStyle);
   
-  // Apply saved CSS style to body
-  document.body.classList.add(savedCssStyle);
+  // Apply saved mode to html element
+  root.classList.add(savedMode);
   
-  // Apply saved mode to root (for backward compatibility)
-  if (savedMode === 'dark') {
-    root.classList.add('dark');
-  }
-  
-  // Apply saved palette
-  if (savedPalette === 'rose-gold') {
-    root.classList.add('rose-gold');
-    document.body.classList.add('rose-gold');
-  } else if (savedPalette === 'forest-green') {
-    root.classList.add('forest-green');
-    document.body.classList.add('forest-green');
-  } else if (savedPalette === 'purple') {
-    root.classList.add('purple');
-    document.body.classList.add('purple');
+  // Apply saved palette to html element
+  if (savedPalette === 'dune') {
+    root.classList.add('dune');
+  } else if (savedPalette === 'sapphire') {
+    root.classList.add('sapphire');
+  } else if (savedPalette === 'violet') {
+    root.classList.add('violet');
   }
 })();
 
@@ -95,15 +85,56 @@
 })();
 
 (function initNavigation() {
+  // Add the navigation helper function to global scope for use by other navigation code
+  window.navigateWithTransition = function(url) {
+    // Check if view transitions are supported and enabled
+    if (!document.startViewTransition || !CSS.supports('view-transition-name', 'none')) {
+      window.location.href = url;
+      return;
+    }
+    
+    try {
+      const transition = document.startViewTransition(() => {
+        window.location.href = url;
+      });
+      
+      // Handle transition failures gracefully
+      if (transition && transition.ready) {
+        transition.ready.catch(() => {
+          // If transition fails, navigate normally
+          window.location.href = url;
+        });
+      }
+      
+      return transition;
+    } catch (error) {
+      // Fallback to normal navigation if anything goes wrong
+      console.warn('View transition failed, falling back to normal navigation:', error);
+      window.location.href = url;
+    }
+  };
+
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-cta]');
-    if (!btn) return;
-
-    // If it's a button (not an anchor), we need to handle navigation manually
-    if (btn.tagName === 'BUTTON') {
-      const href = btn.getAttribute('href');
-      if (href && href !== '#' && !btn.disabled) {
-        window.location.href = href;
+    const link = e.target.closest('a[href]');
+    
+    if (btn) {
+      // If it's a button (not an anchor), we need to handle navigation manually
+      if (btn.tagName === 'BUTTON') {
+        const href = btn.getAttribute('href');
+        if (href && href !== '#' && !btn.disabled) {
+          e.preventDefault();
+          window.navigateWithTransition(href);
+        }
+      }
+    } else if (link && !link.hasAttribute('target')) {
+      // Handle anchor tag navigation with view transitions
+      const href = link.getAttribute('href');
+      if (href && href !== '#' && href.includes('.html')) {
+        e.preventDefault();
+        // Convert relative paths to absolute paths if needed
+        const fullUrl = href.startsWith('/') ? href : '/pages/' + href;
+        window.navigateWithTransition(fullUrl);
       }
     }
   });
@@ -122,7 +153,7 @@
   document.addEventListener('keydown', (e) => {
     if (e.altKey && e.key.toLowerCase() === 'r') {
       e.preventDefault();
-      window.location.href = '/index.html';
+      window.navigateWithTransition('/index.html');
     }
   });
 })();
@@ -209,8 +240,10 @@
         <div class="wifi-dynamic-container">
           <div class="wifi-body">
             <div class="wifi-checkbox-container">
-              <input type="checkbox" id="auto-connect-${index}" checked>
-              <label for="auto-connect-${index}">Connect automatically</label>
+              <mai-field label-position="after">
+                <label slot="label">Connect automatically</label>
+                <mai-checkbox slot="input" id="auto-connect-${index}" checked></mai-checkbox>
+              </mai-field>
             </div>
             <button class="button-primary wifi-connect-btn">Connect</button>
           </div>
@@ -350,8 +383,10 @@
         container.innerHTML = `
           <div class="wifi-body">
             <div class="wifi-checkbox-container">
-              <input type="checkbox" id="auto-connect-retry-${name}" checked>
-              <label for="auto-connect-retry-${name}">Connect automatically</label>
+              <mai-field label-position="after">
+                <label slot="label">Connect automatically</label>
+                <mai-checkbox slot="input" id="auto-connect-retry-${name}" checked></mai-checkbox>
+              </mai-field>
             </div>
             <button class="button-primary wifi-connect-btn">Connect</button>
           </div>
@@ -543,17 +578,17 @@
         sessionStorage.setItem('oobeRestartDestination', nextId);
       }
       // Go to reboot page
-      window.location.href = window.getPagePath('reboot.html');
+      window.navigateWithTransition(window.getPagePath('reboot.html'));
     } else {
       // Navigate directly using flow.js functions
       const nextId = window.nextPageId && window.nextPageId(currentId);
       if (nextId && window.getPageFile) {
         const nextFile = window.getPageFile(nextId);
         console.log('shouldRestart navigation:', { currentId, nextId, nextFile });
-        window.location.href = window.getPagePath(nextFile);
+        window.navigateWithTransition(window.getPagePath(nextFile));
       } else {
         // Fallback to desktop if no next page
-        window.location.href = '/assets/desktop.html';
+        window.navigateWithTransition('/assets/desktop.html');
       }
     }
   }, timeout);
@@ -578,7 +613,7 @@
       const nextId = window.nextPageId && window.nextPageId(currentId);
       if (nextId && window.getPageFile) {
         const nextFile = window.getPageFile(nextId);
-        window.location.href = window.getPagePath(nextFile);
+        window.navigateWithTransition(window.getPagePath(nextFile));
       }
     }
   }, timeout);

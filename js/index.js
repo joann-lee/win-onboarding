@@ -199,6 +199,13 @@ function initThemeControls() {
   const savedPalette = localStorage.getItem('themePalette') || 'standard';
   const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
   
+  console.log('initThemeControls - savedMode:', savedMode);
+  console.log('initThemeControls - savedPalette:', savedPalette);
+  console.log('initThemeControls - savedCssStyle:', savedCssStyle);
+  
+  // Apply saved theme immediately
+  applyTheme(savedMode, savedPalette, savedCssStyle);
+  
   // Wait for web components to be ready
   customElements.whenDefined('mai-switch').then(() => {
     // Set initial state for mai-switch
@@ -211,64 +218,139 @@ function initThemeControls() {
       modeToggle.addEventListener('change', (e) => {
         const mode = e.target.checked ? 'dark' : 'light';
         const palette = colorPalette ? colorPalette.value : 'standard';
+        const style = cssStyle ? cssStyle.value : 'win11';
         localStorage.setItem('themeMode', mode);
-        applyTheme(mode, palette);
+        applyTheme(mode, palette, style);
       });
     }
   });
   
   customElements.whenDefined('mai-dropdown').then(() => {
-    // Set initial value for color palette dropdown
-    if (colorPalette) {
-      colorPalette.value = savedPalette;
-    }
-    if (cssStyle) {
-      cssStyle.value = savedCssStyle;
-    }
+    console.log('mai-dropdown defined, setting up event handlers');
+    console.log('colorPalette element:', colorPalette);
+    console.log('cssStyle element:', cssStyle);
     
-    // Handle color palette dropdown
+    // Wait a bit longer for the components to be fully initialized
+    setTimeout(() => {
+      // Set initial value for color palette dropdown
+      if (colorPalette) {
+        try {
+          colorPalette.value = savedPalette;
+          console.log('Set initial color palette to:', savedPalette);
+        } catch (error) {
+          console.warn('Could not set color palette value:', error);
+        }
+      }
+      if (cssStyle) {
+        try {
+          cssStyle.value = savedCssStyle;
+          console.log('Set initial CSS style to:', savedCssStyle);
+        } catch (error) {
+          console.warn('Could not set CSS style value:', error);
+        }
+      }
+    }, 100); // Small delay to ensure components are ready
+    
+    // Handle color palette dropdown - try 'change' event for mai-dropdown
     if (colorPalette) {
       colorPalette.addEventListener('change', (e) => {
+        console.log('Color palette changed to:', e.target.value);
         const mode = modeToggle && modeToggle.checked ? 'dark' : 'light';
         const palette = e.target.value;
+        const style = cssStyle ? cssStyle.value : 'win11';
         localStorage.setItem('themePalette', palette);
-        applyTheme(mode, palette);
+        console.log('Updated localStorage themePalette to:', palette);
+        applyTheme(mode, palette, style);
+      });
+      
+      // Also try input event as backup
+      colorPalette.addEventListener('input', (e) => {
+        console.log('Color palette input event:', e.target.value);
+        const mode = modeToggle && modeToggle.checked ? 'dark' : 'light';
+        const palette = e.target.value;
+        const style = cssStyle ? cssStyle.value : 'win11';
+        localStorage.setItem('themePalette', palette);
+        console.log('Updated localStorage themePalette to:', palette);
+        applyTheme(mode, palette, style);
       });
     }
     
-    // Handle CSS style dropdown
+    // Handle CSS style dropdown - try 'change' event for mai-dropdown  
     if (cssStyle) {
       cssStyle.addEventListener('change', (e) => {
+        console.log('CSS style changed to:', e.target.value);
         const style = e.target.value;
+        const mode = modeToggle && modeToggle.checked ? 'dark' : 'light';
+        const palette = colorPalette ? colorPalette.value : 'standard';
         localStorage.setItem('cssStyle', style);
+        console.log('Updated localStorage cssStyle to:', style);
+        applyTheme(mode, palette, style);
+      });
+      
+      // Also try input event as backup
+      cssStyle.addEventListener('input', (e) => {
+        console.log('CSS style input event:', e.target.value);
+        const style = e.target.value;
+        const mode = modeToggle && modeToggle.checked ? 'dark' : 'light';
+        const palette = colorPalette ? colorPalette.value : 'standard';
+        localStorage.setItem('cssStyle', style);
+        console.log('Updated localStorage cssStyle to:', style);
+        applyTheme(mode, palette, style);
       });
     }
   });
   
-  // Apply saved theme
-  applyTheme(savedMode, savedPalette);
+  // Theme already applied at the start of this function
 }
 
-function applyTheme(mode, palette) {
+function applyTheme(mode, palette, cssStyle) {
+  console.log('applyTheme called with:', mode, palette, cssStyle);
   const root = document.documentElement;
   
-  // Remove all palette classes
-  root.classList.remove('rose-gold', 'forest-green', 'purple');
-  root.classList.remove('dark');
+  // Remove all theme classes from html element
+  root.classList.remove('dune', 'sapphire', 'violet', 'dark', 'light', 'win11', 'evolved');
+  console.log('Removed all theme classes');
   
-  // Apply mode
-  if (mode === 'dark') {
-    root.classList.add('dark');
+  // Apply CSS style to html element
+  const savedCssStyle = cssStyle || localStorage.getItem('cssStyle') || 'win11';
+  root.classList.add(savedCssStyle);
+  console.log('Added CSS style:', savedCssStyle);
+  
+  // Dynamically switch CSS files when style changes
+  const styleBase = document.getElementById('style-base');
+  const styleLight = document.getElementById('style-light');
+  const styleDark = document.getElementById('style-dark');
+  
+  if (styleBase && styleLight && styleDark) {
+    if (savedCssStyle === 'evolved') {
+      styleBase.href = '/css/evolved.css';
+      styleLight.href = '/css/evolved.light.css';
+      styleDark.href = '/css/evolved.dark.css';
+    } else {
+      // Default to win11
+      styleBase.href = '/css/win11.css';
+      styleLight.href = '/css/win11.light.css';
+      styleDark.href = '/css/win11.dark.css';
+    }
   }
   
-  // Apply palette (standard has no class, others need the class)
-  if (palette === 'rose-gold') {
-    root.classList.add('rose-gold');
-  } else if (palette === 'forest-green') {
-    root.classList.add('forest-green');
-  } else if (palette === 'purple') {
-    root.classList.add('purple');
+  // Apply mode to html element
+  root.classList.add(mode);
+  console.log('Added mode:', mode);
+  
+  // Apply palette to html element (standard has no class, others need the class)
+  if (palette === 'dune') {
+    root.classList.add('dune');
+    console.log('Added dune palette');
+  } else if (palette === 'sapphire') {
+    root.classList.add('sapphire');
+    console.log('Added sapphire palette');
+  } else if (palette === 'violet') {
+    root.classList.add('violet');
+    console.log('Added violet palette');
   }
+  
+  console.log('Final html classes:', root.classList.toString());
 }
 
 document.addEventListener('DOMContentLoaded', () => {
