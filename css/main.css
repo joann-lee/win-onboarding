@@ -142,36 +142,6 @@ html.dark {
   --color-shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
-.dune {
-  --color-bg-app: #fdf5f0;
-  --color-bg-card: #fffbf8;
-  --color-bg-subtle: #faf4f0;
-  --color-bg-inset: #f5ebe5;
-  --color-text-primary: #3d2817;
-  --color-text-secondary: #7a5a47;
-  --color-border: #e8d4c4;
-  --color-accent: #c9926a;
-  --color-accent-hover: #d4a574;
-  --color-accent-active: #b8860b;
-  --color-accent-alt: #dba876;
-  --color-shadow-strong: rgba(0, 0, 0, 0.12);
-}
-
-.dark.sapphire {
-  --color-bg-app: #0f1810;
-  --color-bg-card: #192318;
-  --color-bg-subtle: #1f2f1e;
-  --color-bg-inset: #0d140d;
-  --color-text-primary: #e8f0e8;
-  --color-text-secondary: #a8b8a8;
-  --color-border: #3d5a34;
-  --color-accent: #5a8a2b;
-  --color-accent-hover: #6d9a38;
-  --color-accent-active: #4a7420;
-  --color-accent-alt: #7aa055;
-  --color-shadow-strong: rgba(0, 0, 0, 0.4);
-}
-
 html,
 body {
   height: 100%;
@@ -581,3 +551,9 @@ body::before {
 [data-scrollbar-visible="false"]::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
+
+/* Hide focus underlines on form controls */
+.control::after {background: transparent !important;}
+mai-dropdown::after {background: transparent !important;}
+mai-dropdown:focus::after {background: transparent !important;}
+mai-dropdown:focus-visible::after {background: transparent !important;}

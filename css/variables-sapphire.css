@@ -29,6 +29,7 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-stroke-ctrl-brand-rest: #4D5990;
   --smtc-stroke-ctrl-brand-hover: #6271AA;
   --smtc-stroke-ctrl-brand-pressed: #30396E;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #4D5990;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #6271AA;
@@ -64,6 +65,7 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-stroke-ctrl-brand-rest: #7987B8;
   --smtc-stroke-ctrl-brand-hover: #B5C2DB;
   --smtc-stroke-ctrl-brand-pressed: #6271AA;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #7987B8;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #7987B8;

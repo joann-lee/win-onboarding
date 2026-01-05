@@ -228,4 +228,23 @@
   --smtc-status-neutral-tint-background: #00000005;
   --smtc-status-neutral-tint-stroke: #00000000;
   --smtc-status-neutral-tint-foreground: #00000073;
+
+  /* Material Effects Tokens */
+  --smtc-material-acrylic-blur: 60px;
+  --smtc-material-acrylic-default-lum-blend: #fffffff0;
+  --smtc-material-acrylic-default-solid: #ffffff00;
+  --smtc-material-acrylic-default-color-blend: #ffff001a;
+  --smtc-material-acrylic-shell-default-color-blend: #ffffff00;
+  --smtc-material-acrylic-shell-default-solid: #ffffff00;
+  --smtc-material-acrylic-shell-default-lum-blend: #ffffff00;
+  --smtc-material-mica-blur: 0px;
+  --smtc-material-mica-thin-solid: #ffffff00;
+  --smtc-material-mica-thin-color-blend: #ffffff00;
+  --smtc-material-mica-thin-lum-blend: #ffffff00;
+  --smtc-material-mica-darker-color-blend: #ffffff00;
+  --smtc-material-mica-darker-lum-blend: #ffffff00;
+  --smtc-material-mica-darker-solid: #ffffff00;
+  --smtc-material-mica-default-color-blend: #ffffff00;
+  --smtc-material-mica-default-solid: #ffffff00;
+  --smtc-material-mica-default-lum-blend: #ffffff00;
 }

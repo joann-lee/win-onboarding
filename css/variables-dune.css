@@ -18,7 +18,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/visuals/background-dune-light.png');
   --smtc-background-layer-solid: #fdfbf8;
-  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #7D554A;
   --smtc-background-ctrl-brand-hover: #96605F;
   --smtc-background-ctrl-brand-pressed: #5D3730;
@@ -29,6 +29,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-stroke-ctrl-brand-rest: #7D554A;
   --smtc-stroke-ctrl-brand-hover: #96605F;
   --smtc-stroke-ctrl-brand-pressed: #5D3730;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #7D554A;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #96605F;
@@ -64,6 +65,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-stroke-ctrl-brand-rest: #A78273;
   --smtc-stroke-ctrl-brand-hover: #D3BCAB;
   --smtc-stroke-ctrl-brand-pressed: #96605F;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #A78273;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #A78273;

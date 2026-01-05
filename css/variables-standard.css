@@ -39,7 +39,7 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-accent-active: var(--smtc-ctrl-slider-bar-foreground-filled-pressed, #005fa8);
   --color-bg-primary: var(--smtc-background-layer-solid, #f3f7fb);
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(180, 208, 240, 0.55), rgba(240, 245, 250, 0.85));
-  --color-card-bg: #1e1f22;
+  --color-card-bg: #ffffff;
   
   /* ==================== TEXT COLORS ==================== */
   --color-text-primary: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
