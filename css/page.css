@@ -228,7 +228,7 @@ body[data-oobe] .oobe-shell {
   isolation: isolate;
 }
 
-.dune .oobe-shell {
+.rose-gold .oobe-shell {
   isolation: isolate;
 }
 
@@ -264,18 +264,12 @@ body[data-oobe] .oobe-shell {
 
 /* Headings */
 .oobe-header h1 {
-  font-size: var(--smtc-text-global-title2-font-size, 28px);
-  line-height: var(--smtc-text-global-title2-line-height, 36px);
-  font-weight: var(--smtc-text-style-default-header-weight, 600);
-  font-family: var(--smtc-text-style-default-regular-font-family, 'Segoe UI', sans-serif);
+  font: var(--color-font-title);
   margin: 0 0 12px;
 }
 
 .oobe-header .subtitle {
-  font-size: var(--smtc-text-global-body1-font-size, 18px);
-  line-height: var(--smtc-text-global-body1-line-height, 24px);
-  font-weight: var(--smtc-text-style-default-regular-weight, 400);
-  font-family: var(--smtc-text-style-default-regular-font-family, 'Segoe UI', sans-serif);
+  font: var(--color-font-subtitle);
   color: var(--color-text-secondary);
   margin-bottom: 28px;
 }
@@ -403,6 +397,7 @@ body[data-oobe] .oobe-shell {
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  max-height: 400px; /* Ensure scrolling when content exceeds height */
 }
 
 #keyboard-list,
@@ -413,6 +408,7 @@ body[data-oobe] .oobe-shell {
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  max-height: 400px; /* Ensure scrolling when content exceeds height */
 }
 
 .country-list li {
@@ -471,6 +467,8 @@ input[type=email]:focus-visible {
   flex: 1;
   overflow-y: auto;
   border: 1px solid transparent;
+  min-height: 0;
+  max-height: 400px; /* Ensure scrolling when content exceeds height */
   /* Placeholder for focus */
 }
 
@@ -543,8 +541,10 @@ input[type=email]:focus-visible {
   gap: 8px;
 }
 
-.wifi-checkbox-container mai-checkbox {
-  --mai-checkbox-size: 16px;
+.wifi-checkbox-container input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
 }
 
 .wifi-dynamic-container {
@@ -736,6 +736,8 @@ input[type=email]:focus-visible {
   font-size: 12px;
   line-height: 1.6;
   color: var(--color-text-secondary);
+  min-height: 200px;
+  max-height: 400px; /* Ensure scrolling when content exceeds height */
 }
 
 .eula-box.microsoft .eula-content {
@@ -844,9 +846,9 @@ input[type=email]:focus-visible {
 }
 
 .pin-input-group label {
-  font-size: var(--smtc-text-global-body2-font-size, 14px);
+  font-size: 14px;
   font-weight: 500;
-  color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  color: #1a1a1e;
 }
 
 .pin-checkbox-group {
@@ -866,8 +868,8 @@ input[type=email]:focus-visible {
 }
 
 .pin-checkbox-group label {
-  font-size: var(--smtc-text-global-body2-font-size, 14px);
-  color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  font-size: 14px;
+  color: #1a1a1e;
   cursor: pointer;
 }
 
@@ -896,12 +898,10 @@ input[type=email]:focus-visible {
 }
 
 .spinner-bg {
-  stroke: var(--smtc-stroke-ctrl-neutral-secondary, #d0d7e2);
   opacity: 0.3;
 }
 
 .spinner-fg {
-  stroke: var(--smtc-stroke-ctrl-brand-rest, #005FB8);
   animation: spin 1.5s linear infinite;
   stroke-dasharray: 62.83, 125.66;
 }
@@ -917,9 +917,9 @@ input[type=email]:focus-visible {
 
 .spinner-text {
   font-size: var(--smtc-text-global-body1-font-size, 18px);
-  color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  color: #1a1a1e;
   margin: 0;
-  font-weight: var(--smtc-text-style-default-regular-weight, 500);
+  font-weight: 500;
 }
 
 /* Radio Button Group Styles */
@@ -943,13 +943,13 @@ gap: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
   border: 1px solid #e0e0e0;
-  background: var(--smtc-background-card-on-primary-alt-rest, #fafafa);
+  background: #fafafa;
   position: relative;
   align-items: start;
 }
 
 .radio-button-card:hover:not(:has(input:checked)) {
-  background: var(--smtc-background-ctrl-neutral-rest, #f0f0f0);
+  background: #f0f0f0;
   border-color: #d0d0d0;
 }
 
@@ -1075,7 +1075,7 @@ gap: 8px;
       padding: 12px 16px;
       font-size: 12px;
       line-height: 1.6;
-      color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #585860);
+      color: #585860;
     }
 
     .eula-box.microsoft .eula-content {
@@ -1103,9 +1103,10 @@ gap: 8px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-height: 100%;
+  max-height: 400px; /* Ensure scrolling when content exceeds height */
   overflow-y: auto;
   scrollbar-width: none;
+  min-height: 0;
 }
 
 .info-cards-list[data-scrollbar-visible="false"] {
@@ -1922,8 +1923,8 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 .loading-spinner {
   width: 48px;
   height: 48px;
-  border: 4px solid transparent;
-  border-top-color: var(--smtc-stroke-ctrl-brand-rest, #005FB8);
+  border: 4px solid rgba(255, 255, 255, 0);
+  border-top-color: #1619f0;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

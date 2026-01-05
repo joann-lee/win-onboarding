@@ -37,16 +37,16 @@
       <div class="oobe-card">
         <div class="ndup-carousel">
           <div class="carousel-arrows">
-            <button class="carousel-arrow" id="carousel-prev" aria-label="Previous">
+            <mai-button class="carousel-arrow" id="carousel-prev" appearance="subtle" aria-label="Previous">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
-            <button class="carousel-arrow" id="carousel-next" aria-label="Next">
+            </mai-button>
+            <mai-button class="carousel-arrow" id="carousel-next" appearance="subtle" aria-label="Next">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
+            </mai-button>
           </div>
 
           <div class="carousel-content">
@@ -84,13 +84,14 @@
 
  
   <div class="oobe-below-actions">
-    <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-    <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
-    <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+    <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+    <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+    <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/NDUP.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
 <script>
     const carouselItems = [

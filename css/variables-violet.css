@@ -9,6 +9,122 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
 
 :root.light.violet,
 .light.violet {
+  /* CONSTANTS: Design tokens that don't change across themes */
+  /* These values are shared by all theme variants */
+  
+  /* ==================== LAYOUT & DIMENSIONS ==================== */
+  --color-card-radius: var(--smtc-corner-card-rest, 8px);
+  --color-card-height: 750px;
+  --color-card-width: 1040px;
+  --color-card-min-width: 600px;
+  
+  /* ==================== SHADOWS & EFFECTS ==================== */
+  --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
+  
+  /* ==================== TYPOGRAPHY ==================== */
+  --color-font-title: 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --color-font-subtitle: 400 16px/1.4 "Segoe UI", system-ui, sans-serif;
+  --color-font-body: 400 14px/1.5 "Segoe UI", system-ui, sans-serif;
+  
+  /* ==================== TRANSITIONS ==================== */
+  --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
+  
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: #615589;
+  --color-accent-hover: #796CA3;
+  --color-accent-active: #403667;
+  --color-bg-primary: var(--smtc-background-layer-solid, #faf9fb);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(199, 188, 216, 0.55), rgba(250, 249, 251, 0.85));
+  --color-card-bg: #ffffff;
+  
+  /* ==================== TEXT COLORS ==================== */
+  --color-text-primary: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  --color-text-secondary: var(--smtc-foreground-ctrl-neutral-secondary-rest, #585860);
+  --color-text-error: var(--smtc-status-danger-tint-foreground, #e81b23);
+  --color-text-warning: var(--smtc-status-warning-tint-foreground, #ffb03b);
+  --color-text-success: var(--smtc-status-success-tint-foreground, #107c10);
+  --color-text-disabled: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
+  
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: var(--smtc-stroke-divider-default, #d4dae2);
+  --color-border-input: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
+  --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
+  
+  /* ==================== PRIMARY BUTTON ==================== */
+  --color-button-primary-bg: #615589;
+  --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  --color-button-primary-bg-hover: #796CA3;
+  --color-button-primary-bg-active: #403667;
+  --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
+  --color-button-primary-border: #615589;
+  --color-button-primary-border-hover: #796CA3;
+  --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
+  
+  /* ==================== SECONDARY BUTTON ==================== */
+  --color-button-secondary-text: #615589;
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text-hover: #403667;
+  --color-button-secondary-text-active: #403667;
+  --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
+  --color-button-secondary-bg-hover: transparent;
+  --color-button-secondary-bg-focus: transparent;
+  
+  /* ==================== INPUT FIELDS ==================== */
+  --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
+  --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
+  --color-input-border-focus: #615589;
+  --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
+  --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
+  --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
+  
+  /* ==================== FORM COMPONENTS ==================== */
+  --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
+  --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
+  --color-checkbox-bg-checked: #615589;
+  --color-checkbox-border-checked: #615589;
+  --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
+  --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
+  --color-radio-bg-checked: #615589;
+  --color-radio-border-checked: #615589;
+  
+  --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
+  --color-toggle-bg-checked: #615589;
+  --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  /* ==================== LINKS ==================== */
+  --color-hyperlink: #796CA3;
+  --color-hyperlink-hover: #796CA3;
+  --color-hyperlink-active: #403667;
+  --color-block-text-focus: #796CA3;
+  --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
+  
+  /* ==================== MESSAGE STATES ==================== */
+  --color-error-text: var(--smtc-status-danger-tint-foreground, #c42b1c);
+  --color-error-bg: var(--smtc-status-danger-tint-background, rgba(232, 27, 35, 0.1));
+  --color-warning-text: var(--smtc-status-warning-tint-foreground, #9d5d00);
+  --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
+  --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
+  --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  --color-info-bg: rgba(97, 85, 137, 0.1);
+  --color-info-border: #796CA3;
+  
+  /* ==================== COMPONENT SPECIFIC ==================== */
+  --color-country-pill-bg: #615589;
+  --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  --color-country-pill-bg-hover: #796CA3;
+  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
+  --color-country-list-active-bg: #796CA3;
+  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  --color-wifi-item-bg-selected: var(--smtc-background-card-secondary-rest, rgba(255, 255, 255, 0.8));
+  --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(255, 255, 255, 0.5));
+  --color-wifi-accent-line: #615589;
+  
+  --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #615589;
   --smtc-foreground-ctrl-brand-rest: #615589;
@@ -40,6 +156,14 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
 
 :root.dark.violet,
 .dark.violet {
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: #8F8282;
+  --color-accent-hover: #C7BCD8;
+  --color-accent-active: #796CA3;
+  --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(143, 130, 130, 0.2), rgba(15, 17, 19, 0.6));
+  --color-card-bg: #1e1f22;
+
   /* ==================== TEXT COLORS ==================== */
   --smtc-foreground-content-neutral-primary: #ffffff;
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;

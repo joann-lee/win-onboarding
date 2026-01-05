@@ -260,6 +260,13 @@ body::before {
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-height: 0; /* Allow shrinking */
+}
+
+/* Ensure all direct children of oobe-content when using flex layout fill available space */
+.oobe-content:not([style*="grid"]) > :not(.oobe-header):not(.oobe-ctas) {
+  flex: 1;
+  min-height: 0;
 }
 
 .oobe-header h1 {

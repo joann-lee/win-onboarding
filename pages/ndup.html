@@ -38,14 +38,14 @@
         <div class="ndup-content">
           <div class="ndup-header">
             <video class="carousel-icon" autoplay muted loop>
-              <source src="/assets/icons/NDUP_Windows_logo.mp4" type="video/mp4">
+              <source src="/assets/videos/NDUP_Windows_logo.mp4" type="video/mp4">
             </video>
             <div class="carousel-header">
               <h2>We're getting you the latest features</h2>
               <p>Check out what your new Copilot+ PC is capable of while you wait</p>
             </div>
           </div>
-          <button id="ndup-next-btn" class="ndup-next-button">Next</button>
+          <mai-button id="ndup-next-btn" class="ndup-next-button" appearance="accent">Next</mai-button>
         </div>
       </div>
 
@@ -77,14 +77,16 @@
 
 
 
-  <div class="oobe-below-actions">    <button type="button a11y" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></button>    <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-    <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg"
-        alt="" /></button>
-    <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+  <div class="oobe-below-actions">
+    <mai-button type="button" appearance="subtle" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+    <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+    <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+    <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/NDUP.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
 <script>
     let currentStage = parseInt(sessionStorage.getItem('ndup-currentStage') || '0');
