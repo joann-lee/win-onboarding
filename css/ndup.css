@@ -9,7 +9,7 @@
 
 body[data-page-id="ndup"] .oobe-main,
 body[data-page-id="ndup_0"] .oobe-main {
-  width: var(--oobe-card-width);
+  width: var(--color-card-width);
   max-width: none;
   height: var(--oobe-main-height-ndup);
   display: flex;
@@ -27,9 +27,10 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
 }
 
 .oobe-card{
-  background: #fafafa;
+  background: var(--smtc-background-card-secondary-rest, #ffffff);
   /* border-radius: var(--radius-l); */
-  box-shadow: var(--elevation-card);
+  box-shadow: var(--smtc-shadow-elevation-card, 0 4px 24px rgba(0, 0, 0, 0.08));
+  width: 100%;
 }
 
 /* Account for spacing - other pages have .oobe-below-actions below the card */
@@ -39,14 +40,6 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   display: block;
   height: 30px;
   margin-top: auto;
-}
-
-.oobe-below-actions {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  flex-direction: row;
-  gap: 0px;
 }
 
 .ndup-content {
@@ -67,58 +60,31 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   gap: 24px;
 }
 
-.ndup-next-button {
-  padding: 8px 32px;
-  background: white;
-  color: black;
-  border: 1px solid #d0d0d0;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.ndup-next-button:hover {
-  opacity: 0.9;
-}
-
 .ndup-footer{
   height: var(--ndup-footer-height);
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 16px 32px;
-  background: #fafafa;
-  border-top: 1px solid #e0e0e0;
+  background: var(--smtc-background-card-secondary-rest, #ffffff);
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-radius: var(--radius-standard);
+  border-radius: var(--smtc-corner-card-rest, 8px);
 }
 
 .ndup-footer-header {
   /* font-size: 16px; */
-  font-weight: 500;
-  color: var(--oobe-text-primary);
+  font-weight: var(--smtc-text-style-default-regular-weight, 500);
+  color: var(--color-text-primary, #1a1a1e);
 }
 
 #progress-label {
-  font-size: 13px;
+  font-size: var(--smtc-text-global-caption1-font-size, 13px);
   /* font-weight: 500; */
-  color: var(--oobe-text-primary);
+  color: var(--color-text-primary, #1a1a1e);
 }
 
-.ndup-cancel-link {
-  font-size: 13px;
-  color: var(--oobe-accent);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.ndup-cancel-link:hover {
-  text-decoration: underline;
-}
 
 .ndup-progress-bar {
   display: flex;
@@ -129,7 +95,7 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
 
 .progress-segment {
   flex: 1;
-  background: #d0d0d0;
+  background: var(--color-border-default, #d0d0d0);
   overflow: hidden;
 }
 
@@ -144,7 +110,7 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
 .progress-fill {
   height: 100%;
   width: 0%;
-  background: var(--oobe-accent);
+  background: var(--color-accent, #005FB8);
   transition: width 0.6s ease;
 }
 
@@ -156,9 +122,8 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
     opacity: 0.7;
   }
 }
-
-.oobe-card:not(.ndup-footer){
-    height: var( --oobe-card-height-ndup);
+.oobe-card:not(.ndup-footer) {
+  height: var(--oobe-card-height-ndup);
 }
 .ndup-carousel {
   display: flex;
@@ -189,13 +154,13 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--oobe-text-secondary);
+  color: var(--color-text-secondary, #585860);
   transition: color 0.2s;
   pointer-events: all;
 }
 
 .carousel-arrow:hover {
-  color: var(--oobe-text-primary);
+  color: var(--color-text-primary, #1a1a1e);
 }
 
 .carousel-arrow svg {
@@ -219,13 +184,14 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   width: 600px;
   height: 338px;
   aspect-ratio: 16/9;
-  background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
-  border-radius: 12px;
+  background: var(--smtc-background-ctrl-neutral-rest, #f5f5f5);
+  border-radius: var(--smtc-corner-card-rest, 12px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--oobe-text-secondary);
-  font-size: 14px;
+  color: var(--color-text-secondary, #585860);
+  font-size: var(--smtc-text-global-body2-font-size, 14px);
+  overflow: hidden;
 }
 
 .carousel-header {
@@ -233,15 +199,15 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
 }
 
 .carousel-header h2 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: var(--smtc-text-ramp-subsection-header-font-size, 20px);
+  font-weight: var(--smtc-text-style-default-header-weight, 600);
   margin: 0 0 12px 0;
-  color: var(--oobe-text-primary);
+  color: var(--color-text-primary, #1a1a1e);
 }
 
 .carousel-header p {
-  font-size: 16px;
-  color: var(--oobe-text-secondary);
+  font-size: var(--smtc-text-ramp-subsection-header-font-size, 16px);
+  color: var(--color-text-secondary, #585860);
   margin: 0;
   line-height: 1.5;
 }
@@ -258,7 +224,8 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #808080;  border-color: none;
+  background: var(--color-text-secondary, #808080);
+  border: none;
   cursor: pointer;
   transition: all 0.2s;
   display: flex;
@@ -267,14 +234,14 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
 }
 
 .carousel-dot.active {
-
+  background: var(--color-accent, #005FB8);
   width: 6px;
   height: 6px;
 }
 
 .progress-label {
-  font-size: 12px;
-  color: var(--oobe-text-secondary);
+  font-size: var(--smtc-text-global-caption1-font-size, 12px);
+  color: var(--color-text-secondary, #585860);
   margin-bottom: 8px;
   display: flex;
   justify-content: space-between;
@@ -290,25 +257,25 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
 
 .progress-section {
   flex: 1;
-  background: #e0e0e0;
+  background: var(--color-border-default, #e0e0e0);
   transition: background 0.3s;
 }
 
 .progress-section.downloading {
-  background: var(--oobe-accent);
+  background: var(--color-accent, #005FB8);
 }
 
 .progress-section.installing {
-  background: var(--oobe-accent);
+  background: var(--color-accent, #005FB8);
 }
 
 .progress-section.setting-up {
-  background: var(--oobe-accent);
+  background: var(--color-accent, #005FB8);
 }
 
 .progress-info {
-  font-size: 12px;
-  color: var(--oobe-text-secondary);
+  font-size: var(--smtc-text-global-caption1-font-size, 12px);
+  color: var(--color-text-secondary, #585860);
   margin-top: 8px;
   text-align: center;
 }

@@ -15,7 +15,6 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== LAYOUT & DIMENSIONS ==================== */
   --color-card-radius: var(--smtc-corner-card-rest, 8px);
   --color-card-height: 750px;
-  --color-card-width: 1040px;
   --color-card-min-width: 600px;
   
   /* ==================== SHADOWS & EFFECTS ==================== */

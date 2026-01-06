@@ -1,5 +1,8 @@
 //All the JS needed across the pages to use the different controls.
 
+// Debug Configuration - Set to true to enable debugging features
+const OOBE_DEBUG_ENABLED = false;
+
 // Theme initialization - apply saved preferences from index.html
 (function initTheme() {
   const savedMode = localStorage.getItem('themeMode') || 'light';
@@ -24,6 +27,42 @@
   } else if (savedPalette === 'violet') {
     root.classList.add('violet');
   }
+})();
+
+// Debug controls for NDUP progression
+(function initDebugControls() {
+  // Only initialize debug controls if debugging is enabled
+  if (!OOBE_DEBUG_ENABLED) return;
+  
+  // Add global debug object
+  window.oobeDebug = {
+    // Check if NDUP auto-progression is paused
+    isNdupPaused: function() {
+      return localStorage.getItem('oobeDebug-pauseNdup') === 'true';
+    },
+    
+    // Pause NDUP auto-progression
+    pauseNdup: function() {
+      localStorage.setItem('oobeDebug-pauseNdup', 'true');
+      console.log('🔧 NDUP auto-progression PAUSED. Use oobeDebug.resumeNdup() to continue.');
+      return 'NDUP progression paused';
+    },
+    
+    // Resume NDUP auto-progression
+    resumeNdup: function() {
+      localStorage.setItem('oobeDebug-pauseNdup', 'false');
+      console.log('▶️ NDUP auto-progression RESUMED.');
+      return 'NDUP progression resumed';
+    },
+    
+    // Toggle NDUP auto-progression
+    toggleNdup: function() {
+      return this.isNdupPaused() ? this.resumeNdup() : this.pauseNdup();
+    }
+  };
+  
+  // Log debug availability
+  console.log('🔧 OOBE Debug controls loaded. Use oobeDebug.pauseNdup() / oobeDebug.resumeNdup() / oobeDebug.toggleNdup()');
 })();
 
 // Mode toggle button functionality

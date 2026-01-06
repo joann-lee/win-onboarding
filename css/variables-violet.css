@@ -15,7 +15,6 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   /* ==================== LAYOUT & DIMENSIONS ==================== */
   --color-card-radius: var(--smtc-corner-card-rest, 8px);
   --color-card-height: 750px;
-  --color-card-width: 1040px;
   --color-card-min-width: 600px;
   
   /* ==================== SHADOWS & EFFECTS ==================== */

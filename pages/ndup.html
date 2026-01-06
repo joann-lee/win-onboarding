@@ -45,7 +45,7 @@
               <p>Check out what your new Copilot+ PC is capable of while you wait</p>
             </div>
           </div>
-          <mai-button id="ndup-next-btn" class="ndup-next-button" appearance="accent">Next</mai-button>
+          <mai-button id="ndup-next-btn" class="ndup-next-button" appearance="primary">Next</mai-button>
         </div>
       </div>
 
@@ -66,7 +66,7 @@
             <div class="progress-fill" id="segment-setup"></div>
           </div>
         </div>
- <a href="#" id="cancel-link" class="ndup-cancel-link">Update later</a>
+ <mai-button id="cancel-link" class="ndup-cancel-link" appearance="subtle">Update later</mai-button>
 
       </div>
 
@@ -88,6 +88,7 @@
   <script src="/assets/animations/NDUP.js"></script>
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
 <script>
     let currentStage = parseInt(sessionStorage.getItem('ndup-currentStage') || '0');
     let stageProgress = parseInt(sessionStorage.getItem('ndup-stageProgress') || '0');
@@ -125,6 +126,11 @@
 
     // Simulate loading bar progression
     function simulateLoading() {
+      // Check debug pause flag
+      if (window.oobeDebug && window.oobeDebug.isNdupPaused()) {
+        return; // Skip progression when paused
+      }
+      
       if (currentStage < 3) {
         stageProgress += Math.random() * 15 + 5; // Increment by 5-20%
         
@@ -160,6 +166,11 @@
 
     // Initialize progress bar segments
     updateProgressBar();
+
+    // Debug logging (only if debug enabled)
+    if (typeof OOBE_DEBUG_ENABLED !== 'undefined' && OOBE_DEBUG_ENABLED) {
+      console.log('🔧 NDUP Debug: Use oobeDebug.pauseNdup() to pause auto-progression');
+    }
 
     // Start loading simulation
     const loadingInterval = setInterval(simulateLoading, PROGRESS_INCREMENT_INTERVAL);

@@ -84,6 +84,7 @@
 
  
   <div class="oobe-below-actions">
+    <mai-button type="button" appearance="subtle" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
     <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
     <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
     <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
@@ -93,6 +94,7 @@
   <script src="/assets/animations/NDUP.js"></script>
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
 <script>
     const carouselItems = [
       {
@@ -197,6 +199,11 @@
 
     // Simulate loading bar progression
     function simulateLoading() {
+      // Check debug pause flag
+      if (window.oobeDebug && window.oobeDebug.isNdupPaused()) {
+        return; // Skip progression when paused
+      }
+      
       if (currentStage < 3) {
         stageProgress += Math.random() * 15 + 5; // Increment by 5-20%
         
@@ -216,7 +223,7 @@
               sessionStorage.removeItem('ndup-currentStage');
               sessionStorage.removeItem('ndup-stageProgress');
               // Navigate to reboot page as per NDUP's restartAfter setting
-              const currentId = 'ndup';
+              const currentId = 'ndup_0';
               const nextId = window.nextPageId && window.nextPageId(currentId);
               if (nextId) {
                 sessionStorage.setItem('oobeRestartDestination', nextId);
@@ -232,6 +239,11 @@
 
     // Initialize progress bar segments
     updateProgressBar();
+
+    // Debug logging (only if debug enabled)
+    if (typeof OOBE_DEBUG_ENABLED !== 'undefined' && OOBE_DEBUG_ENABLED) {
+      console.log('🔧 NDUP_0 Debug: Use oobeDebug.pauseNdup() to pause auto-progression');
+    }
 
     // Start loading simulation
     const loadingInterval = setInterval(simulateLoading, PROGRESS_INCREMENT_INTERVAL);
@@ -253,7 +265,7 @@
       sessionStorage.removeItem('ndup-currentStage');
       sessionStorage.removeItem('ndup-stageProgress');
       // Navigate to reboot page as per NDUP's restartAfter setting
-      const currentId = 'ndup';
+      const currentId = 'ndup_0';
       const nextId = window.nextPageId && window.nextPageId(currentId);
       if (nextId) {
         sessionStorage.setItem('oobeRestartDestination', nextId);

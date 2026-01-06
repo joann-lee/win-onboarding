@@ -15,7 +15,6 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   /* ==================== LAYOUT & DIMENSIONS ==================== */
   --color-card-radius: var(--smtc-corner-card-rest, 8px);
   --color-card-height: 750px;
-  --color-card-width: 1040px;
   --color-card-min-width: 600px;
   
   /* ==================== SHADOWS & EFFECTS ==================== */

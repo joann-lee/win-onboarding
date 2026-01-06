@@ -15,7 +15,6 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   /* ==================== LAYOUT & DIMENSIONS ==================== */
   --color-card-radius: var(--smtc-corner-card-rest, 8px);
   --color-card-height: 750px;
-  --color-card-width: 1040px;
   --color-card-min-width: 600px;
   
   /* ==================== SHADOWS & EFFECTS ==================== */

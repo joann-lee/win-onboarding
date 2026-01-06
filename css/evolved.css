@@ -2,6 +2,9 @@
  * Do not edit directly, this file was auto-generated.
  */
 .evolved {
+  /* Layout variables */
+  --color-card-width: 1040px;
+  
   --smtc-text-global-display1-font-size: 74px;
   --smtc-text-global-display1-line-height: 112px;
   --smtc-text-global-display2-font-size: 74px;
