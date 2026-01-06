@@ -67,10 +67,7 @@
                 <h3>Location</h3>
                 <p class="privacy-setting-description">Get location-based experiences like directions and weather. Let Windows and apps request your location and allow Microsoft to use your location data to improve location services.</p>
                 <div class="privacy-toggle-group">
-                  <div class="toggle-switch">
-                    <input type="checkbox" id="location-toggle" class="toggle-input" checked>
-                    <label for="location-toggle" class="toggle-label"></label>
-                  </div>
+                  <mai-switch name="location-toggle" id="location-toggle" checked></mai-switch>
                   <span class="toggle-state" id="location-state">Yes</span>
                 </div>
               </div>
@@ -80,10 +77,7 @@
                 <h3>Find my device</h3>
                 <p class="privacy-setting-description">Turn on Find my device and use your device's location data to help you find your device if you lose it. You must sign in to Windows with your Microsoft account to use this feature.</p>
                 <div class="privacy-toggle-group">
-                  <div class="toggle-switch">
-                    <input type="checkbox" id="find-device-toggle" class="toggle-input" checked>
-                    <label for="find-device-toggle" class="toggle-label"></label>
-                  </div>
+                  <mai-switch name="find-device-toggle" id="find-device-toggle" checked></mai-switch>
                   <span class="toggle-state" id="find-device-state">Yes</span>
                 </div>
               </div>
@@ -93,10 +87,7 @@
                 <h3>Diagnostic data</h3>
                 <p class="privacy-setting-description">Send info about the websites you browse and how you use apps and features, plus additional info about device health, device activity, and enhanced error reporting. Required diagnostic data will always be included when you choose to send Optional diagnostic data.</p>
                 <div class="privacy-toggle-group">
-                  <div class="toggle-switch">
-                    <input type="checkbox" id="diagnostic-toggle" class="toggle-input" checked>
-                    <label for="diagnostic-toggle" class="toggle-label"></label>
-                  </div>
+                  <mai-switch name="diagnostic-toggle" id="diagnostic-toggle" checked></mai-switch>
                   <span class="toggle-state" id="diagnostic-state">Include Optional</span>
                 </div>
               </div>
@@ -106,10 +97,7 @@
                 <h3>Inking & typing</h3>
                 <p class="privacy-setting-description">Send inking & typing data to help improve the language recognition and suggestion capabilities of Microsoft apps and services.</p>
                 <div class="privacy-toggle-group">
-                  <div class="toggle-switch">
-                    <input type="checkbox" id="inking-toggle" class="toggle-input" checked>
-                    <label for="inking-toggle" class="toggle-label"></label>
-                  </div>
+                  <mai-switch name="inking-toggle" id="inking-toggle" checked></mai-switch>
                   <span class="toggle-state" id="inking-state">Yes</span>
                 </div>
               </div>
@@ -119,10 +107,7 @@
                 <h3>Tailored experiences</h3>
                 <p class="privacy-setting-description">Let Microsoft offer me tailored experiences based on the diagnostic data I've chosen (either Basic or Full). Tailored experiences means personalized tips, offers, and recommendations to enhance Microsoft products and services for my needs.</p>
                 <div class="privacy-toggle-group">
-                  <div class="toggle-switch">
-                    <input type="checkbox" id="tailored-toggle" class="toggle-input" checked>
-                    <label for="tailored-toggle" class="toggle-label"></label>
-                  </div>
+                  <mai-switch name="tailored-toggle" id="tailored-toggle" checked></mai-switch>
                   <span class="toggle-state" id="tailored-state">Yes</span>
                 </div>
               </div>
@@ -131,8 +116,8 @@
             </div>
           </div>
           <div class="oobe-ctas">
-            <a class="button-secondary" >Learn more</a>
-            <a class="button-primary" id="privacy-cta">Next</a>
+            <mai-button appearance="subtle" size="large">Learn more</mai-button>
+            <mai-button appearance="primary" size="large" id="privacy-cta">Next</mai-button>
           </div>
         </div>
 
@@ -253,16 +238,7 @@
         privacyCta.textContent = 'Accept';
         privacyCta.setAttribute('data-cta', 'next');
         
-        // Convert <a> tag to <button>
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = privacyCta.className;
-        button.id = privacyCta.id;
-        button.textContent = privacyCta.textContent;
-        button.setAttribute('data-cta', 'next');
-        privacyCta.replaceWith(button);
-        
-        // Re-run applyCtas to set up navigation for the new button
+        // Re-run applyCtas to set up navigation for the updated button
         if (window.OOBEFlow && typeof window.OOBEFlow.apply === 'function') {
           window.OOBEFlow.apply();
         }

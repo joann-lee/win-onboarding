@@ -748,7 +748,7 @@ mai-text-input[type="password"] mai-icon svg {
 }
 
 .eula-box.microsoft {
-  background: var(--color-input-bg);
+  background: var(--color-wifi-item-bg-selected);
   height: 200px;
 }
 
@@ -1709,7 +1709,8 @@ body[data-page-id="fingerprint_setup"] .oobe-below-actions {
 
 /* Privacy Settings Page */
 body[data-page-id="privacy_settings"] .oobe-body {
-  overflow: hidden;
+  max-height: 400px;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
