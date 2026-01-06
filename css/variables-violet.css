@@ -184,6 +184,9 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
   --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
   
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
+  
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #8F8282;
   --smtc-foreground-ctrl-brand-rest: #8F8282;

@@ -139,6 +139,9 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
   --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
   
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
+  
   /* ==================== BASE COLORS ==================== */
   --color-accent: var(--smtc-foreground-ctrl-hint-default, #4090ff);
   --color-accent-hover: var(--smtc-foreground-ctrl-brand-hover, #5ca3ff);

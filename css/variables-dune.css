@@ -168,6 +168,9 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
   --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
   
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
+  
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #A78273;
   --smtc-foreground-ctrl-brand-rest: #A78273;

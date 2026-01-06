@@ -168,6 +168,9 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
   --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
   
+  /* ==================== BORDER & STROKE COLORS ==================== */
+  --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
+  
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #7987B8;
   --smtc-foreground-ctrl-brand-rest: #7987B8;
