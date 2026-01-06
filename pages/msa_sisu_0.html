@@ -9,11 +9,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>
@@ -50,19 +69,24 @@
           <div class="oobe-body">
             <div class="msa-signin-container">
               <div class="msa-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-                  <rect x="0" y="0" width="11" height="11" fill="#f25022"/>
-                  <rect x="13" y="0" width="11" height="11" fill="#7fba00"/>
-                  <rect x="0" y="13" width="11" height="11" fill="#00a4ef"/>
-                  <rect x="13" y="13" width="11" height="11" fill="#ffc40f"/>
-                </svg>
-                <span class="msa-logo-text">Microsoft</span>
+                <img src="/assets/visuals/msft-standard-light.svg" 
+                     class="msft-logo standard-logo light-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-standard-dark.svg" 
+                     class="msft-logo standard-logo dark-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-themed-light.svg" 
+                     class="msft-logo themed-logo light-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-themed-dark.svg" 
+                     class="msft-logo themed-logo dark-logo" 
+                     alt="Microsoft" />
               </div>
-              <a href="MSA_sisu.html" class="inline-back-btn" aria-label="Back" style="view-transition-name: none;">
+              <mai-button href="MSA_sisu.html" appearance="subtle" class="inline-back-btn" aria-label="Back" style="view-transition-name: none;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </a>
+              </mai-button>
               <div class="verification-email">emailyouentered@outlook.com</div>
             
 
@@ -70,38 +94,35 @@
               <div class="signin-info">
                 <p>We emailed a code to emailyouentered@outlook.com. Please enter the code to sign in.</p>
               </div>
-              <div class="fluent-input-wrapper">
-                <input 
-                  type="text" 
-                  id="verification-code-input" 
-                  class="fluent-input" 
-                  placeholder="Enter code"
-                  maxlength="6"
-                  inputmode="numeric"
-                  aria-label="Enter verification code"
-                />
-              </div>
-
- 
+              <mai-text-input
+                id="verification-code-input"
+                placeholder="Enter code"
+                maxlength="6"
+                appearance="underline"
+                type="text"
+                inputmode="numeric"
+                aria-label="Enter verification code"
+                required
+              >
+              </mai-text-input>
 
               <div class="signin-links">
-                <a href="#" class="other-signin-ways">Other ways to sign in</a>
+                <mai-link href="#" size="medium" class="other-signin-ways">Other ways to sign in</mai-link>
               </div>
             </div>
           </div>
           <div class="oobe-ctas">
-            <a class="button-secondary" data-cta="skip" href="MSA_sisu.html" style="view-transition-name: none;">Back</a>
-            <button class="button-primary" data-cta="next" id="verify-code-next" disabled>Sign in</button>
+            <mai-button appearance="subtle" size="large" data-cta="skip" href="MSA_sisu.html" style="view-transition-name: none;">Back</mai-button>
+            <mai-button appearance="primary" size="large" data-cta="next" id="verify-code-next" disabled>Sign in</mai-button>
           </div>
         </div>
 
       </div>
       <div class="oobe-below-actions">
-        <!-- Accessibility section, no need to update -->
-        <button type="button a11y" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 
@@ -109,7 +130,10 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/MSA_signin.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
 </body>
 
 </html>

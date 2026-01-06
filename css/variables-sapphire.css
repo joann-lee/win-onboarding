@@ -118,9 +118,9 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --color-country-list-active-bg: #6271AA;
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
-  --color-wifi-item-bg-selected: var(--smtc-background-card-secondary-rest, rgba(255, 255, 255, 0.8));
-  --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(255, 255, 255, 0.5));
-  --color-wifi-accent-line: #4D5990;
+  --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
+  --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #4D5990);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
@@ -196,6 +196,12 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== STATUS COLORS (Sapphire tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #7987B8;
   --smtc-status-brand-tint-background: rgba(121, 135, 184, 0.1);
+
+  /* ==================== WIFI COMPONENTS ==================== */
+  --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
+  --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #7987B8);
+}
 }
 
 

@@ -1,3 +1,14 @@
+/* Prevent theme flash during page load */
+html:not(.light):not(.dark) body {
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+html.light body,
+html.dark body {
+  opacity: 1;
+}
+
 /* Hyperlink styling */
 a {
   color: var(--color-hyperlink);
@@ -386,7 +397,7 @@ body[data-oobe] .oobe-shell {
   margin: 0 0 28px;
   font-weight: 500;
   max-width: 500px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--smtc-shadow-elevation-control, 0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .country-list {
@@ -637,29 +648,59 @@ input[type=email]:focus-visible {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
+  margin-top: 16px;
 }
 
-.wifi-disconnect-btn {
-  background-color: var(--smtc-background-ctrl-neutral-rest, #ffffff);
-  border: 1px solid var(--smtc-stroke-ctrl-neutral-border-rest, #d1d1d1);
-  color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
-  padding: 6px 24px;
-  border-radius: 4px;
-  font: inherit;
-  font-size: 14px;
-  cursor: pointer;
-  min-width: 100px;
-  transition: all 0.1s;
+/* Style password reveal icon for theming */
+mai-text-input[type="password"] {
+  --mai-text-input-reveal-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62);
+  --mai-text-input-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62);
+  --mai-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62);
 }
 
-.wifi-disconnect-btn:hover {
-  background-color: var(--smtc-background-ctrl-neutral-hover, #f4f4f4);
-  border-color: var(--smtc-stroke-ctrl-neutral-border-rest, #d1d1d1);
+.dark mai-text-input[type="password"] {
+  --mai-text-input-reveal-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba);
+  --mai-text-input-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba);
+  --mai-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba);
 }
 
-.wifi-disconnect-btn:active {
-  background-color: var(--smtc-background-ctrl-neutral-pressed, #e5e5e5);
-  border-color: var(--smtc-stroke-ctrl-neutral-border-rest, #b0b0b0);
+/* Target the reveal button specifically */
+mai-text-input[type="password"]::part(reveal-button),
+mai-text-input[type="password"]::part(reveal),
+mai-text-input[type="password"]::part(icon),
+mai-text-input[type="password"] .reveal-password-icon,
+mai-text-input[type="password"] .reveal-icon,
+mai-text-input[type="password"] mai-icon {
+  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62) !important;
+}
+
+/* Target SVG icons directly */
+mai-text-input[type="password"]::part(reveal-button) svg,
+mai-text-input[type="password"]::part(reveal) svg,
+mai-text-input[type="password"]::part(icon) svg,
+mai-text-input[type="password"] svg,
+mai-text-input[type="password"] mai-icon svg {
+  fill: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62) !important;
+  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62) !important;
+}
+
+/* Dark theme styles */
+.dark mai-text-input[type="password"]::part(reveal-button),
+.dark mai-text-input[type="password"]::part(reveal),
+.dark mai-text-input[type="password"]::part(icon),
+.dark mai-text-input[type="password"] .reveal-password-icon,
+.dark mai-text-input[type="password"] .reveal-icon,
+.dark mai-text-input[type="password"] mai-icon {
+  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba) !important;
+}
+
+.dark mai-text-input[type="password"]::part(reveal-button) svg,
+.dark mai-text-input[type="password"]::part(reveal) svg,
+.dark mai-text-input[type="password"]::part(icon) svg,
+.dark mai-text-input[type="password"] svg,
+.dark mai-text-input[type="password"] mai-icon svg {
+  fill: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba) !important;
+  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba) !important;
 }
 
 /* Loading Bar */
@@ -833,7 +874,7 @@ input[type=email]:focus-visible {
 }
 
 .device-name-rules p.rule-error {
-  color: #e81b23;
+  color: var(--color-error-text);
   font-weight: 600;
 }
 
@@ -848,7 +889,7 @@ input[type=email]:focus-visible {
 .pin-input-group label {
   font-size: 14px;
   font-weight: 500;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
 }
 
 .pin-checkbox-group {
@@ -869,7 +910,7 @@ input[type=email]:focus-visible {
 
 .pin-checkbox-group label {
   font-size: 14px;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   cursor: pointer;
 }
 
@@ -879,6 +920,7 @@ input[type=email]:focus-visible {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 400px;
   height: 100%;
   gap: 24px;
 }
@@ -917,9 +959,10 @@ input[type=email]:focus-visible {
 
 .spinner-text {
   font-size: var(--smtc-text-global-body1-font-size, 18px);
-  color: #1a1a1e;
+  color: var(--smtc-foreground-content-neutral-primary, var(--color-text-primary));
   margin: 0;
   font-weight: 500;
+  text-align: center;
 }
 
 /* Radio Button Group Styles */
@@ -942,20 +985,20 @@ gap: 8px;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 1px solid #e0e0e0;
-  background: #fafafa;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-input-bg);
   position: relative;
   align-items: start;
 }
 
 .radio-button-card:hover:not(:has(input:checked)) {
-  background: #f0f0f0;
-  border-color: #d0d0d0;
+  background: var(--smtc-background-ctrl-neutral-hover, #f0f0f0);
+  border-color: var(--color-border-default);
 }
 
 .radio-button-card:has(input:checked) {
   background: var(--color-toggle-bg-checked);
-  color: #fff;
+  color: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   border-color: var(--color-toggle-bg-checked);
 }
 
@@ -1031,14 +1074,14 @@ gap: 8px;
     .eula-box {
       display: flex;
       flex-direction: column;
-      border: 1px solid #d0d7e2;
+      border: 1px solid var(--color-border-default);
       border-radius: 4px;
       overflow: hidden;
       position: relative;
     }
 
     .eula-box.microsoft {
-      background: #ffffff;
+      background: var(--color-card-bg);
       height: 200px;
     }
 
@@ -1055,7 +1098,7 @@ gap: 8px;
 
     .eula-box.thirdparty {
       background: transparent;
-      border: 1px solid #d0d7e2;
+      border: 1px solid var(--color-border-default);
       flex: 1;
       min-height: 0;
     }
@@ -1064,7 +1107,7 @@ gap: 8px;
       padding: 12px 16px;
       font-weight: 600;
       font-size: 13px;
-      color: #1a1a1e;
+      color: var(--color-text-primary);
       background: transparent;
       border-bottom: none;
     }
@@ -1075,11 +1118,11 @@ gap: 8px;
       padding: 12px 16px;
       font-size: 12px;
       line-height: 1.6;
-      color: #585860;
+      color: var(--color-text-secondary);
     }
 
     .eula-box.microsoft .eula-content {
-      background: #ffffff;
+      background: var(--color-card-bg);
     }
 
     .eula-box.thirdparty .eula-content {
@@ -1095,7 +1138,7 @@ gap: 8px;
     }
 
     .eula-content strong {
-      color: #1a1a1e;
+      color: var(--color-text-primary);
     }
 
 /* Info Card Styles */
@@ -1115,7 +1158,7 @@ gap: 8px;
 
 .info-cards-list[data-scrollbar-visible="true"] {
   scrollbar-width: thin;
-  scrollbar-color: #c5c5c5 transparent;
+  scrollbar-color: var(--smtc-stroke-ctrl-neutral-border-rest, #c5c5c5) transparent;
 }
 
 .info-card {
@@ -1131,7 +1174,7 @@ gap: 8px;
   height: 20px;
   min-width: 25px;
   min-height: 25px;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1154,13 +1197,13 @@ gap: 8px;
 .info-card-title {
   font-size: 14px;
   font-weight: 500;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
 .info-card-description {
   font-size: 13px;
-  color: #585860;
+  color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.5;
 }
@@ -1190,7 +1233,7 @@ gap: 8px;
 
 .msa-logo-text {
   font-size: 32px;
-  color: #737373;
+  color: var(--color-text-secondary);
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -1198,7 +1241,7 @@ gap: 8px;
 .signin-heading {
   font-size: 28px;
   font-weight: 600;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
@@ -1220,16 +1263,16 @@ gap: 8px;
   width: 100%;
   padding: 12px 0;
   border: none;
-  border-bottom: 1px solid #8a8886;
+  border-bottom: 1px solid var(--color-border-input);
   font-size: var(--smtc-text-ramp-subsection-header-font-size, 16px);
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   background: transparent;
   font-family: inherit;
   transition: border-bottom-color 0.1s;
 }
 
 .signin-input::placeholder {
-  color: #999;
+  color: var(--color-input-placeholder);
 }
 
 .signin-input:focus {
@@ -1244,7 +1287,7 @@ gap: 8px;
   background: none;
   border: none;
   font-size: 18px;
-  color: #e81b23;
+  color: var(--color-text-error);
   cursor: pointer;
   padding: 4px 8px;
   display: flex;
@@ -1256,7 +1299,7 @@ gap: 8px;
 
 .signin-clear:hover {
   opacity: 1;
-  color: #e81b23;
+  color: var(--color-text-error);
  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1264,7 +1307,7 @@ gap: 8px;
 
 .signin-option-card:hover {
   border-color: var(--color-toggle-bg-checked);
-  background-color: #f0f6ff;
+  background-color: var(--smtc-background-card-secondary-hover, rgba(240, 246, 255, 0.8));
 }
 
 .option-icon {
@@ -1279,13 +1322,13 @@ gap: 8px;
 .option-title {
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   margin-bottom: 4px;
 }
 
 .option-desc {
   font-size: 12px;
-  color: #585860;
+  color: var(--color-text-secondary);
   line-height: 1.4;
 }
 
@@ -1318,13 +1361,13 @@ gap: 8px;
 .item-title {
   font-size: 14px;
   font-weight: 600;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   margin-bottom: 4px;
 }
 
 .item-desc {
   font-size: 12px;
-  color: #585860;
+  color: var(--color-text-secondary);
   line-height: 1.5;
 }
 
@@ -1344,20 +1387,20 @@ gap: 8px;
   height: 40px;
   border-radius: 50%;
   /* background-color: rgba(255, 255, 255, 0.9); */
-  color: grey;
+  color: var(--color-text-secondary);
   text-decoration: none;
   transition: all 0.2s ease;
   /* border: 1px solid #d0d7e2; */
 }
 
 .back-btn:hover {
-  background-color: #ffffff;
-  border-color: #1a1a1e;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-card-bg);
+  border-color: var(--color-text-primary);
+  box-shadow: var(--smtc-shadow-elevation-control, 0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
 .back-btn:active {
-  background-color: #f0f0f0;
+  background-color: var(--smtc-background-ctrl-neutral-hover, #f0f0f0);
 }
 
 .back-btn svg {
@@ -1386,10 +1429,10 @@ gap: 8px;
 .domain-select {
   padding: 8px 12px;
   border: none;
-  border-bottom: 2px solid #005fb8;
+  border-bottom: 2px solid var(--color-accent);
   background: transparent;
   font-size: 14px;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   font-family: inherit;
   cursor: pointer;
   outline: none;
@@ -1397,11 +1440,11 @@ gap: 8px;
 }
 
 .domain-select:focus {
-  border-bottom-color: #0f4e87;
+  border-bottom-color: var(--color-accent-active);
 }
 
 .domain-select:hover {
-  background-color: rgba(0, 95, 184, 0.05);
+  background-color: var(--smtc-background-ctrl-neutral-hover, rgba(0, 95, 184, 0.05));
 }
 
 /* Password requirements checklist */
@@ -1410,7 +1453,7 @@ gap: 8px;
   flex-direction: column;
   gap: 8px;
   padding: 12px;
-  background-color: #f7f9fc;
+  background-color: var(--smtc-background-layer-secondary, #f7f9fc);
   border-radius: 4px;
   margin-bottom: 16px;
 }
@@ -1418,7 +1461,7 @@ gap: 8px;
 .requirement {
   margin: 0;
   font-size: 13px;
-  color: #585860;
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1427,25 +1470,25 @@ gap: 8px;
 .requirement::before {
   content: "○";
   font-size: 16px;
-  color: #d0d7e2;
+  color: var(--color-border-default);
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
 .requirement.met::before {
   content: "✓";
-  color: #107c10;
+  color: var(--color-success-text);
   font-weight: bold;
 }
 
 .requirement.met {
-  color: #107c10;
+  color: var(--color-success-text);
 }
 
 /* Verification code input styles */
 .verification-email {
   font-size: 13px;
-  color: #585860;
+  color: var(--color-text-secondary);
   margin-bottom: 2px;
 }
 
@@ -1458,7 +1501,7 @@ gap: 8px;
   height: 20px;
   border-radius: 50%;
   /* background-color: rgba(255, 255, 255, 0.9); */
-  color: black;
+  color: var(--color-text-primary);
   text-decoration: none;
   transition: all 0.2s ease;
   /* border: 1px solid #d0d7e2; */
@@ -1466,14 +1509,14 @@ gap: 8px;
 }
 
 .inline-back-btn:hover {
-  color: grey;
+  color: var(--color-text-secondary);
   /* background-color: #ffffff;
   border-color: #1a1a1e;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .inline-back-btn:active {
-  background-color: #f0f0f0;
+  background-color: var(--smtc-background-ctrl-neutral-hover, #f0f0f0);
 }
 
 .code-input-wrapper {
@@ -1489,7 +1532,7 @@ body[data-page-id="fingerprint_setup"] {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #e8f0fe 0%, #f0e8fe 100%);
+  background: var(--color-bg-gradient);
 }
 
 body[data-page-id="fingerprint_setup"] .oobe-shell {
@@ -1520,10 +1563,10 @@ body[data-page-id="fingerprint_setup"] .oobe-card {
   height: 600px;
   padding: 0;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--smtc-shadow-elevation-card, 0 4px 16px rgba(0, 0, 0, 0.1));
   position: relative;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--smtc-background-card-secondary-rest, rgba(255, 255, 255, 0.7));
   backdrop-filter: blur(10px);
 }
 
@@ -1571,7 +1614,7 @@ body[data-page-id="fingerprint_setup"] .fingerprint-sensor-demo svg {
 body[data-page-id="fingerprint_setup"] .keyboard-demo {
   width: 240px;
   height: 140px;
-  background: #f5f5f5;
+  background: var(--smtc-background-ctrl-neutral-rest, #f5f5f5);
   border-radius: 6px;
   padding: 12px;
   display: grid;
@@ -1581,8 +1624,8 @@ body[data-page-id="fingerprint_setup"] .keyboard-demo {
 }
 
 body[data-page-id="fingerprint_setup"] .keyboard-key {
-  background: #e8e8e8;
-  border: 1px solid #d0d0d0;
+  background: var(--smtc-background-ctrl-neutral-hover, #e8e8e8);
+  border: 1px solid var(--color-border-default);
   border-radius: 3px;
   height: 24px;
   font-size: 10px;
@@ -1597,7 +1640,7 @@ body[data-page-id="fingerprint_setup"] .keyboard-key.spacer {
 
 body[data-page-id="fingerprint_setup"] .keyboard-key.f-key {
   background: var(--color-toggle-bg-checked);
-  color: white;
+  color: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   border-color: var(--color-toggle-bg-checked);
   font-weight: bold;
   transition: transform 0.15s ease;
@@ -1606,14 +1649,14 @@ body[data-page-id="fingerprint_setup"] .keyboard-key.f-key {
 body[data-page-id="fingerprint_setup"] .fingerprint-instruction {
   font-size: 15px;
   font-weight: 600;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   text-align: center;
   margin: 0;
 }
 
 body[data-page-id="fingerprint_setup"] .fingerprint-setup-hint {
   font-size: 12px;
-  color: #585860;
+  color: var(--color-text-secondary);
   text-align: center;
   margin: 0;
   line-height: 1.5;
@@ -1624,13 +1667,13 @@ body[data-page-id="fingerprint_setup"] .oobe-ctas {
   bottom: 0;
   width: 100%;
   padding: 16px 40px;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid var(--color-border-default);
   border-radius: 0 0 8px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 40px;
-  background: white;
+  background: var(--color-card-bg);
 }
 
 body[data-page-id="fingerprint_setup"] .fingerprint-bottom-text {
@@ -1650,7 +1693,7 @@ body[data-page-id="fingerprint_setup"] .oobe-below-actions {
 /* Fingerprint Setup Page */
 .fingerprint-setup-hint {
   font-size: 13px;
-  color: #585860;
+  color: var(--color-text-secondary);
   margin-bottom: 16px;
   line-height: 1.5;
 }
@@ -1661,7 +1704,7 @@ body[data-page-id="fingerprint_setup"] .oobe-below-actions {
   align-items: center;
   gap: 8px;
   margin: 16px 0;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
 }
 
 /* Privacy Settings Page */
@@ -1687,12 +1730,12 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-track {
 }
 
 body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb {
-  background: #d0d0d0;
+  background: var(--color-border-default);
   border-radius: 4px;
 }
 
 body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover {
-  background: #a0a0a0;
+  background: var(--smtc-background-ctrl-neutral-hover, #a0a0a0);
 }
 
 .privacy-settings-container {
@@ -1712,13 +1755,13 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 .privacy-setting h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   margin: 0 0 8px 0;
 }
 
 .privacy-setting-description {
   font-size: 13px;
-  color: #585860;
+  color: var(--color-text-secondary);
   line-height: 1.5;
   margin: 0 0 12px 0;
 }
@@ -1731,7 +1774,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 
 .toggle-state {
   font-size: 13px;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   font-weight: 500;
 }
 
@@ -1752,7 +1795,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #ccc;
+  background-color: var(--smtc-background-ctrl-neutral-disabled, #ccc);
   border-radius: 12px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -1764,11 +1807,11 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--color-card-bg);
   top: 2px;
   left: 2px;
   transition: left 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--smtc-shadow-elevation-control, 0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .toggle-input:checked + .toggle-label {
@@ -1781,7 +1824,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 
 .privacy-footer {
   font-size: 12px;
-  color: #585860;
+  color: var(--color-text-secondary);
   margin-top: 24px;
   line-height: 1.5;
 }
@@ -1793,10 +1836,10 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   display: flex;
   flex-direction: column;
   gap: 0;
-  background: white;
+  background: var(--color-card-bg);
   padding: 0;
   border-radius: 8px;
-  border: 1px solid #d3d3d3;
+  border: 1px solid var(--color-border-default);
   overflow: hidden;
 }
 
@@ -1804,7 +1847,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   display: flex;
   gap: 16px;
   padding: 20px;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .device-thumbnail {
@@ -1814,10 +1857,10 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 3px solid #333;
+  border: 3px solid var(--color-text-primary);
   border-radius: 4px;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: var(--smtc-background-ctrl-neutral-hover, #f0f0f0);
 }
 
 .device-thumbnail img {
@@ -1836,13 +1879,13 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 .device-info h3 {
   font-size: 15px;
   font-weight: 600;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   margin: 0;
 }
 
 .device-info p {
   font-size: 13px;
-  color: #585860;
+  color: var(--color-text-secondary);
   margin: 0;
 }
 
@@ -1861,7 +1904,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   background: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .restore-option:last-child {
@@ -1875,13 +1918,13 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 .restore-icon {
   width: 20px;
   height: 20px;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   flex-shrink: 0;
 }
 
 .restore-option span {
   font-size: 13px;
-  color: #1a1a1e;
+  color: var(--color-text-primary);
   font-weight: 400;
 }
 
@@ -1911,7 +1954,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 
 @keyframes fadeInLoading {
   0% {
-    background: #000000;
+    background: var(--smtc-background-layer-solid, #000000);
     opacity: 1;
   }
   100% {
@@ -1924,7 +1967,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   width: 48px;
   height: 48px;
   border: 4px solid rgba(255, 255, 255, 0);
-  border-top-color: #1619f0;
+  border-top-color: var(--color-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -1936,10 +1979,11 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 }
 
 .loading-text {
-  /* color: #ffffff; */
+  color: var(--smtc-foreground-content-neutral-primary, #ffffff);
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.5px;
+  text-align: center;
 }
 
 /* Hide accessibility buttons when loading overlay is shown */
@@ -1977,12 +2021,12 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 .form-select {
   padding: 10px 12px;
   border: none;
-  border-bottom: 1px solid #8a8886;
+  border-bottom: 1px solid var(--color-border-input);
   border-radius: 4px 4px 0 0;
   font-size: 14px;
   font-family: var(--font-family);
   color: var(--color-text-primary);
-  background: #f5f5f5;
+  background: var(--smtc-background-ctrl-neutral-rest, #f5f5f5);
   transition: border-color 0.1s, background-color 0.1s;
   width: 100%;
   box-sizing: border-box;
@@ -1990,25 +2034,25 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 
 .form-input:hover,
 .form-select:hover {
-  background-color: #e0e0e0;
+  background-color: var(--smtc-background-ctrl-neutral-hover, #e0e0e0);
 }
 
 .form-input:focus,
 .form-select:focus {
   outline: none;
   border-bottom-color: 2px solid var(--color-accent);
-  background-color: #f0f0f0;
+  background-color: var(--smtc-background-ctrl-neutral-hover, #f0f0f0);
 }
 
 .form-input::placeholder {
-  color: #a0a9b3;
+  color: var(--color-input-placeholder);
 }
 
 .data-collection-notice {
   display: flex;
   gap: 12px;
   padding: 16px;
-  background-color: #f7f9fc;
+  background-color: var(--smtc-background-layer-secondary, #f7f9fc);
   border-radius: 4px;
   font-size: 13px;
   color: var(--color-text-primary);
@@ -2062,7 +2106,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   -webkit-appearance: none;
   border: 1.5px solid var(--color-checkbox-border);
   border-radius: 3px;
-  background-color: white;
+  background-color: var(--color-card-bg);
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -2081,7 +2125,7 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 
 .checkbox-input:checked::after {
   content: '✓';
-  color: white;
+  color: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   font-size: 12px;
   font-weight: 600;
   position: absolute;
@@ -2099,4 +2143,83 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   font-size: 14px;
   line-height: 1.5;
   color: var(--color-text-primary);
+}
+
+/* Microsoft Logo Theme and Mode Switching */
+.msft-logo {
+  display: none;
+  height: 26px;
+  width: auto;
+}
+
+/* Standard theme shows standard logos */
+.standard .standard-logo {
+  display: block;
+}
+
+.standard .themed-logo {
+  display: none;
+}
+
+/* All other themes show themed logos */
+.violet .themed-logo,
+.dune .themed-logo,
+.sapphire .themed-logo {
+  display: block;
+}
+
+.violet .standard-logo,
+.dune .standard-logo,
+.sapphire .standard-logo {
+  display: none;
+}
+
+/* Light/dark mode switching */
+.light .light-logo {
+  display: block;
+}
+
+.light .dark-logo {
+  display: none;
+}
+
+.dark .dark-logo {
+  display: block;
+}
+
+.dark .light-logo {
+  display: none;
+}
+
+/* Override for proper stacking */
+.violet .themed-logo.light-logo,
+.dune .themed-logo.light-logo,
+.sapphire .themed-logo.light-logo {
+  display: var(--light-display, block);
+}
+
+.violet .themed-logo.dark-logo,
+.dune .themed-logo.dark-logo,
+.sapphire .themed-logo.dark-logo {
+  display: var(--dark-display, none);
+}
+
+.standard .standard-logo.light-logo {
+  display: var(--light-display, block);
+}
+
+.standard .standard-logo.dark-logo {
+  display: var(--dark-display, none);
+}
+
+/* Light mode variables */
+.light {
+  --light-display: block;
+  --dark-display: none;
+}
+
+/* Dark mode variables */
+.dark {
+  --light-display: none;
+  --dark-display: block;
 }

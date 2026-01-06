@@ -9,11 +9,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>
@@ -53,41 +72,42 @@
               
               <div class="email-creation-form">
                 <div class="email-input-group">
-                  <input 
-                    type="text" 
-                    id="new-email-input" 
-                    class="device-name-input" 
+                  <mai-text-input
+                    id="new-email-input"
                     placeholder="New email"
                     aria-label="New email"
-                  />
+                    appearance="underline"
+                    required
+                  >
+                  </mai-text-input>
                   <div class="email-domain-selector">
-                    <select id="email-domain" class="domain-select">
-                      <option value="outlook.com">@outlook.com</option>
-                      <option value="hotmail.com">@hotmail.com</option>
-                      <option value="live.com">@live.com</option>
-                    </select>
+                    <mai-select id="email-domain" appearance="underline">
+                      <mai-option value="outlook.com">@outlook.com</mai-option>
+                      <mai-option value="hotmail.com">@hotmail.com</mai-option>
+                      <mai-option value="live.com">@live.com</mai-option>
+                    </mai-select>
                   </div>
                 </div>
               </div>
 
               <div class="signin-links">
-                <a href="MSA_create.html" class="use-email-instead">Use your email instead</a>
+                <mai-link href="MSA_create.html" size="medium" class="use-email-instead">Use your email instead</mai-link>
               </div>
 
 
             </div>
           </div>
           <div class="oobe-ctas">
-            <a class="button-secondary" data-cta="skip" href="MSA_create.html">Back</a>
-            <button class="button-primary" data-cta="next" id="create-email-next" disabled>Next</button>
+            <mai-button appearance="subtle" size="large" data-cta="skip" href="MSA_create.html">Back</mai-button>
+            <mai-button appearance="primary" size="large" data-cta="next" id="create-email-next" disabled>Next</mai-button>
           </div>
         </div>
 
       </div>
       <div class="oobe-below-actions">
-         <!-- Accessibility section, no need to update -->        <button type="button a11y" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></button>        <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
-        <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
+         <!-- Accessibility section, no need to update -->        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>        <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 
@@ -95,7 +115,10 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
   <script src="/assets/animations/MSA_signin.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
 </body>
 
 </html>

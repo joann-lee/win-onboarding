@@ -10,11 +10,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>

@@ -93,24 +93,29 @@ html.dark {
 }
 
 :root {
-  --font-family: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
-  --font-size-body: 14px;
-  --font-size-title: 28px;
-  --font-size-subtitle: 14px;
+  --font-family: var(--smtc-typography-font-family-primary, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
+  --font-size-body: var(--smtc-typography-font-size-body, 14px);
+  --font-size-title: var(--smtc-typography-font-size-title, 28px);
+  --font-size-subtitle: var(--smtc-typography-font-size-subtitle, 14px);
   --radius-l: var(--smtc-corner-card-large, 24px);
   --radius-m: var(--smtc-corner-card-medium, 12px);
   --radius-s: var(--smtc-corner-ctrl-rest, 4px);
   --radius-standard: var(--smtc-corner-card-rest, 8px);
-  --space-xxs: 4px;
-  --space-xs: 8px;
-  --space-s: 12px;
-  --space-m: 16px;
-  --space-l: 24px;
-  --space-xl: 32px;
-  --space-xxl: 48px;
-  --elevation-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  --dur-fast: 120ms;
-  --ease-standard: cubic-bezier(.17, .67, .35, .93);
+  --space-xxs: var(--smtc-spacing-xxs, 4px);
+  --space-xs: var(--smtc-spacing-xs, 8px);
+  --space-s: var(--smtc-spacing-s, 12px);
+  --space-m: var(--smtc-spacing-m, 16px);
+  --space-l: var(--smtc-spacing-l, 24px);
+  --space-xl: var(--smtc-spacing-xl, 32px);
+  --space-xxl: var(--smtc-spacing-xxl, 48px);
+  --elevation-card: var(--smtc-shadow-card, 0 4px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04));
+  --dur-fast: var(--smtc-animation-duration-fast, 120ms);
+  --ease-standard: var(--smtc-animation-easing-standard, cubic-bezier(.17, .67, .35, .93));
+
+  /* Typography tokens */
+  --color-font-title: var(--smtc-typography-font-title, 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
+  --color-font-subtitle: var(--smtc-typography-font-subtitle, 400 16px/1.4 "Segoe UI", system-ui, sans-serif);
+  --color-font-body: var(--smtc-typography-font-body, 400 14px/1.5 "Segoe UI", system-ui, sans-serif);
 
   /* Light theme */
   --color-bg-app: var(--smtc-background-web-page-secondary, #e9eef5);

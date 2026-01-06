@@ -9,11 +9,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>
@@ -50,35 +69,40 @@
           <div class="oobe-body">
             <div class="msa-signin-container">
               <div class="msa-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-                  <rect x="0" y="0" width="11" height="11" fill="#f25022"/>
-                  <rect x="13" y="0" width="11" height="11" fill="#7fba00"/>
-                  <rect x="0" y="13" width="11" height="11" fill="#00a4ef"/>
-                  <rect x="13" y="13" width="11" height="11" fill="#ffc40f"/>
-                </svg>
-                <span class="msa-logo-text">Microsoft</span>
+                <img src="/assets/visuals/msft-standard-light.svg" 
+                     class="msft-logo standard-logo light-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-standard-dark.svg" 
+                     class="msft-logo standard-logo dark-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-themed-light.svg" 
+                     class="msft-logo themed-logo light-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-themed-dark.svg" 
+                     class="msft-logo themed-logo dark-logo" 
+                     alt="Microsoft" />
               </div>
               <h2 class="signin-heading">Create account</h2>
-              <div class="device-name-input-wrapper">
-                <input 
-                  type="text" 
-                  id="msa-email-input" 
-                  class="device-name-input" 
-                  placeholder="someone@example.com"
-                  aria-label="someone@example.com"
-                />
-                <button class="device-name-clear" id="msa-clear" aria-label="Clear email" style="display: none;">✕</button>
-              </div>
+              <mai-text-input 
+                id="msa-email-input"
+                placeholder="someone@example.com"
+                aria-label="Email address"
+                appearance="underline"
+                required
+              >
+              </mai-text-input>
 
               <div class="signin-links">
-                <p class="no-account"><a href="MSA_create_email.html">Get a new email address</a></p>
+                <p class="no-account"><mai-link href="MSA_create_email.html" size="medium">Get a new email address</mai-link></p>
               </div>
 
             </div>
           </div>
           <div class="oobe-ctas">
-            <a class="button-secondary" data-cta="skip">Back</a>
+            <mai-button appearance="subtle" size="large" data-cta="skip">Back</mai-button>
             <mai-button appearance="primary" size="large" data-cta="next" id="msa-create-next" disabled>Next</mai-button>
+          </div>
+            <mai-button appearance="accent" data-cta="next" id="msa-create-next" disabled>Next</mai-button>
           </div>
         </div>
 
@@ -86,9 +110,9 @@
       <div class="oobe-below-actions">
         <!-- Accessibility section, no need to update -->
         <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 

@@ -10,11 +10,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>
@@ -43,37 +62,41 @@
           <div class="oobe-body">
             <div class="msa-signin-container">
               <div class="msa-logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
-                  <rect x="0" y="0" width="11" height="11" fill="#f25022"/>
-                  <rect x="13" y="0" width="11" height="11" fill="#7fba00"/>
-                  <rect x="0" y="13" width="11" height="11" fill="#00a4ef"/>
-                  <rect x="13" y="13" width="11" height="11" fill="#ffc40f"/>
-                </svg>
-                <span class="msa-logo-text">Microsoft</span>
+                <img src="/assets/visuals/msft-standard-light.svg" 
+                     class="msft-logo standard-logo light-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-standard-dark.svg" 
+                     class="msft-logo standard-logo dark-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-themed-light.svg" 
+                     class="msft-logo themed-logo light-logo" 
+                     alt="Microsoft" />
+                <img src="/assets/visuals/msft-themed-dark.svg" 
+                     class="msft-logo themed-logo dark-logo" 
+                     alt="Microsoft" />
               </div>
               <h2 class="signin-heading">Sign in</h2>
-              <div class="device-name-input-wrapper">
-                <input 
-                  type="text" 
-                  id="msa-email-input" 
-                  class="device-name-input" 
-                  placeholder="Email, phone, or Skype"
-                  aria-label="Email, phone, or Skype"
-                />
-              </div>
+              <mai-text-input
+                id="msa-email-input"
+                placeholder="Email, phone, or Skype"
+                aria-label="Email, phone, or Skype"
+                appearance="underline"
+                required
+              >
+              </mai-text-input>
 
               <div class="signin-links">
-                <p class="no-account">No account? <a href="MSA_create.html" style="view-transition-name: none;">Create one!</a></p>
-                <a href="MSA_signin_options.html" class="signin-options" style="view-transition-name: none;">Sign-in options</a>
+                <p class="no-account">No account? <mai-link href="MSA_create.html" size="medium" style="view-transition-name: none;">Create one!</mai-link></p>
+                <mai-link href="MSA_signin_options.html" size="medium" class="signin-options" style="view-transition-name: none;">Sign-in options</mai-link>
               </div>
               <div class="signin-info">
-                <p>When you sign in, we'll make info saved to your account available across Microsoft products so important things like your calendar info, favorites, contacts, passwords, browsing history, and recommended files are right where you need them. We'll also back up your files and photos on this device to OneDrive to help keep them safe. <a href="MSA_learn_more.html" style="view-transition-name: none;">Learn more</a></p>
-                <p>Choosing <strong>Next</strong> means that you agree to the <a href="#">Microsoft Services Agreement</a> and <a href="#">Privacy Statement</a>.</p>
+                <p>When you sign in, we'll make info saved to your account available across Microsoft products so important things like your calendar info, favorites, contacts, passwords, browsing history, and recommended files are right where you need them. We'll also back up your files and photos on this device to OneDrive to help keep them safe. <mai-link href="MSA_learn_more.html" size="medium" style="view-transition-name: none;">Learn more</mai-link></p>
+                <p>Choosing <strong>Next</strong> means that you agree to the <mai-link href="#" size="medium">Microsoft Services Agreement</mai-link> and <mai-link href="#" size="medium">Privacy Statement</mai-link>.</p>
               </div>
             </div>
           </div>
           <div class="oobe-ctas">
-            <a class="button-secondary" href="MSA_learn_more.html">Learn More</a>
+            <mai-button appearance="subtle" size="large" href="MSA_learn_more.html">Learn More</mai-button>
             <mai-button appearance="primary" size="large" id="msa-next-btn" type="button" data-cta="next" disabled>Next</mai-button>
           </div>
         </div>
@@ -82,9 +105,9 @@
       <div class="oobe-below-actions">
         <!-- Accessibility section, no need to update -->
         <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 
@@ -94,6 +117,8 @@
   <script src="/assets/animations/MSA_signin.js"></script>
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
 </body>
 
 </html>

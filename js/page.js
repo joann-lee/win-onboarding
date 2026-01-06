@@ -284,16 +284,15 @@ const OOBE_DEBUG_ENABLED = false;
                 <mai-checkbox slot="input" id="auto-connect-${index}" checked></mai-checkbox>
               </mai-field>
             </div>
-            <button class="button-primary wifi-connect-btn">Connect</button>
+            <mai-button appearance="primary" size="medium" class="wifi-connect-btn">Connect</mai-button>
           </div>
           <div class="wifi-password-entry">
-            <div class="wifi-password-label">Enter the password</div>
-            <div class="fluent-input-wrapper">
-              <input type="password" class="wifi-password-input fluent-input" placeholder="Password">
-            </div>
+            <mai-text-input type="password" class="wifi-password-input" placeholder="Password">
+              Enter the password
+            </mai-text-input>
             <div class="wifi-password-actions">
-              <button class="button-primary wifi-verify-btn">Next</button>
-              <button class="button-secondary wifi-cancel-btn">Cancel</button>
+              <mai-button appearance="primary" size="medium" class="wifi-verify-btn">Next</mai-button>
+              <mai-button appearance="secondary" size="medium" class="wifi-cancel-btn">Cancel</mai-button>
             </div>
           </div>
           <div class="wifi-connecting" style="display:none; padding: 0 12px 12px 40px;">
@@ -396,7 +395,7 @@ const OOBE_DEBUG_ENABLED = false;
           <div style="margin-bottom: 16px; font-size: 12px; color: var(--oobe-text-secondary);">
             If you have a limited data plan, you can make this network a metered connection or change other properties.
           </div>
-          <button class="wifi-disconnect-btn" style="align-self: flex-end;">Disconnect</button>
+          <mai-button appearance="secondary" size="medium" class="wifi-disconnect-btn" style="align-self: flex-end;">Disconnect</mai-button>
         </div>
       `;
       container.classList.add('open');
@@ -427,16 +426,15 @@ const OOBE_DEBUG_ENABLED = false;
                 <mai-checkbox slot="input" id="auto-connect-retry-${name}" checked></mai-checkbox>
               </mai-field>
             </div>
-            <button class="button-primary wifi-connect-btn">Connect</button>
+            <mai-button appearance="primary" size="medium" class="wifi-connect-btn">Connect</mai-button>
           </div>
           <div class="wifi-password-entry">
-            <div class="wifi-password-label">Enter the password</div>
-            <div class="fluent-input-wrapper">
-              <input type="password" class="wifi-password-input fluent-input" placeholder="Password">
-            </div>
+            <mai-text-input type="password" class="wifi-password-input" placeholder="Password">
+              Enter the password
+            </mai-text-input>
             <div class="wifi-password-actions">
-              <button class="button-primary wifi-verify-btn">Next</button>
-              <button class="button-secondary wifi-cancel-btn">Cancel</button>
+              <mai-button appearance="primary" size="medium" class="wifi-verify-btn">Next</mai-button>
+              <mai-button appearance="secondary" size="medium" class="wifi-cancel-btn">Cancel</mai-button>
             </div>
           </div>
           <div class="wifi-connecting" style="display:none; padding: 0 12px 12px 40px;">

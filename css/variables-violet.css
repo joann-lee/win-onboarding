@@ -21,9 +21,25 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
   
   /* ==================== TYPOGRAPHY ==================== */
-  --color-font-title: 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
-  --color-font-subtitle: 400 16px/1.4 "Segoe UI", system-ui, sans-serif;
-  --color-font-body: 400 14px/1.5 "Segoe UI", system-ui, sans-serif;
+  --color-font-title: var(--smtc-typography-font-title, 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
+  --color-font-subtitle: var(--smtc-typography-font-subtitle, 400 16px/1.4 "Segoe UI", system-ui, sans-serif);
+  --color-font-body: var(--smtc-typography-font-body, 400 14px/1.5 "Segoe UI", system-ui, sans-serif);
+  
+  /* Typography component parts */
+  --font-weight-title: var(--smtc-typography-font-weight-semibold, 600);
+  --font-size-title: var(--smtc-typography-font-size-title, 32px);
+  --line-height-title: var(--smtc-typography-line-height-title, 1.25);
+  --font-family-title: var(--smtc-typography-font-family-primary, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
+  
+  --font-weight-subtitle: var(--smtc-typography-font-weight-regular, 400);
+  --font-size-subtitle: var(--smtc-typography-font-size-subtitle, 16px);
+  --line-height-subtitle: var(--smtc-typography-line-height-subtitle, 1.4);
+  --font-family-subtitle: var(--smtc-typography-font-family-primary, "Segoe UI", system-ui, sans-serif);
+  
+  --font-weight-body: var(--smtc-typography-font-weight-regular, 400);
+  --font-size-body: var(--smtc-typography-font-size-body, 14px);
+  --line-height-body: var(--smtc-typography-line-height-body, 1.5);
+  --font-family-body: var(--smtc-typography-font-family-primary, "Segoe UI", system-ui, sans-serif);
   
   /* ==================== TRANSITIONS ==================== */
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
@@ -118,9 +134,9 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-country-list-active-bg: #796CA3;
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
-  --color-wifi-item-bg-selected: var(--smtc-background-card-secondary-rest, rgba(255, 255, 255, 0.8));
-  --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(255, 255, 255, 0.5));
-  --color-wifi-accent-line: #615589;
+  --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
+  --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #615589);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
@@ -196,6 +212,12 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   /* ==================== STATUS COLORS (Violet tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #8F8282;
   --smtc-status-brand-tint-background: rgba(143, 130, 130, 0.1);
+
+  /* ==================== WIFI COMPONENTS ==================== */
+  --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
+  --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #8F8282);
+}
 }
 
 

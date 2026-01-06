@@ -122,7 +122,7 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-country-list-active-bg: var(--smtc-background-ctrl-brand-hover, #006cbe);
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
-  --color-wifi-item-bg-selected: var(--smtc-background-card-secondary-rest, rgba(255, 255, 255, 0.8));
+  --color-wifi-item-bg-selected: var(--smtc-background-ctrl-subtle-rest, rgba(240, 244, 248, 0.8));
   --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(255, 255, 255, 0.5));
   --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #005FB8);
   
@@ -149,6 +149,11 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/visuals/background-blurred.jpg');
+
+  /* ==================== WIFI COMPONENTS ==================== */
+  --color-wifi-item-bg-selected: var(--smtc-background-ctrl-subtle-rest, rgba(40, 42, 46, 0.8));
+  --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(30, 31, 34, 0.5));
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #4090ff);
 }
 
 /* ==================== VISUAL EFFECTS & FILTERS ==================== */

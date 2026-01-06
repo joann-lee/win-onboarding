@@ -10,11 +10,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>
@@ -49,51 +68,46 @@
           </header>
           <div class="oobe-body">
             <div class="pin-input-group">
-              <label for="pin-input">New PIN</label>
-              <div class="fluent-input-wrapper">
-                <input 
-                  type="password" 
-                  id="pin-input" 
-                  class="fluent-input" 
-                  placeholder="Enter PIN"
-                  inputmode="numeric"
-                  aria-label="New PIN"
-                />
-              </div>
+              <mai-text-input 
+                type="password" 
+                id="pin-input" 
+                placeholder="Enter PIN"
+                inputmode="numeric"
+                aria-label="New PIN"
+              >New PIN</mai-text-input>
             </div>
 
             <div class="pin-input-group">
-              <label for="pin-confirm">Confirm PIN</label>
-              <div class="fluent-input-wrapper">
-                <input 
-                  type="password" 
-                  id="pin-confirm" 
-                  class="fluent-input" 
-                  placeholder="Confirm PIN"
-                  inputmode="numeric"
-                  aria-label="Confirm PIN"
-                />
-              </div>
+              <mai-text-input 
+                type="password" 
+                id="pin-confirm" 
+                placeholder="Confirm PIN"
+                inputmode="numeric"
+                aria-label="Confirm PIN"
+              >Confirm PIN</mai-text-input>
             </div>
 
             <div class="pin-checkbox-group">
-              <input 
-                type="checkbox" 
-                id="pin-letters-checkbox"
-                aria-label="Include letters and symbols"
-              />
-              <label for="pin-letters-checkbox">Include letters and symbols</label>
+              <mai-field label-position="above">
+                <label slot="label">Include letters and symbols</label>
+                <mai-checkbox 
+                  slot="input"
+                  id="pin-letters-checkbox"
+                  aria-label="Include letters and symbols"
+                ></mai-checkbox>
+              </mai-field>
             </div>
           </div>
           <div class="oobe-ctas">
-             <button class="button-secondary" id="cancel-btn" style="view-transition-name: none;">Cancel</button>
-            <button class="button-primary" data-cta="next">OK</button>
+             <mai-button appearance="subtle" size="large" id="cancel-btn" style="view-transition-name: none;">Cancel</mai-button>
+            <mai-button appearance="primary" size="large" data-cta="next">OK</mai-button>
           </div>
         </div>
 
       </div>
       <div class="oobe-below-actions">
         <!-- Accessibility section, no need to update -->
+        <button type="button a11y" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></button>
         <button type="button a11y" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></button>
         <button type="button a11y" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></button>
         <button type="button a11y" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></button>
@@ -105,7 +119,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
 
   <script src="/assets/animations/Pin.js"></script>
+  <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
 <script>
     const pinInput = document.getElementById('pin-input');
     const pinConfirm = document.getElementById('pin-confirm');

@@ -9,11 +9,30 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle');
-      if (style === 'evolved') {
+      // Prevent theme flash by setting up everything before any content renders
+      var savedMode = localStorage.getItem('themeMode') || 'light';
+      var savedPalette = localStorage.getItem('themePalette') || 'standard';
+      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+      var root = document.documentElement;
+      
+      // Apply CSS style links
+      if (savedCssStyle === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';
         document.getElementById('style-dark').href = '/css/evolved.dark.css';
+      } else {
+        // Explicitly set win11 as default
+        document.getElementById('style-base').href = '/css/win11.css';
+        document.getElementById('style-light').href = '/css/win11.light.css';
+        document.getElementById('style-dark').href = '/css/win11.dark.css';
+      }
+      
+      // Apply all theme classes immediately to prevent flash
+      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+      root.classList.add(savedCssStyle, savedMode);
+      
+      if (savedPalette !== 'standard') {
+        root.classList.add(savedPalette);
       }
     })();
   </script>
@@ -50,43 +69,42 @@
           <div class="oobe-body">
             <div class="msa-signin-container">
               <div class="signin-options-list">
-                <div class="signin-option-card">
+                <mai-button class="signin-option-card" appearance="neutral" data-option="passkey">
                   <div class="option-icon">🔑</div>
                   <div class="option-text">
                     <div class="option-title">Passkey</div>
                     <div class="option-desc">Use your fingerprint or face to sign in instantly</div>
                   </div>
-                </div>
-                <div class="signin-option-card">
+                </mai-button>
+                <mai-button class="signin-option-card" appearance="neutral" data-option="phone">
                   <div class="option-icon">📱</div>
                   <div class="option-text">
                     <div class="option-title">Phone number</div>
                     <div class="option-desc">Sign in with a phone number instead</div>
                   </div>
-                </div>
-                <div class="signin-option-card">
+                </mai-button>
+                <mai-button class="signin-option-card" appearance="neutral" data-option="local">
                   <div class="option-icon">🖥️</div>
                   <div class="option-text">
                     <div class="option-title">Local account</div>
                     <div class="option-desc">Create a local account without a Microsoft account</div>
                   </div>
-                </div>
+                </mai-button>
               </div>
             </div>
           </div>
           <div class="oobe-ctas">
-            <a class="button-secondary" data-cta="skip">Back</a>
+            <mai-button appearance="subtle" size="large" data-cta="skip">Back</mai-button>
             <mai-button appearance="primary" size="large" data-cta="next" id="signin-options-next">Continue</mai-button>
           </div>
         </div>
 
       </div>
       <div class="oobe-below-actions">
-        <!-- Accessibility section, no need to update -->
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
-        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button" appearance="subtle" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
       </div>
     </div>
 
