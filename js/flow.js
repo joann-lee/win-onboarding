@@ -295,9 +295,9 @@
       } else {
         // End of flow - go to desktop
         if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
-          nextLink.onclick = () => window.location.href = '/assets/desktop.html';
+          nextLink.onclick = () => window.location.href = '/desktop/';
         } else {
-          nextLink.setAttribute('href', '/assets/desktop.html');
+          nextLink.setAttribute('href', '/desktop/');
         }
         nextLink.classList.remove('disabled');
       }
@@ -316,9 +316,9 @@
         }
       } else {
         if (skipLink.tagName.toLowerCase() === 'mai-button' || skipLink.tagName.toLowerCase().includes('-')) {
-          skipLink.onclick = () => window.location.href = '/assets/desktop.html';
+          skipLink.onclick = () => window.location.href = '/desktop/';
         } else {
-          skipLink.setAttribute('href', '/assets/desktop.html');
+          skipLink.setAttribute('href', '/desktop/');
         }
       }
     }

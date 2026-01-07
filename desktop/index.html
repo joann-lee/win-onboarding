@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Desktop</title>
+    
+    <!-- OOBE Theme Integration -->
+    <link rel="stylesheet" href="../css/variables-standard.css" id="theme-variables">
+    <link rel="stylesheet" href="css/desktop.css">
+</head>
+<body>
+    <!-- Theme transition overlay -->
+    <div id="theme-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
+    
+    <!-- Dynamic wallpaper container -->
+    <div id="wallpaper-container" class="fixed inset-0 z-0">
+        <div class="wallpaper-layer active" data-theme="standard"></div>
+        <div class="wallpaper-layer" data-theme="sapphire"></div>
+        <div class="wallpaper-layer" data-theme="violet"></div>
+        <div class="wallpaper-layer" data-theme="dune"></div>
+    </div>
+
+    <!-- Desktop Background -->
+    <div class="desktop">
+        <div class="background-image"></div>
+        
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <!-- Light Acrylic Background -->
+            <div class="acrylic-bg">
+                <div class="top-stroke"></div>
+            </div>
+            
+            <!-- Weather Widget -->
+            <div class="weather-ticker">
+                <div class="weather-icon">
+                    <div class="sun-icon"></div>
+                </div>
+                <div class="weather-text">
+                    71°F<br>
+                    Sunny
+                </div>
+            </div>
+            
+            <!-- Main Tasklist -->
+            <div class="tasklist">
+                <!-- Start Button -->
+                <div class="start-button">
+                    <div class="start-icon"></div>
+                </div>
+                
+                <!-- Search Box -->
+                <div class="search-box">
+                    <img src="assets/Search.svg" alt="Search" class="search-icon">
+                    <div class="search-text">Search</div>
+                    <div class="gleam-effect">
+                        <div class="lotus-logo"></div>
+                    </div>
+                </div>
+                
+                <!-- Task View Button -->
+                <div class="task-view-button">
+                    <img src="assets/TaskSwitcher.svg" alt="Task View" class="task-view-icon">
+                </div>
+                
+                <!-- App Icons -->
+                <div class="app-icon file-explorer" onclick="openFileExplorerWindow()" oncontextmenu="showFileExplorerContextMenu(event)">
+                    <img src="assets/FileExplorer.svg" alt="File Explorer" class="folder-icon">
+                </div>
+                
+                <div class="app-icon edge-browser">
+                    <img src="assets/Edge.svg" alt="Microsoft Edge" class="edge-icon">
+                </div>
+                
+                <div class="app-icon copilot" onclick="openCopilotWindow()">
+                    <div class="copilot-icon"></div>
+                </div>
+                
+                <div class="app-icon teams" onclick="openTeamsWindow()">
+                    <img src="assets/teams.svg" alt="Microsoft Teams" class="teams-icon">
+                </div>
+                
+                <div class="app-icon microsoft-store">
+                    <img src="assets/Store.svg" alt="Microsoft Store" class="store-icon">
+                </div>
+                
+                <div class="app-icon settings">
+                    <img src="assets/Settings.svg" alt="Settings" class="settings-icon">
+                </div>
+            </div>
+            
+            <!-- System Tray -->
+            <div class="system-tray">
+                <!-- Quick Settings -->
+                <div class="quick-settings">
+                    <img src="assets/Network.svg" alt="Network" class="wifi-icon">
+                    <img src="assets/Volume.svg" alt="Volume" class="volume-icon">
+                    <img src="assets/Battery.svg" alt="Battery" class="battery-icon">
+                </div>
+                
+                <!-- Notification Center -->
+                <div class="notification-center">
+                    <div class="date-time">
+                        10:40 AM<br>
+                        8/21/2025
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- M365 Copilot App Window -->
+    <div class="copilot-window" id="copilotWindow">
+        <div class="copilot-app">
+            <!-- Resize Handles -->
+            <div class="resize-handle resize-n" data-direction="n"></div>
+            <div class="resize-handle resize-s" data-direction="s"></div>
+            <div class="resize-handle resize-e" data-direction="e"></div>
+            <div class="resize-handle resize-w" data-direction="w"></div>
+            <div class="resize-handle resize-ne" data-direction="ne"></div>
+            <div class="resize-handle resize-nw" data-direction="nw"></div>
+            <div class="resize-handle resize-se" data-direction="se"></div>
+            <div class="resize-handle resize-sw" data-direction="sw"></div>
+            
+            <!-- Title Bar -->
+            <div class="title-bar">
+                <div class="title-bar-left">
+                    <button class="menu-button">
+                        <span class="menu-icon"></span>
+                    </button>
+                </div>
+                <div class="title-bar-right">
+                    <button class="window-control minimize-btn">−</button>
+                    <button class="window-control maximize-btn">□</button>
+                    <button class="window-control close-btn" onclick="closeCopilotWindow()">×</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="copilot-main">
+                <!-- Welcome Mode Content -->
+                <div class="copilot-content welcome-mode">
+                    <!-- Header -->
+                    <div class="copilot-header">
+                        <h1>Hi, how can I help you?</h1>
+                    </div>
+
+                    <!-- Input Section -->
+                    <div class="copilot-input-section">
+                        <div class="input-container">
+                            <div class="input-inner">
+                                <div class="input-area">
+                                    <input type="text" placeholder="Ask me anything..." class="copilot-input">
+                                </div>
+                                <div class="input-controls">
+                                    <div class="input-controls-left">
+                                        <button class="input-btn add-btn">
+                                            <img src="assets/Add.svg" alt="Add" class="add-icon">
+                                        </button>
+                                        <button class="input-btn capability-btn">
+                                            <img src="assets/researcher.svg" alt="Researcher" class="researcher-icon">
+                                        </button>
+                                    </div>
+                                    <div class="input-controls-right">
+                                        <button class="input-btn mic-btn">
+                                            <img src="assets/Mic.svg" alt="Microphone" class="mic-icon">
+                                        </button>
+                                        <button class="input-btn send-btn">
+                                            <img src="assets/ArrowRight.svg" alt="Send" class="send-icon">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suggestions -->
+                    <div class="suggestions">
+                        <div class="suggestion-card">
+                            <div class="suggestion-header">
+                                <div class="suggestion-icon">📊</div>
+                            </div>
+                            <div class="suggestion-text">Analyze the latest Excel file from my downloads</div>
+                            <div class="suggestion-footer">From recent files</div>
+                        </div>
+                        <div class="suggestion-card">
+                            <div class="suggestion-header">
+                                <div class="suggestion-icon">👤</div>
+                            </div>
+                            <div class="suggestion-text">Help me prepare for my meeting with the marketing team</div>
+                            <div class="suggestion-footer">From your calendar</div>
+                        </div>
+                        <div class="suggestion-card">
+                            <div class="suggestion-header">
+                                <div class="suggestion-icon">📅</div>
+                            </div>
+                            <div class="suggestion-text">What's on my schedule for tomorrow?</div>
+                            <div class="suggestion-footer">From Outlook calendar</div>
+                        </div>
+                        <div class="suggestion-card">
+                            <div class="suggestion-header">
+                                <div class="suggestion-icon">➕</div>
+                            </div>
+                            <div class="suggestion-text">Create a new presentation for the quarterly review</div>
+                            <div class="suggestion-footer">From recent activities</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Mode Content -->
+                <div class="copilot-content chat-mode" style="display: none;">
+                    <!-- Chat Messages Container -->
+                    <div class="chat-messages">
+                        <!-- Messages will be dynamically added here -->
+                    </div>
+
+                    <!-- Chat Input Section -->
+                    <div class="chat-input-section">
+                        <div class="chat-input-container">
+                            <div class="chat-input-inner">
+                                <div class="chat-input-area">
+                                    <input type="text" placeholder="Ask me anything..." class="chat-input">
+                                </div>
+                                <div class="chat-input-controls">
+                                    <div class="chat-input-controls-left">
+                                        <button class="chat-input-btn add-btn">
+                                            <img src="assets/Add.svg" alt="Add" class="add-icon">
+                                        </button>
+                                    </div>
+                                    <div class="chat-input-controls-right">
+                                        <button class="chat-input-btn mic-btn">
+                                            <img src="assets/Mic.svg" alt="Microphone" class="mic-icon">
+                                        </button>
+                                        <button class="chat-input-btn chat-input-send-btn">
+                                            <img src="assets/ArrowRight.svg" alt="Send" class="send-icon">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Disclaimer -->
+                        <div class="ai-disclaimer">
+                            AI-generated content may be incorrect
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Explorer Window -->
+    <div class="file-explorer-window" id="fileExplorerWindow">
+        <div class="file-explorer-app">
+            <!-- Resize Handles -->
+            <div class="resize-handle resize-n" data-direction="n"></div>
+            <div class="resize-handle resize-s" data-direction="s"></div>
+            <div class="resize-handle resize-e" data-direction="e"></div>
+            <div class="resize-handle resize-w" data-direction="w"></div>
+            <div class="resize-handle resize-ne" data-direction="ne"></div>
+            <div class="resize-handle resize-nw" data-direction="nw"></div>
+            <div class="resize-handle resize-se" data-direction="se"></div>
+            <div class="resize-handle resize-sw" data-direction="sw"></div>
+            
+            <!-- Title Bar -->
+            <div class="file-explorer-title-bar">
+                <div class="title-bar-left">
+                    <img src="assets/FileExplorer.svg" alt="File Explorer" class="title-icon">
+                    <span class="title-text">File Explorer</span>
+                </div>
+                <div class="title-bar-right">
+                    <button class="window-control minimize-btn" onclick="minimizeFileExplorerWindow()">−</button>
+                    <button class="window-control maximize-btn" onclick="morphFileExplorerToContextMenu();">□</button>
+                    <button class="window-control close-btn" onclick="closeFileExplorerWindow()">×</button>
+                </div>
+            </div>
+
+            <!-- Menu Bar -->
+            <div class="file-explorer-menu-bar">
+                <div class="menu-item">File</div>
+                <div class="menu-item">Home</div>
+                <div class="menu-item">Share</div>
+                <div class="menu-item">View</div>
+            </div>
+
+            <!-- Navigation Bar -->
+            <div class="file-explorer-nav-bar">
+                <div class="nav-controls">
+                    <button class="nav-btn back-btn" disabled>❮</button>
+                    <button class="nav-btn forward-btn" disabled>❯</button>
+                    <button class="nav-btn up-btn">↑</button>
+                </div>
+                
+                <div class="address-bar">
+                    <div class="breadcrumb">
+                        <span class="breadcrumb-item">This PC</span>
+                        <span class="breadcrumb-separator">&gt;</span>
+                        <span class="breadcrumb-item">Desktop</span>
+                    </div>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box-explorer">
+                        <img src="assets/Search.svg" alt="Search" class="search-icon-explorer">
+                        <input type="text" placeholder="Search Desktop" class="search-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="file-explorer-content">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">Home</div>
+                        <div class="sidebar-item">
+                            <span class="home-icon">🏠</span>
+                            <span>Home</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">Quick access</div>
+                        <div class="sidebar-item">
+                            <span class="folder-icon">📁</span>
+                            <span>Desktop</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="folder-icon">📁</span>
+                            <span>Downloads</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="folder-icon">📁</span>
+                            <span>Documents</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="folder-icon">📁</span>
+                            <span>Pictures</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">This PC</div>
+                        <div class="sidebar-item">
+                            <span class="drive-icon">💾</span>
+                            <span>Local Disk (C:)</span>
+                        </div>
+                        <div class="sidebar-item">
+                            <span class="drive-icon">💿</span>
+                            <span>DVD Drive (D:)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <!-- Home View -->
+                    <div class="home-view" style="display: none;">
+                        <div class="home-header">
+                            <h2>Recommended</h2>
+                        </div>
+                        <div class="recommended-files">
+                            <div class="recommended-item" onclick="openWordWindow()">
+                                <div class="file-icon-small">📄</div>
+                                <div class="file-details">
+                                    <div class="file-name-small">Project Pluto: Working Spec</div>
+                                    <div class="file-info">You edited • 7/22/2025 2:15 PM</div>
+                                </div>
+                            </div>
+                            <div class="recommended-item">
+                                <div class="file-icon-small">📄</div>
+                                <div class="file-details">
+                                    <div class="file-name-small">Document.docx</div>
+                                    <div class="file-info">You edited • 7/10/2025 5:02 PM</div>
+                                </div>
+                            </div>
+                            <div class="recommended-item">
+                                <div class="file-icon-small">📊</div>
+                                <div class="file-details">
+                                    <div class="file-name-small">Spreadsheet.xlsx</div>
+                                    <div class="file-info">This file was edited • 7/10/2025 9:30 AM</div>
+                                </div>
+                            </div>
+                            <div class="recommended-item">
+                                <div class="file-icon-small">📁</div>
+                                <div class="file-details">
+                                    <div class="file-name-small">Project Files</div>
+                                    <div class="file-info">You recently took this • 7/10/2025 5:03 PM</div>
+                                </div>
+                            </div>
+                            <div class="recommended-item">
+                                <div class="file-icon-small">🎵</div>
+                                <div class="file-details">
+                                    <div class="file-name-small">Music.mp3</div>
+                                    <div class="file-info">You shared this • 7/10/2025 4:55 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="home-tabs">
+                            <div class="tab-container">
+                                <div class="tab active" data-tab="recent">📄 Recent</div>
+                                <div class="tab" data-tab="favorites">⭐ Favorites</div>
+                                <div class="tab" data-tab="shared">👥 Shared</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content">
+                            <div class="recent-files">
+                                <div class="file-list-header">
+                                    <span></span>
+                                    <span class="header-name">Name</span>
+                                    <span class="header-date">Date accessed</span>
+                                    <span class="header-activity">Activity</span>
+                                </div>
+                                <div class="file-list-item" onclick="openWordWindow()">
+                                    <div class="file-icon-list">📄</div>
+                                    <div class="file-name-list">Project Pluto: Working Spec</div>
+                                    <div class="file-date">7/22/2025 2:15 PM</div>
+                                    <div class="file-activity">You recently edited this</div>
+                                </div>
+                                <div class="file-list-item">
+                                    <div class="file-icon-list">📄</div>
+                                    <div class="file-name-list">Document.docx</div>
+                                    <div class="file-date">7/10/2025 5:02 PM</div>
+                                    <div class="file-activity">You frequently open this</div>
+                                </div>
+                                <div class="file-list-item">
+                                    <div class="file-icon-list">📊</div>
+                                    <div class="file-name-list">Spreadsheet.xlsx</div>
+                                    <div class="file-date">7/10/2025 4:52 PM</div>
+                                    <div class="file-activity">You shared this in a Teams chat</div>
+                                </div>
+                                <div class="file-list-item">
+                                    <div class="file-icon-list">🎵</div>
+                                    <div class="file-name-list">Music.mp3</div>
+                                    <div class="file-date">7/10/2025 4:51 PM</div>
+                                    <div class="file-activity">You recently opened this</div>
+                                </div>
+                                <div class="file-list-item">
+                                    <div class="file-icon-list">📁</div>
+                                    <div class="file-name-list">Windows Shell Boilerplate</div>
+                                    <div class="file-date">7/10/2025 4:45 PM</div>
+                                    <div class="file-activity">You frequently open this</div>
+                                </div>
+                                <div class="file-list-item">
+                                    <div class="file-icon-list">📄</div>
+                                    <div class="file-name-list">File Explorer.docx</div>
+                                    <div class="file-date">7/10/2025 4:37 PM</div>
+                                    <div class="file-activity">You shared this in a Teams chat</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Default File Grid View -->
+                    <div class="file-grid">
+                        <div class="file-item folder">
+                            <div class="file-icon">📁</div>
+                            <div class="file-name">Documents</div>
+                        </div>
+                        <div class="file-item folder">
+                            <div class="file-icon">📁</div>
+                            <div class="file-name">Pictures</div>
+                        </div>
+                        <div class="file-item folder">
+                            <div class="file-icon">📁</div>
+                            <div class="file-name">Downloads</div>
+                        </div>
+                        <div class="file-item folder">
+                            <div class="file-icon">📁</div>
+                            <div class="file-name">Music</div>
+                        </div>
+                        <div class="file-item file">
+                            <img src="assets/PCThumbnail.png" alt="PC" class="file-icon">
+                            <div class="file-name">PC thumbnail.png</div>
+                        </div>
+                        <div class="file-item file">
+                            <div class="file-icon">📄</div>
+                            <div class="file-name">Document.txt</div>
+                        </div>
+                        <div class="file-item file">
+                            <div class="file-icon">🎵</div>
+                            <div class="file-name">Music.mp3</div>
+                        </div>
+                        <div class="file-item file">
+                            <div class="file-icon">📊</div>
+                            <div class="file-name">Spreadsheet.xlsx</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="file-explorer-status-bar">
+                <div class="status-left">
+                    <span>9 items</span>
+                </div>
+                <div class="status-right">
+                    <button class="view-toggle-btn">⊞</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Microsoft Teams Window -->
+    <div class="teams-window" id="teamsWindow">
+        <div class="teams-app">
+            <!-- Resize Handles -->
+            <div class="resize-handle resize-n" data-direction="n"></div>
+            <div class="resize-handle resize-s" data-direction="s"></div>
+            <div class="resize-handle resize-e" data-direction="e"></div>
+            <div class="resize-handle resize-w" data-direction="w"></div>
+            <div class="resize-handle resize-ne" data-direction="ne"></div>
+            <div class="resize-handle resize-nw" data-direction="nw"></div>
+            <div class="resize-handle resize-se" data-direction="se"></div>
+            <div class="resize-handle resize-sw" data-direction="sw"></div>
+            
+            <!-- Title Bar -->
+            <div class="teams-title-bar">
+                <div class="title-bar-left">
+                    <img src="assets/teams.svg" alt="Microsoft Teams" class="title-icon">
+                    <span class="title-text">Microsoft Teams</span>
+                </div>
+                <div class="title-bar-right">
+                    <button class="window-control minimize-btn">−</button>
+                    <button class="window-control maximize-btn">□</button>
+                    <button class="window-control close-btn" onclick="closeTeamsWindow()">×</button>
+                </div>
+            </div>
+
+            <!-- Teams Main Content -->
+            <div class="teams-main">
+                <!-- Left Sidebar -->
+                <div class="teams-sidebar">
+                    <!-- Chat Header -->
+                    <div class="teams-chat-header">
+                        <h2>Chat</h2>
+                    </div>
+                    
+                    <!-- Chat List -->
+                    <div class="teams-chat-list">
+                        <div class="chat-header">
+                            <h3>Recent</h3>
+                            <div class="chat-header-actions">
+                                <button class="header-btn">+</button>
+                                <button class="header-btn">⋯</button>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-item active">
+                            <div class="chat-avatar">
+                                <div class="avatar-img">SM</div>
+                                <div class="status-indicator online"></div>
+                            </div>
+                            <div class="chat-info">
+                                <div class="chat-name">Sarah Miller</div>
+                                <div class="chat-preview">Also, I've updated the Pluto product spec after your shareout on the North Star design. I think we can make it into P1 changes - I'm hopeful the presentation goes well and we can continue forward quickly. Could you take a quick look at it and let me know if you have any questions?</div>
+                                <div class="chat-time">1m</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-item">
+                            <div class="chat-avatar">
+                                <div class="avatar-img">MT</div>
+                                <div class="status-indicator away"></div>
+                            </div>
+                            <div class="chat-info">
+                                <div class="chat-name">Marketing Team</div>
+                                <div class="chat-preview">John: The campaign results look great!</div>
+                                <div class="chat-time">15m</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-item">
+                            <div class="chat-avatar">
+                                <div class="avatar-img">AL</div>
+                                <div class="status-indicator online"></div>
+                            </div>
+                            <div class="chat-info">
+                                <div class="chat-name">Alex Lee</div>
+                                <div class="chat-preview">Thanks for the update!</div>
+                                <div class="chat-time">1h</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-item">
+                            <div class="chat-avatar">
+                                <div class="avatar-img">PT</div>
+                                <div class="status-indicator offline"></div>
+                            </div>
+                            <div class="chat-info">
+                                <div class="chat-name">Project Team</div>
+                                <div class="chat-preview">Meeting scheduled for tomorrow</div>
+                                <div class="chat-time">2h</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-item">
+                            <div class="chat-avatar">
+                                <div class="avatar-img">JD</div>
+                                <div class="status-indicator online"></div>
+                            </div>
+                            <div class="chat-info">
+                                <div class="chat-name">Jessica Davis</div>
+                                <div class="chat-preview">Can we schedule a call?</div>
+                                <div class="chat-time">3h</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Chat Area -->
+                <div class="teams-chat-area">
+                    <!-- Chat Header -->
+                    <div class="chat-area-header">
+                        <div class="chat-participant">
+                            <div class="participant-avatar">SM</div>
+                            <div class="participant-info">
+                                <div class="participant-name">Sarah Miller</div>
+                                <div class="participant-status">
+                                    <div class="status-dot online"></div>
+                                    <span>Available</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-actions">
+                            <button class="action-btn">📹</button>
+                            <button class="action-btn">📞</button>
+                            <button class="action-btn">⋯</button>
+                        </div>
+                    </div>
+
+                    <!-- Messages -->
+                    <div id="teamsMessages" class="teams-messages">
+                        <div class="message-day-separator">
+                            <span>Today</span>
+                        </div>
+                        
+                        <div class="message received">
+                            <div class="message-avatar">SM</div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <span class="sender-name">Sarah Miller</span>
+                                    <span class="message-time">10:30 AM</span>
+                                </div>
+                                <div class="message-text">Hi! I wanted to follow up on the quarterly review presentation. Do you have time to go over the slides today?</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message sent">
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <span class="message-time">10:32 AM</span>
+                                </div>
+                                <div class="message-text">Sure! I'm free after 2 PM. Should we meet in person or over Teams?</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message received">
+                            <div class="message-avatar">SM</div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <span class="sender-name">Sarah Miller</span>
+                                    <span class="message-time">10:35 AM</span>
+                                </div>
+                                <div class="message-text">Teams works great! I'll send a meeting invite for 2:30 PM. Let me know when you're ready for the call and I'll share my screen to show the current draft.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="message received">
+                            <div class="message-avatar">SM</div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <span class="sender-name">Sarah Miller</span>
+                                    <span class="message-time">10:37 AM</span>
+                                </div>
+                                <div class="message-text">Also, I've updated the Pluto product spec after your shareout on the North Star design. I think we can make it into P1 changes - I'm hopeful the presentation goes well and we can continue forward quickly.<br><br>Could you take a quick look at it and let me know if you have any questions?</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Input -->
+                    <div class="teams-message-input">
+                        <div class="input-area">
+                            <div class="message-compose">
+                                <textarea id="teamsMessageInput" placeholder="Type a message" spellcheck="false"></textarea>
+                                <button id="teamsSendBtn" class="send-btn" disabled>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M15.854 7.854a.5.5 0 0 0 0-.708L13.207 4.5a.5.5 0 0 0-.707.707L14.293 7H.5a.5.5 0 0 0 0 1h13.793L12.5 9.793a.5.5 0 0 0 .707.707l2.647-2.646z" fill="currentColor"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Microsoft Word Window -->
+    <div class="word-window" id="wordWindow">
+        <div class="word-app">
+            <!-- Resize Handles -->
+            <div class="resize-handle resize-n" data-direction="n"></div>
+            <div class="resize-handle resize-s" data-direction="s"></div>
+            <div class="resize-handle resize-e" data-direction="e"></div>
+            <div class="resize-handle resize-w" data-direction="w"></div>
+            <div class="resize-handle resize-ne" data-direction="ne"></div>
+            <div class="resize-handle resize-nw" data-direction="nw"></div>
+            <div class="resize-handle resize-se" data-direction="se"></div>
+            <div class="resize-handle resize-sw" data-direction="sw"></div>
+            
+            <!-- Title Bar -->
+            <div class="word-title-bar">
+                <div class="title-bar-left">
+                    <img src="assets/word.svg" alt="Microsoft Word" class="title-icon">
+                    <span class="title-text">Project Pluto: Working Spec - Word</span>
+                </div>
+                <div class="title-bar-right">
+                    <button class="window-control minimize-btn">−</button>
+                    <button class="window-control maximize-btn">□</button>
+                    <button class="window-control close-btn" onclick="closeWordWindow()">×</button>
+                </div>
+            </div>
+
+            <!-- Word Ribbon -->
+            <div class="word-ribbon">
+                <div class="ribbon-tabs">
+                    <div class="ribbon-tab active">Home</div>
+                    <div class="ribbon-tab">Insert</div>
+                    <div class="ribbon-tab">Layout</div>
+                    <div class="ribbon-tab">References</div>
+                    <div class="ribbon-tab">Review</div>
+                    <div class="ribbon-tab">View</div>
+                </div>
+                <div class="ribbon-content">
+                    <div class="ribbon-group">
+                        <div class="ribbon-tools">
+                            <button class="ribbon-btn">Bold</button>
+                            <button class="ribbon-btn">Italic</button>
+                            <button class="ribbon-btn">Underline</button>
+                        </div>
+                        <div class="ribbon-label">Font</div>
+                    </div>
+                    <div class="ribbon-group">
+                        <div class="ribbon-tools">
+                            <button class="ribbon-btn">Left</button>
+                            <button class="ribbon-btn">Center</button>
+                            <button class="ribbon-btn">Right</button>
+                        </div>
+                        <div class="ribbon-label">Paragraph</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Document Content -->
+            <div class="word-content">
+                <div class="word-document">
+                    <!-- Page 1 -->
+                    <div class="document-page">
+                        <div class="document-header">
+                            <h1>Project Pluto: Working Specification</h1>
+                            <p class="document-subtitle">Internal Working Document</p>
+                            <hr>
+                        </div>
+                        
+                        <div class="document-body">
+                            <h2>Executive Summary</h2>
+                            <p>Project Pluto represents a significant advancement in our product development strategy. This document outlines the key specifications, requirements, and implementation roadmap for the upcoming product launch.</p>
+                            
+                            <h2>Project Overview</h2>
+                            <p>Following the North Star design shareout, we have identified several key areas for improvement and innovation. The Pluto initiative focuses on delivering user-centric features that align with our long-term product vision.</p>
+                            
+                            <h3>Key Objectives</h3>
+                            <ul>
+                                <li>Enhance user experience through intuitive design</li>
+                                <li>Implement advanced AI-powered features</li>
+                                <li>Improve performance and scalability</li>
+                                <li>Ensure seamless integration with existing systems</li>
+                            </ul>
+                            
+                            <h2>Technical Specifications</h2>
+                            <p>The technical implementation will be phased across multiple releases, with P0 changes prioritized for the initial launch. Our engineering team has confirmed the feasibility of the proposed architecture.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Page 2 -->
+                    <div class="document-page">
+                        <div class="document-body">
+                            <h3>P0 Priority Changes</h3>
+                            <ul>
+                                <li>Ability to select multiple files and transform them</li>
+                                <li>Animation when transitioning from window to window</li>
+                                <li>Maintain high standards for craft and ensuring pixel perfect designs</li>
+                            </ul>
+                            
+                            <div class="commented-section" data-comment-id="sarah-1">
+                                <h3>P1 Priority Changes</h3>
+                                <ul>
+                                    <li>Allow for full capability to swipe from page to page</li>
+                                    <li>Include new Liquid Glass animation for the blobs</li>
+                                    <li>Make Desktop dance 🕺🏻</li>
+                                </ul>
+                            </div>
+                            
+                            <h2>Timeline and Milestones</h2>
+                            <p>The project timeline has been optimized to ensure rapid delivery while maintaining our quality standards. We anticipate being able to move forward quickly with implementation following approval of this specification.</p>
+                            
+                            <h2>Implementation Details</h2>
+                            <p>The development process will follow our established agile methodology, with weekly sprint reviews and continuous integration practices. Key stakeholders will be engaged throughout the process to ensure alignment with business objectives.</p>
+                            
+                            <h3>Resource Allocation</h3>
+                            <ul>
+                                <li>Frontend Development: 3 engineers</li>
+                                <li>Backend Development: 2 engineers</li>
+                                <li>UX Design: 1 designer</li>
+                                <li>Quality Assurance: 2 testers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Word Comments -->
+            <div class="word-comments">
+                <div class="comment-thread" data-comment-id="sarah-1">
+                    <div class="comment-bubble">
+                        <div class="comment-header">
+                            <div class="comment-author">
+                                <div class="author-avatar">S</div>
+                                <div class="author-info">
+                                    <div class="author-name">Sarah Miller</div>
+                                    <div class="comment-time">Today at 2:18 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            <p>Added according to Design north star - anything else we're missing here?</p>
+                        </div>
+                        <div class="comment-actions">
+                            <button class="comment-btn">Reply</button>
+                            <button class="comment-btn">Resolve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Status Bar -->
+            <div class="word-status-bar">
+                <div class="status-left">
+                    <span>Page 2 of 2</span>
+                    <span>Words: 347</span>
+                </div>
+                <div class="status-right">
+                    <span>100%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Explorer Context Menu -->
+    <div class="file-explorer-context-menu" id="fileExplorerContextMenu">
+        <div class="context-menu-container">
+            <!-- Search Box -->
+            <div class="context-search-header">
+                <div class="context-search-box">
+                    <div class="search-icon-wrapper">
+                        <img src="assets/Search.svg" alt="Search" class="context-search-icon">
+                    </div>
+                    <input type="text" placeholder="Search for a file" class="context-search-input" id="contextSearchInput">
+                </div>
+                <button class="context-maximize-btn" onclick="morphContextMenuToFileExplorer()">
+                    <img src="assets/ArrowMaximize.svg" alt="Arrow Maximize" class="action-icon">
+                </button>
+            </div>
+
+            <!-- Search Results Section (hidden by default) -->
+            <div class="context-search-results" id="contextSearchResults" style="display: none;">
+                <div class="search-results-container" id="searchResultsContainer">
+                    <!-- Dynamic search results will be added here -->
+                </div>
+            </div>
+
+            <!-- Recent Files Section -->
+            <div class="context-menu-content" id="contextMenuContent">
+                <!-- Fixed section header -->
+                <div class="context-section-header">Recent</div>
+                
+                <!-- Scrollable recent files area -->
+                <div class="context-menu-recent-section">
+                    <div class="context-menu-item">
+                        <div class="context-item-icon loop-icon">
+                            <img src="assets/loop.svg" alt="Loop" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Staci | Shannon 1:1</div>
+                            <div class="context-item-time">10m ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item">
+                        <div class="context-item-icon pptx-icon">
+                            <img src="assets/pptx.svg" alt="PowerPoint" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Aug 2025 AI Learning session w...</div>
+                            <div class="context-item-time">1h ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item" draggable="true" data-file-type="folder" data-file-name="Pluto design assets" ondragstart="handleDragStart(event)" ondrageend="handleDragEnd(event)">
+                        <div class="context-item-icon">
+                            📁
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Pluto design assets</div>
+                            <div class="context-item-time">2h ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item">
+                        <div class="context-item-icon pdf-icon">
+                            <img src="assets/pdf.svg" alt="PDF" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Company Policy</div>
+                            <div class="context-item-time">Yesterday</div>
+                        </div>
+                    </div>
+
+                    <!-- Test items to force scrolling -->
+                    <div class="context-menu-item">
+                        <div class="context-item-icon docx-icon">
+                            <img src="assets/docx.svg" alt="Word" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Budget Review Q3 2025</div>
+                            <div class="context-item-time">2 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item">
+                        <div class="context-item-icon pptx-icon">
+                            <img src="assets/pptx.svg" alt="PowerPoint" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Marketing Strategy Deck</div>
+                            <div class="context-item-time">3 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item">
+                        <div class="context-item-icon pdf-icon">
+                            <img src="assets/pdf.svg" alt="PDF" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Employee Handbook 2025</div>
+                            <div class="context-item-time">4 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item">
+                        <div class="context-item-icon docx-icon">
+                            <img src="assets/docx.svg" alt="Word" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Meeting Notes - July 24</div>
+                            <div class="context-item-time">5 days ago</div>
+                        </div>
+                    </div>
+
+                    <div class="context-menu-item">
+                        <div class="context-item-icon pptx-icon">
+                            <img src="assets/pptx.svg" alt="PowerPoint" class="action-icon">
+                        </div>
+                        <div class="context-item-content">
+                            <div class="context-item-title">Customer Onboarding Flow</div>
+                            <div class="context-item-time">6 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fixed action items section (outside of searchable content) -->
+            <div class="context-menu-actions-section" id="contextMenuActions">
+                <!-- Divider -->
+                <div class="context-menu-divider"></div>
+
+                <!-- Action Items -->
+                <div class="context-menu-item action-item">
+                    <div class="context-item-icon">
+                        <img src="assets/PinOff.svg" alt="Pin Off" class="action-icon">
+                    </div>
+                    <div class="context-item-content">
+                        <div class="context-item-title">Unpin from taskbar</div>
+                    </div>
+                </div>
+
+                <div class="context-menu-item action-item" onclick="closeFileExplorerWindow()">
+                    <div class="context-item-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M15.5 5.5L5.5 15.5M5.5 5.5l10 10" stroke="currentColor" stroke-width="1.5"></path>
+                        </svg>
+                    </div>
+                    <div class="context-item-content">
+                        <div class="context-item-title">Close window</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Snap Target Box for File Explorer -->
+    <div class="snap-target-box" id="snapTargetBox"></div>
+
+    <!-- Scripts -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/desktop.js"></script>
+</body>
+</html>

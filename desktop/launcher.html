@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Launcher</title>
+    <link rel="stylesheet" href="../css/variables-standard.css" id="theme-variables">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-family-primary, 'Segoe UI', system-ui, sans-serif);
+            background: var(--color-background-primary, #000);
+            color: var(--color-text-primary, #fff);
+        }
+        
+        .launcher-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .launch-btn {
+            background: var(--color-accent-primary, #0078d4);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .launch-btn:hover {
+            background: var(--color-accent-hover, #106ebe);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .current-theme {
+            font-weight: 600;
+            color: var(--color-accent-primary, #0078d4);
+        }
+    </style>
+</head>
+<body>
+    <div class="launcher-container">
+        <h1>Desktop</h1>
+        <p>Toolbox of tools for makers</p>
+        
+        <div class="info">
+            <p>Current OOBE Theme: <span class="current-theme" id="current-theme">Loading...</span></p>
+            <p>The Desktop page will automatically use this theme and listen for changes.</p>
+        </div>
+        
+        <a href="index.html" class="launch-btn" target="_blank">Launch Desktop</a>
+        <a href="index.html" class="launch-btn">Open in Same Window</a>
+        
+        <div style="margin-top: 40px;">
+            <h3>Quick Theme Test</h3>
+            <button onclick="setTheme('standard')" class="launch-btn" style="font-size: 14px; padding: 8px 16px;">Standard</button>
+            <button onclick="setTheme('sapphire')" class="launch-btn" style="font-size: 14px; padding: 8px 16px;">Sapphire</button>
+            <button onclick="setTheme('violet')" class="launch-btn" style="font-size: 14px; padding: 8px 16px;">Violet</button>
+            <button onclick="setTheme('dune')" class="launch-btn" style="font-size: 14px; padding: 8px 16px;">Dune</button>
+        </div>
+    </div>
+
+    <script>
+        // Load current theme
+        function loadCurrentTheme() {
+            const theme = localStorage.getItem('oobeTheme') || 
+                         localStorage.getItem('theme') || 
+                         'standard';
+            document.getElementById('current-theme').textContent = theme;
+            
+            // Update CSS variables
+            const themeLink = document.getElementById('theme-variables');
+            themeLink.href = `../css/variables-${theme}.css`;
+        }
+        
+        // Set theme for testing
+        function setTheme(theme) {
+            localStorage.setItem('oobeTheme', theme);
+            sessionStorage.setItem('oobeTheme', theme);
+            
+            // Dispatch event for any open Desktop pages
+            window.dispatchEvent(new CustomEvent('oobeThemeChange', {
+                detail: { theme }
+            }));
+            
+            // Update display
+            loadCurrentTheme();
+        }
+        
+        // Listen for storage changes from other windows
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'oobeTheme') {
+                loadCurrentTheme();
+            }
+        });
+        
+        // Initialize
+        loadCurrentTheme();
+    </script>
+</body>
+</html>
