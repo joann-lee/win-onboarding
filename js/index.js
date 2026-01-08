@@ -196,8 +196,8 @@ function initThemeControls() {
   const cssStyle = document.getElementById('css-style');
   
   const savedMode = localStorage.getItem('themeMode') || 'light';
-  const savedPalette = localStorage.getItem('themePalette') || 'standard';
-  const savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
+  const savedPalette = localStorage.getItem('themePalette') || 'violet';
+  const savedCssStyle = localStorage.getItem('cssStyle') || 'evolved';
   
   console.log('initThemeControls - savedMode:', savedMode);
   console.log('initThemeControls - savedPalette:', savedPalette);

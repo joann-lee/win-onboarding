@@ -386,3 +386,27 @@
   --smtc-material-mica-default-solid: #ffffff00;
   --smtc-material-mica-default-lum-blend: #ffffff00;
 }
+
+.evolved.light .oobe-card {
+  background-color: rgba(229, 229, 229, 0.9);
+  background-image: url('/assets/noise.png');
+  background-repeat: repeat;
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(60px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.evolved.light .oobe-card::before,
+.evolved .oobe-card-overlay {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.evolved.light .oobe-card .oobe-content,
+.evolved.light .oobe-card .region-form,
+.evolved.light .oobe-card .lottie-container,
+.evolved.light .oobe-card .oobe-visual {
+  position: relative;
+  z-index: 2;
+}

@@ -274,10 +274,12 @@ body[data-oobe] .oobe-shell {
 }
 
 /* Headings */
-.oobe-header h1 {
+html:not(.evolved) .oobe-header h1 {
   font: var(--color-font-title);
   margin: 0 0 12px;
 }
+
+/* Evolved theme h1 styling is handled in evolved.css */
 
 .oobe-header .subtitle {
   font: var(--color-font-subtitle);

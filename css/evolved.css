@@ -15,8 +15,8 @@
   --smtc-text-global-title2-line-height: 36px;
   --smtc-text-global-subtitle1-font-size: 24px;
   --smtc-text-global-subtitle1-line-height: 36px;
-  --smtc-text-global-subtitle2-font-size: 24px;
-  --smtc-text-global-subtitle2-line-height: 36px;
+  --smtc-text-global-subtitle2-font-size: 20px;
+  --smtc-text-global-subtitle2-line-height: 28px;
   --smtc-text-global-body1-font-size: 18px;
   --smtc-text-global-body1-line-height: 24px;
   --smtc-text-global-body2-font-size: 14px;
@@ -143,11 +143,11 @@
   --smtc-corner-circular: 999px;
   --smtc-corner-zero: 4px;
   --smtc-corner-bezel: 16px;
-  --smtc-corner-window-default: 20px;
-  --smtc-corner-flyout-rest: 20px;
-  --smtc-corner-layer-default: 20px;
+  --smtc-corner-window-default: 12px;
+  --smtc-corner-flyout-rest: 12px;
+  --smtc-corner-layer-default: 12px;
   --smtc-corner-layer-intersection: 0px;
-  --smtc-corner-card-rest: 20px;
+  --smtc-corner-card-rest: 12px;
   --smtc-corner-image-on-page: 12px;
   --smtc-corner-image-in-card: 12px;
   --smtc-corner-ctrl-rest: 12px;
@@ -368,6 +368,11 @@
   --smtc-ctrl-list-shadow-selected-key: 0px 32px 64px 0px #00000000;
   --smtc-ctrl-list-shadow-selected-ambient: 0px 2px 21px 0px #00000000;
   --smtc-corner-flyout-shell-rest: 8px;
+  
+  /* Custom evolved theme variables */
+  --color-font-title-size: var(--smtc-text-global-subtitle2-font-size);
+  --color-font-title-line-height: var(--smtc-text-global-subtitle2-line-height);
+  --color-font-title: var(--smtc-text-global-subtitle2-font-size)/var(--smtc-text-global-subtitle2-line-height) var(--smtc-text-style-default-regular-font-family);
 }
 
 /* Fluent Motion Tokens */
@@ -391,4 +396,72 @@
   --curveEasyEase: cubic-bezier(0.33,0,0.67,1);
   --curveLinear: cubic-bezier(0,0,1,1);
 }
+.evolved .oobe-main:has(.lottie-container), .evolved .oobe-main:has(.oobe-visual) {
+    width: 600px;
+}
+.evolved .oobe-card:not(.has-contained-overlay){
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--smtc-corner-card-rest, 8px);
+  background: var(--smtc-background-card-secondary-rest, #ffffff);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--smtc-shadow-elevation-card, 0 4px 24px rgba(0, 0, 0, 0.08));
+  box-sizing: border-box;
+}
+.evolved .oobe-card.has-contained-overlay {
+    padding: 0;
+}
 
+.evolved .oobe-card:not(.has-contained-overlay)::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  z-index: -1;
+  pointer-events: none;
+  border-radius: var( --smtc-corner-ctrl-sm-rest,8px);
+}
+
+.evolved .oobe-card .oobe-content,
+.evolved .oobe-card .region-form,
+.evolved .oobe-card .lottie-container,
+.evolved .oobe-card .oobe-visual {
+  position: relative;
+  z-index: 2;
+}
+.evolved .oobe-card .lottie-container,
+.evolved .oobe-card .oobe-visual{
+  display: none;
+}
+/* Variation: Container-based overlay for flexible content structure */
+.evolved .oobe-card-overlay {
+  margin:4px;
+  pointer-events: none;
+  border-radius: var( --smtc-corner-ctrl-sm-rest,8px);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 44px;
+  box-sizing: border-box;
+}
+
+.evolved .oobe-card-overlay * {
+  pointer-events: auto;
+}
+
+.evolved .oobe-card > *:not(.oobe-card-overlay) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Start row spacing */
+.evolved .start-row {
+  padding: 16px;
+}
+
+/* H1 styling for evolved theme */
+.evolved .oobe-header h1 {
+  font: var(--color-font-title);
+  margin: 0 0 12px;
+}
