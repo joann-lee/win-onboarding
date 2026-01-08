@@ -372,7 +372,7 @@
   /* Custom evolved theme variables */
   --color-font-title-size: var(--smtc-text-global-subtitle2-font-size);
   --color-font-title-line-height: var(--smtc-text-global-subtitle2-line-height);
-  --color-font-title: var(--smtc-text-global-subtitle2-font-size)/var(--smtc-text-global-subtitle2-line-height) var(--smtc-text-style-default-regular-font-family);
+  --color-font-title: var(--smtc-text-style-default-header-weight) var(--smtc-text-global-subtitle2-font-size)/var(--smtc-text-global-subtitle2-line-height) var(--smtc-text-style-default-regular-font-family);
 }
 
 /* Fluent Motion Tokens */
