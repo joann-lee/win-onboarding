@@ -1,11 +1,15 @@
-# OOBE, SCOOBE, Nth LOGON PROTOTYPE
-by nina navazio
+# Vision for OOBE, SCOOBE, Nth LOGON PROTOTYPE
+by Jason Geiger
+based largely on nina navazio's proto
+
+Theming and components based on MAI components and tokens
+- Win11 theme - aligns with what's in production
+- Evolved theme - streamlined UI and aligned with early phases of Windows Design System refresh
+- Supports light and dark mode
+- Colors for alignement with Surface devices
 
 This is not production code! this is HTML, CSS, and JS. But when you full-screen the browser page, it does look like production code :) 
-
-This uses the real Lottie animations that are in prod.
-
-The color themes are NOT official, just fan-made ones from nina navazio and Jason Geiger. 
+ 
 
 ## KNOWN BUGS
 - NDUP breaks the flow, you can't get past it right now. It does a fake reboot but then just goes back to the NDUP page. Sorry! 

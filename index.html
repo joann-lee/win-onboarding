@@ -9,7 +9,18 @@
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
-      var style = localStorage.getItem('cssStyle') || 'win11';
+      // Set defaults on first load
+      if (!localStorage.getItem('cssStyle')) {
+        localStorage.setItem('cssStyle', 'evolved');
+      }
+      if (!localStorage.getItem('themePalette')) {
+        localStorage.setItem('themePalette', 'violet');
+      }
+      if (!localStorage.getItem('themeMode')) {
+        localStorage.setItem('themeMode', 'dark');
+      }
+      
+      var style = localStorage.getItem('cssStyle');
       if (style === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';
         document.getElementById('style-light').href = '/css/evolved.light.css';

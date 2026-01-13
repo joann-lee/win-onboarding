@@ -204,7 +204,7 @@
 }
 
 .evolved.dark .oobe-card {
-  background-color: rgba(46, 46, 46, 0.9);
+  background-color: rgba(46, 46, 46, 0.8);
   background-image: url('/assets/noise.png');
   background-repeat: repeat;
   background-blend-mode: luminosity;
@@ -215,7 +215,7 @@
 }
 
 .evolved.dark .oobe-card::before,
-.evolved .oobe-card-overlay {
+.evolved.dark .oobe-card-overlay {
   background-color: rgba(0, 0, 0, 0.15);
 }
 
