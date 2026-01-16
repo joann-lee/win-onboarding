@@ -465,3 +465,29 @@
   font: var(--color-font-title);
   margin: 0 0 12px;
 }
+
+/* Consistent minimum height for all oobe-cards in evolved theme */
+.evolved .oobe-card {
+  min-height: 480px;
+}
+
+/* Override two-column layout since lottie is hidden in evolved theme */
+.evolved .oobe-card:has(.lottie-container),
+.evolved .oobe-card:has(.oobe-visual) {
+  flex-direction: column;
+}
+
+/* Ensure content areas fill available space and push buttons to bottom */
+.evolved .oobe-card .oobe-content,
+.evolved .oobe-card .content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Push CTAs to the bottom of the card */
+.evolved .oobe-card .oobe-ctas,
+.evolved .oobe-card .footer {
+  margin-top: auto;
+}

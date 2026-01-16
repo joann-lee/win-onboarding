@@ -96,9 +96,155 @@ const OOBE_DEBUG_ENABLED = false;
       // Set initial aria-pressed state
       const currentMode = localStorage.getItem('themeMode') || 'light';
       modeButton.setAttribute('aria-pressed', currentMode === 'dark' ? 'true' : 'false');
+
+      // Right-click context menu for color palette switching
+      initColorPaletteMenu(modeButton);
     }
   });
 })();
+
+// Color palette menu for right-click on mode button
+function initColorPaletteMenu(modeButton) {
+  console.log('🎨 initColorPaletteMenu called, modeButton:', modeButton);
+  
+  const palettes = [
+    { id: 'standard', label: 'Standard' },
+    { id: 'dune', label: 'Dune' },
+    { id: 'sapphire', label: 'Sapphire' },
+    { id: 'violet', label: 'Violet' }
+  ];
+
+  // Add tooltip to the mode button - try multiple approaches for web components
+  modeButton.setAttribute('title', 'Right click to change theme');
+  modeButton.title = 'Right click to change theme';
+  // Also try setting on inner elements
+  const innerImg = modeButton.querySelector('img');
+  if (innerImg) {
+    innerImg.setAttribute('title', 'Right click to change theme');
+  }
+  console.log('🎨 Tooltip set on modeButton');
+
+  // Create the menu container using innerHTML for proper slot handling
+  const menuWrapper = document.createElement('div');
+  menuWrapper.id = 'color-palette-menu-wrapper';
+  menuWrapper.style.position = 'fixed';
+  menuWrapper.style.zIndex = '9999';
+  menuWrapper.style.display = 'none';
+  
+  // Build menu items HTML
+  const menuItemsHtml = palettes.map(p => 
+    `<mai-menu-item data-palette="${p.id}">${p.label}</mai-menu-item>`
+  ).join('');
+  
+  menuWrapper.innerHTML = `
+    <mai-menu open>
+      <mai-menu-list>
+        ${menuItemsHtml}
+      </mai-menu-list>
+    </mai-menu>
+  `;
+  
+  document.body.appendChild(menuWrapper);
+  console.log('🎨 Menu wrapper added to body');
+  console.log('🎨 Menu wrapper innerHTML:', menuWrapper.innerHTML);
+
+  // Add click handlers to menu items
+  const menuItems = menuWrapper.querySelectorAll('mai-menu-item');
+  console.log('🎨 Found menu items:', menuItems.length);
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      console.log('🎨 Menu item clicked:', item.dataset.palette);
+      applyColorPalette(item.dataset.palette);
+      menuWrapper.style.display = 'none';
+    });
+  });
+
+  // Right-click handler at document level to capture events from shadow DOM
+  document.addEventListener('contextmenu', (e) => {
+    console.log('🎨 contextmenu event fired, target:', e.target);
+    console.log('🎨 composedPath:', e.composedPath());
+    
+    // Check if the click is on the mode button or its children
+    const target = e.target;
+    const containsTarget = modeButton.contains(target);
+    const isTarget = target === modeButton;
+    const inComposedPath = e.composedPath().includes(modeButton);
+    
+    console.log('🎨 containsTarget:', containsTarget, 'isTarget:', isTarget, 'inComposedPath:', inComposedPath);
+    
+    const isOnModeButton = containsTarget || isTarget || inComposedPath;
+    
+    console.log('🎨 isOnModeButton:', isOnModeButton);
+    
+    if (isOnModeButton) {
+      console.log('🎨 Opening palette menu!');
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Position the menu near the button
+      const rect = modeButton.getBoundingClientRect();
+      menuWrapper.style.left = `${rect.left}px`;
+      menuWrapper.style.bottom = `${window.innerHeight - rect.top + 8}px`;
+      menuWrapper.style.top = 'auto';
+      
+      // Toggle the menu visibility
+      if (menuWrapper.style.display === 'none') {
+        menuWrapper.style.display = 'block';
+        console.log('🎨 Menu now visible');
+      } else {
+        menuWrapper.style.display = 'none';
+        console.log('🎨 Menu now hidden');
+      }
+      
+      return false;
+    }
+  }, true);
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!menuWrapper.contains(e.target) && !modeButton.contains(e.target)) {
+      menuWrapper.style.display = 'none';
+    }
+  });
+
+  // Mark current palette in menu
+  updatePaletteMenuSelection();
+  console.log('🎨 initColorPaletteMenu complete');
+}
+
+function applyColorPalette(paletteId) {
+  const root = document.documentElement;
+  const body = document.body;
+  
+  // Remove all palette classes
+  root.classList.remove('dune', 'sapphire', 'violet');
+  body.classList.remove('dune', 'sapphire', 'violet');
+  
+  // Apply the selected palette (standard has no class)
+  if (paletteId !== 'standard') {
+    root.classList.add(paletteId);
+    body.classList.add(paletteId);
+  }
+  
+  // Save preference
+  localStorage.setItem('themePalette', paletteId);
+  
+  // Update menu selection indicator
+  updatePaletteMenuSelection();
+}
+
+function updatePaletteMenuSelection() {
+  const currentPalette = localStorage.getItem('themePalette') || 'standard';
+  const menuItems = document.querySelectorAll('#color-palette-menu-wrapper mai-menu-item');
+  
+  menuItems.forEach(item => {
+    if (item.dataset.palette === currentPalette) {
+      item.setAttribute('aria-current', 'true');
+    } else {
+      item.removeAttribute('aria-current');
+    }
+  });
+}
 
 // Shared per-page initialization: lottie animation & accessibility
 (function initLottie() {

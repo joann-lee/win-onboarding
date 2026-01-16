@@ -11,7 +11,7 @@
       "name": "Accent Light 2",
       "lightness": 79,
       "usage": "Text: Press. Fill: Rest, Hover (90%), Pressed (80%)",
-      "hex": "#C78CD8",
+      "hex": "#C2AEE0",
       "contrast": 3
     },
     "light1": {
@@ -22,7 +22,7 @@
     "base": {
       "name": "Accent Base",
       "lightness": 49.50,
-      "hex": "#795CA3"
+      "hex": "#796CA3"
     },
     "dark1": {
       "name": "Accent Dark 1",

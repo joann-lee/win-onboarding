@@ -64,7 +64,9 @@ body:not([data-oobe]) .oobe-main {
   align-items: center;
   width: 100%;
 }
-
+.start-row{
+    padding-top: var(--smtc-spacing-8, 24px);
+}
 .start-row,
 .presets-row {
     display: flex;

@@ -172,7 +172,7 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
 :root.dark.violet,
 .dark.violet {
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #8F8282;
+  --color-accent: #615589;
   --color-accent-hover: #C7BCD8;
   --color-accent-active: #796CA3;
   --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
