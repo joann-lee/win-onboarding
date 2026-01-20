@@ -147,7 +147,7 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --smtc-foreground-ctrl-brand-pressed: #403667;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals/background-violet-light.png');
+  --background-image: url('/assets/wallpaper/background-violet-light.png');
   --smtc-background-layer-solid: #faf9fb;
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #615589;
@@ -194,7 +194,7 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --smtc-foreground-ctrl-brand-pressed: #796CA3;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals/background-violet-dark.png');
+  --background-image: url('/assets/wallpaper/background-violet-dark.png');
   --smtc-background-layer-solid: #0f1113;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #8F8282;

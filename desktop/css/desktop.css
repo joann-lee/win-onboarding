@@ -94,36 +94,36 @@ body {
 
 /* Default theme backgrounds */
 .wallpaper-layer[data-theme="standard"] {
-    background-image: url('../assets/visuals/background-standard-light.jpg');
+    background-image: url('../assets/wallpaper/background-standard-light.jpg');
 }
 
 .wallpaper-layer[data-theme="sapphire"] {
-    background-image: url('../assets/visuals/background-sapphire-light.png');
+    background-image: url('../assets/wallpaper/electric-teal.webp');
 }
 
 .wallpaper-layer[data-theme="violet"] {
-    background-image: url('../assets/visuals/background-violet-light.png');
+    background-image: url('../assets/wallpaper/background-violet-light.png');
 }
 
 .wallpaper-layer[data-theme="dune"] {
-    background-image: url('../assets/visuals/background-dune-light.png');
+    background-image: url('../assets/wallpaper/background-dune-light.png');
 }
 
 /* Dark mode backgrounds */
 html.dark .wallpaper-layer[data-theme="standard"] {
-    background-image: url('../assets/visuals/background-standard-dark.png');
+    background-image: url('../assets/wallpaper/background-standard-dark.png');
 }
 
 html.dark .wallpaper-layer[data-theme="sapphire"] {
-    background-image: url('../assets/visuals/background-sapphire-dark.png');
+    background-image: url('../assets/wallpaper/electric-teal.webp');
 }
 
 html.dark .wallpaper-layer[data-theme="violet"] {
-    background-image: url('../assets/visuals/background-violet-dark.png');
+    background-image: url('../assets/wallpaper/background-violet-dark.png');
 }
 
 html.dark .wallpaper-layer[data-theme="dune"] {
-    background-image: url('../assets/visuals/background-dune-dark.png');
+    background-image: url('../assets/wallpaper/background-dune-dark.png');
 }
 
 .wallpaper-layer.active {
@@ -134,7 +134,7 @@ html.dark .wallpaper-layer[data-theme="dune"] {
 /* Fallback background for debugging */
 .wallpaper-layer[data-theme="standard"].active {
     background-color: #1a73e8;
-    background-image: url('../assets/visuals/background-standard-light.jpg');
+    background-image: url('../assets/wallpaper/background-standard-light.jpg');
 }
 
 /* Background Image - Dynamic based on theme */
@@ -144,7 +144,7 @@ html.dark .wallpaper-layer[data-theme="dune"] {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../assets/visuals/background-standard-light.jpg');
+    background-image: url('../assets/wallpaper/background-standard-light.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -153,36 +153,36 @@ html.dark .wallpaper-layer[data-theme="dune"] {
 
 /* Theme-specific backgrounds */
 html.theme-standard .background-image {
-    background-image: url('../assets/visuals/background-standard-light.jpg');
+    background-image: url('../assets/wallpaper/background-standard-light.jpg');
 }
 
 html.theme-sapphire .background-image {
-    background-image: url('../assets/visuals/background-sapphire-light.png');
+    background-image: url('../assets/wallpaper/background-sapphire-light.png');
 }
 
 html.theme-violet .background-image {
-    background-image: url('../assets/visuals/background-violet-light.png');
+    background-image: url('../assets/wallpaper/background-violet-light.png');
 }
 
 html.theme-dune .background-image {
-    background-image: url('../assets/visuals/background-dune-light.png');
+    background-image: url('../assets/wallpaper/background-dune-light.png');
 }
 
 /* Dark mode backgrounds */
 html.dark.theme-standard .background-image {
-    background-image: url('../assets/visuals/background-standard-dark.png');
+    background-image: url('../assets/wallpaper/background-standard-dark.png');
 }
 
 html.dark.theme-sapphire .background-image {
-    background-image: url('../assets/visuals/background-sapphire-dark.png');
+    background-image: url('../assets/wallpaper/background-sapphire-dark.png');
 }
 
 html.dark.theme-violet .background-image {
-    background-image: url('../assets/visuals/background-violet-dark.png');
+    background-image: url('../assets/wallpaper/background-violet-dark.png');
 }
 
 html.dark.theme-dune .background-image {
-    background-image: url('../assets/visuals/background-dune-dark.png');
+    background-image: url('../assets/wallpaper/background-dune-dark.png');
 }
 
 /* Taskbar */
@@ -4681,4 +4681,92 @@ html.dark.theme-dune .background-image {
     50% {
         background-color: rgba(0, 120, 212, 0.15);
     }
+}
+
+/* ==================== DARK MODE TASKBAR ==================== */
+/* Dark mode taskbar with theme accent color support using filters */
+
+html.dark .taskbar .acrylic-bg {
+    background: rgba(32, 32, 32, 0.92);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.dark .taskbar .top-stroke {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Theme-specific accent filters for dark mode taskbar */
+html.dark.standard .taskbar .acrylic-bg,
+html.dark.theme-standard .taskbar .acrylic-bg {
+    filter: brightness(0) saturate(100%) invert(45%) sepia(98%) saturate(1500%) hue-rotate(200deg) brightness(60%) contrast(85%);
+}
+
+html.dark.violet .taskbar .acrylic-bg,
+html.dark.theme-violet .taskbar .acrylic-bg {
+    filter: brightness(0) saturate(100%) invert(35%) sepia(5%) saturate(3868%) hue-rotate(213deg) brightness(55%) contrast(87%);
+}
+
+html.dark.dune .taskbar .acrylic-bg,
+html.dark.theme-dune .taskbar .acrylic-bg {
+    filter: brightness(0) saturate(100%) invert(50%) sepia(15%) saturate(900%) hue-rotate(340deg) brightness(55%) contrast(82%);
+}
+
+html.dark.sapphire .taskbar .acrylic-bg,
+html.dark.theme-sapphire .taskbar .acrylic-bg {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(4%) saturate(6212%) hue-rotate(192deg) brightness(60%) contrast(83%);
+}
+
+/* Dark mode taskbar text and icon colors */
+html.dark .taskbar .weather-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+html.dark .taskbar .date-time {
+    color: white;
+}
+
+html.dark .taskbar .search-box {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .taskbar .search-box:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+html.dark .taskbar .search-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+html.dark .taskbar .search-icon {
+    filter: invert(1) opacity(0.7);
+}
+
+html.dark .taskbar .start-button:hover,
+html.dark .taskbar .task-view-button:hover,
+html.dark .taskbar .app-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+html.dark .taskbar .app-icon.active {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Dark mode system tray adjustments */
+html.dark .taskbar .system-tray {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+html.dark .taskbar .system-tray svg,
+html.dark .taskbar .system-tray img {
+    filter: invert(1) brightness(0.9);
+}
+
+/* Dark mode gleam effect */
+html.dark .taskbar .gleam-effect {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Invert Start icon for dark mode */
+html.dark .taskbar .start-icon{
+    filter: brightness(0) invert(1); /* Make the icon white */
 }

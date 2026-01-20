@@ -2170,69 +2170,51 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   width: auto;
 }
 
-/* Standard theme shows standard logos */
-.standard .standard-logo {
+/* Standard theme in light mode: show standard light logo only */
+.standard.light .standard-logo.light-logo,
+html.standard.light .standard-logo.light-logo {
   display: block;
 }
 
-.standard .themed-logo {
-  display: none;
-}
-
-/* All other themes show themed logos */
-.violet .themed-logo,
-.dune .themed-logo,
-.sapphire .themed-logo {
+/* Standard theme in dark mode: show standard dark logo only */
+.standard.dark .standard-logo.dark-logo,
+html.standard.dark .standard-logo.dark-logo {
   display: block;
 }
 
-.violet .standard-logo,
-.dune .standard-logo,
-.sapphire .standard-logo {
-  display: none;
-}
-
-/* Light/dark mode switching */
-.light .light-logo {
+/* Themed palettes (violet, dune, sapphire) in light mode */
+.violet.light .themed-logo.light-logo,
+.dune.light .themed-logo.light-logo,
+.sapphire.light .themed-logo.light-logo,
+html.violet.light .themed-logo.light-logo,
+html.dune.light .themed-logo.light-logo,
+html.sapphire.light .themed-logo.light-logo {
   display: block;
 }
 
-.light .dark-logo {
-  display: none;
-}
-
-.dark .dark-logo {
+/* Themed palettes (violet, dune, sapphire) in dark mode */
+.violet.dark .themed-logo.dark-logo,
+.dune.dark .themed-logo.dark-logo,
+.sapphire.dark .themed-logo.dark-logo,
+html.violet.dark .themed-logo.dark-logo,
+html.dune.dark .themed-logo.dark-logo,
+html.sapphire.dark .themed-logo.dark-logo {
   display: block;
 }
 
-.dark .light-logo {
-  display: none;
+/* Evolved theme: always show white/dark logo regardless of light/dark mode */
+.evolved .standard-logo.dark-logo,
+html.evolved .standard-logo.dark-logo {
+  display: block;
 }
 
-/* Override for proper stacking */
-.violet .themed-logo.light-logo,
-.dune .themed-logo.light-logo,
-.sapphire .themed-logo.light-logo {
-  display: var(--light-display, block);
+/* Hide all other logos in evolved */
+.evolved .standard-logo.light-logo,
+.evolved .themed-logo,
+html.evolved .standard-logo.light-logo,
+html.evolved .themed-logo {
+  display: none !important;
 }
-
-.violet .themed-logo.dark-logo,
-.dune .themed-logo.dark-logo,
-.sapphire .themed-logo.dark-logo {
-  display: var(--dark-display, none);
-}
-
-.standard .standard-logo.light-logo {
-  display: var(--light-display, block);
-}
-
-.standard .standard-logo.dark-logo {
-  display: var(--dark-display, none);
-}
-
-/* Light mode variables */
-.light {
-  --light-display: block;
   --dark-display: none;
 }
 
