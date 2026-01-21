@@ -7,7 +7,6 @@ class ThemeManager {
     constructor() {
         this.currentTheme = 'standard';
         this.themes = ['standard', 'sapphire', 'violet', 'dune'];
-        this.wallpaperContainer = document.getElementById('wallpaper-container');
         this.themeOverlay = document.getElementById('theme-overlay');
         this.themeVariablesLink = document.getElementById('theme-variables');
         this.isTransitioning = false;
@@ -49,9 +48,10 @@ class ThemeManager {
                 this.currentTheme = oobeThemePalette;
             }
             
-            // Set dark/light mode
+            // Set dark/light mode - CSS expects .light or .dark class
             const isDark = oobeThemeMode === 'dark';
             document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.toggle('light', !isDark);
             
             console.log('Loaded OOBE theme:', oobeThemePalette, oobeThemeMode);
         } catch (error) {
@@ -73,6 +73,7 @@ class ThemeManager {
         if (event.key === 'themeMode') {
             const isDark = event.newValue === 'dark';
             document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.toggle('light', !isDark);
             // Refresh wallpaper to update for new mode
             this.setWallpaper(this.currentTheme, false);
         }
@@ -151,9 +152,9 @@ class ThemeManager {
     
     setWallpaper(theme, animate = true) {
         return new Promise(resolve => {
-            const backgroundElement = document.querySelector('.background-image');
-            if (!backgroundElement) {
-                console.warn('Background image element not found');
+            const wallpaperImg = document.getElementById('wallpaper-img');
+            if (!wallpaperImg) {
+                console.warn('Wallpaper image element not found');
                 resolve();
                 return;
             }
@@ -164,12 +165,12 @@ class ThemeManager {
             // Set background image based on theme and mode
             let backgroundImage;
             if (theme === 'standard' && mode === 'light') {
-                backgroundImage = '../assets/visuals/background-standard-light.jpg';
+                backgroundImage = '../assets/wallpaper/background-standard-light.jpg';
             } else {
-                backgroundImage = `../assets/visuals/background-${theme}-${mode}.png`;
+                backgroundImage = `../assets/wallpaper/background-${theme}-${mode}.png`;
             }
             
-            backgroundElement.style.backgroundImage = `url('${backgroundImage}')`;
+            wallpaperImg.src = backgroundImage;
             
             console.log(`Set wallpaper: ${theme}-${mode}, path: ${backgroundImage}`);
             
@@ -187,9 +188,18 @@ class ThemeManager {
         // Update body class
         document.body.className = `theme-${theme}`;
         
-        // Update root classes
-        document.documentElement.classList.remove(...this.themes.map(t => `theme-${t}`));
-        document.documentElement.classList.add(`theme-${theme}`);
+        // Remove old theme classes and add new ones
+        // The CSS variables use selectors like :root.light.violet or :root.dark.violet
+        document.documentElement.classList.remove(...this.themes);
+        document.documentElement.classList.add(theme);
+        
+        // Ensure light/dark mode class is set (CSS expects .light or .dark)
+        const isDark = document.documentElement.classList.contains('dark');
+        if (!isDark) {
+            document.documentElement.classList.add('light');
+        } else {
+            document.documentElement.classList.remove('light');
+        }
         
         // Update CSS custom properties for dynamic theming
         document.documentElement.style.setProperty('--current-theme', theme);

@@ -3,7 +3,7 @@
 VIOLET THEME - SMTC Token Overrides
 
 This file overrides Win11 SMTC design tokens to create a violet color theme.
-Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (light 1), #796CA3 (base), #615589 (dark 1), #403667 (dark 2), #1C1441 (dark 3)
+Uses the violet color palette: #E8DCF0 (light 3), #C4B1D4 (light 2), #9B7CB8 (light 1), #7B5BA0 (base), #5D4080 (dark 1), #3F2860 (dark 2), #241540 (dark 3)
 
 */
 
@@ -45,11 +45,11 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
   
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #615589;
-  --color-accent-hover: #796CA3;
-  --color-accent-active: #403667;
+  --color-accent: #7B5BA0;
+  --color-accent-hover: #9B7CB8;
+  --color-accent-active: #5D4080;
   --color-bg-primary: var(--smtc-background-layer-solid, #faf9fb);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(199, 188, 216, 0.55), rgba(250, 249, 251, 0.85));
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(196, 177, 212, 0.55), rgba(250, 249, 251, 0.85));
   --color-card-bg: #ffffff;
   
   /* ==================== TEXT COLORS ==================== */
@@ -66,20 +66,20 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
   
   /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: #615589;
+  --color-button-primary-bg: #7B5BA0;
   --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: #796CA3;
-  --color-button-primary-bg-active: #403667;
+  --color-button-primary-bg-hover: #9B7CB8;
+  --color-button-primary-bg-active: #5D4080;
   --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: #615589;
-  --color-button-primary-border-hover: #796CA3;
+  --color-button-primary-border: #7B5BA0;
+  --color-button-primary-border-hover: #9B7CB8;
   --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
   
   /* ==================== SECONDARY BUTTON ==================== */
-  --color-button-secondary-text: #615589;
+  --color-button-secondary-text: #7B5BA0;
   --color-button-secondary-bg: transparent;
-  --color-button-secondary-text-hover: #403667;
-  --color-button-secondary-text-active: #403667;
+  --color-button-secondary-text-hover: #5D4080;
+  --color-button-secondary-text-active: #5D4080;
   --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
   --color-button-secondary-bg-hover: transparent;
   --color-button-secondary-bg-focus: transparent;
@@ -88,7 +88,7 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-input-border-focus: #615589;
+  --color-input-border-focus: #7B5BA0;
   --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
   --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
   --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
@@ -96,24 +96,24 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   /* ==================== FORM COMPONENTS ==================== */
   --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
-  --color-checkbox-bg-checked: #615589;
-  --color-checkbox-border-checked: #615589;
+  --color-checkbox-bg-checked: #7B5BA0;
+  --color-checkbox-border-checked: #7B5BA0;
   --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
-  --color-radio-bg-checked: #615589;
-  --color-radio-border-checked: #615589;
+  --color-radio-bg-checked: #7B5BA0;
+  --color-radio-border-checked: #7B5BA0;
   
   --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-toggle-bg-checked: #615589;
+  --color-toggle-bg-checked: #7B5BA0;
   --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   /* ==================== LINKS ==================== */
-  --color-hyperlink: #796CA3;
-  --color-hyperlink-hover: #796CA3;
-  --color-hyperlink-active: #403667;
-  --color-block-text-focus: #796CA3;
+  --color-hyperlink: #9B7CB8;
+  --color-hyperlink-hover: #9B7CB8;
+  --color-hyperlink-active: #5D4080;
+  --color-block-text-focus: #9B7CB8;
   --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
   
   /* ==================== MESSAGE STATES ==================== */
@@ -123,47 +123,47 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
   --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
   --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-info-bg: rgba(97, 85, 137, 0.1);
-  --color-info-border: #796CA3;
+  --color-info-bg: rgba(123, 91, 160, 0.1);
+  --color-info-border: #9B7CB8;
   
   /* ==================== COMPONENT SPECIFIC ==================== */
-  --color-country-pill-bg: #615589;
+  --color-country-pill-bg: #7B5BA0;
   --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-country-pill-bg-hover: #796CA3;
+  --color-country-pill-bg-hover: #9B7CB8;
   --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
-  --color-country-list-active-bg: #796CA3;
+  --color-country-list-active-bg: #9B7CB8;
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
   --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #615589);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #7B5BA0);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #615589;
-  --smtc-foreground-ctrl-brand-rest: #615589;
-  --smtc-foreground-ctrl-brand-hover: #796CA3;
-  --smtc-foreground-ctrl-brand-pressed: #403667;
+  --smtc-foreground-ctrl-hint-default: #7B5BA0;
+  --smtc-foreground-ctrl-brand-rest: #7B5BA0;
+  --smtc-foreground-ctrl-brand-hover: #9B7CB8;
+  --smtc-foreground-ctrl-brand-pressed: #5D4080;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-violet-light.png');
   --smtc-background-layer-solid: #faf9fb;
   --smtc-background-card-secondary-rest: #ffffff;
-  --smtc-background-ctrl-brand-rest: #615589;
-  --smtc-background-ctrl-brand-hover: #796CA3;
-  --smtc-background-ctrl-brand-pressed: #403667;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #796CA3;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #403667;
+  --smtc-background-ctrl-brand-rest: #7B5BA0;
+  --smtc-background-ctrl-brand-hover: #9B7CB8;
+  --smtc-background-ctrl-brand-pressed: #5D4080;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #9B7CB8;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #5D4080;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #615589;
-  --smtc-stroke-ctrl-brand-hover: #796CA3;
-  --smtc-stroke-ctrl-brand-pressed: #403667;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #615589;
+  --smtc-stroke-ctrl-brand-rest: #7B5BA0;
+  --smtc-stroke-ctrl-brand-hover: #9B7CB8;
+  --smtc-stroke-ctrl-brand-pressed: #5D4080;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #7B5BA0;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #796CA3;
+  --smtc-foreground-ctrl-hint-default: #9B7CB8;
   
   /* ==================== STATUS COLORS (keep original) ==================== */
   /* Error, warning, success colors remain unchanged */
@@ -172,11 +172,11 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
 :root.dark.violet,
 .dark.violet {
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #615589;
-  --color-accent-hover: #C7BCD8;
-  --color-accent-active: #796CA3;
+  --color-accent: #9B7CB8;
+  --color-accent-hover: #C4B1D4;
+  --color-accent-active: #7B5BA0;
   --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(143, 130, 130, 0.2), rgba(15, 17, 19, 0.6));
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(93, 64, 128, 0.2), rgba(15, 17, 19, 0.6));
   --color-card-bg: #1e1f22;
 
   /* ==================== TEXT COLORS ==================== */
@@ -188,38 +188,38 @@ Uses the violet color palette: #E7DDEE (light 3), #C7BCD8 (light 2), #8F8282 (li
   --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
   
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #8F8282;
-  --smtc-foreground-ctrl-brand-rest: #8F8282;
-  --smtc-foreground-ctrl-brand-hover: #C7BCD8;
-  --smtc-foreground-ctrl-brand-pressed: #796CA3;
+  --smtc-foreground-ctrl-hint-default: #C4B1D4;
+  --smtc-foreground-ctrl-brand-rest: #C4B1D4;
+  --smtc-foreground-ctrl-brand-hover: #E8DCF0;
+  --smtc-foreground-ctrl-brand-pressed: #9B7CB8;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-violet-dark.png');
   --smtc-background-layer-solid: #0f1113;
   --smtc-background-card-secondary-rest: #1e1f22;
-  --smtc-background-ctrl-brand-rest: #8F8282;
-  --smtc-background-ctrl-brand-hover: #C7BCD8;
-  --smtc-background-ctrl-brand-pressed: #796CA3;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #C7BCD8;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #796CA3;
+  --smtc-background-ctrl-brand-rest: #9B7CB8;
+  --smtc-background-ctrl-brand-hover: #C4B1D4;
+  --smtc-background-ctrl-brand-pressed: #7B5BA0;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #C4B1D4;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #7B5BA0;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #8F8282;
-  --smtc-stroke-ctrl-brand-hover: #C7BCD8;
-  --smtc-stroke-ctrl-brand-pressed: #796CA3;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #8F8282;
+  --smtc-stroke-ctrl-brand-rest: #9B7CB8;
+  --smtc-stroke-ctrl-brand-hover: #C4B1D4;
+  --smtc-stroke-ctrl-brand-pressed: #7B5BA0;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #9B7CB8;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #8F8282;
+  --smtc-foreground-ctrl-hint-default: #C4B1D4;
   
   /* ==================== STATUS COLORS (Violet tint for info) ==================== */
-  --smtc-status-brand-tint-foreground: #8F8282;
-  --smtc-status-brand-tint-background: rgba(143, 130, 130, 0.1);
+  --smtc-status-brand-tint-foreground: #C4B1D4;
+  --smtc-status-brand-tint-background: rgba(155, 124, 184, 0.1);
 
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
   --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #8F8282);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #C4B1D4);
 }
 }
 

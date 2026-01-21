@@ -129,7 +129,7 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals/background-blurred.jpg');
+  --background-image: url('/assets/wallpaper/background-blurred.jpg');
 }
 
 :root.dark.standard,
@@ -151,7 +151,7 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-card-bg: #1e1f22;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals/background-blurred.jpg');
+  --background-image: url('/assets/wallpaper/background-blurred.jpg');
 
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: var(--smtc-background-ctrl-subtle-rest, rgba(40, 42, 46, 0.8));

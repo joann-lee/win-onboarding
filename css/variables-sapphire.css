@@ -178,7 +178,7 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-foreground-ctrl-brand-pressed: #6271AA;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals//assets/wallpaper/electric-teal.webp');
+  --background-image: url('/assets/wallpaper/electric-teal.webp');
   --smtc-background-layer-solid: #0f1318;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #7987B8;

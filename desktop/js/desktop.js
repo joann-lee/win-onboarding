@@ -3392,6 +3392,273 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize Teams drop zone
     setTimeout(setupTeamsDropZone, 500);
+    
+    // Initialize Start Menu functionality
+    initializeStartMenu();
+    
+    // Initialize Phone Pane Views
+    initializePhonePaneViews();
+    
+    // Initialize Settings Flyout
+    initializeSettingsFlyout();
+    
+    // Initialize taskbar clock
+    updateTaskbarClock();
+    setInterval(updateTaskbarClock, 1000);
 });
 
+// Taskbar Clock Function
+function updateTaskbarClock() {
+    const timeElement = document.getElementById('taskbarTime');
+    const dateElement = document.getElementById('taskbarDate');
+    
+    if (timeElement && dateElement) {
+        const now = new Date();
+        
+        // Format time as h:mm AM/PM
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 0 should be 12
+        timeElement.textContent = `${hours}:${minutes} ${ampm}`;
+        
+        // Format date as M/D/YYYY
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+        const year = now.getFullYear();
+        dateElement.textContent = `${month}/${day}/${year}`;
+    }
+}
 
+// Start Menu Functions
+function initializeStartMenu() {
+    const startButton = document.querySelector('.start-button');
+    const startMenu = document.getElementById('startMenu');
+    const phonePane = document.getElementById('phonePane');
+    
+    if (startButton && startMenu) {
+        // Open start menu by default on load
+        openStartMenu();
+        
+        // Toggle start menu on start button click
+        startButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleStartMenu();
+        });
+        
+        // Close start menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (startMenu.classList.contains('active') && 
+                !startMenu.contains(e.target) && 
+                !startButton.contains(e.target) &&
+                !(phonePane && phonePane.contains(e.target))) {
+                closeStartMenu();
+            }
+        });
+        
+        // Close start menu on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && startMenu.classList.contains('active')) {
+                closeStartMenu();
+            }
+        });
+    }
+}
+
+function toggleStartMenu() {
+    const startMenu = document.getElementById('startMenu');
+    const startButton = document.querySelector('.start-button');
+    
+    if (startMenu.classList.contains('active')) {
+        closeStartMenu();
+    } else {
+        openStartMenu();
+    }
+}
+
+function openStartMenu() {
+    const startMenu = document.getElementById('startMenu');
+    const startButton = document.querySelector('.start-button');
+    const phonePane = document.getElementById('phonePane');
+    
+    startMenu.classList.add('active');
+    startButton.classList.add('active');
+    if (phonePane) phonePane.classList.add('active');
+}
+
+function closeStartMenu() {
+    const startMenu = document.getElementById('startMenu');
+    const startButton = document.querySelector('.start-button');
+    const phonePane = document.getElementById('phonePane');
+    
+    startMenu.classList.remove('active');
+    startButton.classList.remove('active');
+    if (phonePane) phonePane.classList.remove('active');
+}
+
+// Phone Pane View Switching
+function initializePhonePaneViews() {
+    const androidBtn = document.getElementById('btnAndroid');
+    const iphoneBtn = document.getElementById('btnIPhone');
+    const hideBtn = document.querySelector('.phone-setup-hide');
+    
+    if (androidBtn) {
+        androidBtn.addEventListener('click', () => {
+            showPhoneConnectedView();
+        });
+    }
+    
+    if (iphoneBtn) {
+        iphoneBtn.addEventListener('click', () => {
+            // For now, also show connected view for iPhone
+            showPhoneConnectedView();
+        });
+    }
+    
+    if (hideBtn) {
+        hideBtn.addEventListener('click', () => {
+            closeStartMenu();
+        });
+    }
+}
+
+function showPhoneSetupView() {
+    const setupView = document.getElementById('phoneSetupView');
+    const connectedView = document.getElementById('phoneConnectedView');
+    
+    if (setupView) setupView.style.display = 'flex';
+    if (connectedView) connectedView.style.display = 'none';
+}
+
+function showPhoneConnectedView() {
+    const setupView = document.getElementById('phoneSetupView');
+    const connectedView = document.getElementById('phoneConnectedView');
+    
+    if (setupView) setupView.style.display = 'none';
+    if (connectedView) connectedView.style.display = 'flex';
+}
+
+// Settings Flyout Functions
+function toggleSettingsFlyout(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const flyout = document.getElementById('settingsFlyout');
+    const settingsIcon = document.querySelector('.app-icon.settings');
+    
+    if (flyout.classList.contains('active')) {
+        closeSettingsFlyout();
+    } else {
+        openSettingsFlyout();
+    }
+}
+
+function openSettingsFlyout() {
+    const flyout = document.getElementById('settingsFlyout');
+    const settingsIcon = document.querySelector('.app-icon.settings');
+    
+    // Close other flyouts
+    closeStartMenu();
+    
+    // Position flyout centered over the settings icon
+    if (settingsIcon) {
+        const iconRect = settingsIcon.getBoundingClientRect();
+        const flyoutWidth = 280; // matches CSS width
+        const iconCenterX = iconRect.left + (iconRect.width / 2);
+        const flyoutLeft = iconCenterX - (flyoutWidth / 2);
+        
+        // Ensure flyout stays within viewport
+        const maxLeft = window.innerWidth - flyoutWidth - 12;
+        const minLeft = 12;
+        flyout.style.left = Math.max(minLeft, Math.min(flyoutLeft, maxLeft)) + 'px';
+        flyout.style.transform = 'translateY(0)';
+    }
+    
+    flyout.classList.add('active');
+    settingsIcon.classList.add('active');
+    
+    // Update UI to reflect current settings
+    updateSettingsFlyoutUI();
+}
+
+function closeSettingsFlyout() {
+    const flyout = document.getElementById('settingsFlyout');
+    const settingsIcon = document.querySelector('.app-icon.settings');
+    
+    flyout.classList.remove('active');
+    settingsIcon.classList.remove('active');
+}
+
+function updateSettingsFlyoutUI() {
+    // Update mode buttons
+    const currentMode = localStorage.getItem('themeMode') || 'light';
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    modeBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === currentMode);
+    });
+    
+    // Update color swatches
+    const currentTheme = localStorage.getItem('themePalette') || 'standard';
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+    colorSwatches.forEach(swatch => {
+        swatch.classList.toggle('active', swatch.dataset.theme === currentTheme);
+    });
+}
+
+function initializeSettingsFlyout() {
+    const flyout = document.getElementById('settingsFlyout');
+    
+    if (!flyout) return;
+    
+    // Mode button click handlers
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mode = btn.dataset.mode;
+            localStorage.setItem('themeMode', mode);
+            document.documentElement.classList.toggle('dark', mode === 'dark');
+            
+            // Update wallpaper for new mode
+            if (window.themeManager) {
+                window.themeManager.setWallpaper(window.themeManager.currentTheme, false);
+            }
+            
+            updateSettingsFlyoutUI();
+        });
+    });
+    
+    // Color swatch click handlers
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+    colorSwatches.forEach(swatch => {
+        swatch.addEventListener('click', () => {
+            const theme = swatch.dataset.theme;
+            localStorage.setItem('themePalette', theme);
+            
+            // Use theme manager to switch theme
+            if (window.themeManager) {
+                window.themeManager.setTheme(theme);
+            }
+            
+            updateSettingsFlyoutUI();
+        });
+    });
+    
+    // Close flyout when clicking outside
+    document.addEventListener('click', (e) => {
+        const settingsIcon = document.querySelector('.app-icon.settings');
+        if (flyout.classList.contains('active') && 
+            !flyout.contains(e.target) && 
+            !settingsIcon.contains(e.target)) {
+            closeSettingsFlyout();
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && flyout.classList.contains('active')) {
+            closeSettingsFlyout();
+        }
+    });
+}

@@ -131,7 +131,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-foreground-ctrl-brand-pressed: #5D3730;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals/background-dune-light.png');
+  --background-image: url('/assets/wallpaper/background-dune-light.png');
   --smtc-background-layer-solid: #fdfbf8;
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #7D554A;
@@ -178,7 +178,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-foreground-ctrl-brand-pressed: #96605F;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/visuals/background-dune-dark.png');
+  --background-image: url('/assets/wallpaper/background-dune-dark.png');
   --smtc-background-layer-solid: #1a1612;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #A78273;

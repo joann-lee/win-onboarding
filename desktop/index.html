@@ -12,18 +12,12 @@
 <body>
     <!-- Theme transition overlay -->
     <div id="theme-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
-    
-    <!-- Dynamic wallpaper container -->
-    <div id="wallpaper-container" class="fixed inset-0 z-0">
-        <div class="wallpaper-layer active" data-theme="standard"></div>
-        <div class="wallpaper-layer" data-theme="sapphire"></div>
-        <div class="wallpaper-layer" data-theme="violet"></div>
-        <div class="wallpaper-layer" data-theme="dune"></div>
-    </div>
 
     <!-- Desktop Background -->
     <div class="desktop">
-        <div class="background-image"></div>
+        <div class="background-image">
+            <img id="wallpaper-img" src="../assets/wallpaper/background-standard-light.jpg" alt="Desktop wallpaper">
+        </div>
         
         <!-- Taskbar -->
         <div class="taskbar">
@@ -85,7 +79,7 @@
                     <img src="assets/Store.svg" alt="Microsoft Store" class="store-icon">
                 </div>
                 
-                <div class="app-icon settings">
+                <div class="app-icon settings" onclick="toggleSettingsFlyout(event)">
                     <img src="assets/Settings.svg" alt="Settings" class="settings-icon">
                 </div>
             </div>
@@ -102,8 +96,8 @@
                 <!-- Notification Center -->
                 <div class="notification-center">
                     <div class="date-time">
-                        10:40 AM<br>
-                        8/21/2025
+                        <span id="taskbarTime">10:40 AM</span><br>
+                        <span id="taskbarDate">8/21/2025</span>
                     </div>
                 </div>
             </div>
@@ -1008,6 +1002,323 @@
                         <div class="context-item-title">Close window</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <!-- Acrylic Background -->
+        <div class="start-menu-bg"></div>
+        
+        <!-- Main Content Area -->
+        <div class="start-menu-main">
+            <!-- Search Box -->
+            <div class="start-search-box">
+                <div class="start-search-box-bg"></div>
+                <img class="start-search-icon" src="assets/Search.svg" alt="Search" />
+                <input type="text" class="start-search-input" placeholder="Search for apps, settings, and documents" />
+            </div>
+
+            <div class="start-scroll-area">
+                <!-- Pinned Section -->
+                <div class="start-section-header">
+                    <span class="start-section-title">Pinned</span>
+                    <button class="start-section-action">Show all <span class="chevron">›</span></button>
+                </div>
+                <div class="pinned-grid">
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/word.svg" alt="Word" /></span>
+                        <span class="pinned-name">Word</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/excelapp.svg" alt="Excel" /></span>
+                        <span class="pinned-name">Excel</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/powerpointapp.svg" alt="PowerPoint" /></span>
+                        <span class="pinned-name">PowerPoint</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/outlookapp.svg" alt="Outlook" /></span>
+                        <span class="pinned-name">Outlook</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/teams.svg" alt="Teams" /></span>
+                        <span class="pinned-name">Teams</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/onenoteapp.svg" alt="OneNote" /></span>
+                        <span class="pinned-name">OneNote</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/spotify.svg" alt="Spotify" /></span>
+                        <span class="pinned-name">Spotify</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/Store.svg" alt="Microsoft Store" /></span>
+                        <span class="pinned-name">Store</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/Settings.svg" alt="Settings" /></span>
+                        <span class="pinned-name">Settings</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/calculator.svg" alt="Calculator" /></span>
+                        <span class="pinned-name">Calculator</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/Edge.svg" alt="Edge" /></span>
+                        <span class="pinned-name">Edge</span>
+                    </div>
+                    <div class="pinned-item">
+                        <span class="pinned-icon"><img src="assets/3rd-Party-Netflix.svg" alt="Netflix" /></span>
+                        <span class="pinned-name">Netflix</span>
+                    </div>
+                </div>
+
+                <!-- All Section -->
+                <div class="all-section-header">
+                    <span class="start-section-title">All</span>
+                    <button class="category-dropdown">View: Category <span class="chevron">▾</span></button>
+                </div>
+                <div class="category-grid">
+                    <!-- Productivity -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/word.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/excelapp.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/powerpointapp.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/onenoteapp.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">Productivity</span>
+                    </div>
+                    <!-- Utilities & Tools -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/calculator.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/Settings.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/clipchamp.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/FileExplorer.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">Utilities & Tools</span>
+                    </div>
+                    <!-- Communication -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/teams.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/outlookapp.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/WhatsApp.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">Communication</span>
+                    </div>
+                    <!-- Entertainment -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/3rd-Party-Netflix.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/spotify.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/YouTube.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/Prime Video.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">Entertainment</span>
+                    </div>
+                    <!-- Shopping -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/Amazon.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/Store.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/Expedia.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">Shopping</span>
+                    </div>
+                    <!-- AI & Copilot -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/CopilotM365.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/Copilot.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">AI & Copilot</span>
+                    </div>
+                    <!-- System -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/Settings.svg" alt="" /></span>
+                            <span class="category-icon"><img src="assets/FileExplorer.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">System</span>
+                    </div>
+                    <!-- Web Browsers -->
+                    <div class="category-card">
+                        <div class="category-icons">
+                            <span class="category-icon"><img src="assets/Edge.svg" alt="" /></span>
+                        </div>
+                        <span class="category-name">Web Browsers</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="start-menu-footer">
+                <div class="start-menu-footer-bg"></div>
+                <div class="footer-user">
+                    <span class="footer-avatar">
+                        <span class="footer-avatar-placeholder">J</span>
+                    </span>
+                    <span class="footer-username">Jack</span>
+                </div>
+                <div class="footer-actions">
+                    <button class="footer-action-btn" title="Power">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1V8H7V1H8ZM4.5 3.06C3.0029 4.17287 2 5.97099 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 5.97099 12.9971 4.17287 11.5 3.06V4.26C12.6128 5.17672 13.3333 6.50347 13.3333 8C13.3333 10.9455 10.9455 13.3333 8 13.3333C5.05448 13.3333 2.66667 10.9455 2.66667 8C2.66667 6.50347 3.38724 5.17672 4.5 4.26V3.06Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Device Pane (Phone Link Panel) -->
+    <div class="phone-pane" id="phonePane">
+        <!-- Acrylic Background -->
+        <div class="phone-pane-bg"></div>
+        
+        <!-- Setup View (Default) -->
+        <div class="phone-setup-view" id="phoneSetupView">
+            <div class="phone-setup-image">
+                <img src="assets/phonelink-illustration.png" alt="Phone Setup" />
+            </div>
+            <h2 class="phone-setup-title">Access your mobile device here</h2>
+            <p class="phone-setup-description">Keep up with calls, messages, and recent activity here in the Start menu.</p>
+            <div class="phone-setup-select">
+                <span class="phone-setup-label">Select device</span>
+                <div class="phone-setup-buttons">
+                    <button class="phone-setup-btn" id="btnAndroid">Android™</button>
+                    <button class="phone-setup-btn" id="btnIPhone">iPhone®</button>
+                </div>
+            </div>
+            <button class="phone-setup-hide">Hide this pane</button>
+        </div>
+        
+        <!-- Connected Device View -->
+        <div class="phone-content-area" id="phoneConnectedView" style="display: none;">
+            <div class="phone-header-fixed">
+                <div class="phone-device-image">
+                    <img src="../Start_SliverV3/assets/recent_items/NewPhoto1.png" alt="Phone" />
+                </div>
+                <div class="phone-device-name">Jack's Android</div>
+                <div class="phone-device-status">
+                    <span class="status-connected">✓</span>
+                    <span class="status-icon">✦</span>
+                    <span class="status-battery"><img src="assets/Battery.svg" alt="Battery" class="status-battery-icon"> 100%</span>
+                </div>
+            </div>
+            <div class="phone-scroll-area">
+                <ul class="nodes-list" id="nodesList">
+                    <li class="phone-list-item" data-node="Messages"><span class="phone-list-icon"><img src="../Start_SliverV3/assets/nodes/Messages.png" alt="Messages" style="width:100%;height:100%;object-fit:contain;" /></span><span class="phone-list-text">Messages</span></li>
+                    <li class="phone-list-item" data-node="Calls"><span class="phone-list-icon"><img src="../Start_SliverV3/assets/nodes/Calls.png" alt="Calls" style="width:100%;height:100%;object-fit:contain;" /></span><span class="phone-list-text">Calls</span></li>
+                <li class="phone-list-item" data-node="Photos"><span class="phone-list-icon"><img src="../Start_SliverV3/assets/nodes/Photos.png" alt="Photos" style="width:100%;height:100%;object-fit:contain;" /></span><span class="phone-list-text">Photos</span></li>
+                <li class="phone-list-item" data-node="Files"><span class="phone-list-icon"><img src="../Start_SliverV3/assets/nodes/Files.png" alt="Files" style="width:100%;height:100%;object-fit:contain;" /></span><span class="phone-list-text">Files</span></li>
+                <li class="phone-list-item" data-node="Apps"><span class="phone-list-icon"><img src="../Start_SliverV3/assets/nodes/Apps.png" alt="Apps" style="width:100%;height:100%;object-fit:contain;" /></span><span class="phone-list-text">Apps</span></li>
+                <li class="phone-list-item" data-node="Send to phone"><span class="phone-list-icon"><img src="../Start_SliverV3/assets/nodes/Sendtophone.png" alt="Send to phone" style="width:100%;height:100%;object-fit:contain;" /></span><span class="phone-list-text">Send to phone</span></li>
+            </ul>
+            <div class="nodes-grid" id="nodesGrid" style="display:none;"></div>
+            <!-- L2 Apps View -->
+            <div class="apps-l2-wrapper hidden" id="appsL2Wrapper" aria-hidden="true">
+                <div class="apps-l2-section-header">
+                    <span class="apps-l2-title">Recent apps</span>
+                    <div class="apps-l2-back" id="appsBackBtn" role="button" tabindex="0" aria-label="Back to main nodes">
+                        <span class="chevron">‹</span><span>Back</span>
+                    </div>
+                </div>
+                <ul class="apps-l2-recent-list" id="appsRecentList"></ul>
+                <ul class="apps-l2-all-list" id="appsAllList"></ul>
+            </div>
+            <section class="recent-section">
+                <div class="recent-header">
+                    <span class="recent-title">Recent</span>
+                </div>
+                <ul class="recent-list">
+                    <li class="recent-list-item">
+                        <span class="recent-list-icon no-bg">
+                            <img src="../Start_SliverV3/assets/recent_items/AadiKapoor.png" alt="Aadi Kapoor" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" />
+                        </span>
+                        <span class="recent-list-texts">
+                            <span class="recent-list-title">Aadi Kapoor</span>
+                            <span class="recent-list-subtitle">New message</span>
+                        </span>
+                    </li>
+                    <li class="recent-list-item">
+                        <span class="recent-list-icon no-bg">
+                            <img src="../Start_SliverV3/assets/recent_items/NewPhoto1.png" alt="Photo1" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" />
+                        </span>
+                        <span class="recent-list-texts">
+                            <span class="recent-list-title">New photo</span>
+                            <span class="recent-list-subtitle">Today at 11:01 AM</span>
+                        </span>
+                    </li>
+                    <li class="recent-list-item">
+                        <span class="recent-list-icon no-bg">
+                            <img src="../Start_SliverV3/assets/recent_items/KristinPatterson.png" alt="Kristin Patterson" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" />
+                        </span>
+                        <span class="recent-list-texts">
+                            <span class="recent-list-title">Kristin Patterson</span>
+                            <span class="recent-list-subtitle">New message</span>
+                        </span>
+                    </li>
+                </ul>
+            </section>
+            </div>
+        </div>
+        <div class="phone-footer">
+            <div class="phone-footer-bg"></div>
+            <img class="footer-more-btn" src="../Start_SliverV3/assets/MoreButton.png" alt="More Button" />
+        </div>
+    </div>
+
+    <!-- Settings Flyout -->
+    <div class="settings-flyout" id="settingsFlyout">
+        <div class="settings-flyout-header">Settings</div>
+        
+        <!-- Mode Toggle -->
+        <div class="settings-section">
+            <div class="settings-section-title">Mode</div>
+            <div class="settings-mode-toggle">
+                <button class="mode-btn" data-mode="light">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M10 2V4M10 16V18M18 10H16M4 10H2M15.66 4.34L14.24 5.76M5.76 14.24L4.34 15.66M15.66 15.66L14.24 14.24M5.76 5.76L4.34 4.34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Light</span>
+                </button>
+                <button class="mode-btn" data-mode="dark">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M17.5 10.5C17.5 14.642 14.142 18 10 18C5.858 18 2.5 14.642 2.5 10.5C2.5 6.358 5.858 3 10 3C10.34 3 10.675 3.022 11.003 3.065C9.23 4.313 8.083 6.366 8.083 8.667C8.083 12.347 11.07 15.333 14.75 15.333C15.73 15.333 16.66 15.113 17.497 14.718C17.499 14.812 17.5 14.906 17.5 15V10.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Theme Colors -->
+        <div class="settings-section">
+            <div class="settings-section-title">Theme Color</div>
+            <div class="settings-color-grid">
+                <button class="color-swatch" data-theme="standard" title="Standard">
+                    <div class="swatch-color" style="background: linear-gradient(135deg, #0078D4, #005A9E);"></div>
+                    <span class="swatch-check">✓</span>
+                </button>
+                <button class="color-swatch" data-theme="sapphire" title="Sapphire">
+                    <div class="swatch-color" style="background: linear-gradient(135deg, #0063B1, #004E8C);"></div>
+                    <span class="swatch-check">✓</span>
+                </button>
+                <button class="color-swatch" data-theme="violet" title="Violet">
+                    <div class="swatch-color" style="background: linear-gradient(135deg, #8764B8, #6B4FA2);"></div>
+                    <span class="swatch-check">✓</span>
+                </button>
+                <button class="color-swatch" data-theme="dune" title="Dune">
+                    <div class="swatch-color" style="background: linear-gradient(135deg, #C19A6B, #A67B5B);"></div>
+                    <span class="swatch-check">✓</span>
+                </button>
             </div>
         </div>
     </div>
