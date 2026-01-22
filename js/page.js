@@ -3,6 +3,26 @@
 // Debug Configuration - Set to true to enable debugging features
 const OOBE_DEBUG_ENABLED = false;
 
+// Hotkey: Escape to return to root index
+(function initHomeHotkey() {
+  document.addEventListener('keydown', (e) => {
+    // Escape key returns to root index
+    if (e.key === 'Escape' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+      e.preventDefault();
+      window.location.href = '/';
+    }
+    // Backspace key goes back one page (when not in an input)
+    if (e.key === 'Backspace' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+      const activeEl = document.activeElement;
+      const isInput = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
+      if (!isInput) {
+        e.preventDefault();
+        window.history.back();
+      }
+    }
+  });
+})();
+
 // Theme initialization - apply saved preferences from index.html
 (function initTheme() {
   const savedMode = localStorage.getItem('themeMode') || 'light';

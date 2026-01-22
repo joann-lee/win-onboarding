@@ -1,3 +1,11 @@
+// Hotkey: Escape to return to root index
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+        e.preventDefault();
+        window.location.href = '/';
+    }
+});
+
 // Window Focus Management
 let windowZIndex = 2000; // Base z-index for windows
 
