@@ -3,6 +3,303 @@
 // Debug Configuration - Set to true to enable debugging features
 const OOBE_DEBUG_ENABLED = false;
 
+// Custom Right-Click Context Menu
+(function initContextMenu() {
+  // Create context menu HTML
+  const menuHTML = `
+    <div id="oobe-context-menu" class="oobe-context-menu">
+      <div class="context-menu-item" data-action="back">
+        <span class="context-menu-icon">←</span>
+        <span class="context-menu-label">Go Back</span>
+        <span class="context-menu-shortcut">Backspace</span>
+      </div>
+      <div class="context-menu-item" data-action="home">
+        <span class="context-menu-icon">⌂</span>
+        <span class="context-menu-label">Return to Home</span>
+        <span class="context-menu-shortcut">Esc</span>
+      </div>
+      <div class="context-menu-divider"></div>
+      <div class="context-menu-item has-submenu" data-action="theme">
+        <span class="context-menu-icon">🎨</span>
+        <span class="context-menu-label">Theme Color</span>
+        <span class="context-menu-arrow">›</span>
+        <div class="context-submenu">
+          <div class="context-menu-item" data-theme="standard">
+            <span class="context-menu-color" style="background: #0078d4;"></span>
+            <span class="context-menu-label">Standard</span>
+          </div>
+          <div class="context-menu-item" data-theme="dune">
+            <span class="context-menu-color" style="background: #d4a574;"></span>
+            <span class="context-menu-label">Dune</span>
+          </div>
+          <div class="context-menu-item" data-theme="sapphire">
+            <span class="context-menu-color" style="background: #0066cc;"></span>
+            <span class="context-menu-label">Sapphire</span>
+          </div>
+          <div class="context-menu-item" data-theme="violet">
+            <span class="context-menu-color" style="background: #8b5cf6;"></span>
+            <span class="context-menu-label">Violet</span>
+          </div>
+          <div class="context-menu-item" data-theme="slate">
+            <span class="context-menu-color" style="background: #64748b;"></span>
+            <span class="context-menu-label">Slate</span>
+          </div>
+          <div class="context-menu-item" data-theme="emerald">
+            <span class="context-menu-color" style="background: #10b981;"></span>
+            <span class="context-menu-label">Emerald</span>
+          </div>
+        </div>
+      </div>
+      <div class="context-menu-divider"></div>
+      <div class="context-menu-item" data-action="reload">
+        <span class="context-menu-icon">↻</span>
+        <span class="context-menu-label">Reload Page</span>
+        <span class="context-menu-shortcut">F5</span>
+      </div>
+    </div>
+  `;
+
+  // Create context menu styles
+  const menuStyles = `
+    <style id="oobe-context-menu-styles">
+      .oobe-context-menu {
+        position: fixed;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        padding: 4px;
+        min-width: 200px;
+        z-index: 999999;
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.95);
+        transform-origin: top left;
+        transition: opacity 100ms ease, transform 100ms ease, visibility 100ms;
+        font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+        font-size: 14px;
+      }
+
+      .oobe-context-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+
+      .context-menu-item {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        color: #1a1a1a;
+        gap: 12px;
+      }
+
+      .context-menu-item:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .context-menu-icon {
+        width: 16px;
+        text-align: center;
+        opacity: 0.8;
+      }
+
+      .context-menu-label {
+        flex: 1;
+      }
+
+      .context-menu-shortcut {
+        opacity: 0.5;
+        font-size: 12px;
+      }
+
+      .context-menu-divider {
+        height: 1px;
+        background: rgba(0, 0, 0, 0.1);
+        margin: 4px 8px;
+      }
+
+      .context-menu-arrow {
+        opacity: 0.5;
+        font-size: 14px;
+      }
+
+      .context-menu-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .context-menu-item.has-submenu {
+        position: relative;
+      }
+
+      .context-submenu {
+        position: absolute;
+        left: 100%;
+        top: -4px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        padding: 4px;
+        min-width: 150px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-10px);
+        transition: opacity 100ms ease, transform 100ms ease, visibility 100ms;
+      }
+
+      .context-menu-item.has-submenu:hover > .context-submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+      }
+
+      .context-submenu .context-menu-item[data-theme].active {
+        background: rgba(0, 120, 212, 0.1);
+      }
+
+      /* Dark mode styles */
+      html.dark .oobe-context-menu {
+        background: rgba(40, 40, 40, 0.9);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      html.dark .context-menu-item {
+        color: #ffffff;
+      }
+
+      html.dark .context-menu-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      html.dark .context-menu-divider {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      html.dark .context-submenu {
+        background: rgba(40, 40, 40, 0.9);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      html.dark .context-submenu .context-menu-item[data-theme].active {
+        background: rgba(255, 255, 255, 0.15);
+      }
+    </style>
+  `;
+
+  // Inject styles and menu into DOM
+  document.head.insertAdjacentHTML('beforeend', menuStyles);
+  document.body.insertAdjacentHTML('beforeend', menuHTML);
+
+  const contextMenu = document.getElementById('oobe-context-menu');
+
+  // Show context menu on right-click
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+
+    // Position menu at cursor
+    let x = e.clientX;
+    let y = e.clientY;
+
+    // Ensure menu stays within viewport
+    const menuRect = contextMenu.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Show menu first to get dimensions
+    contextMenu.classList.add('active');
+    
+    const menuWidth = contextMenu.offsetWidth;
+    const menuHeight = contextMenu.offsetHeight;
+
+    if (x + menuWidth > viewportWidth) {
+      x = viewportWidth - menuWidth - 10;
+    }
+    if (y + menuHeight > viewportHeight) {
+      y = viewportHeight - menuHeight - 10;
+    }
+
+    contextMenu.style.left = x + 'px';
+    contextMenu.style.top = y + 'px';
+  });
+
+  // Hide context menu on click outside or escape
+  document.addEventListener('click', () => {
+    contextMenu.classList.remove('active');
+  });
+
+  // Mark current theme as active
+  function updateActiveTheme() {
+    const currentPalette = localStorage.getItem('themePalette') || 'standard';
+    contextMenu.querySelectorAll('[data-theme]').forEach(item => {
+      item.classList.toggle('active', item.dataset.theme === currentPalette);
+    });
+  }
+
+  // Handle menu item clicks
+  contextMenu.addEventListener('click', (e) => {
+    const item = e.target.closest('.context-menu-item');
+    if (!item) return;
+
+    const action = item.dataset.action;
+    const theme = item.dataset.theme;
+
+    // Handle theme selection
+    if (theme) {
+      e.stopPropagation();
+      const root = document.documentElement;
+      
+      // Remove all palette classes
+      root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+      
+      // Apply selected palette
+      if (theme !== 'standard') {
+        root.classList.add(theme);
+      }
+      
+      // Save to localStorage
+      localStorage.setItem('themePalette', theme);
+      
+      // Update active state
+      updateActiveTheme();
+      
+      contextMenu.classList.remove('active');
+      return;
+    }
+
+    // Skip if clicking on theme submenu parent
+    if (action === 'theme') return;
+
+    contextMenu.classList.remove('active');
+
+    switch (action) {
+      case 'back':
+        window.history.back();
+        break;
+      case 'home':
+        window.location.href = '/';
+        break;
+      case 'reload':
+        window.location.reload();
+        break;
+    }
+  });
+
+  // Update active theme on menu open
+  document.addEventListener('contextmenu', () => {
+    updateActiveTheme();
+  });
+})();
+
 // Hotkey: Escape to return to root index
 (function initHomeHotkey() {
   document.addEventListener('keydown', (e) => {
@@ -91,30 +388,133 @@ const OOBE_DEBUG_ENABLED = false;
 
 // Mode toggle button functionality
 (function initModeToggle() {
+  // Palette colors for updating critical CSS (must match theme-init.js)
+  const paletteColors = {
+    'violet': {
+      'light': { brand: '#6D45A0', brandHover: '#8B5DC0', brandPressed: '#4E2D80' },
+      'dark': { brand: '#9B6FD0', brandHover: '#B08BE0', brandPressed: '#7A4FB0' }
+    },
+    'dune': {
+      'light': { brand: '#7D554A', brandHover: '#9A6B5D', brandPressed: '#5C3A32' },
+      'dark': { brand: '#A87B6F', brandHover: '#C09588', brandPressed: '#8B6156' }
+    },
+    'sapphire': {
+      'light': { brand: '#4D5990', brandHover: '#6271AA', brandPressed: '#30396E' },
+      'dark': { brand: '#7B8AC0', brandHover: '#95A3D4', brandPressed: '#5A6AA0' }
+    },
+    'slate': {
+      'light': { brand: '#525B68', brandHover: '#6B7280', brandPressed: '#3A4150' },
+      'dark': { brand: '#8A929E', brandHover: '#A3AAB4', brandPressed: '#6B7380' }
+    },
+    'emerald': {
+      'light': { brand: '#2D8A5F', brandHover: '#3AA876', brandPressed: '#1F6647' },
+      'dark': { brand: '#4DB87F', brandHover: '#65C992', brandPressed: '#3A9A68' }
+    },
+    'standard': {
+      'light': { brand: '#005FB8', brandHover: '#006cbe', brandPressed: '#005fa8' },
+      'dark': { brand: '#4090ff', brandHover: '#5ca3ff', brandPressed: '#3385ff' }
+    }
+  };
+
+  // Background images for each palette
+  const backgroundImages = {
+    'violet': {
+      'light': '/assets/wallpaper/background-violet-light.png',
+      'dark': '/assets/wallpaper/background-violet-dark.png'
+    },
+    'dune': {
+      'light': '/assets/wallpaper/background-dune-light.png',
+      'dark': '/assets/wallpaper/background-dune-dark.png'
+    },
+    'sapphire': {
+      'light': '/assets/wallpaper/electric-teal.webp',
+      'dark': '/assets/wallpaper/electric-teal.webp'
+    },
+    'slate': {
+      'light': '/assets/wallpaper/background-black-light.png',
+      'dark': '/assets/wallpaper/background-black-dark.png'
+    },
+    'emerald': {
+      'light': '/assets/wallpaper/background-emerald-light.png',
+      'dark': '/assets/wallpaper/background-emerald-dark.png'
+    },
+    'standard': {
+      'light': '/assets/wallpaper/background-standard-light.jpg',
+      'dark': '/assets/wallpaper/background-standard-dark.png'
+    }
+  };
+
+  // Update critical CSS variables for the current theme
+  function updateCriticalCSS(palette, mode) {
+    const colors = paletteColors[palette] || paletteColors['standard'];
+    const modeColors = colors[mode] || colors['light'];
+    
+    let criticalStyle = document.getElementById('theme-critical-css');
+    if (!criticalStyle) {
+      criticalStyle = document.createElement('style');
+      criticalStyle.id = 'theme-critical-css';
+      document.head.appendChild(criticalStyle);
+    }
+    
+    criticalStyle.textContent = ':root{' +
+      '--smtc-background-ctrl-brand-rest:' + modeColors.brand + ';' +
+      '--smtc-background-ctrl-brand-hover:' + modeColors.brandHover + ';' +
+      '--smtc-background-ctrl-brand-pressed:' + modeColors.brandPressed + ';' +
+      '--smtc-stroke-ctrl-brand-rest:' + modeColors.brand + ';' +
+      '--smtc-stroke-ctrl-brand-hover:' + modeColors.brandHover + ';' +
+      '--smtc-foreground-ctrl-brand-rest:' + modeColors.brand + ';' +
+      '--smtc-foreground-ctrl-hint-default:' + modeColors.brand + ';' +
+    '}';
+  }
+
+  // Update background image CSS variable
+  function updateBackgroundImage(palette, mode) {
+    const images = backgroundImages[palette] || backgroundImages['standard'];
+    const bgUrl = images[mode] || images['light'];
+    document.documentElement.style.setProperty('--background-image', `url('${bgUrl}')`);
+  }
+
+  // Apply theme with smooth transition
+  function applyTheme(newMode) {
+    const root = document.documentElement;
+    const body = document.body;
+    const palette = localStorage.getItem('themePalette') || 'standard';
+    
+    // Enable transitions
+    root.classList.add('theme-transitioning');
+    
+    // Update classes
+    root.classList.remove('light', 'dark');
+    root.classList.add(newMode);
+    body.classList.remove('light', 'dark');
+    body.classList.add(newMode);
+    
+    // Update critical CSS variables
+    updateCriticalCSS(palette, newMode);
+    
+    // Update background image
+    updateBackgroundImage(palette, newMode);
+    
+    // Save preference
+    localStorage.setItem('themeMode', newMode);
+    
+    // Remove transition class after animation completes
+    setTimeout(() => {
+      root.classList.remove('theme-transitioning');
+    }, 350);
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     // Find the mode button by its aria-label or icon
     const modeButton = document.querySelector('[aria-label="Mode settings"]');
     
     if (modeButton) {
       modeButton.addEventListener('click', () => {
-        const body = document.body;
-        const root = document.documentElement;
-        const isLight = body.classList.contains('light');
+        const currentMode = localStorage.getItem('themeMode') || 'light';
+        const newMode = currentMode === 'light' ? 'dark' : 'light';
         
-        // Toggle between light and dark
-        if (isLight) {
-          body.classList.remove('light');
-          body.classList.add('dark');
-          root.classList.add('dark');
-          localStorage.setItem('themeMode', 'dark');
-          modeButton.setAttribute('aria-pressed', 'true');
-        } else {
-          body.classList.remove('dark');
-          body.classList.add('light');
-          root.classList.remove('dark');
-          localStorage.setItem('themeMode', 'light');
-          modeButton.setAttribute('aria-pressed', 'false');
-        }
+        applyTheme(newMode);
+        modeButton.setAttribute('aria-pressed', newMode === 'dark' ? 'true' : 'false');
       });
       
       // Set initial aria-pressed state
@@ -125,6 +525,9 @@ const OOBE_DEBUG_ENABLED = false;
       initColorPaletteMenu(modeButton);
     }
   });
+
+  // Expose applyTheme globally for palette menu to use
+  window.applyThemeMode = applyTheme;
 })();
 
 // Color palette menu for right-click on mode button
@@ -241,6 +644,10 @@ function initColorPaletteMenu(modeButton) {
 function applyColorPalette(paletteId) {
   const root = document.documentElement;
   const body = document.body;
+  const currentMode = localStorage.getItem('themeMode') || 'light';
+  
+  // Enable transitions
+  root.classList.add('theme-transitioning');
   
   // Remove all palette classes
   root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
@@ -255,8 +662,19 @@ function applyColorPalette(paletteId) {
   // Save preference
   localStorage.setItem('themePalette', paletteId);
   
+  // Update critical CSS variables using the global function
+  if (window.applyThemeMode) {
+    // Re-apply current mode to update colors for new palette
+    window.applyThemeMode(currentMode);
+  }
+  
   // Update menu selection indicator
   updatePaletteMenuSelection();
+  
+  // Remove transition class after animation completes
+  setTimeout(() => {
+    root.classList.remove('theme-transitioning');
+  }, 350);
 }
 
 function updatePaletteMenuSelection() {

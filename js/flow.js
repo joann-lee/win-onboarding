@@ -8,6 +8,7 @@
   const shouldPrependPages = true;
 
   const DEFAULT_FLOW = [
+    { id: 'boot', file: 'boot.html', label: 'Boot', type: 'scanner', children: [], restartAfter: false },
     { id: 'language', file: 'language.html', label: 'Language', type: 'interactive', children: [], restartAfter: false },
     { id: 'region', file: 'region.html', label: 'Region', type: 'interactive', children: [], restartAfter: false },
     { id: 'keyboard', file: 'keyboard.html', label: 'Keyboard', type: 'interactive', children: ["keyboard_0.html", "keyboard_1.html", "keyboard_2.html"], restartAfter: false },

@@ -114,6 +114,9 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-info-bg: var(--smtc-status-brand-tint-background, rgba(64, 144, 255, 0.1));
   --color-info-border: var(--smtc-status-brand-tint-foreground, #4090ff);
   
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/wallpaper/background-standard-light.jpg');
+
   /* ==================== COMPONENT SPECIFIC ==================== */
   --color-country-pill-bg: var(--smtc-background-ctrl-brand-rest, #0557b2);
   --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
@@ -131,6 +134,9 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
 
 :root.dark.standard,
 .dark.standard {
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/wallpaper/background-standard-dark.png');
+
   /* ==================== TEXT COLORS ==================== */
   --smtc-foreground-content-neutral-primary: #ffffff;
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;

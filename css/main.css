@@ -21,6 +21,18 @@ html.dark {
   background-color: #0a0a0a;
 }
 
+/* Theme transition animations */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              box-shadow 0.3s ease,
+              fill 0.3s ease !important;
+}
+
 @view-transition {
   navigation: auto;
 }
@@ -30,6 +42,15 @@ html.dark {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+/* Exclude background and shell elements from view transitions entirely */
+.oobe-background,
+.oobe-shell,
+.oobe-card,
+html,
+body {
+  view-transition-name: none;
 }
 
 /* Target the card contents for the transition, NOT the card itself */
@@ -201,12 +222,17 @@ body::before {
   background-size: cover;
   background-attachment: fixed;
   will-change: none;
-  transform: scale(1.1) translateZ(0);
+  transform: scale(1.2) translateZ(0);
   /* Scale up to hide edges, translateZ for GPU acceleration */
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   filter: brightness(1) blur(40px);
   transition: filter 0.3s ease, background-color 0.3s ease;
+}
+
+.dark .oobe-background,
+html.dark .oobe-background {
+  background-color: #0a0a0a;
 }
 
 .oobe-shell {

@@ -462,8 +462,11 @@
 
 /* H1 styling for evolved theme */
 .evolved .oobe-header h1 {
-  font: var(--color-font-title);
-  margin: 0 0 12px;
+  font-size: var(--smtc-text-global-title2-font-size);
+  line-height: var(--smtc-text-global-title2-line-height);
+  font-weight: var(--smtc-text-style-default-header-weight);
+  font-family: var(--smtc-text-style-default-regular-font-family);
+  margin: 0 0 4px;
 }
 
 /* Consistent minimum height for all oobe-cards in evolved theme */

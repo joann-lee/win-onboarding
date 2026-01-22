@@ -7,6 +7,15 @@ body:not([data-oobe]) .oobe-shell {
     background: transparent;
 }
 
+/* Remove green focus border from mai-button */
+#start-btn:focus,
+#start-btn:active,
+#reset-flow:focus,
+#reset-flow:active {
+    outline: none;
+    box-shadow: none;
+}
+
 body:not([data-oobe]) .oobe-main {
     width: 520px;
     max-width: none;

@@ -1,3 +1,181 @@
+// Custom Right-Click Context Menu for Desktop
+(function initDesktopContextMenu() {
+    // Create context menu HTML
+    const menuHTML = `
+        <div id="desktop-context-menu" class="desktop-context-menu">
+            <div class="context-menu-item" data-action="back">
+                <span class="context-menu-icon">←</span>
+                <span class="context-menu-label">Go Back</span>
+                <span class="context-menu-shortcut">Backspace</span>
+            </div>
+            <div class="context-menu-item" data-action="home">
+                <span class="context-menu-icon">⌂</span>
+                <span class="context-menu-label">Return to Home</span>
+                <span class="context-menu-shortcut">Esc</span>
+            </div>
+            <div class="context-menu-divider"></div>
+            <div class="context-menu-item" data-action="reload">
+                <span class="context-menu-icon">↻</span>
+                <span class="context-menu-label">Reload Page</span>
+                <span class="context-menu-shortcut">F5</span>
+            </div>
+        </div>
+    `;
+
+    // Create context menu styles
+    const menuStyles = `
+        <style id="desktop-context-menu-styles">
+            .desktop-context-menu {
+                position: fixed;
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+                padding: 4px;
+                min-width: 200px;
+                z-index: 9999999;
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(0.95);
+                transform-origin: top left;
+                transition: opacity 100ms ease, transform 100ms ease, visibility 100ms;
+                font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+                font-size: 14px;
+            }
+
+            .desktop-context-menu.active {
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
+            }
+
+            .desktop-context-menu .context-menu-item {
+                display: flex;
+                align-items: center;
+                padding: 8px 12px;
+                border-radius: 4px;
+                cursor: pointer;
+                color: #1a1a1a;
+                gap: 12px;
+            }
+
+            .desktop-context-menu .context-menu-item:hover {
+                background: rgba(0, 0, 0, 0.05);
+            }
+
+            .desktop-context-menu .context-menu-icon {
+                width: 16px;
+                text-align: center;
+                opacity: 0.8;
+            }
+
+            .desktop-context-menu .context-menu-label {
+                flex: 1;
+            }
+
+            .desktop-context-menu .context-menu-shortcut {
+                opacity: 0.5;
+                font-size: 12px;
+            }
+
+            .desktop-context-menu .context-menu-divider {
+                height: 1px;
+                background: rgba(0, 0, 0, 0.1);
+                margin: 4px 8px;
+            }
+
+            /* Dark mode styles */
+            html.dark .desktop-context-menu {
+                background: rgba(40, 40, 40, 0.9);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            html.dark .desktop-context-menu .context-menu-item {
+                color: #ffffff;
+            }
+
+            html.dark .desktop-context-menu .context-menu-item:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            html.dark .desktop-context-menu .context-menu-divider {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        </style>
+    `;
+
+    // Inject styles and menu into DOM when ready
+    document.addEventListener('DOMContentLoaded', () => {
+        document.head.insertAdjacentHTML('beforeend', menuStyles);
+        document.body.insertAdjacentHTML('beforeend', menuHTML);
+
+        const contextMenu = document.getElementById('desktop-context-menu');
+
+        // Show context menu on right-click (only on desktop background)
+        document.addEventListener('contextmenu', (e) => {
+            // Only show on desktop background, not on interactive elements
+            const target = e.target;
+            const isDesktopBackground = target.closest('.desktop') && 
+                                        !target.closest('.start-menu') && 
+                                        !target.closest('.taskbar') &&
+                                        !target.closest('.phone-pane') &&
+                                        !target.closest('[class*="window"]');
+            
+            if (isDesktopBackground || target.closest('.background-image')) {
+                e.preventDefault();
+
+                let x = e.clientX;
+                let y = e.clientY;
+
+                contextMenu.classList.add('active');
+                
+                const menuWidth = contextMenu.offsetWidth;
+                const menuHeight = contextMenu.offsetHeight;
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                if (x + menuWidth > viewportWidth) {
+                    x = viewportWidth - menuWidth - 10;
+                }
+                if (y + menuHeight > viewportHeight) {
+                    y = viewportHeight - menuHeight - 10;
+                }
+
+                contextMenu.style.left = x + 'px';
+                contextMenu.style.top = y + 'px';
+            }
+        });
+
+        // Hide context menu on click
+        document.addEventListener('click', () => {
+            contextMenu.classList.remove('active');
+        });
+
+        // Handle menu item clicks
+        contextMenu.addEventListener('click', (e) => {
+            const item = e.target.closest('.context-menu-item');
+            if (!item) return;
+
+            const action = item.dataset.action;
+            contextMenu.classList.remove('active');
+
+            switch (action) {
+                case 'back':
+                    window.history.back();
+                    break;
+                case 'home':
+                    window.location.href = '/';
+                    break;
+                case 'reload':
+                    window.location.reload();
+                    break;
+            }
+        });
+    });
+})();
+
 // Hotkey: Escape to return to root index
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
