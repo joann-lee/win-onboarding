@@ -294,6 +294,11 @@ let draggedWindow = null;
 
 // Initialize dragging when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Play Windows startup sound
+    const startupSound = new Audio('../assets/sound/windows-startup.mp3');
+    startupSound.volume = 0.5;
+    startupSound.play().catch(e => console.log('Startup sound autoplay blocked:', e));
+
     const copilotTitleBar = document.querySelector('.title-bar');
     const fileExplorerTitleBar = document.querySelector('.file-explorer-title-bar');
     const teamsDialogTitleBar = document.querySelector('.teams-title-bar');
@@ -3438,8 +3443,10 @@ function initializeStartMenu() {
     const phonePane = document.getElementById('phonePane');
     
     if (startButton && startMenu) {
-        // Open start menu by default on load
-        openStartMenu();
+        // Wait for desktop fade-in to complete before opening start menu
+        window.addEventListener('desktopReady', () => {
+            openStartMenu();
+        }, { once: true });
         
         // Toggle start menu on start button click
         startButton.addEventListener('click', (e) => {
@@ -3538,6 +3545,47 @@ function showPhoneConnectedView() {
     
     if (setupView) setupView.style.display = 'none';
     if (connectedView) connectedView.style.display = 'flex';
+}
+
+// Get the first page file from the OOBE flow
+function getFirstPageFile() {
+    // Try to use OOBEFlow if available
+    if (window.OOBEFlow && window.OOBEFlow.getOrder) {
+        const order = window.OOBEFlow.getOrder();
+        if (order && order.length > 0) {
+            const firstPageId = order[0];
+            const page = window.OOBEFlow.getPage(firstPageId);
+            if (page && page.file) {
+                return page.file;
+            }
+        }
+    }
+    
+    // Fallback: read from localStorage
+    try {
+        const orderRaw = localStorage.getItem('oobeFlowOrder_v2');
+        if (orderRaw) {
+            const order = JSON.parse(orderRaw);
+            if (order && order.length > 0) {
+                // Map common page IDs to files
+                const pageMap = {
+                    'language': 'language.html',
+                    'region': 'region.html',
+                    'keyboard': 'keyboard.html',
+                    'wifi': 'wifi.html',
+                    'zdp': 'zdp.html',
+                    'eula': 'eula.html',
+                    'device-name': 'device_name.html'
+                };
+                return pageMap[order[0]] || 'language.html';
+            }
+        }
+    } catch (e) {
+        console.warn('Error reading flow order:', e);
+    }
+    
+    // Default to language page
+    return 'language.html';
 }
 
 // Settings Flyout Functions
@@ -3644,6 +3692,28 @@ function initializeSettingsFlyout() {
             updateSettingsFlyoutUI();
         });
     });
+    
+    // Restart flow button handler
+    const restartFlowBtn = document.getElementById('restartFlowBtn');
+    if (restartFlowBtn) {
+        restartFlowBtn.addEventListener('click', () => {
+            // Navigate parent window to first page in flow
+            if (window.parent && window.parent !== window) {
+                // We're in an iframe, navigate the parent
+                const firstPageFile = getFirstPageFile();
+                if (firstPageFile) {
+                    window.parent.location.href = 'pages/' + firstPageFile;
+                }
+            } else {
+                // Direct navigation
+                const firstPageFile = getFirstPageFile();
+                if (firstPageFile) {
+                    window.location.href = '../pages/' + firstPageFile;
+                }
+            }
+            closeSettingsFlyout();
+        });
+    }
     
     // Close flyout when clicking outside
     document.addEventListener('click', (e) => {

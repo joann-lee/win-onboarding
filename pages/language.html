@@ -7,44 +7,17 @@
   <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
   <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
-  <script>
-    (function() {
-      // Prevent theme flash by setting up everything before any content renders
-      var savedMode = localStorage.getItem('themeMode') || 'light';
-      var savedPalette = localStorage.getItem('themePalette') || 'standard';
-      var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
-      var root = document.documentElement;
-      
-      // Apply CSS style links
-      if (savedCssStyle === 'evolved') {
-        document.getElementById('style-base').href = '/css/evolved.css';
-        document.getElementById('style-light').href = '/css/evolved.light.css';
-        document.getElementById('style-dark').href = '/css/evolved.dark.css';
-      } else {
-        // Explicitly set win11 as default
-        document.getElementById('style-base').href = '/css/win11.css';
-        document.getElementById('style-light').href = '/css/win11.light.css';
-        document.getElementById('style-dark').href = '/css/win11.dark.css';
-      }
-      
-      // Apply all theme classes immediately to prevent flash
-      root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
-      root.classList.add(savedCssStyle, savedMode);
-      
-      if (savedPalette !== 'standard') {
-        root.classList.add(savedPalette);
-      }
-    })();
-  </script>
+  <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
-  <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" />
 </head>
 
 <body data-page-id="language" data-oobe>

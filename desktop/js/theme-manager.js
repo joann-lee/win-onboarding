@@ -6,7 +6,7 @@
 class ThemeManager {
     constructor() {
         this.currentTheme = 'standard';
-        this.themes = ['standard', 'sapphire', 'violet', 'dune'];
+        this.themes = ['standard', 'sapphire', 'violet', 'dune', 'slate', 'emerald'];
         this.themeOverlay = document.getElementById('theme-overlay');
         this.themeVariablesLink = document.getElementById('theme-variables');
         this.isTransitioning = false;
@@ -28,11 +28,14 @@ class ThemeManager {
         // Listen for custom theme events
         window.addEventListener('oobeThemeChange', this.handleOOBEThemeChange);
         
-        // Set initial wallpaper
+        // Set initial wallpaper and wait for it to load before revealing
         this.setWallpaper(this.currentTheme, false);
         
         // Apply initial theme
         this.applyTheme(this.currentTheme);
+        
+        // Wait for wallpaper to load before fading in
+        this.waitForWallpaperAndReveal();
         
         console.log('ThemeManager initialized with theme:', this.currentTheme);
     }
@@ -57,6 +60,50 @@ class ThemeManager {
         } catch (error) {
             console.warn('Error loading initial theme:', error);
             this.currentTheme = 'standard';
+        }
+    }
+    
+    waitForWallpaperAndReveal() {
+        const loadingScreen = document.getElementById('desktop-loading');
+        const wallpaperImg = document.getElementById('wallpaper-img');
+        
+        if (!loadingScreen) {
+            console.warn('Loading screen not found');
+            return;
+        }
+        
+        const revealDesktop = () => {
+            // Add fade-out class to trigger CSS transition
+            loadingScreen.classList.add('fade-out');
+            
+            // Remove from DOM after transition completes and dispatch ready event
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                // Dispatch event to signal desktop is ready for animations
+                window.dispatchEvent(new CustomEvent('desktopReady'));
+                console.log('Desktop ready event dispatched');
+            }, 500);
+            
+            console.log('Desktop revealed');
+        };
+        
+        if (wallpaperImg) {
+            // If image is already cached/loaded
+            if (wallpaperImg.complete && wallpaperImg.naturalHeight !== 0) {
+                // 500ms delay before fade in
+                setTimeout(revealDesktop, 500);
+            } else {
+                // Wait for image to load, then 500ms delay
+                wallpaperImg.addEventListener('load', () => {
+                    setTimeout(revealDesktop, 500);
+                }, { once: true });
+                
+                // Fallback: reveal after 2.5 seconds max
+                setTimeout(revealDesktop, 2500);
+            }
+        } else {
+            // No wallpaper image found, reveal after 500ms delay
+            setTimeout(revealDesktop, 500);
         }
     }
     
@@ -166,6 +213,9 @@ class ThemeManager {
             let backgroundImage;
             if (theme === 'standard' && mode === 'light') {
                 backgroundImage = '../assets/wallpaper/background-standard-light.jpg';
+            } else if (theme === 'slate') {
+                // Slate uses black wallpapers as fallback
+                backgroundImage = `../assets/wallpaper/background-black-${mode}.png`;
             } else {
                 backgroundImage = `../assets/wallpaper/background-${theme}-${mode}.png`;
             }

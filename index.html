@@ -35,12 +35,13 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
-  <!-- <link rel="preload" as="image" href="/assets/visuals/background-blurred.jpg" /> -->
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <link rel="stylesheet" href="/css/index.css" type="text/css" />
 </head>
@@ -80,6 +81,8 @@
                   <mai-option value="violet">Violet</mai-option>
                   <mai-option value="dune">Dune</mai-option>
                   <mai-option value="sapphire">Sapphire</mai-option>
+                  <mai-option value="slate">Slate</mai-option>
+                  <mai-option value="emerald">Emerald</mai-option>
                 </mai-listbox>
               </mai-dropdown>
             </div>
@@ -103,15 +106,6 @@
   <script src="/js/flow.js"></script>
   <script src="/js/page.js"></script>
   <script src="/js/index.js"></script>
-  <script>
-    // Preload and cache the background image in memory
-    (function preloadBackground() {
-      const bgImg = new Image();
-      bgImg.src = '/assets/visuals/background-blurred.jpg';
-      // Store reference to keep it in memory
-      window.__CACHED_BG = bgImg;
-    })();
-  </script>
 </body>
 
 </html>

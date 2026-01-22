@@ -11,7 +11,7 @@ const OOBE_DEBUG_ENABLED = false;
   const root = document.documentElement;
   
   // Remove all theme classes from html element
-  root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
+  root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'win11', 'evolved');
   
   // Apply saved CSS style to html element
   root.classList.add(savedCssStyle);
@@ -26,6 +26,10 @@ const OOBE_DEBUG_ENABLED = false;
     root.classList.add('sapphire');
   } else if (savedPalette === 'violet') {
     root.classList.add('violet');
+  } else if (savedPalette === 'slate') {
+    root.classList.add('slate');
+  } else if (savedPalette === 'emerald') {
+    root.classList.add('emerald');
   }
 })();
 
@@ -111,7 +115,9 @@ function initColorPaletteMenu(modeButton) {
     { id: 'standard', label: 'Standard' },
     { id: 'dune', label: 'Dune' },
     { id: 'sapphire', label: 'Sapphire' },
-    { id: 'violet', label: 'Violet' }
+    { id: 'violet', label: 'Violet' },
+    { id: 'slate', label: 'Slate' },
+    { id: 'emerald', label: 'Emerald' }
   ];
 
   // Add tooltip to the mode button - try multiple approaches for web components
@@ -217,8 +223,8 @@ function applyColorPalette(paletteId) {
   const body = document.body;
   
   // Remove all palette classes
-  root.classList.remove('dune', 'sapphire', 'violet');
-  body.classList.remove('dune', 'sapphire', 'violet');
+  root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+  body.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
   
   // Apply the selected palette (standard has no class)
   if (paletteId !== 'standard') {
@@ -771,7 +777,7 @@ function updatePaletteMenuSelection() {
         window.navigateWithTransition(window.getPagePath(nextFile));
       } else {
         // Fallback to desktop if no next page
-        window.navigateWithTransition('/assets/desktop.html');
+        window.navigateWithTransition('/desktop/');
       }
     }
   }, timeout);
@@ -834,6 +840,208 @@ function updatePaletteMenuSelection() {
 
   // Initial state
   updateUI();
+})();
+
+// ============ SANDBOX FLYOUT PANEL ============
+// Accessible from any page via hotkey (Ctrl+`) or edge trigger
+(function initSandboxFlyout() {
+  // Don't show flyout on the index page itself
+  const pathname = window.location.pathname;
+  if (pathname === '/' || pathname === '/index.html' || pathname.endsWith('/index.html')) {
+    return;
+  }
+
+  function setupFlyout() {
+    // Prevent double initialization
+    if (document.getElementById('sandbox-flyout-overlay')) {
+      return;
+    }
+
+    // Create the flyout overlay
+    const flyoutOverlay = document.createElement('div');
+    flyoutOverlay.id = 'sandbox-flyout-overlay';
+  flyoutOverlay.innerHTML = `
+    <div class="sandbox-flyout-backdrop"></div>
+    <div class="sandbox-flyout-panel">
+      <div class="sandbox-flyout-header">
+        <span class="sandbox-flyout-title">OOBE Sandbox</span>
+        <button class="sandbox-flyout-close" aria-label="Close flyout">✕</button>
+      </div>
+      <iframe class="sandbox-flyout-iframe" src="/index.html"></iframe>
+    </div>
+  `;
+  document.body.appendChild(flyoutOverlay);
+
+  // Create edge trigger zone
+  const edgeTrigger = document.createElement('div');
+  edgeTrigger.id = 'sandbox-edge-trigger';
+  edgeTrigger.title = 'Open Sandbox (Ctrl+`)';
+  document.body.appendChild(edgeTrigger);
+
+  // Add styles
+  const flyoutStyles = document.createElement('style');
+  flyoutStyles.textContent = `
+    #sandbox-flyout-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    #sandbox-flyout-overlay.active {
+      display: flex;
+      justify-content: flex-end;
+    }
+    #sandbox-flyout-overlay.visible {
+      opacity: 1;
+    }
+    .sandbox-flyout-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .sandbox-flyout-panel {
+      position: relative;
+      width: 620px;
+      max-width: 90vw;
+      height: 100%;
+      background: rgba(32, 32, 32, 0.95);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #sandbox-flyout-overlay.visible .sandbox-flyout-panel {
+      transform: translateX(0);
+    }
+    .sandbox-flyout-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .sandbox-flyout-title {
+      font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .sandbox-flyout-close {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sandbox-flyout-close:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.95);
+    }
+    .sandbox-flyout-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: transparent;
+    }
+    #sandbox-edge-trigger {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 80px;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
+      border-radius: 4px 0 0 4px;
+      cursor: pointer;
+      z-index: 999998;
+      opacity: 0;
+      transition: opacity 0.2s, width 0.2s, background 0.2s;
+    }
+    #sandbox-edge-trigger:hover {
+      opacity: 1;
+      width: 12px;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0.5), transparent);
+    }
+    body:hover #sandbox-edge-trigger {
+      opacity: 0.5;
+    }
+  `;
+  document.head.appendChild(flyoutStyles);
+
+  // Flyout toggle functions
+  function openFlyout() {
+    flyoutOverlay.classList.add('active');
+    requestAnimationFrame(() => {
+      flyoutOverlay.classList.add('visible');
+    });
+  }
+
+  function closeFlyout() {
+    flyoutOverlay.classList.remove('visible');
+    setTimeout(() => {
+      flyoutOverlay.classList.remove('active');
+    }, 300);
+  }
+
+  function toggleFlyout() {
+    if (flyoutOverlay.classList.contains('active')) {
+      closeFlyout();
+    } else {
+      openFlyout();
+    }
+  }
+
+  // Event listeners
+  // Close button
+  flyoutOverlay.querySelector('.sandbox-flyout-close').addEventListener('click', closeFlyout);
+  
+  // Backdrop click to close
+  flyoutOverlay.querySelector('.sandbox-flyout-backdrop').addEventListener('click', closeFlyout);
+  
+  // Edge trigger click
+  edgeTrigger.addEventListener('click', openFlyout);
+
+  // Keyboard shortcut: Ctrl+` (backtick) to toggle
+  document.addEventListener('keydown', (e) => {
+    // Ctrl+` or Ctrl+Backquote
+    if (e.ctrlKey && (e.key === '`' || e.code === 'Backquote')) {
+      e.preventDefault();
+      toggleFlyout();
+    }
+    // Escape to close
+    if (e.key === 'Escape' && flyoutOverlay.classList.contains('active')) {
+      e.preventDefault();
+      closeFlyout();
+    }
+  });
+
+  // Expose to global for debugging
+  window.sandboxFlyout = { open: openFlyout, close: closeFlyout, toggle: toggleFlyout };
+  
+  console.log('📋 Sandbox flyout initialized. Press Ctrl+` to open, or hover on right edge.');
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupFlyout);
+  } else {
+    setupFlyout();
+  }
 })();
 
 

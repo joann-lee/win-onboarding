@@ -37,6 +37,28 @@ body {
     height: 100vh;
 }
 
+/* Loading Screen - prevents wallpaper flash */
+.desktop-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 100000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+    pointer-events: none;
+}
+
+.desktop-loading.fade-out {
+    opacity: 0;
+}
+
+.desktop-loading.hidden {
+    display: none;
+}
+
 /* Desktop */
 .desktop {
     position: relative;
@@ -660,9 +682,8 @@ body {
     max-height: calc(100vh - 80px);
     border-radius: 8px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
-    opacity: 0;
     visibility: hidden;
-    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0ms 350ms;
     z-index: 100000;
     overflow: hidden;
     font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
@@ -670,15 +691,16 @@ body {
     /* Combined width: 680 (start) + 4 (gap) + 220 (phone) = 904px */
     left: calc(50% - 452px);
     bottom: calc(48px + 12px);
-    transform: translateY(20px);
+    /* Start completely hidden below taskbar */
+    transform: translateY(100%);
     display: flex;
     flex-direction: row;
 }
 
 .start-menu.active {
-    opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0ms;
 }
 
 /* Acrylic Background - OOBE Win11 Style */
@@ -1508,8 +1530,10 @@ body {
     z-index: 100000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
-    transform: translateY(20px);
+    /* Match start menu animation timing for sync */
+    transition: opacity 250ms ease-out, transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 250ms;
+    /* Start completely hidden below taskbar */
+    transform: translateY(100%);
 }
 
 /* Acrylic Background for Phone Pane */
@@ -2416,6 +2440,37 @@ html.dark .phone-setup-btn:hover {
 
 .color-swatch.active .swatch-check {
     opacity: 1;
+}
+
+/* Restart Flow Button */
+.restart-flow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    background: var(--color-accent, #0078D4);
+    color: white;
+    font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.restart-flow-btn:hover {
+    filter: brightness(1.1);
+}
+
+.restart-flow-btn:active {
+    filter: brightness(0.95);
+}
+
+.restart-flow-btn svg {
+    flex-shrink: 0;
 }
 
 /* Dark mode settings flyout */

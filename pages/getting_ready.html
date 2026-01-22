@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Getting everything ready</title>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <script src="/js/theme-init.js"></script>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <style>
+    /* Hide the card background for this page */
+    body[data-page-id="getting_ready"] .oobe-card {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      backdrop-filter: none !important;
+    }
+    
+    body[data-page-id="getting_ready"] .oobe-card::before,
+    body[data-page-id="getting_ready"] .oobe-card::after {
+      display: none !important;
+    }
+    
+    body[data-page-id="getting_ready"] .oobe-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 300px;
+    }
+    
+    body[data-page-id="getting_ready"] .spinner-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+    
+    body[data-page-id="getting_ready"] .spinner-text {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    
+    body[data-page-id="getting_ready"] .lottie-container {
+      display: none;
+    }
+    
+    /* Fade to black overlay */
+    .fade-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: black;
+      opacity: 0;
+      z-index: 99999;
+      pointer-events: none;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .fade-overlay.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body data-page-id="getting_ready" data-oobe>
+  <!-- Fade to black overlay -->
+  <div class="fade-overlay" id="fadeOverlay"></div>
+  
+  <div class="oobe-background"></div>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <div class="oobe-body">
+            <div class="spinner-section">
+              <mai-spinner size="large"></mai-spinner>
+              <p class="spinner-text">Getting everything ready</p>
+            </div>
+          </div>
+          <div class="oobe-ctas" style="display: none;">
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section -->
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <script src="/js/web-components.min.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+  
+  <script>
+    // Override the scanner page behavior for this page to add fade-to-black
+    (function initGettingReadyFade() {
+      const pageId = document.body.getAttribute('data-page-id');
+      if (pageId !== 'getting_ready') return;
+      
+      // Get timeout from flow.js or use default
+      const timeout = window.OOBEFlow && window.OOBEFlow.scannerTimeout ? window.OOBEFlow.scannerTimeout : 5000;
+      const fadeDuration = 1000; // 1 second fade
+      
+      setTimeout(() => {
+        // Start fade to black
+        const overlay = document.getElementById('fadeOverlay');
+        if (overlay) {
+          overlay.classList.add('active');
+        }
+        
+        // After fade completes, navigate to desktop
+        setTimeout(() => {
+          window.location.href = '/desktop/';
+        }, fadeDuration);
+      }, timeout);
+    })();
+  </script>
+
+</body>
+
+</html>

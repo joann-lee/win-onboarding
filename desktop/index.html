@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/desktop.css">
 </head>
 <body>
+    <!-- Loading screen to prevent wallpaper flash -->
+    <div id="desktop-loading" class="desktop-loading"></div>
+    
     <!-- Theme transition overlay -->
     <div id="theme-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
 
@@ -1320,6 +1323,16 @@
                     <span class="swatch-check">✓</span>
                 </button>
             </div>
+        </div>
+        
+        <!-- Restart Flow -->
+        <div class="settings-section">
+            <button class="restart-flow-btn" id="restartFlowBtn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2.5 8C2.5 4.96243 4.96243 2.5 8 2.5C9.72 2.5 11.25 3.28 12.25 4.5H10.5V5.5H14V2H13V3.75C11.78 2.35 9.99 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5C11.0376 14.5 13.5829 12.4291 14.2992 9.5H13.2656C12.5907 11.8556 10.4946 13.5 8 13.5C4.96243 13.5 2.5 11.0376 2.5 8Z" fill="currentColor"/>
+                </svg>
+                <span>Restart Flow</span>
+            </button>
         </div>
     </div>
 

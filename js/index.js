@@ -167,7 +167,7 @@ function enableDnD(container) {
 }
 function wireStart() {
   const firstId = computeFirst();
-  const startHref = firstId ? mapIdToFile(firstId) : 'assets/desktop.html';
+  const startHref = firstId ? mapIdToFile(firstId) : '/desktop/';
   const startBtn = document.getElementById('start-btn');
   const firstLink = document.getElementById('first-link');
   
@@ -348,6 +348,12 @@ function applyTheme(mode, palette, cssStyle) {
   } else if (palette === 'violet') {
     root.classList.add('violet');
     console.log('Added violet palette');
+  } else if (palette === 'slate') {
+    root.classList.add('slate');
+    console.log('Added slate palette');
+  } else if (palette === 'emerald') {
+    root.classList.add('emerald');
+    console.log('Added emerald palette');
   }
   
   console.log('Final html classes:', root.classList.toString());

@@ -1,14 +1,14 @@
 /*
 
-VIOLET THEME - SMTC Token Overrides
+EMERALD THEME - SMTC Token Overrides
 
-This file overrides Win11 SMTC design tokens to create a violet color theme.
-Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B7CB8 (light 1), #8B5DC0 (base), #6D45A0 (dark 1), #4E2D80 (dark 2), #2A1550 (dark 3)
+This file overrides Win11 SMTC design tokens to create an emerald green color theme.
+Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (light 1), #3AA876 (base), #2D8A5F (dark 1), #1F6647 (dark 2), #0F3E2C (dark 3)
 
 */
 
-:root.light.violet,
-.light.violet {
+:root.light.emerald,
+.light.emerald {
   /* CONSTANTS: Design tokens that don't change across themes */
   /* These values are shared by all theme variants */
   
@@ -21,35 +21,19 @@ Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B
   --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
   
   /* ==================== TYPOGRAPHY ==================== */
-  --color-font-title: var(--smtc-typography-font-title, 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
-  --color-font-subtitle: var(--smtc-typography-font-subtitle, 400 16px/1.4 "Segoe UI", system-ui, sans-serif);
-  --color-font-body: var(--smtc-typography-font-body, 400 14px/1.5 "Segoe UI", system-ui, sans-serif);
-  
-  /* Typography component parts */
-  --font-weight-title: var(--smtc-typography-font-weight-semibold, 600);
-  --font-size-title: var(--smtc-typography-font-size-title, 32px);
-  --line-height-title: var(--smtc-typography-line-height-title, 1.25);
-  --font-family-title: var(--smtc-typography-font-family-primary, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
-  
-  --font-weight-subtitle: var(--smtc-typography-font-weight-regular, 400);
-  --font-size-subtitle: var(--smtc-typography-font-size-subtitle, 16px);
-  --line-height-subtitle: var(--smtc-typography-line-height-subtitle, 1.4);
-  --font-family-subtitle: var(--smtc-typography-font-family-primary, "Segoe UI", system-ui, sans-serif);
-  
-  --font-weight-body: var(--smtc-typography-font-weight-regular, 400);
-  --font-size-body: var(--smtc-typography-font-size-body, 14px);
-  --line-height-body: var(--smtc-typography-line-height-body, 1.5);
-  --font-family-body: var(--smtc-typography-font-family-primary, "Segoe UI", system-ui, sans-serif);
+  --color-font-title: 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --color-font-subtitle: 400 16px/1.4 "Segoe UI", system-ui, sans-serif;
+  --color-font-body: 400 14px/1.5 "Segoe UI", system-ui, sans-serif;
   
   /* ==================== TRANSITIONS ==================== */
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
   
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #6D45A0;
-  --color-accent-hover: #8B5DC0;
-  --color-accent-active: #4E2D80;
-  --color-bg-primary: var(--smtc-background-layer-solid, #faf9fb);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(201, 177, 224, 0.55), rgba(250, 249, 251, 0.85));
+  --color-accent: #2D8A5F;
+  --color-accent-hover: #3AA876;
+  --color-accent-active: #1F6647;
+  --color-bg-primary: var(--smtc-background-layer-solid, #f7fbf9);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(168, 223, 201, 0.55), rgba(247, 251, 249, 0.85));
   --color-card-bg: #ffffff;
   
   /* ==================== TEXT COLORS ==================== */
@@ -66,20 +50,20 @@ Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B
   --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
   
   /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: #6D45A0;
+  --color-button-primary-bg: #2D8A5F;
   --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: #8B5DC0;
-  --color-button-primary-bg-active: #4E2D80;
+  --color-button-primary-bg-hover: #3AA876;
+  --color-button-primary-bg-active: #1F6647;
   --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: #6D45A0;
-  --color-button-primary-border-hover: #8B5DC0;
+  --color-button-primary-border: #2D8A5F;
+  --color-button-primary-border-hover: #3AA876;
   --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
   
   /* ==================== SECONDARY BUTTON ==================== */
-  --color-button-secondary-text: #6D45A0;
+  --color-button-secondary-text: #2D8A5F;
   --color-button-secondary-bg: transparent;
-  --color-button-secondary-text-hover: #4E2D80;
-  --color-button-secondary-text-active: #4E2D80;
+  --color-button-secondary-text-hover: #1F6647;
+  --color-button-secondary-text-active: #1F6647;
   --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
   --color-button-secondary-bg-hover: transparent;
   --color-button-secondary-bg-focus: transparent;
@@ -88,7 +72,7 @@ Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B
   --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-input-border-focus: #6D45A0;
+  --color-input-border-focus: #2D8A5F;
   --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
   --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
   --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
@@ -96,24 +80,24 @@ Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B
   /* ==================== FORM COMPONENTS ==================== */
   --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
-  --color-checkbox-bg-checked: #6D45A0;
-  --color-checkbox-border-checked: #6D45A0;
+  --color-checkbox-bg-checked: #2D8A5F;
+  --color-checkbox-border-checked: #2D8A5F;
   --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
-  --color-radio-bg-checked: #6D45A0;
-  --color-radio-border-checked: #6D45A0;
+  --color-radio-bg-checked: #2D8A5F;
+  --color-radio-border-checked: #2D8A5F;
   
   --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-toggle-bg-checked: #6D45A0;
+  --color-toggle-bg-checked: #2D8A5F;
   --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   /* ==================== LINKS ==================== */
-  --color-hyperlink: #8B5DC0;
-  --color-hyperlink-hover: #8B5DC0;
-  --color-hyperlink-active: #4E2D80;
-  --color-block-text-focus: #8B5DC0;
+  --color-hyperlink: #3AA876;
+  --color-hyperlink-hover: #3AA876;
+  --color-hyperlink-active: #1F6647;
+  --color-block-text-focus: #3AA876;
   --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
   
   /* ==================== MESSAGE STATES ==================== */
@@ -123,60 +107,60 @@ Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B
   --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
   --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
   --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-info-bg: rgba(109, 69, 160, 0.1);
-  --color-info-border: #8B5DC0;
+  --color-info-bg: rgba(45, 138, 95, 0.1);
+  --color-info-border: #3AA876;
   
   /* ==================== COMPONENT SPECIFIC ==================== */
-  --color-country-pill-bg: #6D45A0;
+  --color-country-pill-bg: #2D8A5F;
   --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-country-pill-bg-hover: #8B5DC0;
+  --color-country-pill-bg-hover: #3AA876;
   --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
-  --color-country-list-active-bg: #8B5DC0;
+  --color-country-list-active-bg: #3AA876;
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
   --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #6D45A0);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #2D8A5F);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #6D45A0;
-  --smtc-foreground-ctrl-brand-rest: #6D45A0;
-  --smtc-foreground-ctrl-brand-hover: #8B5DC0;
-  --smtc-foreground-ctrl-brand-pressed: #4E2D80;
+  --smtc-foreground-ctrl-hint-default: #2D8A5F;
+  --smtc-foreground-ctrl-brand-rest: #2D8A5F;
+  --smtc-foreground-ctrl-brand-hover: #3AA876;
+  --smtc-foreground-ctrl-brand-pressed: #1F6647;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/background-violet-light.png');
-  --smtc-background-layer-solid: #faf9fb;
+  --background-image: url('/assets/wallpaper/background-emerald-light.png');
+  --smtc-background-layer-solid: #f7fbf9;
   --smtc-background-card-secondary-rest: #ffffff;
-  --smtc-background-ctrl-brand-rest: #6D45A0;
-  --smtc-background-ctrl-brand-hover: #8B5DC0;
-  --smtc-background-ctrl-brand-pressed: #4E2D80;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #8B5DC0;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #4E2D80;
+  --smtc-background-ctrl-brand-rest: #2D8A5F;
+  --smtc-background-ctrl-brand-hover: #3AA876;
+  --smtc-background-ctrl-brand-pressed: #1F6647;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #3AA876;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #1F6647;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #6D45A0;
-  --smtc-stroke-ctrl-brand-hover: #8B5DC0;
-  --smtc-stroke-ctrl-brand-pressed: #4E2D80;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #6D45A0;
+  --smtc-stroke-ctrl-brand-rest: #2D8A5F;
+  --smtc-stroke-ctrl-brand-hover: #3AA876;
+  --smtc-stroke-ctrl-brand-pressed: #1F6647;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #2D8A5F;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #8B5DC0;
+  --smtc-foreground-ctrl-hint-default: #3AA876;
   
   /* ==================== STATUS COLORS (keep original) ==================== */
   /* Error, warning, success colors remain unchanged */
 }
 
-:root.dark.violet,
-.dark.violet {
+:root.dark.emerald,
+.dark.emerald {
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #9B7CB8;
-  --color-accent-hover: #C9B1E0;
-  --color-accent-active: #8B5DC0;
-  --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(78, 45, 128, 0.2), rgba(15, 17, 19, 0.6));
+  --color-accent: #5CBB95;
+  --color-accent-hover: #A8DFC9;
+  --color-accent-active: #3AA876;
+  --color-bg-primary: var(--smtc-background-layer-solid, #0c1410);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(31, 102, 71, 0.2), rgba(12, 20, 16, 0.6));
   --color-card-bg: #1e1f22;
 
   /* ==================== TEXT COLORS ==================== */
@@ -188,52 +172,50 @@ Uses the revised violet color palette: #E8DCF0 (light 3), #C9B1E0 (light 2), #9B
   --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
   
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #C9B1E0;
-  --smtc-foreground-ctrl-brand-rest: #C9B1E0;
-  --smtc-foreground-ctrl-brand-hover: #E8DCF0;
-  --smtc-foreground-ctrl-brand-pressed: #9B7CB8;
+  --smtc-foreground-ctrl-hint-default: #A8DFC9;
+  --smtc-foreground-ctrl-brand-rest: #A8DFC9;
+  --smtc-foreground-ctrl-brand-hover: #D4EFE4;
+  --smtc-foreground-ctrl-brand-pressed: #5CBB95;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/background-violet-dark.png');
-  --smtc-background-layer-solid: #0f1113;
+  --background-image: url('/assets/wallpaper/background-emerald-dark.png');
+  --smtc-background-layer-solid: #0c1410;
   --smtc-background-card-secondary-rest: #1e1f22;
-  --smtc-background-ctrl-brand-rest: #9B7CB8;
-  --smtc-background-ctrl-brand-hover: #C9B1E0;
-  --smtc-background-ctrl-brand-pressed: #8B5DC0;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #C9B1E0;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #8B5DC0;
+  --smtc-background-ctrl-brand-rest: #5CBB95;
+  --smtc-background-ctrl-brand-hover: #A8DFC9;
+  --smtc-background-ctrl-brand-pressed: #3AA876;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #A8DFC9;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #3AA876;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #9B7CB8;
-  --smtc-stroke-ctrl-brand-hover: #C9B1E0;
-  --smtc-stroke-ctrl-brand-pressed: #8B5DC0;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #9B7CB8;
+  --smtc-stroke-ctrl-brand-rest: #5CBB95;
+  --smtc-stroke-ctrl-brand-hover: #A8DFC9;
+  --smtc-stroke-ctrl-brand-pressed: #3AA876;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #5CBB95;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #C9B1E0;
+  --smtc-foreground-ctrl-hint-default: #A8DFC9;
   
-  /* ==================== STATUS COLORS (Violet tint for info) ==================== */
-  --smtc-status-brand-tint-foreground: #C9B1E0;
-  --smtc-status-brand-tint-background: rgba(155, 124, 184, 0.1);
+  /* ==================== STATUS COLORS (Emerald tint for info) ==================== */
+  --smtc-status-brand-tint-foreground: #A8DFC9;
+  --smtc-status-brand-tint-background: rgba(92, 187, 149, 0.1);
 
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
   --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #C9B1E0);
-}
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #A8DFC9);
 }
 
 
 /* ==================== VISUAL EFFECTS & FILTERS ==================== */
-.violet #lottie {
-  filter: hue-rotate(45deg) saturate(1.1) brightness(0.98);
+.emerald #lottie {
+  filter: hue-rotate(100deg) saturate(1.2) brightness(1.0);
 }
 
-.violet .oobe-visual {
-  background: linear-gradient(180deg, rgba(250, 249, 251, 0.8), rgba(231, 221, 238, 0.8));
+.emerald .oobe-visual {
+  background: linear-gradient(180deg, rgba(247, 251, 249, 0.8), rgba(212, 239, 228, 0.8));
 }
 
-.dark.violet .oobe-visual {
-  background: linear-gradient(180deg, rgba(42, 21, 80, 0.8), rgba(15, 17, 19, 0.8));
+.dark.emerald .oobe-visual {
+  background: linear-gradient(180deg, rgba(15, 62, 44, 0.8), rgba(12, 20, 16, 0.8));
 }
-
