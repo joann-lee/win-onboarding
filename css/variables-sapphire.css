@@ -12,11 +12,6 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* CONSTANTS: Design tokens that don't change across themes */
   /* These values are shared by all theme variants */
   
-  /* ==================== LAYOUT & DIMENSIONS ==================== */
-  --color-card-radius: var(--smtc-corner-card-rest, 8px);
-  --color-card-height: 750px;
-  --color-card-min-width: 600px;
-  
   /* ==================== SHADOWS & EFFECTS ==================== */
   --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
   
@@ -149,6 +144,11 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #6271AA;
   
+  /* ==================== SCROLLBAR ==================== */
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #7987B8);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #4D5990);
+  --smtc-scrollbar-track: transparent;
+  
   /* ==================== STATUS COLORS (keep original) ==================== */
   /* Error, warning, success colors remain unchanged */
 }
@@ -200,11 +200,15 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-status-brand-tint-foreground: #7987B8;
   --smtc-status-brand-tint-background: rgba(121, 135, 184, 0.1);
 
+  /* ==================== SCROLLBAR ==================== */
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #6271AA);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #B5C2DB);
+  --smtc-scrollbar-track: transparent;
+
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
   --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
   --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #7987B8);
-}
 }
 
 

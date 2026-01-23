@@ -684,7 +684,7 @@ body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
     visibility: hidden;
     transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0ms 350ms;
-    z-index: 100000;
+    z-index: 100001;
     overflow: hidden;
     font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
     /* Position for bottom taskbar - centered with phone pane */
@@ -2296,7 +2296,7 @@ html.dark .phone-setup-btn:hover {
 .footer-more-btn {
     height: 40px;
     width: auto;
-    display: block;
+    display: none;
     cursor: pointer;
     margin-right: 12px;
 }

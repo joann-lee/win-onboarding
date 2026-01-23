@@ -8,6 +8,12 @@ const OOBE_DEBUG_ENABLED = false;
   // Create context menu HTML
   const menuHTML = `
     <div id="oobe-context-menu" class="oobe-context-menu">
+      <div class="context-menu-item" data-action="flow-editor">
+        <span class="context-menu-icon">⚙</span>
+        <span class="context-menu-label">Flow Editor</span>
+        <span class="context-menu-shortcut">F2</span>
+      </div>
+      <div class="context-menu-divider"></div>
       <div class="context-menu-item" data-action="back">
         <span class="context-menu-icon">←</span>
         <span class="context-menu-label">Go Back</span>
@@ -15,8 +21,13 @@ const OOBE_DEBUG_ENABLED = false;
       </div>
       <div class="context-menu-item" data-action="home">
         <span class="context-menu-icon">⌂</span>
-        <span class="context-menu-label">Return to Home</span>
+        <span class="context-menu-label">Go to Config</span>
         <span class="context-menu-shortcut">Esc</span>
+      </div>
+      <div class="context-menu-item" data-action="restart-oobe">
+        <span class="context-menu-icon">↺</span>
+        <span class="context-menu-label">Restart OOBE</span>
+        <span class="context-menu-shortcut"></span>
       </div>
       <div class="context-menu-divider"></div>
       <div class="context-menu-item has-submenu" data-action="theme">
@@ -288,8 +299,16 @@ const OOBE_DEBUG_ENABLED = false;
       case 'home':
         window.location.href = '/';
         break;
+      case 'restart-oobe':
+        window.location.href = '/pages/boot.html';
+        break;
       case 'reload':
         window.location.reload();
+        break;
+      case 'flow-editor':
+        if (window.openFlowEditorPanel) {
+          window.openFlowEditorPanel();
+        }
         break;
     }
   });
@@ -300,11 +319,27 @@ const OOBE_DEBUG_ENABLED = false;
   });
 })();
 
-// Hotkey: Escape to return to root index
+// Hotkey: Escape to return to root index, F2 for flow editor
 (function initHomeHotkey() {
   document.addEventListener('keydown', (e) => {
-    // Escape key returns to root index
+    // F2 opens flow editor panel
+    if (e.key === 'F2' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+      e.preventDefault();
+      if (window.openFlowEditorPanel) {
+        window.openFlowEditorPanel();
+      }
+    }
+    // Escape key returns to root index (unless flow editor is open)
     if (e.key === 'Escape' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
+      const flowPanel = document.getElementById('flow-editor-panel');
+      if (flowPanel && flowPanel.classList.contains('active')) {
+        // Close flow editor instead of going home
+        e.preventDefault();
+        if (window.closeFlowEditorPanel) {
+          window.closeFlowEditorPanel();
+        }
+        return;
+      }
       e.preventDefault();
       window.location.href = '/';
     }
@@ -1280,205 +1315,697 @@ function updatePaletteMenuSelection() {
   updateUI();
 })();
 
-// ============ SANDBOX FLYOUT PANEL ============
-// Accessible from any page via hotkey (Ctrl+`) or edge trigger
-(function initSandboxFlyout() {
-  // Don't show flyout on the index page itself
-  const pathname = window.location.pathname;
-  if (pathname === '/' || pathname === '/index.html' || pathname.endsWith('/index.html')) {
-    return;
-  }
-
-  function setupFlyout() {
+// ============ FLOW EDITOR PANEL ============
+// Accessible from any page via right-click menu or F2 hotkey
+(function initFlowEditorPanel() {
+  function setupFlowEditor() {
     // Prevent double initialization
-    if (document.getElementById('sandbox-flyout-overlay')) {
+    if (document.getElementById('flow-editor-panel')) {
       return;
     }
 
-    // Create the flyout overlay
-    const flyoutOverlay = document.createElement('div');
-    flyoutOverlay.id = 'sandbox-flyout-overlay';
-  flyoutOverlay.innerHTML = `
-    <div class="sandbox-flyout-backdrop"></div>
-    <div class="sandbox-flyout-panel">
-      <div class="sandbox-flyout-header">
-        <span class="sandbox-flyout-title">OOBE Sandbox</span>
-        <button class="sandbox-flyout-close" aria-label="Close flyout">✕</button>
+    // Create the panel overlay
+    const panelOverlay = document.createElement('div');
+    panelOverlay.id = 'flow-editor-panel';
+    panelOverlay.innerHTML = `
+      <div class="flow-editor-backdrop"></div>
+      <div class="flow-editor-container">
+        <div class="flow-editor-header">
+          <span class="flow-editor-title">OOBE Sandbox</span>
+          <button class="flow-editor-close" aria-label="Close panel">✕</button>
+        </div>
+        <div class="flow-editor-content">
+          <p class="flow-editor-subtitle">Flow Editor - Drag to reorder, toggle visibility</p>
+          
+          <div class="flow-editor-list-container">
+            <ul class="flow-editor-list" id="flow-editor-list"></ul>
+          </div>
+          
+          <div class="flow-editor-section">
+            <div class="flow-editor-label">Theme</div>
+            <div class="flow-editor-theme-row">
+              <button class="flow-editor-mode-btn" id="flow-editor-mode-toggle" aria-label="Toggle dark mode">
+                <span class="mode-icon-light">☀</span>
+                <span class="mode-icon-dark">☾</span>
+              </button>
+              <div class="flow-editor-palette-grid">
+                <button class="palette-btn" data-palette="standard" style="--palette-color: #0078d4;" title="Standard"></button>
+                <button class="palette-btn" data-palette="violet" style="--palette-color: #8b5cf6;" title="Violet"></button>
+                <button class="palette-btn" data-palette="dune" style="--palette-color: #d4a574;" title="Dune"></button>
+                <button class="palette-btn" data-palette="sapphire" style="--palette-color: #0066cc;" title="Sapphire"></button>
+                <button class="palette-btn" data-palette="slate" style="--palette-color: #64748b;" title="Slate"></button>
+                <button class="palette-btn" data-palette="emerald" style="--palette-color: #10b981;" title="Emerald"></button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flow-editor-section">
+            <div class="flow-editor-label">CSS Style</div>
+            <div class="flow-editor-style-row">
+              <button class="style-btn" data-style="win11">Win11</button>
+              <button class="style-btn" data-style="evolved">Evolved</button>
+            </div>
+          </div>
+          
+          <div class="flow-editor-actions">
+            <button class="flow-editor-btn secondary" id="flow-editor-reset">Reset Flow</button>
+            <button class="flow-editor-btn primary" id="flow-editor-restart">Restart Flow</button>
+          </div>
+        </div>
       </div>
-      <iframe class="sandbox-flyout-iframe" src="/index.html"></iframe>
-    </div>
-  `;
-  document.body.appendChild(flyoutOverlay);
+    `;
+    document.body.appendChild(panelOverlay);
 
-  // Create edge trigger zone
-  const edgeTrigger = document.createElement('div');
-  edgeTrigger.id = 'sandbox-edge-trigger';
-  edgeTrigger.title = 'Open Sandbox (Ctrl+`)';
-  document.body.appendChild(edgeTrigger);
+    // Add styles
+    const panelStyles = document.createElement('style');
+    panelStyles.id = 'flow-editor-styles';
+    panelStyles.textContent = `
+      #flow-editor-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      #flow-editor-panel.active {
+        display: flex;
+        justify-content: flex-end;
+      }
+      #flow-editor-panel.visible {
+        opacity: 1;
+      }
+      .flow-editor-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+      .flow-editor-container {
+        position: relative;
+        width: 420px;
+        max-width: 90vw;
+        height: 100%;
+        background: var(--color-bg-card, rgba(255, 255, 255, 0.95));
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        overflow: hidden;
+      }
+      html.dark .flow-editor-container {
+        background: rgba(32, 32, 32, 0.95);
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.4);
+      }
+      #flow-editor-panel.visible .flow-editor-container {
+        transform: translateX(0);
+      }
+      .flow-editor-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+      }
+      html.dark .flow-editor-header {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .flow-editor-title {
+        font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--color-text-primary, #1a1a1a);
+      }
+      html.dark .flow-editor-title {
+        color: #ffffff;
+      }
+      .flow-editor-close {
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        color: var(--color-text-secondary, rgba(0, 0, 0, 0.6));
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s, color 0.15s;
+      }
+      .flow-editor-close:hover {
+        background: var(--color-bg-subtle, rgba(0, 0, 0, 0.05));
+        color: var(--color-text-primary, #1a1a1a);
+      }
+      html.dark .flow-editor-close {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      html.dark .flow-editor-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+      .flow-editor-content {
+        flex: 1;
+        padding: 16px 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .flow-editor-subtitle {
+        font-size: 13px;
+        color: var(--color-text-secondary, #666);
+        margin: 0 0 8px 0;
+      }
+      html.dark .flow-editor-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .flow-editor-list-container {
+        flex: 1;
+        min-height: 200px;
+        max-height: 400px;
+        overflow-y: auto;
+        background: var(--color-bg-subtle, #f5f5f5);
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: 12px;
+        padding: 8px;
+      }
+      html.dark .flow-editor-list-container {
+        background: rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .flow-editor-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .flow-editor-list li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 8px;
+        transition: background 0.15s;
+        cursor: grab;
+        font-size: 14px;
+        color: var(--color-text-primary, #1a1a1a);
+      }
+      html.dark .flow-editor-list li {
+        color: #ffffff;
+      }
+      .flow-editor-list li:hover {
+        background: var(--color-bg-inset, rgba(0, 0, 0, 0.05));
+      }
+      html.dark .flow-editor-list li:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .flow-editor-list li.drag-over {
+        background: var(--smtc-background-ctrl-brand-rest, #0078d4);
+        color: white;
+      }
+      .flow-editor-list li.flow-item-disabled .flow-item-label {
+        opacity: 0.45;
+      }
+      .flow-editor-list .drag-handle {
+        cursor: grab;
+        user-select: none;
+        font-weight: 600;
+        padding: 2px 6px;
+        background: var(--color-bg-card, #fff);
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: 4px;
+        font-size: 10px;
+        color: var(--color-text-secondary, #666);
+      }
+      html.dark .flow-editor-list .drag-handle {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .flow-item-label {
+        flex: 1;
+      }
+      .flow-item-badge {
+        font-size: 10px;
+        padding: 2px 8px;
+        background: var(--color-bg-card, #fff);
+        border: 1px solid var(--color-border, #e0e0e0);
+        border-radius: 10px;
+        color: var(--color-text-secondary, #666);
+      }
+      html.dark .flow-item-badge {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .flow-item-toggle {
+        width: 24px;
+        height: 24px;
+        border: 1px solid var(--color-border, #e0e0e0);
+        background: var(--color-bg-card, #fff);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s, border-color 0.15s;
+      }
+      html.dark .flow-item-toggle {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .flow-item-toggle:hover {
+        background: var(--color-bg-subtle, #f0f0f0);
+      }
+      html.dark .flow-item-toggle:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .flow-item-toggle svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--color-text-primary, #1a1a1a);
+        color: var(--color-text-primary, #1a1a1a);
+      }
+      html.dark .flow-item-toggle svg {
+        stroke: #ffffff;
+        color: #ffffff;
+      }
+      .flow-item-toggle.is-disabled svg {
+        opacity: 0.4;
+      }
+      .flow-editor-section {
+        padding-top: 8px;
+        border-top: 1px solid var(--color-border, #e0e0e0);
+      }
+      html.dark .flow-editor-section {
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+      .flow-editor-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--color-text-secondary, #666);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      html.dark .flow-editor-label {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .flow-editor-theme-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .flow-editor-mode-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--color-border, #e0e0e0);
+        background: var(--color-bg-card, #fff);
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: background 0.15s, transform 0.15s;
+      }
+      html.dark .flow-editor-mode-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+      .flow-editor-mode-btn:hover {
+        transform: scale(1.05);
+      }
+      .flow-editor-mode-btn .mode-icon-light { display: block; }
+      .flow-editor-mode-btn .mode-icon-dark { display: none; }
+      html.dark .flow-editor-mode-btn .mode-icon-light { display: none; }
+      html.dark .flow-editor-mode-btn .mode-icon-dark { display: block; }
+      .flow-editor-palette-grid {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .palette-btn {
+        width: 32px;
+        height: 32px;
+        border: 2px solid transparent;
+        background: var(--palette-color);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.15s, box-shadow 0.15s;
+      }
+      .palette-btn:hover {
+        transform: scale(1.1);
+      }
+      .palette-btn.active {
+        box-shadow: 0 0 0 2px var(--color-bg-card, #fff), 0 0 0 4px var(--palette-color);
+      }
+      html.dark .palette-btn.active {
+        box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.95), 0 0 0 4px var(--palette-color);
+      }
+      .flow-editor-style-row {
+        display: flex;
+        gap: 8px;
+      }
+      .style-btn {
+        flex: 1;
+        padding: 10px 16px;
+        border: 1px solid var(--color-border, #e0e0e0);
+        background: var(--color-bg-card, #fff);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--color-text-primary, #1a1a1a);
+        transition: background 0.15s, border-color 0.15s;
+      }
+      html.dark .style-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+      }
+      .style-btn:hover {
+        background: var(--color-bg-subtle, #f5f5f5);
+      }
+      html.dark .style-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .style-btn.active {
+        background: var(--smtc-background-ctrl-brand-rest, #0078d4);
+        border-color: var(--smtc-background-ctrl-brand-rest, #0078d4);
+        color: white;
+      }
+      .flow-editor-actions {
+        display: flex;
+        gap: 12px;
+        padding-top: 8px;
+      }
+      .flow-editor-btn {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: background 0.15s, transform 0.1s;
+      }
+      .flow-editor-btn:active {
+        transform: scale(0.98);
+      }
+      .flow-editor-btn.secondary {
+        background: var(--color-bg-subtle, #f0f0f0);
+        color: var(--color-text-primary, #1a1a1a);
+      }
+      html.dark .flow-editor-btn.secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+      }
+      .flow-editor-btn.secondary:hover {
+        background: var(--color-bg-inset, #e5e5e5);
+      }
+      html.dark .flow-editor-btn.secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .flow-editor-btn.primary {
+        background: var(--smtc-background-ctrl-brand-rest, #0078d4);
+        color: white;
+      }
+      .flow-editor-btn.primary:hover {
+        background: var(--smtc-background-ctrl-brand-hover, #006cbd);
+      }
+    `;
+    document.head.appendChild(panelStyles);
 
-  // Add styles
-  const flyoutStyles = document.createElement('style');
-  flyoutStyles.textContent = `
-    #sandbox-flyout-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 999999;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-    #sandbox-flyout-overlay.active {
-      display: flex;
-      justify-content: flex-end;
-    }
-    #sandbox-flyout-overlay.visible {
-      opacity: 1;
-    }
-    .sandbox-flyout-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-    }
-    .sandbox-flyout-panel {
-      position: relative;
-      width: 620px;
-      max-width: 90vw;
-      height: 100%;
-      background: rgba(32, 32, 32, 0.95);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      box-shadow: -8px 0 32px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    #sandbox-flyout-overlay.visible .sandbox-flyout-panel {
-      transform: translateX(0);
-    }
-    .sandbox-flyout-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.2);
-    }
-    .sandbox-flyout-title {
-      font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.95);
-    }
-    .sandbox-flyout-close {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s, color 0.15s;
-    }
-    .sandbox-flyout-close:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.95);
-    }
-    .sandbox-flyout-iframe {
-      flex: 1;
-      width: 100%;
-      border: none;
-      background: transparent;
-    }
-    #sandbox-edge-trigger {
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 8px;
-      height: 80px;
-      background: linear-gradient(to left, rgba(255, 255, 255, 0.3), transparent);
-      border-radius: 4px 0 0 4px;
-      cursor: pointer;
-      z-index: 999998;
-      opacity: 0;
-      transition: opacity 0.2s, width 0.2s, background 0.2s;
-    }
-    #sandbox-edge-trigger:hover {
-      opacity: 1;
-      width: 12px;
-      background: linear-gradient(to left, rgba(255, 255, 255, 0.5), transparent);
-    }
-    body:hover #sandbox-edge-trigger {
-      opacity: 0.5;
-    }
-  `;
-  document.head.appendChild(flyoutStyles);
+    // Get elements
+    const flowList = document.getElementById('flow-editor-list');
+    const modeToggle = document.getElementById('flow-editor-mode-toggle');
+    const paletteBtns = panelOverlay.querySelectorAll('.palette-btn');
+    const styleBtns = panelOverlay.querySelectorAll('.style-btn');
+    const resetBtn = document.getElementById('flow-editor-reset');
+    const restartBtn = document.getElementById('flow-editor-restart');
 
-  // Flyout toggle functions
-  function openFlyout() {
-    flyoutOverlay.classList.add('active');
-    requestAnimationFrame(() => {
-      flyoutOverlay.classList.add('visible');
+    // SVG icons
+    const eyeSvgShown = () => '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg>';
+    const eyeSvgDisabled = () => '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20"/><path d="M10.73 5.08A10.94 10.94 0 0 1 12 5c7 0 11 7 11 7a21.86 21.86 0 0 1-3.17 3.88M6.12 6.11A21.86 21.86 0 0 0 1 12s4 8 11 8a10.66 10.66 0 0 0 4.4-.9"/><path d="M15 12a3 3 0 0 1-3 3"/><path d="M9 9a3 3 0 0 1 3-3"/></svg>';
+
+    // Render flow list
+    function renderFlowList() {
+      if (!window.OOBEFlow) return;
+      
+      flowList.innerHTML = '';
+      const order = window.OOBEFlow.getOrder();
+      const hidden = window.OOBEFlow.getHidden();
+      
+      order.forEach(id => {
+        const li = document.createElement('li');
+        li.setAttribute('data-id', id);
+        li.setAttribute('draggable', 'true');
+
+        let pageLabel = id;
+        let pageData = null;
+        if (window.OOBEFlow.getPage) {
+          const page = window.OOBEFlow.getPage(id);
+          if (page) {
+            pageLabel = page.label;
+            pageData = page;
+          }
+        }
+
+        const show = !hidden.includes(id);
+        li.classList.toggle('flow-item-disabled', !show);
+        
+        // Drag handle
+        const handle = document.createElement('span');
+        handle.className = 'drag-handle';
+        handle.textContent = '⋮⋮';
+        li.appendChild(handle);
+        
+        // Label
+        const label = document.createElement('span');
+        label.className = 'flow-item-label';
+        label.textContent = pageLabel;
+        li.appendChild(label);
+        
+        // Scanner badge
+        if (pageData && pageData.type === 'scanner') {
+          const badge = document.createElement('span');
+          badge.className = 'flow-item-badge';
+          badge.textContent = 'Scanner';
+          li.appendChild(badge);
+        }
+        
+        // Eye toggle
+        const eye = document.createElement('span');
+        eye.className = 'flow-item-toggle' + (show ? '' : ' is-disabled');
+        eye.innerHTML = show ? eyeSvgShown() : eyeSvgDisabled();
+        eye.onclick = (e) => {
+          e.stopPropagation();
+          const h = window.OOBEFlow.getHidden();
+          if (show) {
+            if (!h.includes(id)) { h.push(id); window.OOBEFlow.setHidden(h); }
+          } else {
+            window.OOBEFlow.setHidden(h.filter(x => x !== id));
+          }
+          renderFlowList();
+        };
+        li.appendChild(eye);
+        
+        flowList.appendChild(li);
+      });
+      
+      // Enable drag and drop
+      enableFlowDnD(flowList);
+    }
+
+    function enableFlowDnD(container) {
+      let dragId = null;
+      container.querySelectorAll('li').forEach(li => {
+        li.addEventListener('dragstart', e => {
+          dragId = li.getAttribute('data-id');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        li.addEventListener('dragover', e => {
+          e.preventDefault();
+          li.classList.add('drag-over');
+        });
+        li.addEventListener('dragleave', () => li.classList.remove('drag-over'));
+        li.addEventListener('drop', e => {
+          e.preventDefault();
+          li.classList.remove('drag-over');
+          const targetId = li.getAttribute('data-id');
+          if (!dragId || dragId === targetId) return;
+          const ord = window.OOBEFlow.getOrder();
+          const from = ord.indexOf(dragId);
+          const to = ord.indexOf(targetId);
+          if (from < 0 || to < 0) return;
+          ord.splice(to, 0, ord.splice(from, 1)[0]);
+          window.OOBEFlow.setOrder(ord);
+          renderFlowList();
+        });
+      });
+      container.addEventListener('dragend', () => {
+        dragId = null;
+        container.querySelectorAll('li').forEach(li => li.classList.remove('drag-over'));
+      });
+    }
+
+    // Update UI state
+    function updateUIState() {
+      const currentPalette = localStorage.getItem('themePalette') || 'standard';
+      const currentStyle = localStorage.getItem('cssStyle') || 'win11';
+      
+      paletteBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.palette === currentPalette);
+      });
+      
+      styleBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.style === currentStyle);
+      });
+    }
+
+    // Event handlers
+    modeToggle.addEventListener('click', () => {
+      const currentMode = localStorage.getItem('themeMode') || 'light';
+      const newMode = currentMode === 'light' ? 'dark' : 'light';
+      if (window.applyThemeMode) {
+        window.applyThemeMode(newMode);
+      }
     });
-  }
 
-  function closeFlyout() {
-    flyoutOverlay.classList.remove('visible');
-    setTimeout(() => {
-      flyoutOverlay.classList.remove('active');
-    }, 300);
-  }
+    paletteBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const palette = btn.dataset.palette;
+        const root = document.documentElement;
+        const body = document.body;
+        
+        root.classList.add('theme-transitioning');
+        root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+        body.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+        
+        if (palette !== 'standard') {
+          root.classList.add(palette);
+          body.classList.add(palette);
+        }
+        
+        localStorage.setItem('themePalette', palette);
+        
+        // Update critical CSS
+        const currentMode = localStorage.getItem('themeMode') || 'light';
+        if (window.applyThemeMode) {
+          window.applyThemeMode(currentMode);
+        }
+        
+        updateUIState();
+        
+        setTimeout(() => {
+          root.classList.remove('theme-transitioning');
+        }, 350);
+      });
+    });
 
-  function toggleFlyout() {
-    if (flyoutOverlay.classList.contains('active')) {
-      closeFlyout();
-    } else {
-      openFlyout();
+    styleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const style = btn.dataset.style;
+        const root = document.documentElement;
+        
+        root.classList.remove('win11', 'evolved');
+        root.classList.add(style);
+        
+        localStorage.setItem('cssStyle', style);
+        
+        // Update CSS files
+        const styleBase = document.getElementById('style-base');
+        const styleLight = document.getElementById('style-light');
+        const styleDark = document.getElementById('style-dark');
+        
+        if (styleBase && styleLight && styleDark) {
+          if (style === 'evolved') {
+            styleBase.href = '/css/evolved.css';
+            styleLight.href = '/css/evolved.light.css';
+            styleDark.href = '/css/evolved.dark.css';
+          } else {
+            styleBase.href = '/css/win11.css';
+            styleLight.href = '/css/win11.light.css';
+            styleDark.href = '/css/win11.dark.css';
+          }
+        }
+        
+        updateUIState();
+      });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      if (window.OOBEFlow) {
+        window.OOBEFlow.setOrder(window.OOBEFlow.default);
+        window.OOBEFlow.setHidden([]);
+        if (window.OOBEFlow.setRestartConfig) {
+          window.OOBEFlow.setRestartConfig({ disabledRestarts: [] });
+        }
+        if (window.OOBEFlow.setDisabledFirstPages) {
+          window.OOBEFlow.setDisabledFirstPages({ disabledFirstPages: [] });
+        }
+        renderFlowList();
+      }
+    });
+
+    restartBtn.addEventListener('click', () => {
+      if (window.OOBEFlow) {
+        const order = window.OOBEFlow.getOrder();
+        const hidden = window.OOBEFlow.getHidden();
+        let firstId = null;
+        for (const id of order) {
+          if (!hidden.includes(id)) {
+            firstId = id;
+            break;
+          }
+        }
+        if (firstId) {
+          const file = window.OOBEFlow.getPageFile(firstId);
+          const path = window.getPagePath ? window.getPagePath(file) : '/pages/' + file;
+          closePanel();
+          window.location.href = path;
+        }
+      }
+    });
+
+    // Panel open/close functions
+    function openPanel() {
+      renderFlowList();
+      updateUIState();
+      panelOverlay.classList.add('active');
+      requestAnimationFrame(() => {
+        panelOverlay.classList.add('visible');
+      });
     }
-  }
 
-  // Event listeners
-  // Close button
-  flyoutOverlay.querySelector('.sandbox-flyout-close').addEventListener('click', closeFlyout);
-  
-  // Backdrop click to close
-  flyoutOverlay.querySelector('.sandbox-flyout-backdrop').addEventListener('click', closeFlyout);
-  
-  // Edge trigger click
-  edgeTrigger.addEventListener('click', openFlyout);
-
-  // Keyboard shortcut: Ctrl+` (backtick) to toggle
-  document.addEventListener('keydown', (e) => {
-    // Ctrl+` or Ctrl+Backquote
-    if (e.ctrlKey && (e.key === '`' || e.code === 'Backquote')) {
-      e.preventDefault();
-      toggleFlyout();
+    function closePanel() {
+      panelOverlay.classList.remove('visible');
+      setTimeout(() => {
+        panelOverlay.classList.remove('active');
+      }, 300);
     }
-    // Escape to close
-    if (e.key === 'Escape' && flyoutOverlay.classList.contains('active')) {
-      e.preventDefault();
-      closeFlyout();
-    }
-  });
 
-  // Expose to global for debugging
-  window.sandboxFlyout = { open: openFlyout, close: closeFlyout, toggle: toggleFlyout };
-  
-  console.log('📋 Sandbox flyout initialized. Press Ctrl+` to open, or hover on right edge.');
+    // Event listeners
+    panelOverlay.querySelector('.flow-editor-close').addEventListener('click', closePanel);
+    panelOverlay.querySelector('.flow-editor-backdrop').addEventListener('click', closePanel);
+
+    // Expose globally
+    window.openFlowEditorPanel = openPanel;
+    window.closeFlowEditorPanel = closePanel;
+    
+    console.log('📋 Flow Editor panel initialized. Press F2 or right-click > Flow Editor to open.');
   }
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupFlyout);
+    document.addEventListener('DOMContentLoaded', setupFlowEditor);
   } else {
-    setupFlyout();
+    setupFlowEditor();
   }
 })();
 

@@ -268,6 +268,7 @@
 
     const nextLink = document.querySelector('[data-cta=next]');
     const skipLink = document.querySelector('[data-cta=skip]');
+    const addLayoutLink = document.querySelector('[data-cta=add-layout]');
 
     if (nextLink) {
       if (nextId) {
@@ -324,6 +325,17 @@
         }
       }
     }
+
+    // Handle "Add layout" button - navigates to keyboard_1.html
+    if (addLayoutLink) {
+      const addLayoutHref = window.getPagePath('keyboard_1.html');
+      if (addLayoutLink.tagName.toLowerCase() === 'mai-button' || addLayoutLink.tagName.toLowerCase().includes('-')) {
+        addLayoutLink.onclick = () => window.location.href = addLayoutHref;
+      } else {
+        addLayoutLink.setAttribute('href', addLayoutHref);
+      }
+    }
+
     renderProgress(currentId, nextId);
   }
 

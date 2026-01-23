@@ -12,11 +12,6 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   /* CONSTANTS: Design tokens that don't change across themes */
   /* These values are shared by all theme variants */
   
-  /* ==================== LAYOUT & DIMENSIONS ==================== */
-  --color-card-radius: var(--smtc-corner-card-rest, 8px);
-  --color-card-height: 750px;
-  --color-card-min-width: 600px;
-  
   /* ==================== SHADOWS & EFFECTS ==================== */
   --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
   
@@ -149,6 +144,11 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #6B7280;
   
+  /* ==================== SCROLLBAR ==================== */
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #8B919B);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #525B68);
+  --smtc-scrollbar-track: transparent;
+  
   /* ==================== STATUS COLORS (keep original) ==================== */
   /* Error, warning, success colors remain unchanged */
 }
@@ -199,6 +199,11 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   /* ==================== STATUS COLORS (Slate tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #C4C8CE;
   --smtc-status-brand-tint-background: rgba(139, 145, 155, 0.1);
+
+  /* ==================== SCROLLBAR ==================== */
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #6B7280);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #C4C8CE);
+  --smtc-scrollbar-track: transparent;
 
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);

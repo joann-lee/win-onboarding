@@ -25,7 +25,7 @@
       </div>
       <div class="boot-loader">
         <svg class="boot-spinner" viewBox="0 0 50 50">
-          <circle class="spinner-ring" cx="25" cy="25" r="20" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" />
+          <circle class="spinner-ring" cx="25" cy="25" r="20" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" />
         </svg>
       </div>
     </div>
@@ -86,6 +86,7 @@
       gap: 48px;
       opacity: 0;
       animation: fadeIn 1s ease-in-out forwards;
+      position: relative;
     }
 
     @keyframes fadeIn {
@@ -99,6 +100,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .microsoft-logo {
@@ -110,6 +115,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       margin-top: 112px;
       opacity: 0;
       animation: fadeInLoader 1s ease-in-out 4s forwards;

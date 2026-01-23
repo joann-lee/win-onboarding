@@ -10,8 +10,13 @@
             </div>
             <div class="context-menu-item" data-action="home">
                 <span class="context-menu-icon">⌂</span>
-                <span class="context-menu-label">Return to Home</span>
+                <span class="context-menu-label">Go to Config</span>
                 <span class="context-menu-shortcut">Esc</span>
+            </div>
+            <div class="context-menu-item" data-action="restart-oobe">
+                <span class="context-menu-icon">↺</span>
+                <span class="context-menu-label">Restart OOBE</span>
+                <span class="context-menu-shortcut"></span>
             </div>
             <div class="context-menu-divider"></div>
             <div class="context-menu-item" data-action="reload">
@@ -167,6 +172,9 @@
                     break;
                 case 'home':
                     window.location.href = '/';
+                    break;
+                case 'restart-oobe':
+                    window.location.href = '/pages/boot.html';
                     break;
                 case 'reload':
                     window.location.reload();

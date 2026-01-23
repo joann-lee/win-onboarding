@@ -12,11 +12,6 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   /* CONSTANTS: Design tokens that don't change across themes */
   /* These values are shared by all theme variants */
   
-  /* ==================== LAYOUT & DIMENSIONS ==================== */
-  --color-card-radius: var(--smtc-corner-card-rest, 8px);
-  --color-card-height: 750px;
-  --color-card-min-width: 600px;
-  
   /* ==================== SHADOWS & EFFECTS ==================== */
   --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
   
@@ -130,6 +125,11 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #005FB8);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  
+  /* ==================== SCROLLBAR ==================== */
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #c5c5c5);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #a0a0a0);
+  --smtc-scrollbar-track: transparent;
 }
 
 :root.dark.standard,
@@ -153,6 +153,11 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(64, 144, 255, 0.2), rgba(15, 17, 19, 0.6));
   --color-card-bg: #1e1f22;
   
+  /* ==================== SCROLLBAR ==================== */
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5c5c5c);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #8a8a8a);
+  --smtc-scrollbar-track: transparent;
+
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: var(--smtc-background-ctrl-subtle-rest, rgba(40, 42, 46, 0.8));
   --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(30, 31, 34, 0.5));

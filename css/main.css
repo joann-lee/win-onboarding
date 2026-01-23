@@ -550,12 +550,12 @@ html.dark .oobe-background {
 
 /* Scrollbar styling - visible on hover only */
 [data-scrollbar-visible] {
-  scrollbar-color: transparent transparent;
+  scrollbar-color: transparent var(--smtc-scrollbar-track, transparent);
   scrollbar-width: thin;
 }
 
 [data-scrollbar-visible="true"] {
-  scrollbar-color: #c5c5c5 transparent;
+  scrollbar-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5) var(--smtc-scrollbar-track, transparent);
   scrollbar-width: thin;
 }
 
@@ -564,18 +564,18 @@ html.dark .oobe-background {
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--smtc-scrollbar-track, transparent);
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar-thumb {
-  background-color: #c5c5c5;
+  background-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
   border-radius: 5px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar-thumb:hover {
-  background-color: #a0a0a0;
+  background-color: var(--smtc-scrollbar-thumb-hover, #a0a0a0);
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar {
@@ -583,7 +583,7 @@ html.dark .oobe-background {
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--smtc-scrollbar-track, transparent);
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar-thumb {

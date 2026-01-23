@@ -439,26 +439,9 @@ html:not(.evolved) .oobe-header h1 {
 
 .country-list li.is-active {
   background: var(--smtc-background-ctrl-brand-rest, #005FB8);
-  color: var(--smtc-foreground-on-accent-primary, #ffffff);
+  color: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
 }
 
-
-/* Form controls */
-select,
-input[type=email] {
-  border: 1px solid var(--color-border-default);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font: inherit;
-  background: var(--color-input-bg);
-  color: var(--color-input-text);
-  border-bottom-color: var(--color-input-border);
-}
-
-select:focus-visible,
-input[type=email]:focus-visible {
-  outline: var(--color-focus-ring);
-}
 
 /* Utility */
 .visually-hidden {
@@ -510,10 +493,12 @@ input[type=email]:focus-visible {
 
 .wifi-item:hover {
   background-color: var(--color-wifi-item-bg-hover);
+  border-radius: var(--smtc-corner-ctrl-sm-rest, 8px);
 }
 
 .wifi-item.selected {
   background-color: var(--color-wifi-item-bg-selected);
+  border-radius: var(--smtc-corner-ctrl-sm-rest, 8px);
 }
 
 .wifi-item.selected::before {
@@ -653,58 +638,6 @@ input[type=email]:focus-visible {
   margin-top: 16px;
 }
 
-/* Style password reveal icon for theming */
-mai-text-input[type="password"] {
-  --mai-text-input-reveal-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62);
-  --mai-text-input-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62);
-  --mai-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62);
-}
-
-.dark mai-text-input[type="password"] {
-  --mai-text-input-reveal-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba);
-  --mai-text-input-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba);
-  --mai-icon-color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba);
-}
-
-/* Target the reveal button specifically */
-mai-text-input[type="password"]::part(reveal-button),
-mai-text-input[type="password"]::part(reveal),
-mai-text-input[type="password"]::part(icon),
-mai-text-input[type="password"] .reveal-password-icon,
-mai-text-input[type="password"] .reveal-icon,
-mai-text-input[type="password"] mai-icon {
-  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62) !important;
-}
-
-/* Target SVG icons directly */
-mai-text-input[type="password"]::part(reveal-button) svg,
-mai-text-input[type="password"]::part(reveal) svg,
-mai-text-input[type="password"]::part(icon) svg,
-mai-text-input[type="password"] svg,
-mai-text-input[type="password"] mai-icon svg {
-  fill: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62) !important;
-  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5a5a62) !important;
-}
-
-/* Dark theme styles */
-.dark mai-text-input[type="password"]::part(reveal-button),
-.dark mai-text-input[type="password"]::part(reveal),
-.dark mai-text-input[type="password"]::part(icon),
-.dark mai-text-input[type="password"] .reveal-password-icon,
-.dark mai-text-input[type="password"] .reveal-icon,
-.dark mai-text-input[type="password"] mai-icon {
-  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba) !important;
-}
-
-.dark mai-text-input[type="password"]::part(reveal-button) svg,
-.dark mai-text-input[type="password"]::part(reveal) svg,
-.dark mai-text-input[type="password"]::part(icon) svg,
-.dark mai-text-input[type="password"] svg,
-.dark mai-text-input[type="password"] mai-icon svg {
-  fill: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba) !important;
-  color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #b3b3ba) !important;
-}
-
 /* Loading Bar */
 .progress-bar-track {
   height: 2px;
@@ -738,13 +671,14 @@ mai-text-input[type="password"] mai-icon svg {
   flex-direction: column;
   gap: 16px;
   height: 100%;
+  min-height: 300px;
 }
 
 .eula-box {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-border-default);
-  border-radius: 4px;
+  border-radius: var(--smtc-corner-window-default);
   overflow: hidden;
   position: relative;
 }
@@ -759,6 +693,7 @@ mai-text-input[type="password"] mai-icon svg {
   border: 1px solid var(--color-border-default);
   flex: 1;
   min-height: 0;
+  margin-bottom: 4px;
 }
 
 .eula-box.microsoft::before {
@@ -816,54 +751,26 @@ mai-text-input[type="password"] mai-icon svg {
 }
 
 .device-name-note {
-  margin: 0;
+  margin: var(--smtc-spacing-s, 12px) 0 0 0;
   font-size: 14px;
   color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
-  font-weight: 500;
 }
 
 .device-name-input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: var(--smtc-background-ctrl-neutral-rest, #f5f5f5);
-  border-bottom: 1px solid var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  border-radius: 4px 4px 0 0;
-  height: 32px;
-  padding: 0 8px;
-  margin-bottom: 16px;
-  transition: background-color 0.1s, border-bottom-color 0.1s;
-}
-
-.device-name-input-wrapper:hover {
-  background-color: var(--smtc-background-ctrl-neutral-hover, #e0e0e0);
-}
-
-.device-name-input-wrapper:focus-within {
-  border-bottom: 2px solid var(--color-accent);
-  background-color: var(--smtc-background-ctrl-neutral-hover, #f0f0f0);
+  width: 100%;
 }
 
 .device-name-input {
-  border: none;
-  background: transparent;
-  outline: none;
-  flex: 1;
-  font-family: inherit;
-  font-size: 14px;
-  color: var(--color-text-primary);
-  padding: 0;
-  height: 100%;
+  display: inline;
 }
-
-
 
 .device-name-rules {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: var(--smtc-background-layer-secondary, #f7f9fc);
-  border-radius: 4px;
+  background: var(--color-wifi-item-bg-selected);
+  border-radius: var(--smtc-corner-ctrl-sm-rest);
+  padding: var(--smtc-padding-content-small, 12px);  
   font-size: 12px;
   color: var(--smtc-foreground-ctrl-neutral-secondary-rest, #585860);
   line-height: 1.5;
@@ -901,14 +808,6 @@ mai-text-input[type="password"] mai-icon svg {
   margin-top: 16px;
 }
 
-.pin-checkbox-group input[type="checkbox"] {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  min-height: 24px;
-  cursor: pointer;
-  accent-color: var(--color-toggle-bg-checked);
-}
 
 .pin-checkbox-group label {
   font-size: 14px;
@@ -1065,84 +964,6 @@ gap: 8px;
   grid-column: 2;
 }
 
-  .eula-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      height: 100%;
-      min-height: 300px;
-    }
-
-    .eula-box {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid var(--color-border-default);
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .eula-box.microsoft {
-      background: var(--color-card-bg);
-      height: 200px;
-    }
-
-    .eula-box.microsoft::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 75%;
-      width: 4px;
-      background: var(--color-block-text-focus);
-    }
-
-    .eula-box.thirdparty {
-      background: transparent;
-      border: 1px solid var(--color-border-default);
-      flex: 1;
-      min-height: 0;
-    }
-
-    .eula-title {
-      padding: 12px 16px;
-      font-weight: 600;
-      font-size: 13px;
-      color: var(--color-text-primary);
-      background: transparent;
-      border-bottom: none;
-    }
-
-    .eula-content {
-      flex: 1;
-      overflow-y: auto;
-      padding: 12px 16px;
-      font-size: 12px;
-      line-height: 1.6;
-      color: var(--color-text-secondary);
-    }
-
-    .eula-box.microsoft .eula-content {
-      background: var(--color-card-bg);
-    }
-
-    .eula-box.thirdparty .eula-content {
-      background: transparent;
-    }
-
-    .eula-content:focus {
-      outline: none;
-    }
-
-    .eula-content p {
-      margin: 0 0 10px 0;
-    }
-
-    .eula-content strong {
-      color: var(--color-text-primary);
-    }
-
 /* Info Card Styles */
 .info-cards-list {
   display: flex;
@@ -1226,6 +1047,7 @@ gap: 8px;
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom: var(--smtc-spacing-m, 16px);
 }
 
 .msa-logo svg {

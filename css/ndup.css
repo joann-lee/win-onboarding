@@ -67,10 +67,62 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   gap: 12px;
   padding: 16px 32px;
   background: var(--smtc-background-card-secondary-rest, #ffffff);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--smtc-shadow-elevation-card, 0 4px 24px rgba(0, 0, 0, 0.08));
   align-items: center;
   justify-content: center;
   text-align: center;
   border-radius: var(--smtc-corner-card-rest, 8px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Evolved theme overlay for ndup-footer - matches oobe-card-overlay styling */
+.evolved .ndup-footer.has-contained-overlay {
+  padding: 0;
+}
+
+.evolved .ndup-footer-overlay {
+  margin: 4px;
+  pointer-events: none;
+  border-radius: var(--smtc-corner-ctrl-sm-rest, 8px);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 32px;
+  box-sizing: border-box;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: calc(100% - 8px);
+}
+
+.evolved .ndup-footer-overlay * {
+  pointer-events: auto;
+}
+
+.evolved.light .ndup-footer {
+  background-color: rgba(229, 229, 229, 0.35);
+  background-image: url('/assets/noise.png');
+  background-repeat: repeat;
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(60px);
+}
+
+.evolved.light .ndup-footer-overlay {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.evolved.dark .ndup-footer {
+  background-color: rgba(46, 46, 46, 0.65);
+  background-image: url('/assets/noise.png');
+  background-repeat: repeat;
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(60px);
+}
+
+.evolved.dark .ndup-footer-overlay {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .ndup-footer-header {

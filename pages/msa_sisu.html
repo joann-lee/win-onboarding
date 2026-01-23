@@ -54,17 +54,19 @@
                 placeholder="Email, phone, or Skype"
                 aria-label="Email, phone, or Skype"
                 appearance="underline"
-                required
+                value="emailyouentered@outlook.com"
               >
               </mai-text-input>
 
               <div class="signin-links">
-                <p class="no-account">No account? <mai-link href="MSA_create.html" size="medium" style="view-transition-name: none;">Create one!</mai-link></p>
-                <mai-link href="MSA_signin_options.html" size="medium" class="signin-options" style="view-transition-name: none;">Sign-in options</mai-link>
+                <p class="no-account">No account? <mai-link href="MSA_create.html" size="medium" style="view-transition-name: none;">Create one!</mai-link> | <mai-link href="MSA_signin_options.html" size="medium" class="signin-options" style="view-transition-name: none;">Sign-in options</mai-link></p>
+                
               </div>
-              <div class="signin-info">
-                <p>When you sign in, we'll make info saved to your account available across Microsoft products so important things like your calendar info, favorites, contacts, passwords, browsing history, and recommended files are right where you need them. We'll also back up your files and photos on this device to OneDrive to help keep them safe. <mai-link href="MSA_learn_more.html" size="medium" style="view-transition-name: none;">Learn more</mai-link></p>
-                <p>Choosing <strong>Next</strong> means that you agree to the <mai-link href="#" size="medium">Microsoft Services Agreement</mai-link> and <mai-link href="#" size="medium">Privacy Statement</mai-link>.</p>
+              <div class="eula-box thirdparty">
+                <div class="eula-content" tabindex="0" role="region" aria-label="Sign-in information">
+                  <p>When you sign in, we'll make info saved to your account available across Microsoft products so important things like your calendar info, favorites, contacts, passwords, browsing history, and recommended files are right where you need them. We'll also back up your files and photos on this device to OneDrive to help keep them safe. <mai-link href="MSA_learn_more.html" size="medium" style="view-transition-name: none;">Learn more</mai-link></p>
+                  <p>Choosing <strong>Next</strong> means that you agree to the <mai-link href="#" size="medium">Microsoft Services Agreement</mai-link> and <mai-link href="#" size="medium">Privacy Statement</mai-link>.</p>
+                </div>
               </div>
             </div>
           </div>

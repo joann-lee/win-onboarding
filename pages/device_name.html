@@ -32,27 +32,26 @@
           <header class="oobe-header">
             <h1>Let's name your device</h1>
             <div class="subtitle">Make it yours with a unique name that's easy to recognize when connecting to it from other devices.</div>
-              <p class="device-name-note" id="restart-message"><strong>Your device will restart after you name it.</strong></p>
               
           </header>
           <div class="oobe-body">
             <div class="device-name-section">
          
               <div class="device-name-input-wrapper">
-                <input 
-                  type="text" 
+                <mai-text-input 
                   id="device-name-input" 
                   class="device-name-input" 
                   placeholder="Enter device name"
                   maxlength="15"
                   aria-label="Device name"
-                />
+                  autocomplete="off"
+                >Device name</mai-text-input>
               </div>
 
-              <div class="device-name-rules">
+              <!-- <div class="device-name-rules">
                 <p data-rule="numbers">Can't contain only numbers</p>
                 <p data-rule="characters">No spaces or special characters other than hyphen (-), dashes (– and —), and underscore (_)</p>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="oobe-ctas">
