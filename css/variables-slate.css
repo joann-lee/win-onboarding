@@ -3,7 +3,7 @@
 SLATE THEME - SMTC Token Overrides
 
 This file overrides Win11 SMTC design tokens to create a slate gray color theme.
-Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (light 1), #6B7280 (base), #525B68 (dark 1), #3A4150 (dark 2), #1F2530 (dark 3)
+Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (light 1), #747474 (base), #5B5A5A (dark 1), #3A3939 (dark 2), #151414 (dark 3)
 
 */
 
@@ -24,9 +24,9 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
   
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #525B68;
-  --color-accent-hover: #6B7280;
-  --color-accent-active: #3A4150;
+  --color-accent: #5B5A5A;
+  --color-accent-hover: #747474;
+  --color-accent-active: #3A3939;
   --color-bg-primary: var(--smtc-background-layer-solid, #f8f9fa);
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(196, 200, 206, 0.55), rgba(248, 249, 250, 0.85));
   --color-card-bg: #ffffff;
@@ -45,20 +45,20 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
   
   /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: #525B68;
-  --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: #6B7280;
-  --color-button-primary-bg-active: #3A4150;
+  --color-button-primary-bg: #C5C4C4;
+  --color-button-primary-text: #151414;
+  --color-button-primary-bg-hover: #E6E5E5;
+  --color-button-primary-bg-active: #8B8A8A;
   --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: #525B68;
-  --color-button-primary-border-hover: #6B7280;
+  --color-button-primary-border: #C5C4C4;
+  --color-button-primary-border-hover: #E6E5E5;
   --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
   
   /* ==================== SECONDARY BUTTON ==================== */
-  --color-button-secondary-text: #525B68;
+  --color-button-secondary-text: #3A3939;
   --color-button-secondary-bg: transparent;
-  --color-button-secondary-text-hover: #3A4150;
-  --color-button-secondary-text-active: #3A4150;
+  --color-button-secondary-text-hover: #151414;
+  --color-button-secondary-text-active: #151414;
   --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
   --color-button-secondary-bg-hover: transparent;
   --color-button-secondary-bg-focus: transparent;
@@ -67,7 +67,7 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-input-border-focus: #525B68;
+  --color-input-border-focus: #5B5A5A;
   --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
   --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
   --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
@@ -75,24 +75,24 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   /* ==================== FORM COMPONENTS ==================== */
   --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
-  --color-checkbox-bg-checked: #525B68;
-  --color-checkbox-border-checked: #525B68;
+  --color-checkbox-bg-checked: #5B5A5A;
+  --color-checkbox-border-checked: #5B5A5A;
   --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
-  --color-radio-bg-checked: #525B68;
-  --color-radio-border-checked: #525B68;
+  --color-radio-bg-checked: #5B5A5A;
+  --color-radio-border-checked: #5B5A5A;
   
   --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-toggle-bg-checked: #525B68;
+  --color-toggle-bg-checked: #5B5A5A;
   --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   /* ==================== LINKS ==================== */
-  --color-hyperlink: #6B7280;
-  --color-hyperlink-hover: #6B7280;
-  --color-hyperlink-active: #3A4150;
-  --color-block-text-focus: #6B7280;
+  --color-hyperlink: #747474;
+  --color-hyperlink-hover: #747474;
+  --color-hyperlink-active: #3A3939;
+  --color-block-text-focus: #747474;
   --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
   
   /* ==================== MESSAGE STATES ==================== */
@@ -102,51 +102,51 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
   --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
   --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-info-bg: rgba(82, 91, 104, 0.1);
-  --color-info-border: #6B7280;
+  --color-info-bg: rgba(91, 90, 90, 0.1);
+  --color-info-border: #747474;
   
   /* ==================== COMPONENT SPECIFIC ==================== */
-  --color-country-pill-bg: #525B68;
+  --color-country-pill-bg: #5B5A5A;
   --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-country-pill-bg-hover: #6B7280;
+  --color-country-pill-bg-hover: #747474;
   --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
-  --color-country-list-active-bg: #6B7280;
+  --color-country-list-active-bg: #747474;
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
   --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #525B68);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #5B5A5A);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #525B68;
-  --smtc-foreground-ctrl-brand-rest: #525B68;
-  --smtc-foreground-ctrl-brand-hover: #6B7280;
-  --smtc-foreground-ctrl-brand-pressed: #3A4150;
+  --smtc-foreground-ctrl-hint-default: #5B5A5A;
+  --smtc-foreground-ctrl-brand-rest: #5B5A5A;
+  --smtc-foreground-ctrl-brand-hover: #747474;
+  --smtc-foreground-ctrl-brand-pressed: #3A3939;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-black-light.png');
   --smtc-background-layer-solid: #f8f9fa;
   --smtc-background-card-secondary-rest: #ffffff;
-  --smtc-background-ctrl-brand-rest: #525B68;
-  --smtc-background-ctrl-brand-hover: #6B7280;
-  --smtc-background-ctrl-brand-pressed: #3A4150;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #6B7280;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #3A4150;
+  --smtc-background-ctrl-brand-rest: #5B5A5A;
+  --smtc-background-ctrl-brand-hover: #747474;
+  --smtc-background-ctrl-brand-pressed: #3A3939;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #747474;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #3A3939;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #525B68;
-  --smtc-stroke-ctrl-brand-hover: #6B7280;
-  --smtc-stroke-ctrl-brand-pressed: #3A4150;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #525B68;
+  --smtc-stroke-ctrl-brand-rest: #5B5A5A;
+  --smtc-stroke-ctrl-brand-hover: #747474;
+  --smtc-stroke-ctrl-brand-pressed: #3A3939;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #5B5A5A;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #6B7280;
+  --smtc-foreground-ctrl-hint-default: #747474;
   
   /* ==================== SCROLLBAR ==================== */
-  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #8B919B);
-  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #525B68);
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #8B8A8A);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #5B5A5A);
   --smtc-scrollbar-track: transparent;
   
   /* ==================== STATUS COLORS (keep original) ==================== */
@@ -156,11 +156,11 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
 :root.dark.slate,
 .dark.slate {
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #8B919B;
-  --color-accent-hover: #C4C8CE;
-  --color-accent-active: #6B7280;
-  --color-bg-primary: var(--smtc-background-layer-solid, #0f1114);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(58, 65, 80, 0.2), rgba(15, 17, 20, 0.6));
+  --color-accent: #8B8A8A;
+  --color-accent-hover: #C5C4C4;
+  --color-accent-active: #747474;
+  --color-bg-primary: var(--smtc-background-layer-solid, #151414);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(58, 57, 57, 0.2), rgba(21, 20, 20, 0.6));
   --color-card-bg: #1e1f22;
 
   /* ==================== TEXT COLORS ==================== */
@@ -172,43 +172,43 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
   --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
   
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #C4C8CE;
-  --smtc-foreground-ctrl-brand-rest: #C4C8CE;
-  --smtc-foreground-ctrl-brand-hover: #E4E6E9;
-  --smtc-foreground-ctrl-brand-pressed: #8B919B;
+  --smtc-foreground-ctrl-hint-default: #C5C4C4;
+  --smtc-foreground-ctrl-brand-rest: #C5C4C4;
+  --smtc-foreground-ctrl-brand-hover: #E6E5E5;
+  --smtc-foreground-ctrl-brand-pressed: #8B8A8A;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-black-dark.png');
-  --smtc-background-layer-solid: #0f1114;
+  --smtc-background-layer-solid: #151414;
   --smtc-background-card-secondary-rest: #1e1f22;
-  --smtc-background-ctrl-brand-rest: #8B919B;
-  --smtc-background-ctrl-brand-hover: #C4C8CE;
-  --smtc-background-ctrl-brand-pressed: #6B7280;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #C4C8CE;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #6B7280;
+  --smtc-background-ctrl-brand-rest: #8B8A8A;
+  --smtc-background-ctrl-brand-hover: #C5C4C4;
+  --smtc-background-ctrl-brand-pressed: #747474;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #C5C4C4;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #747474;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #8B919B;
-  --smtc-stroke-ctrl-brand-hover: #C4C8CE;
-  --smtc-stroke-ctrl-brand-pressed: #6B7280;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #8B919B;
+  --smtc-stroke-ctrl-brand-rest: #8B8A8A;
+  --smtc-stroke-ctrl-brand-hover: #C5C4C4;
+  --smtc-stroke-ctrl-brand-pressed: #747474;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #8B8A8A;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #C4C8CE;
+  --smtc-foreground-ctrl-hint-default: #C5C4C4;
   
   /* ==================== STATUS COLORS (Slate tint for info) ==================== */
-  --smtc-status-brand-tint-foreground: #C4C8CE;
-  --smtc-status-brand-tint-background: rgba(139, 145, 155, 0.1);
+  --smtc-status-brand-tint-foreground: #C5C4C4;
+  --smtc-status-brand-tint-background: rgba(139, 138, 138, 0.1);
 
   /* ==================== SCROLLBAR ==================== */
-  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #6B7280);
-  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #C4C8CE);
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #747474);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #C5C4C4);
   --smtc-scrollbar-track: transparent;
 
   /* ==================== WIFI COMPONENTS ==================== */
   --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
   --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #C4C8CE);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #C5C4C4);
 }
 
 
@@ -218,9 +218,15 @@ Uses the slate color palette: #E4E6E9 (light 3), #C4C8CE (light 2), #8B919B (lig
 }
 
 .slate .oobe-visual {
-  background: linear-gradient(180deg, rgba(248, 249, 250, 0.8), rgba(228, 230, 233, 0.8));
+  background: linear-gradient(180deg, rgba(248, 249, 250, 0.8), rgba(230, 229, 229, 0.8));
 }
 
 .dark.slate .oobe-visual {
-  background: linear-gradient(180deg, rgba(31, 37, 48, 0.8), rgba(15, 17, 20, 0.8));
+  background: linear-gradient(180deg, rgba(58, 57, 57, 0.8), rgba(21, 20, 20, 0.8));
+}
+.evolved.dark.slate .oobe-card {
+  background-color: rgba(40, 40, 40, 0.65);
+}
+.evolved.light.slate .oobe-card {
+  background-color: rgba(255, 255, 255, 0.08);
 }

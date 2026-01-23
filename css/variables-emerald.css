@@ -45,13 +45,13 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
   
   /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: #55614F;
-  --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: #55614F;
+  --color-button-primary-bg: #BBC8B2;
+  --color-button-primary-text: #131C11;
+  --color-button-primary-bg-hover: #DCE7D2;
   --color-button-primary-bg-active: #829178;
   --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: #55614F;
-  --color-button-primary-border-hover: #6d7b84;
+  --color-button-primary-border: #BBC8B2;
+  --color-button-primary-border-hover: #DCE7D2;
   --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
   
   /* ==================== SECONDARY BUTTON ==================== */

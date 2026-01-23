@@ -3,7 +3,7 @@
 DUNE THEME - SMTC Token Overrides
 
 This file overrides Win11 SMTC design tokens to create a dune color theme.
-Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (light 1), #96605F (base), #7D554A (dark 1), #5D3730 (dark 2), #371310 (dark 3)
+Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (light 1), #966D5F (base), #7D5A4E (dark 1), #5D3730 (dark 2), #371310 (dark 3)
 
 */
 
@@ -24,8 +24,8 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
   
   /* ==================== BASE COLORS ==================== */
-  --color-accent: #7D554A;
-  --color-accent-hover: #96605F;
+  --color-accent: #7D5A4E;
+  --color-accent-hover: #966D5F;
   --color-accent-active: #5D3730;
   --color-bg-primary: var(--smtc-background-layer-solid, #fdfbf8);
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(211, 188, 171, 0.55), rgba(253, 251, 248, 0.85));
@@ -45,20 +45,20 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
   
   /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: #7D554A;
-  --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: #96605F;
-  --color-button-primary-bg-active: #5D3730;
+  --color-button-primary-bg: #D3BCAB;
+  --color-button-primary-text: #371310;
+  --color-button-primary-bg-hover: #ECDCCC;
+  --color-button-primary-bg-active: #A78273;
   --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: #7D554A;
-  --color-button-primary-border-hover: #96605F;
+  --color-button-primary-border: #D3BCAB;
+  --color-button-primary-border-hover: #ECDCCC;
   --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
   
   /* ==================== SECONDARY BUTTON ==================== */
-  --color-button-secondary-text: #7D554A;
+  --color-button-secondary-text: #5D3730;
   --color-button-secondary-bg: transparent;
-  --color-button-secondary-text-hover: #5D3730;
-  --color-button-secondary-text-active: #5D3730;
+  --color-button-secondary-text-hover: #371310;
+  --color-button-secondary-text-active: #371310;
   --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
   --color-button-secondary-bg-hover: transparent;
   --color-button-secondary-bg-focus: transparent;
@@ -67,7 +67,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-input-border-focus: #7D554A;
+  --color-input-border-focus: #7D5A4E;
   --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
   --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
   --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
@@ -75,24 +75,24 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   /* ==================== FORM COMPONENTS ==================== */
   --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
-  --color-checkbox-bg-checked: #7D554A;
-  --color-checkbox-border-checked: #7D554A;
+  --color-checkbox-bg-checked: #7D5A4E;
+  --color-checkbox-border-checked: #7D5A4E;
   --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
-  --color-radio-bg-checked: #7D554A;
-  --color-radio-border-checked: #7D554A;
+  --color-radio-bg-checked: #7D5A4E;
+  --color-radio-border-checked: #7D5A4E;
   
   --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-toggle-bg-checked: #7D554A;
+  --color-toggle-bg-checked: #7D5A4E;
   --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   /* ==================== LINKS ==================== */
-  --color-hyperlink: #96605F;
-  --color-hyperlink-hover: #96605F;
+  --color-hyperlink: #966D5F;
+  --color-hyperlink-hover: #966D5F;
   --color-hyperlink-active: #5D3730;
-  --color-block-text-focus: #96605F;
+  --color-block-text-focus: #966D5F;
   --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
   
   /* ==================== MESSAGE STATES ==================== */
@@ -102,47 +102,47 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
   --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
   --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-info-bg: rgba(125, 85, 74, 0.1);
-  --color-info-border: #96605F;
+  --color-info-bg: rgba(125, 90, 78, 0.1);
+  --color-info-border: #966D5F;
   
   /* ==================== COMPONENT SPECIFIC ==================== */
-  --color-country-pill-bg: #7D554A;
+  --color-country-pill-bg: #7D5A4E;
   --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-country-pill-bg-hover: #96605F;
+  --color-country-pill-bg-hover: #966D5F;
   --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
-  --color-country-list-active-bg: #96605F;
+  --color-country-list-active-bg: #966D5F;
   --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
   --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #7D554A);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #7D5A4E);
   
   --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #7D554A;
-  --smtc-foreground-ctrl-brand-rest: #7D554A;
-  --smtc-foreground-ctrl-brand-hover: #96605F;
+  --smtc-foreground-ctrl-hint-default: #7D5A4E;
+  --smtc-foreground-ctrl-brand-rest: #7D5A4E;
+  --smtc-foreground-ctrl-brand-hover: #966D5F;
   --smtc-foreground-ctrl-brand-pressed: #5D3730;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-dune-light.png');
   --smtc-background-layer-solid: #fdfbf8;
   --smtc-background-card-secondary-rest: #ffffff;
-  --smtc-background-ctrl-brand-rest: #7D554A;
-  --smtc-background-ctrl-brand-hover: #96605F;
+  --smtc-background-ctrl-brand-rest: #7D5A4E;
+  --smtc-background-ctrl-brand-hover: #966D5F;
   --smtc-background-ctrl-brand-pressed: #5D3730;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #96605F;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #966D5F;
   --smtc-ctrl-slider-bar-foreground-filled-pressed: #5D3730;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #7D554A;
-  --smtc-stroke-ctrl-brand-hover: #96605F;
+  --smtc-stroke-ctrl-brand-rest: #7D5A4E;
+  --smtc-stroke-ctrl-brand-hover: #966D5F;
   --smtc-stroke-ctrl-brand-pressed: #5D3730;
-  --smtc-ctrl-input-bottom-line-stroke-selected: #7D554A;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #7D5A4E;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #96605F;
+  --smtc-foreground-ctrl-hint-default: #966D5F;
   
   /* ==================== SCROLLBAR ==================== */
   --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #A78273);
@@ -158,7 +158,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   /* ==================== BASE COLORS ==================== */
   --color-accent: #A78273;
   --color-accent-hover: #D3BCAB;
-  --color-accent-active: #96605F;
+  --color-accent-active: #966D5F;
   --color-bg-primary: var(--smtc-background-layer-solid, #1a1612);
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(167, 130, 115, 0.2), rgba(26, 22, 18, 0.6));
   --color-card-bg: #1e1f22;
@@ -175,7 +175,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-foreground-ctrl-hint-default: #A78273;
   --smtc-foreground-ctrl-brand-rest: #A78273;
   --smtc-foreground-ctrl-brand-hover: #D3BCAB;
-  --smtc-foreground-ctrl-brand-pressed: #96605F;
+  --smtc-foreground-ctrl-brand-pressed: #966D5F;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-dune-dark.png');
@@ -183,14 +183,14 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #A78273;
   --smtc-background-ctrl-brand-hover: #D3BCAB;
-  --smtc-background-ctrl-brand-pressed: #96605F;
+  --smtc-background-ctrl-brand-pressed: #966D5F;
   --smtc-ctrl-slider-bar-foreground-filled-hover: #D3BCAB;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #96605F;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #966D5F;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #A78273;
   --smtc-stroke-ctrl-brand-hover: #D3BCAB;
-  --smtc-stroke-ctrl-brand-pressed: #96605F;
+  --smtc-stroke-ctrl-brand-pressed: #966D5F;
   --smtc-ctrl-input-bottom-line-stroke-selected: #A78273;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -201,7 +201,7 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
   --smtc-status-brand-tint-background: rgba(167, 130, 115, 0.1);
 
   /* ==================== SCROLLBAR ==================== */
-  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #96605F);
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #966D5F);
   --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #D3BCAB);
   --smtc-scrollbar-track: transparent;
 
@@ -223,4 +223,10 @@ Uses the dune color palette: #ECDCCC (light 3), #D3BCAB (light 2), #A78273 (ligh
 
 .dark.dune .oobe-visual {
   background: linear-gradient(180deg, rgba(55, 19, 16, 0.8), rgba(26, 22, 18, 0.8));
+}
+.evolved.dark.dune .oobe-card {
+  background-color: rgba(42, 40, 38, 0.65);
+}
+.evolved.light.dune .oobe-card {
+  background-color: rgba(255, 255, 255, 0.08);
 }
