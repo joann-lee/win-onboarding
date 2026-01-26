@@ -11,7 +11,7 @@
     { id: 'boot', file: 'boot.html', label: 'Boot', type: 'scanner', children: [], restartAfter: false },
     { id: 'language', file: 'language.html', label: 'Language', type: 'interactive', children: [], restartAfter: false },
     { id: 'region', file: 'region.html', label: 'Region', type: 'interactive', children: [], restartAfter: false },
-    { id: 'keyboard', file: 'keyboard.html', label: 'Keyboard', type: 'interactive', children: ["keyboard_0.html", "keyboard_1.html", "keyboard_2.html"], restartAfter: false },
+    { id: 'keyboard', file: 'keyboard.html', label: 'Keyboard', type: 'interactive', children: [], restartAfter: false },
     { id: 'wifi', file: 'wifi.html', label: 'Wi-Fi', type: 'interactive', children: [], restartAfter: false },
     { id: 'zdp', file: 'zdp.html', label: 'ZDP', type: 'scanner', children: [], restartAfter: true },
     { id: 'eula', file: 'eula.html', label: 'End User License Agreement (EULA)', type: 'interactive', children: [], restartAfter: false },

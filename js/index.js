@@ -60,7 +60,16 @@ function renderFlow() {
     labelContainer.style.gap = '8px';
     labelContainer.style.flex = '1';
     
-    const label = document.createElement('span'); label.className = 'label'; label.textContent = pageLabel; label.style.opacity = show ? '1' : '.45';
+    const label = document.createElement('a');
+    label.className = 'label';
+    label.textContent = pageLabel;
+    label.href = '/' + mapIdToFile(id);
+    label.style.opacity = show ? '1' : '.45';
+    label.style.textDecoration = 'none';
+    label.style.color = 'inherit';
+    label.addEventListener('mouseenter', () => { label.style.textDecoration = 'underline'; });
+    label.addEventListener('mouseleave', () => { label.style.textDecoration = 'none'; });
+    label.addEventListener('click', (e) => { e.stopPropagation(); });
     labelContainer.appendChild(label);
     
     // Add scanner badge if applicable

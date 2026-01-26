@@ -3,6 +3,47 @@
 // Debug Configuration - Set to true to enable debugging features
 const OOBE_DEBUG_ENABLED = false;
 
+// Electron IPC: Handle system resume events (e.g., wake from sleep)
+(function initElectronResumeHandler() {
+  // Check if running in Electron environment
+  if (typeof require !== 'undefined') {
+    try {
+      const { ipcRenderer } = require('electron');
+      
+      ipcRenderer.on('system-resumed', () => {
+        console.log('Received system-resumed event in renderer');
+        
+        // Lightweight refresh actions:
+        // - Reset any animations that may have stalled
+        const animations = document.querySelectorAll('.lottie-container');
+        animations.forEach(anim => {
+          if (anim._lottieInstance) {
+            anim._lottieInstance.goToAndPlay(0);
+          }
+        });
+        
+        // - Re-apply theme to ensure visual consistency
+        const currentMode = localStorage.getItem('themeMode') || 'light';
+        const currentPalette = localStorage.getItem('themePalette') || 'standard';
+        if (window.applyThemeMode) {
+          window.applyThemeMode(currentMode, currentPalette);
+        }
+        
+        // - Dispatch custom event for other components to listen to
+        window.dispatchEvent(new CustomEvent('oobe-system-resumed'));
+        
+        // Uncomment below for a full page refresh if needed:
+        // location.reload();
+      });
+      
+      console.log('Electron system-resume handler initialized');
+    } catch (e) {
+      // Not running in Electron or ipcRenderer not available
+      console.log('Not running in Electron environment, skipping resume handler');
+    }
+  }
+})();
+
 // Custom Right-Click Context Menu
 (function initContextMenu() {
   // Create context menu HTML
@@ -1884,13 +1925,11 @@ function updatePaletteMenuSelection() {
         const body = document.body;
         
         root.classList.add('theme-transitioning');
-        root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
-        body.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+        root.classList.remove('standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald');
+        body.classList.remove('standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald');
         
-        if (palette !== 'standard') {
-          root.classList.add(palette);
-          body.classList.add(palette);
-        }
+        root.classList.add(palette);
+        body.classList.add(palette);
         
         localStorage.setItem('themePalette', palette);
         

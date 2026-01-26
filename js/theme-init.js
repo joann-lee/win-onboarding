@@ -30,12 +30,8 @@
   }
   
   // Apply all theme classes immediately to prevent flash
-  root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'win11', 'evolved');
-  root.classList.add(savedCssStyle, savedMode);
-  
-  if (savedPalette !== 'standard') {
-    root.classList.add(savedPalette);
-  }
+  root.classList.remove('dark', 'light', 'standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'win11', 'evolved');
+  root.classList.add(savedCssStyle, savedMode, savedPalette);
   
   // Critical CSS variables for each palette (button backgrounds)
   var paletteColors = {

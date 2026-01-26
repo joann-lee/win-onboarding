@@ -34,33 +34,28 @@
           </header>
           <div class="oobe-body">
             <div class="msa-signin-container">
-              <div class="msa-logo">
-                <img src="/assets/visuals/msft-standard-light.svg" 
-                     class="msft-logo standard-logo light-logo" 
-                     alt="Microsoft" />
-                <img src="/assets/visuals/msft-standard-dark.svg" 
-                     class="msft-logo standard-logo dark-logo" 
-                     alt="Microsoft" />
-                <img src="/assets/visuals/msft-themed-light.svg" 
-                     class="msft-logo themed-logo light-logo" 
-                     alt="Microsoft" />
-                <img src="/assets/visuals/msft-themed-dark.svg" 
-                     class="msft-logo themed-logo dark-logo" 
-                     alt="Microsoft" />
-              </div>
-              <h2 class="signin-heading">Sign in</h2>
-              <mai-text-input
-                id="msa-email-input"
-                placeholder="Email, phone, or Skype"
-                aria-label="Email, phone, or Skype"
-                appearance="underline"
-                value="emailyouentered@outlook.com"
-              >
-              </mai-text-input>
+              <div class="msa-signin-form-wrapper">
+                <div class="msa-logo">
+                  <img src="/assets/visuals/msft-standard-light.svg" 
+                       class="msft-logo light-logo" 
+                       alt="Microsoft" />
+                  <img src="/assets/visuals/msft-standard-dark.svg" 
+                       class="msft-logo dark-logo" 
+                       alt="Microsoft" />
+                </div>
+                <h2 class="signin-heading">Sign in</h2>
+                <mai-text-input
+                  id="msa-email-input"
+                  placeholder="Email, phone, or Skype"
+                  aria-label="Email, phone, or Skype"
+                  appearance="underline"
+                  value="emailyouentered@outlook.com"
+                >
+                </mai-text-input>
 
-              <div class="signin-links">
-                <p class="no-account">No account? <mai-link href="MSA_create.html" size="medium" style="view-transition-name: none;">Create one!</mai-link> | <mai-link href="MSA_signin_options.html" size="medium" class="signin-options" style="view-transition-name: none;">Sign-in options</mai-link></p>
-                
+                <div class="signin-links">
+                  <p class="no-account">No account? <mai-link href="MSA_create.html" size="medium" style="view-transition-name: none;">Create one!</mai-link> | <mai-link href="MSA_signin_options.html" size="medium" class="signin-options" style="view-transition-name: none;">Sign-in options</mai-link></p>
+                </div>
               </div>
               <div class="eula-box thirdparty">
                 <div class="eula-content" tabindex="0" role="region" aria-label="Sign-in information">

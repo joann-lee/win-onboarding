@@ -472,6 +472,7 @@ html:not(.evolved) .oobe-header h1 {
   display: flex;
   flex-direction: column;
   padding: 0;
+  margin-bottom: 4px;
   cursor: pointer;
   transition: background-color 0.1s;
   border-radius: 4px;
@@ -714,8 +715,8 @@ html:not(.evolved) .oobe-header h1 {
   font-size: 12px;
   line-height: 1.6;
   color: var(--color-text-secondary);
-  min-height: 200px;
-  max-height: 400px; /* Ensure scrolling when content exceeds height */
+  min-height: 0;
+  height: 100%;
 }
 
 .eula-box.microsoft .eula-content {
@@ -738,7 +739,9 @@ html:not(.evolved) .oobe-header h1 {
   color: var(--color-text-primary);
 }
 
-.oobe-body {
+body[data-page-id="eula"] .oobe-body {
+  flex: 1;
+  min-height: 0;
   margin-bottom: 24px;
 }
 
@@ -984,6 +987,12 @@ gap: 8px;
   scrollbar-color: var(--smtc-stroke-ctrl-neutral-border-rest, #c5c5c5) transparent;
 }
 
+/* MSA Info page - make info-cards-list fill remaining height */
+body[data-page-id="msa_info"] .info-cards-list {
+  flex: 1;
+  max-height: none;
+}
+
 .info-card {
   display: flex;
   align-items: flex-start;
@@ -1037,6 +1046,20 @@ gap: 8px;
   flex-direction: column;
   gap: 8px;
   margin-top: 48px;
+  flex: 1;
+}
+
+.msa-signin-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.msa-signin-container .eula-box {
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 .oobe-header .subtitle ~ .oobe-body .msa-signin-container {
@@ -1992,52 +2015,27 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
   width: auto;
 }
 
-/* Standard theme in light mode: show standard light logo only */
-.standard.light .standard-logo.light-logo,
-html.standard.light .standard-logo.light-logo {
+/* Light mode: show light logo */
+.light .light-logo,
+html.light .light-logo {
   display: block;
 }
 
-/* Standard theme in dark mode: show standard dark logo only */
-.standard.dark .standard-logo.dark-logo,
-html.standard.dark .standard-logo.dark-logo {
+/* Dark mode: show dark logo */
+.dark .dark-logo,
+html.dark .dark-logo {
   display: block;
 }
 
-/* Themed palettes (violet, dune, sapphire) in light mode */
-.violet.light .themed-logo.light-logo,
-.dune.light .themed-logo.light-logo,
-.sapphire.light .themed-logo.light-logo,
-html.violet.light .themed-logo.light-logo,
-html.dune.light .themed-logo.light-logo,
-html.sapphire.light .themed-logo.light-logo {
+/* Evolved theme: always show dark logo regardless of light/dark mode */
+.evolved .dark-logo,
+html.evolved .dark-logo {
   display: block;
 }
 
-/* Themed palettes (violet, dune, sapphire) in dark mode */
-.violet.dark .themed-logo.dark-logo,
-.dune.dark .themed-logo.dark-logo,
-.sapphire.dark .themed-logo.dark-logo,
-html.violet.dark .themed-logo.dark-logo,
-html.dune.dark .themed-logo.dark-logo,
-html.sapphire.dark .themed-logo.dark-logo {
-  display: block;
-}
-
-/* Evolved theme: always show white/dark logo regardless of light/dark mode */
-.evolved .standard-logo.dark-logo,
-html.evolved .standard-logo.dark-logo {
-  display: block;
-}
-
-/* Hide all other logos in evolved */
-.evolved .standard-logo.light-logo,
-.evolved .themed-logo,
-html.evolved .standard-logo.light-logo,
-html.evolved .themed-logo {
+.evolved .light-logo,
+html.evolved .light-logo {
   display: none !important;
-}
-  --dark-display: none;
 }
 
 .backup-device-card {
