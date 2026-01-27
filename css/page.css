@@ -1045,21 +1045,26 @@ body[data-page-id="msa_info"] .info-cards-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 48px;
+  margin-top: 16px;
   flex: 1;
 }
 
 .msa-signin-form-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   flex: 1;
   justify-content: center;
-  background: var(--color-card-bg, var(--smtc-background-layer-solid));
+  background: var(--smtc-background-layer-solid);
   border-radius: var(--smtc-corner-window-default, 8px);
-  padding: 24px;
+  padding: 24px 24px 8px;
 }
-
+.msa-signin-form-wrapper mai-text-input {
+  display:inline; 
+}
+.signin-links{
+  margin-top:16px;
+}
 .msa-signin-container .eula-box {
   flex-shrink: 0;
   margin-top: auto;
@@ -1098,7 +1103,7 @@ body[data-page-id="msa_sisu"] .eula-box.thirdparty .eula-content {
 }
 
 .signin-heading {
-  font-size: 28px;
+  font-size: var(--smtc-text-global-subtitle1-font-size);
   font-weight: 600;
   color: var(--color-text-primary);
   margin: 0;
@@ -1118,51 +1123,6 @@ body[data-page-id="msa_sisu"] .eula-box.thirdparty .eula-content {
   gap: 12px;
 }
 
-.signin-input {
-  width: 100%;
-  padding: 12px 0;
-  border: none;
-  border-bottom: 1px solid var(--color-border-input);
-  font-size: var(--smtc-text-ramp-subsection-header-font-size, 16px);
-  color: var(--color-text-primary);
-  background: transparent;
-  font-family: inherit;
-  transition: border-bottom-color 0.1s;
-}
-
-.signin-input::placeholder {
-  color: var(--color-input-placeholder);
-}
-
-.signin-input:focus {
-  outline: none;
-  border-bottom: 2px solid var(--color-accent);
-}
-
-.signin-clear {
-  position: absolute;
-  right: 0;
-  bottom: 12px;
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: var(--color-text-error);
-  cursor: pointer;
-  padding: 4px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.7;
-  transition: opacity 0.15s;
-}
-
-.signin-clear:hover {
-  opacity: 1;
-  color: var(--color-text-error);
- border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
 
 .signin-option-card:hover {
   border-color: var(--color-toggle-bg-checked);

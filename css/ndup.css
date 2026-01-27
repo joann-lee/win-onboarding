@@ -1,8 +1,8 @@
 :root{
     --ndup-footer-height: 165px;
     --ndup-footer-gap: 21px;
-    --oobe-main-height-ndup:802px;
-    --oobe-card-height-ndup:calc(var(--oobe-main-height-ndup) - var(--ndup-footer-height) - var(--ndup-footer-gap));
+    --oobe-main-height-ndup: 802px;
+    --oobe-card-height-ndup: calc(var(--oobe-main-height-ndup) - var(--ndup-footer-height) - var(--ndup-footer-gap));
 }
 
 /* NDUP Page Styles */
@@ -13,6 +13,7 @@ body[data-page-id="ndup_0"] .oobe-main {
   max-width: none;
   height: var(--oobe-main-height-ndup);
   display: flex;
+  flex-direction: column;
   gap: var(--ndup-footer-gap);
 }
 
@@ -95,6 +96,35 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   justify-content: center;
   text-align: center;
   height: calc(100% - 8px);
+  width: calc(100% - 8px);
+}
+
+/* Evolved theme: Full-size footer matching oobe-card dimensions */
+.evolved body[data-page-id="ndup"] .ndup-footer,
+.evolved body[data-page-id="ndup_0"] .ndup-footer,
+body.evolved[data-page-id="ndup"] .ndup-footer,
+body.evolved[data-page-id="ndup_0"] .ndup-footer {
+  height: var(--color-card-height, 750px);
+  max-height: var(--color-card-height, 750px);
+  min-height: 480px;
+  width: 100%;
+  max-width: 600px;
+  padding: 0;
+}
+
+.evolved body[data-page-id="ndup"] .ndup-footer-overlay,
+.evolved body[data-page-id="ndup_0"] .ndup-footer-overlay,
+body.evolved[data-page-id="ndup"] .ndup-footer-overlay,
+body.evolved[data-page-id="ndup_0"] .ndup-footer-overlay {
+  padding: 40px 44px;
+}
+
+/* Evolved theme: Hide upper carousel section on ndup and ndup_0 */
+.evolved body[data-page-id="ndup"] .oobe-card:not(.ndup-footer),
+.evolved body[data-page-id="ndup_0"] .oobe-card:not(.ndup-footer),
+body.evolved[data-page-id="ndup"] .oobe-card:not(.ndup-footer),
+body.evolved[data-page-id="ndup_0"] .oobe-card:not(.ndup-footer) {
+  display: none;
 }
 
 .evolved .ndup-footer-overlay * {
@@ -174,9 +204,12 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
     opacity: 0.7;
   }
 }
+
+/* Win11: Upper card height for two-card layout */
 .oobe-card:not(.ndup-footer) {
   height: var(--oobe-card-height-ndup);
 }
+
 .ndup-carousel {
   display: flex;
   flex-direction: column;

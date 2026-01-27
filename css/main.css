@@ -185,6 +185,12 @@ body.dark{
   background-color: #0a0a0a;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
+  margin: 0;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -346,7 +352,8 @@ html.dark .oobe-background {
   display: flex;
   justify-content: flex-end;
   gap: var(--space-m);
-  margin-top: var(--space-l);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
 }
 
 .button-primary,

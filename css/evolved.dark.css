@@ -216,7 +216,7 @@
 
 .evolved.dark .oobe-card::before,
 .evolved.dark .oobe-card-overlay {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .evolved.dark .oobe-card .oobe-content,

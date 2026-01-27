@@ -150,11 +150,11 @@
   --smtc-corner-flyout-rest: 12px;
   --smtc-corner-layer-default: 12px;
   --smtc-corner-layer-intersection: 0px;
-  --smtc-corner-card-rest: 12px;
+  --smtc-corner-card-rest: 20px;
   --smtc-corner-image-on-page: 12px;
   --smtc-corner-image-in-card: 12px;
   --smtc-corner-ctrl-rest: 12px;
-  --smtc-corner-ctrl-sm-rest: 8px;
+  --smtc-corner-ctrl-sm-rest: 16px;
   --smtc-corner-ctrl-sm-pressed: 12px;
   --smtc-corner-ctrl-lg-rest: 12px;
   --smtc-corner-ctrl-lg-pressed: 12px;

@@ -3,7 +3,7 @@
 STANDARD THEME - SMTC Token Overrides
 
 This file overrides Win11 SMTC design tokens to create the standard (default) color theme.
-Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #005fa8 (pressed)
+Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399E5 (light 1), #0078D4 (base), #005A9E (dark 1), #004578 (dark 2), #002D4D (dark 3)
 
 */
 
@@ -23,17 +23,13 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   /* ==================== TRANSITIONS ==================== */
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
   
-
-  /* THEMES: Design tokens that change per color theme */
-  /* Light theme (default) colors defined below */
-  
   /* ==================== BASE COLORS ==================== */
-  --color-accent: var(--smtc-foreground-ctrl-hint-default, #005FB8);
-  --color-accent-hover: var(--smtc-ctrl-slider-bar-foreground-filled-hover, #006cbe);
-  --color-accent-active: var(--smtc-ctrl-slider-bar-foreground-filled-pressed, #005fa8);
+  --color-accent: #005A9E;
+  --color-accent-hover: #0078D4;
+  --color-accent-active: #004578;
   --color-bg-primary: var(--smtc-background-layer-solid, #f3f7fb);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(180, 208, 240, 0.55), rgba(240, 245, 250, 0.85));
-  --color-card-bg: #ffffff;
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(153, 201, 239, 0.55), rgba(243, 247, 251, 0.85));
+  --color-card-bg: rgba(255, 255, 255, 0.9);
   
   /* ==================== TEXT COLORS ==================== */
   --color-text-primary: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
@@ -49,20 +45,20 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
   
   /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: var(--smtc-background-ctrl-brand-rest, #005FB8);
+  --color-button-primary-bg: #005A9E;
   --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: var(--smtc-background-ctrl-brand-hover, #006cbe);
-  --color-button-primary-bg-active: var(--smtc-background-ctrl-brand-pressed, #005fa8);
+  --color-button-primary-bg-hover: #0078D4;
+  --color-button-primary-bg-active: #004578;
   --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: var(--smtc-stroke-ctrl-brand-rest, #005FB8);
-  --color-button-primary-border-hover: var(--smtc-stroke-ctrl-brand-hover, #006cbe);
+  --color-button-primary-border: #005A9E;
+  --color-button-primary-border-hover: #0078D4;
   --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
   
   /* ==================== SECONDARY BUTTON ==================== */
-  --color-button-secondary-text: var(--smtc-foreground-ctrl-brand-rest, #005FB8);
+  --color-button-secondary-text: #005A9E;
   --color-button-secondary-bg: transparent;
-  --color-button-secondary-text-hover: var(--smtc-foreground-ctrl-brand-pressed, #005fa8);
-  --color-button-secondary-text-active: var(--smtc-foreground-ctrl-brand-pressed, #005fa8);
+  --color-button-secondary-text-hover: #004578;
+  --color-button-secondary-text-active: #004578;
   --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
   --color-button-secondary-bg-hover: transparent;
   --color-button-secondary-bg-focus: transparent;
@@ -71,7 +67,7 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-input-border-focus: var(--smtc-stroke-ctrl-brand-rest, #005FB8);
+  --color-input-border-focus: #005A9E;
   --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
   --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
   --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
@@ -79,24 +75,24 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   /* ==================== FORM COMPONENTS ==================== */
   --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
-  --color-checkbox-bg-checked: var(--smtc-background-ctrl-brand-rest, #005FB8);
-  --color-checkbox-border-checked: var(--smtc-stroke-ctrl-brand-rest, #005FB8);
+  --color-checkbox-bg-checked: #005A9E;
+  --color-checkbox-border-checked: #005A9E;
   --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
   --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
-  --color-radio-bg-checked: var(--smtc-background-ctrl-brand-rest, #005FB8);
-  --color-radio-border-checked: var(--smtc-stroke-ctrl-brand-rest, #005FB8);
+  --color-radio-bg-checked: #005A9E;
+  --color-radio-border-checked: #005A9E;
   
   --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-toggle-bg-checked: var(--smtc-background-ctrl-brand-rest, #0078d4);
+  --color-toggle-bg-checked: #005A9E;
   --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
   
   /* ==================== LINKS ==================== */
-  --color-hyperlink: var(--smtc-foreground-ctrl-hint-default, #0078d4);
-  --color-hyperlink-hover: var(--smtc-foreground-ctrl-hint-default, #0078d4);
-  --color-hyperlink-active: var(--smtc-foreground-ctrl-brand-pressed, #005a9e);
-  --color-block-text-focus: var(--smtc-foreground-ctrl-hint-default, #0078d4);
+  --color-hyperlink: #0078D4;
+  --color-hyperlink-hover: #0078D4;
+  --color-hyperlink-active: #004578;
+  --color-block-text-focus: #0078D4;
   --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
   
   /* ==================== MESSAGE STATES ==================== */
@@ -106,36 +102,63 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
   --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
   --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-info-bg: var(--smtc-status-brand-tint-background, rgba(64, 144, 255, 0.1));
-  --color-info-border: var(--smtc-status-brand-tint-foreground, #4090ff);
+  --color-info-bg: rgba(0, 90, 158, 0.1);
+  --color-info-border: #0078D4;
+  
+  /* ==================== COMPONENT SPECIFIC ==================== */
+  --color-country-pill-bg: #005A9E;
+  --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  --color-country-pill-bg-hover: #0078D4;
+  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
+  --color-country-list-active-bg: #0078D4;
+  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  
+  --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
+  --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #005A9E);
+  
+  --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #005A9E;
+  --smtc-foreground-ctrl-brand-rest: #005A9E;
+  --smtc-foreground-ctrl-brand-hover: #0078D4;
+  --smtc-foreground-ctrl-brand-pressed: #004578;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-standard-light.jpg');
-
-  /* ==================== COMPONENT SPECIFIC ==================== */
-  --color-country-pill-bg: var(--smtc-background-ctrl-brand-rest, #0557b2);
-  --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-country-pill-bg-hover: var(--smtc-background-ctrl-brand-hover, #3385ff);
-  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
-  --color-country-list-active-bg: var(--smtc-background-ctrl-brand-hover, #006cbe);
-  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  --smtc-background-layer-solid: rgba(255, 255, 255, 0.4);
+  --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
+  --smtc-background-ctrl-brand-rest: #005A9E;
+  --smtc-background-ctrl-brand-hover: #0078D4;
+  --smtc-background-ctrl-brand-pressed: #004578;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #0078D4;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #004578;
   
-  --color-wifi-item-bg-selected: var(--smtc-background-ctrl-subtle-rest, rgba(240, 244, 248, 0.8));
-  --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(255, 255, 255, 0.5));
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #005FB8);
-  
-  --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #005A9E;
+  --smtc-stroke-ctrl-brand-hover: #0078D4;
+  --smtc-stroke-ctrl-brand-pressed: #004578;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #005A9E;
   
   /* ==================== SCROLLBAR ==================== */
-  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #c5c5c5);
-  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #a0a0a0);
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #99C9EF);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #005A9E);
   --smtc-scrollbar-track: transparent;
+  
+  /* ==================== STATUS COLORS (keep original) ==================== */
+  /* Error, warning, success colors remain unchanged */
 }
 
 :root.dark.standard,
 .dark.standard {
-  /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/background-standard-dark.png');
+  /* ==================== BASE COLORS ==================== */
+  --color-accent: #3399E5;
+  --color-accent-hover: #99C9EF;
+  --color-accent-active: #0078D4;
+  --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(51, 153, 229, 0.2), rgba(15, 17, 19, 0.6));
+  --color-card-bg: #1e1f22;
 
   /* ==================== TEXT COLORS ==================== */
   --smtc-foreground-content-neutral-primary: #ffffff;
@@ -145,32 +168,53 @@ Uses the standard blue color palette: #005FB8 (primary blue), #006cbe (hover), #
   /* ==================== BORDER & STROKE COLORS ==================== */
   --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
   
-  /* ==================== BASE COLORS ==================== */
-  --color-accent: var(--smtc-foreground-ctrl-hint-default, #4090ff);
-  --color-accent-hover: var(--smtc-foreground-ctrl-brand-hover, #5ca3ff);
-  --color-accent-active: var(--smtc-foreground-ctrl-brand-pressed, #3385ff);
-  --color-bg-primary: var(--smtc-background-layer-solid, #0f1113);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(64, 144, 255, 0.2), rgba(15, 17, 19, 0.6));
-  --color-card-bg: #1e1f22;
+  /* ==================== BRAND & ACCENT COLORS ==================== */
+  --smtc-foreground-ctrl-hint-default: #3399E5;
+  --smtc-foreground-ctrl-brand-rest: #3399E5;
+  --smtc-foreground-ctrl-brand-hover: #99C9EF;
+  --smtc-foreground-ctrl-brand-pressed: #0078D4;
   
+  /* ==================== BACKGROUNDS ==================== */
+  --background-image: url('/assets/wallpaper/background-standard-dark.png');
+  --smtc-background-layer-solid: #0f1113;
+  --smtc-background-card-secondary-rest: #1e1f22;
+  --smtc-background-ctrl-brand-rest: #3399E5;
+  --smtc-background-ctrl-brand-hover: #99C9EF;
+  --smtc-background-ctrl-brand-pressed: #0078D4;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #99C9EF;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #0078D4;
+  
+  /* ==================== STROKES & BORDERS ==================== */
+  --smtc-stroke-ctrl-brand-rest: #3399E5;
+  --smtc-stroke-ctrl-brand-hover: #99C9EF;
+  --smtc-stroke-ctrl-brand-pressed: #0078D4;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #3399E5;
+  
+  /* ==================== STATUS COLORS (Standard tint for info) ==================== */
+  --smtc-status-brand-tint-foreground: #3399E5;
+  --smtc-status-brand-tint-background: rgba(51, 153, 229, 0.1);
+
   /* ==================== SCROLLBAR ==================== */
-  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #5c5c5c);
-  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #8a8a8a);
+  --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #0078D4);
+  --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #99C9EF);
   --smtc-scrollbar-track: transparent;
 
   /* ==================== WIFI COMPONENTS ==================== */
-  --color-wifi-item-bg-selected: var(--smtc-background-ctrl-subtle-rest, rgba(40, 42, 46, 0.8));
-  --color-wifi-item-bg-hover: var(--smtc-background-card-secondary-hover, rgba(30, 31, 34, 0.5));
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #4090ff);
+  --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
+  --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #3399E5);
 }
+
 
 /* ==================== VISUAL EFFECTS & FILTERS ==================== */
-.standard .oobe-visual,
-.oobe-visual {
-  background: linear-gradient(180deg, rgba(245, 249, 252, 0.8), rgba(237, 242, 247, 0.8));
+.standard #lottie {
+  filter: none;
 }
 
-.dark.standard .oobe-visual,
-.dark .oobe-visual {
-  background: linear-gradient(180deg, rgba(15, 17, 19, 0.8), rgba(30, 31, 34, 0.8));
+.standard .oobe-visual {
+  background: linear-gradient(180deg, rgba(243, 247, 251, 0.8), rgba(204, 228, 247, 0.8));
+}
+
+.dark.standard .oobe-visual {
+  background: linear-gradient(180deg, rgba(0, 45, 77, 0.8), rgba(15, 17, 19, 0.8));
 }
