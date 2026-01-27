@@ -99,6 +99,15 @@ body[data-page-id="ndup_0"] .oobe-below-actions {
   width: calc(100% - 8px);
 }
 
+/* Evolved theme: Narrow the NDUP layout to match other oobe-card widths */
+.evolved body[data-page-id="ndup"] .oobe-main,
+.evolved body[data-page-id="ndup_0"] .oobe-main,
+body.evolved[data-page-id="ndup"] .oobe-main,
+body.evolved[data-page-id="ndup_0"] .oobe-main {
+  width: auto;
+  max-width: 600px;
+}
+
 /* Evolved theme: Full-size footer matching oobe-card dimensions */
 .evolved body[data-page-id="ndup"] .ndup-footer,
 .evolved body[data-page-id="ndup_0"] .ndup-footer,
@@ -117,6 +126,20 @@ body.evolved[data-page-id="ndup_0"] .ndup-footer {
 body.evolved[data-page-id="ndup"] .ndup-footer-overlay,
 body.evolved[data-page-id="ndup_0"] .ndup-footer-overlay {
   padding: 40px 44px;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Evolved theme: Position cancel link at bottom like oobe-ctas */
+.evolved body[data-page-id="ndup"] .ndup-cancel-link,
+.evolved body[data-page-id="ndup_0"] .ndup-cancel-link,
+body.evolved[data-page-id="ndup"] .ndup-cancel-link,
+body.evolved[data-page-id="ndup_0"] .ndup-cancel-link {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Evolved theme: Hide upper carousel section on ndup and ndup_0 */
