@@ -428,7 +428,7 @@ html:not(.evolved) .oobe-header h1 {
   padding: 20px 20px;
   font-size: var(--smtc-text-global-body2-font-size, 14px);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--smtc-corner-ctrl-rest, 4px);
   color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
   /* transition: background .15s, color .15s; */
 }
@@ -984,7 +984,7 @@ gap: 8px;
 
 .info-cards-list[data-scrollbar-visible="true"] {
   scrollbar-width: thin;
-  scrollbar-color: var(--smtc-stroke-ctrl-neutral-border-rest, #c5c5c5) transparent;
+  scrollbar-color: var(--color-scrollbar-thumb, var(--smtc-stroke-ctrl-neutral-border-rest, #c5c5c5)) var(--color-scrollbar-track, transparent);
 }
 
 /* MSA Info page - make info-cards-list fill remaining height */
@@ -1055,11 +1055,23 @@ body[data-page-id="msa_info"] .info-cards-list {
   gap: 8px;
   flex: 1;
   justify-content: center;
+  background: var(--color-card-bg, var(--smtc-background-layer-solid));
+  border-radius: var(--smtc-corner-window-default, 8px);
+  padding: 24px;
 }
 
 .msa-signin-container .eula-box {
   flex-shrink: 0;
   margin-top: auto;
+}
+
+body[data-page-id="msa_sisu"] .eula-box.thirdparty {
+  flex: none;
+}
+
+body[data-page-id="msa_sisu"] .eula-box.thirdparty .eula-content {
+  flex: none;
+  height: auto;
 }
 
 .oobe-header .subtitle ~ .oobe-body .msa-signin-container {
@@ -1578,12 +1590,12 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-track {
 }
 
 body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb {
-  background: var(--color-border-default);
+  background: var(--color-scrollbar-thumb, var(--color-border-default));
   border-radius: 4px;
 }
 
 body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover {
-  background: var(--smtc-background-ctrl-neutral-hover, #a0a0a0);
+  background: var(--color-scrollbar-thumb-hover, var(--smtc-background-ctrl-neutral-hover, #a0a0a0));
 }
 
 .privacy-settings-container {
@@ -2020,22 +2032,19 @@ body[data-page-id="privacy_settings"] .oobe-body::-webkit-scrollbar-thumb:hover 
 html.light .light-logo {
   display: block;
 }
+.light .dark-logo,
+html.light .dark-logo {
+  display: none;
+}
 
 /* Dark mode: show dark logo */
 .dark .dark-logo,
 html.dark .dark-logo {
   display: block;
 }
-
-/* Evolved theme: always show dark logo regardless of light/dark mode */
-.evolved .dark-logo,
-html.evolved .dark-logo {
-  display: block;
-}
-
-.evolved .light-logo,
-html.evolved .light-logo {
-  display: none !important;
+.dark .dark-logo,
+html.dark .light-logo {
+  display: none;
 }
 
 .backup-device-card {
