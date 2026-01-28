@@ -463,9 +463,7 @@ html:not(.evolved) .oobe-header h1 {
   flex: 1;
   overflow-y: auto;
   border: 1px solid transparent;
-  min-height: 0;
-  max-height: 400px; /* Ensure scrolling when content exceeds height */
-  /* Placeholder for focus */
+
 }
 
 .wifi-item {
@@ -664,6 +662,11 @@ html:not(.evolved) .oobe-header h1 {
   100% {
     left: 100%;
   }
+}
+
+
+.troubleshoot-link{
+    padding-top: 8px;
 }
 
 /* EULA Page Styles */
