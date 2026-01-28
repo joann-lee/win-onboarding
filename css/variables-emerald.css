@@ -28,7 +28,7 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --color-accent-hover: #374032;
   --color-accent-active: #55614F;
   --color-bg-primary: var(--smtc-background-layer-solid, #f7fbf9);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(168, 223, 201, 0.25), rgba(247, 251, 249, 0.85));
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(168, 223, 201, 0.55), rgba(247, 251, 249, 0.85));
   --color-card-bg: rgba(49, 52, 48, 0.6);
   
   /* ==================== TEXT COLORS ==================== */
