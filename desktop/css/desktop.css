@@ -66,7 +66,6 @@ body {
     height: 100vh;
     background: transparent;
     overflow: hidden;
-    z-index: 1;
 }
 
 /* Theme overlay and positioning classes */
@@ -681,10 +680,10 @@ body {
     height: 672px;
     max-height: calc(100vh - 80px);
     border-radius: 8px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.24);
+    box-shadow: -8px 8px 32px rgba(0, 0, 0, 0.24), 0 8px 16px rgba(0, 0, 0, 0.12);
     visibility: hidden;
     transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0ms 350ms;
-    z-index: 100001;
+    z-index: 1000;
     overflow: hidden;
     font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
     /* Position for bottom taskbar - centered with phone pane */
@@ -1527,7 +1526,7 @@ body {
     box-shadow: 8px 8px 32px rgba(0, 0, 0, 0.24);
     padding: 0;
     box-sizing: border-box;
-    z-index: 100000;
+    z-index: 999;
     opacity: 0;
     visibility: hidden;
     /* Match start menu animation timing for sync */
@@ -6513,7 +6512,7 @@ html.dark.dune .start-menu-footer-bg,
 html.dark.theme-dune .start-menu-footer-bg,
 html.dark.dune .phone-footer-bg,
 html.dark.theme-dune .phone-footer-bg {
-    background: rgba(60, 45, 40, 0.65);
+    background: rgba(75, 38, 20, 0.65);
 }
 
 html.dark.sapphire .taskbar .acrylic-bg,
@@ -6527,6 +6526,85 @@ html.dark.theme-sapphire .start-menu-footer-bg,
 html.dark.sapphire .phone-footer-bg,
 html.dark.theme-sapphire .phone-footer-bg {
     background: rgba(25, 45, 65, 0.65);
+}
+
+html.dark.emerald .taskbar .acrylic-bg,
+html.dark.theme-emerald .taskbar .acrylic-bg,
+html.dark.emerald .start-menu-bg,
+html.dark.theme-emerald .start-menu-bg,
+html.dark.emerald .phone-pane-bg,
+html.dark.theme-emerald .phone-pane-bg,
+html.dark.emerald .start-menu-footer-bg,
+html.dark.theme-emerald .start-menu-footer-bg,
+html.dark.emerald .phone-footer-bg,
+html.dark.theme-emerald .phone-footer-bg {
+    background: rgba(35, 55, 40, 0.65);
+}
+
+/* Light mode theme-specific tints - subtle like OOBE acrylic cards */
+html.light.violet .taskbar .acrylic-bg,
+html.light.theme-violet .taskbar .acrylic-bg,
+html.light.violet .start-menu-bg,
+html.light.theme-violet .start-menu-bg,
+html.light.violet .phone-pane-bg,
+html.light.theme-violet .phone-pane-bg,
+html.light.violet .start-menu-footer-bg,
+html.light.theme-violet .start-menu-footer-bg,
+html.light.violet .phone-footer-bg,
+html.light.theme-violet .phone-footer-bg {
+    background: rgba(200, 195, 220, 0.15);
+}
+
+html.light.dune .taskbar .acrylic-bg,
+html.light.theme-dune .taskbar .acrylic-bg,
+html.light.dune .start-menu-bg,
+html.light.theme-dune .start-menu-bg,
+html.light.dune .phone-pane-bg,
+html.light.theme-dune .phone-pane-bg,
+html.light.dune .start-menu-footer-bg,
+html.light.theme-dune .start-menu-footer-bg,
+html.light.dune .phone-footer-bg,
+html.light.theme-dune .phone-footer-bg {
+    background: rgba(220, 195, 175, 0.15);
+}
+
+html.light.sapphire .taskbar .acrylic-bg,
+html.light.theme-sapphire .taskbar .acrylic-bg,
+html.light.sapphire .start-menu-bg,
+html.light.theme-sapphire .start-menu-bg,
+html.light.sapphire .phone-pane-bg,
+html.light.theme-sapphire .phone-pane-bg,
+html.light.sapphire .start-menu-footer-bg,
+html.light.theme-sapphire .start-menu-footer-bg,
+html.light.sapphire .phone-footer-bg,
+html.light.theme-sapphire .phone-footer-bg {
+    background: rgba(180, 200, 220, 0.15);
+}
+
+html.light.slate .taskbar .acrylic-bg,
+html.light.theme-slate .taskbar .acrylic-bg,
+html.light.slate .start-menu-bg,
+html.light.theme-slate .start-menu-bg,
+html.light.slate .phone-pane-bg,
+html.light.theme-slate .phone-pane-bg,
+html.light.slate .start-menu-footer-bg,
+html.light.theme-slate .start-menu-footer-bg,
+html.light.slate .phone-footer-bg,
+html.light.theme-slate .phone-footer-bg {
+    background: rgba(200, 200, 200, 0.12);
+}
+
+html.light.emerald .taskbar .acrylic-bg,
+html.light.theme-emerald .taskbar .acrylic-bg,
+html.light.emerald .start-menu-bg,
+html.light.theme-emerald .start-menu-bg,
+html.light.emerald .phone-pane-bg,
+html.light.theme-emerald .phone-pane-bg,
+html.light.emerald .start-menu-footer-bg,
+html.light.theme-emerald .start-menu-footer-bg,
+html.light.emerald .phone-footer-bg,
+html.light.theme-emerald .phone-footer-bg {
+    background: rgba(200, 220, 200, 0.15);
 }
 
 /* Dark mode taskbar text and icon colors */
@@ -6586,6 +6664,32 @@ html.dark .taskbar .gleam-effect {
 /* Invert Start icon for dark mode */
 html.dark .taskbar .start-icon{
     filter: brightness(0) invert(1); /* Make the icon white */
+}
+
+/* Light mode theme-specific Start icon colors for WCAG contrast */
+html.light.dune .taskbar .start-icon,
+html.light.theme-dune .taskbar .start-icon {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(45%) saturate(1200%) hue-rotate(356deg) brightness(95%) contrast(95%); /* #673018 */
+}
+
+html.light.emerald .taskbar .start-icon,
+html.light.theme-emerald .taskbar .start-icon {
+    filter: brightness(0) saturate(100%) invert(10%) sepia(15%) saturate(600%) hue-rotate(70deg) brightness(95%) contrast(95%); /* #131C11 */
+}
+
+html.light.violet .taskbar .start-icon,
+html.light.theme-violet .taskbar .start-icon {
+    filter: brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(800%) hue-rotate(210deg) brightness(95%) contrast(90%); /* #3D385F */
+}
+
+html.light.sapphire .taskbar .start-icon,
+html.light.theme-sapphire .taskbar .start-icon {
+    filter: brightness(0) saturate(100%) invert(18%) sepia(35%) saturate(900%) hue-rotate(200deg) brightness(95%) contrast(95%); /* #30396E */
+}
+
+html.light.slate .taskbar .start-icon,
+html.light.theme-slate .taskbar .start-icon {
+    filter: brightness(0) saturate(100%) invert(22%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%); /* #3A3939 */
 }
 
 /* ============ DARK MODE START MENU STYLES ============ */

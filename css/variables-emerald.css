@@ -28,7 +28,7 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --color-accent-hover: #374032;
   --color-accent-active: #55614F;
   --color-bg-primary: var(--smtc-background-layer-solid, #f7fbf9);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(168, 223, 201, 0.55), rgba(247, 251, 249, 0.85));
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(168, 223, 201, 0.25), rgba(247, 251, 249, 0.85));
   --color-card-bg: rgba(49, 52, 48, 0.6);
   
   /* ==================== TEXT COLORS ==================== */
@@ -131,14 +131,14 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #4f6f3e;
   --smtc-background-ctrl-brand-hover: #374032;
-  --smtc-background-ctrl-brand-pressed: #829178;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #6d7b84;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #829178;
+  --smtc-background-ctrl-brand-pressed: #6d7b65;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #374032;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #6d7b65;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #131C11;
-  --smtc-stroke-ctrl-brand-hover: #374032;
-  --smtc-stroke-ctrl-brand-pressed: #55614F;
+  --smtc-stroke-ctrl-brand-hover: #0a0f09;
+  --smtc-stroke-ctrl-brand-pressed: #374032;
   --smtc-ctrl-input-bottom-line-stroke-selected: #131C11;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -187,15 +187,15 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --smtc-background-layer-solid: #0c1410;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #55614F;
-  --smtc-background-ctrl-brand-hover: #6d7b84;
-  --smtc-background-ctrl-brand-pressed: #829178;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #6d7b84;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #829178;
+  --smtc-background-ctrl-brand-hover: #374032;
+  --smtc-background-ctrl-brand-pressed: #6d7b65;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #374032;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #6d7b65;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #55614F;
-  --smtc-stroke-ctrl-brand-hover: #6d7b84;
-  --smtc-stroke-ctrl-brand-pressed: #829178;
+  --smtc-stroke-ctrl-brand-hover: #374032;
+  --smtc-stroke-ctrl-brand-pressed: #6d7b65;
   --smtc-ctrl-input-bottom-line-stroke-selected: #55614F;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -233,5 +233,5 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   background-color: rgba(19, 28, 17, 0.65);
 }
 .evolved.light.emerald .oobe-card {
-  background-color: rgba(220, 231, 210, 0.1);
+  background-color: rgba(220, 231, 210, 0.15);
 }

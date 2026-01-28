@@ -76,7 +76,7 @@
   --smtc-foreground-ctrl-neutral-primary-rest: #272320;
   --smtc-foreground-ctrl-neutral-primary-pressed: #5a544f;
   --smtc-foreground-ctrl-neutral-primary-disabled: #0000004d;
-  --smtc-foreground-ctrl-neutral-secondary-rest: #4c4642;
+  --smtc-foreground-ctrl-neutral-secondary-rest: #rgba(0,0,0,0.1);
   --smtc-foreground-ctrl-neutral-secondary-pressed: #98918b;
   --smtc-foreground-ctrl-neutral-secondary-disabled: #0000004d;
   --smtc-foreground-ctrl-on-outline-pressed: #5a544f;
@@ -420,7 +420,7 @@
 
 .evolved.light .oobe-card::before,
 .evolved.light .oobe-card-overlay {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .evolved.light .oobe-card .oobe-content,

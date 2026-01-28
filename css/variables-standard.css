@@ -122,23 +122,23 @@ Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #005A9E;
   --smtc-foreground-ctrl-brand-rest: #005A9E;
-  --smtc-foreground-ctrl-brand-hover: #0078D4;
-  --smtc-foreground-ctrl-brand-pressed: #004578;
+  --smtc-foreground-ctrl-brand-hover: #004578;
+  --smtc-foreground-ctrl-brand-pressed: #3399E5;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-standard-light.jpg');
   --smtc-background-layer-solid: rgba(255, 255, 255, 0.4);
   --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
   --smtc-background-ctrl-brand-rest: #005A9E;
-  --smtc-background-ctrl-brand-hover: #0078D4;
-  --smtc-background-ctrl-brand-pressed: #004578;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #0078D4;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #004578;
+  --smtc-background-ctrl-brand-hover: #004578;
+  --smtc-background-ctrl-brand-pressed: #3399E5;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #004578;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #3399E5;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #005A9E;
-  --smtc-stroke-ctrl-brand-hover: #0078D4;
-  --smtc-stroke-ctrl-brand-pressed: #004578;
+  --smtc-stroke-ctrl-brand-hover: #004578;
+  --smtc-stroke-ctrl-brand-pressed: #3399E5;
   --smtc-ctrl-input-bottom-line-stroke-selected: #005A9E;
   
   /* ==================== SCROLLBAR ==================== */
@@ -171,23 +171,23 @@ Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #3399E5;
   --smtc-foreground-ctrl-brand-rest: #3399E5;
-  --smtc-foreground-ctrl-brand-hover: #99C9EF;
-  --smtc-foreground-ctrl-brand-pressed: #0078D4;
+  --smtc-foreground-ctrl-brand-hover: #0078D4;
+  --smtc-foreground-ctrl-brand-pressed: #99C9EF;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-standard-dark.png');
   --smtc-background-layer-solid: #0f1113;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #3399E5;
-  --smtc-background-ctrl-brand-hover: #99C9EF;
-  --smtc-background-ctrl-brand-pressed: #0078D4;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #99C9EF;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #0078D4;
+  --smtc-background-ctrl-brand-hover: #0078D4;
+  --smtc-background-ctrl-brand-pressed: #99C9EF;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #0078D4;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #99C9EF;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #3399E5;
-  --smtc-stroke-ctrl-brand-hover: #99C9EF;
-  --smtc-stroke-ctrl-brand-pressed: #0078D4;
+  --smtc-stroke-ctrl-brand-hover: #0078D4;
+  --smtc-stroke-ctrl-brand-pressed: #99C9EF;
   --smtc-ctrl-input-bottom-line-stroke-selected: #3399E5;
   
   /* ==================== STATUS COLORS (Standard tint for info) ==================== */
