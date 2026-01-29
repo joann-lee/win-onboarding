@@ -120,6 +120,7 @@
     const startTime = Date.now();
     let animationFrameId;
     let lastDisplayedPercentage = -5; // Track last displayed percentage
+    let lastStepIndex = -1; // Track last step index to detect step changes
 
     function updateProgress() {
       const elapsedTime = Date.now() - startTime;
@@ -137,6 +138,12 @@
           break;
         }
         timeAccumulated += steps[i].duration;
+      }
+
+      // Reset percentage tracker when stepping to a new phase
+      if (currentStepIndex !== lastStepIndex) {
+        lastStepIndex = currentStepIndex;
+        lastDisplayedPercentage = -5;
       }
 
       if (currentStepIndex < steps.length) {
