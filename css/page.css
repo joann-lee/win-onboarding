@@ -675,7 +675,7 @@ html:not(.evolved) .oobe-header h1 {
   flex-direction: column;
   gap: 16px;
   height: 100%;
-  min-height: 300px;
+  /* min-height: 300px; */
 }
 
 .eula-box {
@@ -689,7 +689,7 @@ html:not(.evolved) .oobe-header h1 {
 
 .eula-box.microsoft {
   background: var(--color-wifi-item-bg-selected);
-  height: 200px;
+  /* height: 200px; */
 }
 
 .eula-box.thirdparty {
@@ -718,8 +718,8 @@ html:not(.evolved) .oobe-header h1 {
   font-size: 12px;
   line-height: 1.6;
   color: var(--color-text-secondary);
-  min-height: 0;
-  height: 100%;
+  /* min-height: 0; */
+  /* height: 100%; */
 }
 
 .eula-box.microsoft .eula-content {
@@ -742,11 +742,6 @@ html:not(.evolved) .oobe-header h1 {
   color: var(--color-text-primary);
 }
 
-body[data-page-id="eula"] .oobe-body {
-  flex: 1;
-  min-height: 0;
-  margin-bottom: 24px;
-}
 
 /* Device Name Page Styles */
 .device-name-section {
