@@ -6,12 +6,10 @@
             <div class="context-menu-item" data-action="back">
                 <span class="context-menu-icon">←</span>
                 <span class="context-menu-label">Go Back</span>
-                <span class="context-menu-shortcut">Backspace</span>
             </div>
             <div class="context-menu-item" data-action="home">
                 <span class="context-menu-icon">⌂</span>
                 <span class="context-menu-label">Go to Config</span>
-                <span class="context-menu-shortcut">Esc</span>
             </div>
             <div class="context-menu-item" data-action="restart-oobe">
                 <span class="context-menu-icon">↺</span>
@@ -19,6 +17,21 @@
                 <span class="context-menu-shortcut"></span>
             </div>
             <div class="context-menu-divider"></div>
+            <div class="context-menu-item has-submenu" data-action="mode">
+                <span class="context-menu-icon">◐</span>
+                <span class="context-menu-label">Light/Dark Mode</span>
+                <span class="context-menu-arrow">›</span>
+                <div class="context-submenu">
+                    <div class="context-menu-item" data-mode="light">
+                        <span class="context-menu-icon">☀</span>
+                        <span class="context-menu-label">Light</span>
+                    </div>
+                    <div class="context-menu-item" data-mode="dark">
+                        <span class="context-menu-icon">☾</span>
+                        <span class="context-menu-label">Dark</span>
+                    </div>
+                </div>
+            </div>
             <div class="context-menu-item has-submenu" data-action="theme">
                 <span class="context-menu-icon">🎨</span>
                 <span class="context-menu-label">Theme Color</span>
@@ -173,6 +186,10 @@
                 background: rgba(0, 120, 212, 0.1);
             }
 
+            .desktop-context-menu .context-submenu .context-menu-item[data-mode].active {
+                background: rgba(0, 120, 212, 0.1);
+            }
+
             /* Dark mode styles */
             html.dark .desktop-context-menu {
                 background: rgba(40, 40, 40, 0.9);
@@ -197,6 +214,10 @@
             }
 
             html.dark .desktop-context-menu .context-submenu .context-menu-item[data-theme].active {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            html.dark .desktop-context-menu .context-submenu .context-menu-item[data-mode].active {
                 background: rgba(255, 255, 255, 0.15);
             }
         </style>
@@ -257,6 +278,14 @@
             });
         }
 
+        // Mark current mode as active
+        function updateActiveMode() {
+            const currentMode = localStorage.getItem('themeMode') || 'light';
+            contextMenu.querySelectorAll('[data-mode]').forEach(item => {
+                item.classList.toggle('active', item.dataset.mode === currentMode);
+            });
+        }
+
         // Handle menu item clicks
         contextMenu.addEventListener('click', (e) => {
             const item = e.target.closest('.context-menu-item');
@@ -264,6 +293,33 @@
 
             const action = item.dataset.action;
             const theme = item.dataset.theme;
+            const mode = item.dataset.mode;
+
+            // Handle mode selection (light/dark)
+            if (mode) {
+                e.stopPropagation();
+                const root = document.documentElement;
+                
+                // Remove existing mode classes
+                root.classList.remove('light', 'dark');
+                
+                // Apply selected mode
+                root.classList.add(mode);
+                
+                // Save to localStorage
+                localStorage.setItem('themeMode', mode);
+                
+                // Update wallpaper using theme manager
+                if (window.themeManager) {
+                    window.themeManager.setMode(mode);
+                }
+                
+                // Update active state
+                updateActiveMode();
+                
+                contextMenu.classList.remove('active');
+                return;
+            }
 
             // Handle theme selection
             if (theme) {
@@ -296,6 +352,9 @@
             // Skip if clicking on theme submenu parent
             if (action === 'theme') return;
 
+            // Skip if clicking on mode submenu parent
+            if (action === 'mode') return;
+
             e.stopPropagation(); // Prevent document click from interfering
             contextMenu.classList.remove('active');
 
@@ -324,16 +383,9 @@
 
         // Initialize active theme state
         updateActiveTheme();
+        updateActiveMode();
     });
 })();
-
-// Hotkey: Escape to return to root index
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-        e.preventDefault();
-        window.location.href = '/';
-    }
-});
 
 // Window Focus Management
 let windowZIndex = 2000; // Base z-index for windows

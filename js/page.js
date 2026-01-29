@@ -84,7 +84,6 @@ function toggleFullscreenFallback() {
       <div class="context-menu-item" data-action="home">
         <span class="context-menu-icon">⌂</span>
         <span class="context-menu-label">Go to Config</span>
-        <span class="context-menu-shortcut">Esc</span>
       </div>
       <div class="context-menu-item" data-action="restart-oobe">
         <span class="context-menu-icon">↺</span>
@@ -92,6 +91,21 @@ function toggleFullscreenFallback() {
         <span class="context-menu-shortcut"></span>
       </div>
       <div class="context-menu-divider"></div>
+      <div class="context-menu-item has-submenu" data-action="mode">
+        <span class="context-menu-icon">◐</span>
+        <span class="context-menu-label">Light/Dark Mode</span>
+        <span class="context-menu-arrow">›</span>
+        <div class="context-submenu">
+          <div class="context-menu-item" data-mode="light">
+            <span class="context-menu-icon">☀</span>
+            <span class="context-menu-label">Light</span>
+          </div>
+          <div class="context-menu-item" data-mode="dark">
+            <span class="context-menu-icon">☾</span>
+            <span class="context-menu-label">Dark</span>
+          </div>
+        </div>
+      </div>
       <div class="context-menu-item has-submenu" data-action="theme">
         <span class="context-menu-icon">🎨</span>
         <span class="context-menu-label">Theme Color</span>
@@ -245,6 +259,10 @@ function toggleFullscreenFallback() {
         background: rgba(0, 120, 212, 0.1);
       }
 
+      .context-submenu .context-menu-item[data-mode].active {
+        background: rgba(0, 120, 212, 0.1);
+      }
+
       /* Dark mode styles */
       html.dark .oobe-context-menu {
         background: rgba(40, 40, 40, 0.9);
@@ -269,6 +287,10 @@ function toggleFullscreenFallback() {
       }
 
       html.dark .context-submenu .context-menu-item[data-theme].active {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      html.dark .context-submenu .context-menu-item[data-mode].active {
         background: rgba(255, 255, 255, 0.15);
       }
     </style>
@@ -323,6 +345,14 @@ function toggleFullscreenFallback() {
     });
   }
 
+  // Mark current mode as active
+  function updateActiveMode() {
+    const currentMode = localStorage.getItem('themeMode') || 'light';
+    contextMenu.querySelectorAll('[data-mode]').forEach(item => {
+      item.classList.toggle('active', item.dataset.mode === currentMode);
+    });
+  }
+
   // Handle menu item clicks
   contextMenu.addEventListener('click', (e) => {
     const item = e.target.closest('.context-menu-item');
@@ -330,6 +360,28 @@ function toggleFullscreenFallback() {
 
     const action = item.dataset.action;
     const theme = item.dataset.theme;
+    const mode = item.dataset.mode;
+
+    // Handle mode selection (light/dark)
+    if (mode) {
+      e.stopPropagation();
+      const root = document.documentElement;
+      
+      // Remove existing mode classes
+      root.classList.remove('light', 'dark');
+      
+      // Apply selected mode
+      root.classList.add(mode);
+      
+      // Save to localStorage
+      localStorage.setItem('themeMode', mode);
+      
+      // Update active state
+      updateActiveMode();
+      
+      contextMenu.classList.remove('active');
+      return;
+    }
 
     // Handle theme selection
     if (theme) {
@@ -356,6 +408,9 @@ function toggleFullscreenFallback() {
 
     // Skip if clicking on theme submenu parent
     if (action === 'theme') return;
+
+    // Skip if clicking on mode submenu parent
+    if (action === 'mode') return;
 
     e.stopPropagation(); // Prevent document click from interfering
     contextMenu.classList.remove('active');
@@ -403,11 +458,12 @@ function toggleFullscreenFallback() {
   // Update active theme on menu open
   document.addEventListener('contextmenu', () => {
     updateActiveTheme();
+    updateActiveMode();
   });
 })();
 
-// Hotkey: Escape to return to root index, F2 for flow editor
-(function initHomeHotkey() {
+// Hotkey: F2 for flow editor
+(function initFlowEditorHotkey() {
   document.addEventListener('keydown', (e) => {
     // F2 opens flow editor panel
     if (e.key === 'F2' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
@@ -416,21 +472,6 @@ function toggleFullscreenFallback() {
         window.openFlowEditorPanel();
       }
     }
-    // Escape key returns to root index (unless flow editor is open)
-    if (e.key === 'Escape' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-      const flowPanel = document.getElementById('flow-editor-panel');
-      if (flowPanel && flowPanel.classList.contains('active')) {
-        // Close flow editor instead of going home
-        e.preventDefault();
-        if (window.closeFlowEditorPanel) {
-          window.closeFlowEditorPanel();
-        }
-        return;
-      }
-      e.preventDefault();
-      window.location.href = '/';
-    }
-
   });
 })();
 

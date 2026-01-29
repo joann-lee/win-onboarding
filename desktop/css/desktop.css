@@ -1171,7 +1171,7 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
     /* Content area background - lighter than header/footer */
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4);
     position: relative;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -6489,7 +6489,7 @@ html.dark.standard .start-menu-footer-bg,
 html.dark.theme-standard .start-menu-footer-bg,
 html.dark.standard .phone-footer-bg,
 html.dark.theme-standard .phone-footer-bg {
-    background: rgba(30, 31, 34, 0.65);
+    background: rgba(30, 31, 28, 0.75);
 }
 
 html.dark.violet .taskbar .acrylic-bg,
@@ -6502,7 +6502,7 @@ html.dark.violet .start-menu-footer-bg,
 html.dark.theme-violet .start-menu-footer-bg,
 html.dark.violet .phone-footer-bg,
 html.dark.theme-violet .phone-footer-bg {
-    background: rgba(40, 38, 44, 0.65);
+    background: rgba(38, 36, 42, 0.75);
 }
 
 html.dark.dune .taskbar .acrylic-bg,
@@ -6515,7 +6515,7 @@ html.dark.dune .start-menu-footer-bg,
 html.dark.theme-dune .start-menu-footer-bg,
 html.dark.dune .phone-footer-bg,
 html.dark.theme-dune .phone-footer-bg {
-    background: rgba(42, 40, 38, 0.65);
+    background: rgba(40, 40, 38, 0.75);
 }
 
 html.dark.sapphire .taskbar .acrylic-bg,
@@ -6528,7 +6528,7 @@ html.dark.sapphire .start-menu-footer-bg,
 html.dark.theme-sapphire .start-menu-footer-bg,
 html.dark.sapphire .phone-footer-bg,
 html.dark.theme-sapphire .phone-footer-bg {
-    background: rgba(30, 35, 45, 0.65);
+    background: rgba(30, 35, 45, 0.5);
 }
 
 html.dark.emerald .taskbar .acrylic-bg,
@@ -6541,7 +6541,7 @@ html.dark.emerald .start-menu-footer-bg,
 html.dark.theme-emerald .start-menu-footer-bg,
 html.dark.emerald .phone-footer-bg,
 html.dark.theme-emerald .phone-footer-bg {
-    background: rgba(19, 28, 17, 0.65);
+    background: rgba(19, 23, 17, 0.75);
 }
 
 html.dark.slate .taskbar .acrylic-bg,
@@ -6554,7 +6554,7 @@ html.dark.slate .start-menu-footer-bg,
 html.dark.theme-slate .start-menu-footer-bg,
 html.dark.slate .phone-footer-bg,
 html.dark.theme-slate .phone-footer-bg {
-    background: rgba(40, 40, 40, 0.65);
+    background: rgba(40, 40, 40, 0.75);
 }
 
 /* Light mode theme-specific tints - matching evolved oobe-card backgrounds */
@@ -6568,7 +6568,7 @@ html.light.violet .start-menu-footer-bg,
 html.light.theme-violet .start-menu-footer-bg,
 html.light.violet .phone-footer-bg,
 html.light.theme-violet .phone-footer-bg {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(240, 235, 242, 0.78);
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
 }
@@ -6583,7 +6583,7 @@ html.light.dune .start-menu-footer-bg,
 html.light.theme-dune .start-menu-footer-bg,
 html.light.dune .phone-footer-bg,
 html.light.theme-dune .phone-footer-bg {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(242, 237, 242, 0.78);
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
 }
@@ -6598,7 +6598,7 @@ html.light.sapphire .start-menu-footer-bg,
 html.light.theme-sapphire .start-menu-footer-bg,
 html.light.sapphire .phone-footer-bg,
 html.light.theme-sapphire .phone-footer-bg {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(238, 238, 242, 0.78);
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
 }
@@ -6613,7 +6613,7 @@ html.light.slate .start-menu-footer-bg,
 html.light.theme-slate .start-menu-footer-bg,
 html.light.slate .phone-footer-bg,
 html.light.theme-slate .phone-footer-bg {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(238, 238, 242, 0.78);
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
 }
@@ -6628,7 +6628,7 @@ html.light.emerald .start-menu-footer-bg,
 html.light.theme-emerald .start-menu-footer-bg,
 html.light.emerald .phone-footer-bg,
 html.light.theme-emerald .phone-footer-bg {
-    background: rgba(220, 231, 210, 0.15);
+    background: rgba(230, 244, 230, 0.78);
     backdrop-filter: blur(60px);
     -webkit-backdrop-filter: blur(60px);
 }
