@@ -2192,10 +2192,9 @@ text-align: center;
 /* Progress Bar Styles */
 .ndup-progress-bar {
   display: flex;
-  gap: 8px;
-  width: 100%;
-  max-width: 300px;
   height: 8px;
+  gap: 8px;
+  justify-content: center;
 }
 
 .progress-segment {
@@ -2203,7 +2202,7 @@ text-align: center;
   background-color: var(--smtc-background-ctrl-neutral-disabled, #e0e0e0);
   border-radius: 4px;
   overflow: hidden;
-  /* position: relative; */
+  max-width: 150px;
 }
 
 .progress-fill {
@@ -2211,20 +2210,6 @@ text-align: center;
   background-color: var(--color-accent, #005FB8);
   width: 0%;
   border-radius: 4px;
-  animation: fillProgress 60s ease-in-out forwards;
-}
-
-/* Stagger animations for each segment */
-.progress-segment:nth-child(1) .progress-fill {
-  animation-delay: 0s;
-}
-
-.progress-segment:nth-child(2) .progress-fill {
-  animation-delay: 20s;
-}
-
-.progress-segment:nth-child(3) .progress-fill {
-  animation-delay: 40s;
 }
 
 @keyframes fillProgress {
@@ -2234,4 +2219,8 @@ text-align: center;
   100% {
     width: 100%;
   }
+}
+
+#cancel-link {
+  padding: 20px;
 }

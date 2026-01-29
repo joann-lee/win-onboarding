@@ -38,18 +38,18 @@
     <div>
     <p>Your update is in progress. Please keep your PC on and plugged in.</p>
     <br>
-    <p id="progress-label">Step 1 of 3: Downloading (0%)</p>
+    <p id="progress-label">Step 1 of 3: Downloading</p>
     </div>
       
     <div class="ndup-progress-bar">
-      <div class="progress-segment">
-        <div class="progress-fill" id="segment-download"></div>
+      <div class="progress-segment" data-step="1">
+        <div class="progress-fill" id="segment-download" data-step="1"></div>
       </div>
-      <div class="progress-segment">
-        <div class="progress-fill" id="segment-install"></div>
+      <div class="progress-segment" data-step="2">
+        <div class="progress-fill" id="segment-install" data-step="2"></div>
       </div>
-      <div class="progress-segment">
-        <div class="progress-fill" id="segment-setup"></div>
+      <div class="progress-segment" data-step="3">
+        <div class="progress-fill" id="segment-setup" data-step="3"></div>
       </div>
     </div>
  <a href="#" id="cancel-link" class="ndup-cancel-link">Update later</a>
@@ -78,6 +78,88 @@
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
   <script src="/js/page.js"></script>
+
+  <script>
+    // NDUP Progress Label Update with Percentage
+    const steps = [
+      { step: 1, label: 'Step 1 of 3: Downloading', duration: 40000 },
+      { step: 2, label: 'Step 2 of 3: Installing', duration: 30000 },
+      { step: 3, label: 'Step 3 of 3: Setting up', duration: 20000 }
+    ];
+
+    // Generate CSS animations dynamically based on steps
+    function generateAnimationCSS() {
+      let css = '';
+      let delayAccumulated = 0;
+
+      steps.forEach((stepData) => {
+        const durationSeconds = stepData.duration / 1000;
+        const delaySeconds = delayAccumulated / 1000;
+        
+        css += `.progress-segment[data-step="${stepData.step}"] .progress-fill {
+  animation: fillProgress ${durationSeconds}s ease-in-out forwards;
+  animation-delay: ${delaySeconds}s;
+}\n\n`;
+        
+        delayAccumulated += stepData.duration;
+      });
+
+      return css;
+    }
+
+    // Inject CSS into page
+    function injectAnimationCSS() {
+      const style = document.createElement('style');
+      style.textContent = generateAnimationCSS();
+      document.head.appendChild(style);
+    }
+
+    injectAnimationCSS();
+
+    const progressLabel = document.getElementById('progress-label');
+    const startTime = Date.now();
+    let animationFrameId;
+    let lastDisplayedPercentage = -5; // Track last displayed percentage
+
+    function updateProgress() {
+      const elapsedTime = Date.now() - startTime;
+      const totalDuration = steps.reduce((sum, s) => sum + s.duration, 0);
+      
+      // Calculate which step we're in
+      let timeAccumulated = 0;
+      let currentStepIndex = 0;
+      let timeInCurrentStep = elapsedTime;
+
+      for (let i = 0; i < steps.length; i++) {
+        if (elapsedTime < timeAccumulated + steps[i].duration) {
+          currentStepIndex = i;
+          timeInCurrentStep = elapsedTime - timeAccumulated;
+          break;
+        }
+        timeAccumulated += steps[i].duration;
+      }
+
+      if (currentStepIndex < steps.length) {
+        const currentStepData = steps[currentStepIndex];
+        const percentage = Math.round((timeInCurrentStep / currentStepData.duration) * 100);
+        const clampedPercentage = Math.min(percentage, 100);
+        
+        // Only update label every 5 percent
+        if (clampedPercentage >= lastDisplayedPercentage + 5 || clampedPercentage === 100) {
+          progressLabel.textContent = `${currentStepData.label} (${clampedPercentage}%)`;
+          lastDisplayedPercentage = Math.floor(clampedPercentage / 5) * 5;
+        }
+        
+        // Continue animation if not finished
+        if (elapsedTime < totalDuration) {
+          animationFrameId = requestAnimationFrame(updateProgress);
+        }
+      }
+    }
+
+    // Start the progress updates
+    updateProgress();
+  </script>
 
 </body>
 

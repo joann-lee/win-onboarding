@@ -17,7 +17,7 @@
     { id: 'eula', file: 'eula.html', label: 'End User License Agreement (EULA)', type: 'interactive', children: [], restartAfter: false },
     { id: 'device-name', file: 'device_name.html', label: 'Device Name', type: 'interactive', children: [], restartAfter: false },
     { id: 'lcu', file: 'lcu.html', label: 'LCU update', type: 'scanner', children: [], restartAfter: false },
-    { id: 'ndup', file: 'ndup.html', label: 'NDUP', type: 'interactive', children: ['ndup_0.html'], restartAfter: true },
+    { id: 'ndup', file: 'ndup.html', label: 'NDUP', type: 'interactive', children: [], restartAfter: true },
     // { id: 'disambig', file: 'disambig.html', label: 'Disambiguation', type: 'interactive', children: [], restartAfter: false },
     { id: 'msa_info', file: 'msa_info.html', label: 'MSA Info', type: 'interactive', children: [], restartAfter: false },
     { id: 'msa_sisu', file: 'msa_sisu.html', label: 'MSA Sign in / Sign Up (SISU)', type: 'interactive', children: ['msa_sisu_0.html'], restartAfter: false },
