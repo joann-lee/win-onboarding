@@ -127,7 +127,7 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-emerald-light.png');
-  --smtc-background-layer-solid: #f7fbf9;
+  --smtc-background-layer-solid: #f7fbf94D;
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #425A32;
   --smtc-background-ctrl-brand-hover: #5A7248;

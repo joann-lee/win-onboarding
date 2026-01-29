@@ -127,7 +127,7 @@ Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (lig
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-black-light.png');
-  --smtc-background-layer-solid: #f8f9fa;
+  --smtc-background-layer-solid: #f8f9fa4D;
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #5B5A5A;
   --smtc-background-ctrl-brand-hover: #787777;

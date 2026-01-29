@@ -127,7 +127,7 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-sapphire-light.png');
-  --smtc-background-layer-solid: #f8fafc;
+  --smtc-background-layer-solid: #f8fafc4D;
   --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
   --smtc-background-ctrl-brand-rest: #4D5990;
   --smtc-background-ctrl-brand-hover: #6B77A8;

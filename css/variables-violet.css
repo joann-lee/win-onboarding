@@ -143,7 +143,7 @@ Uses the violet color palette: #E7E1ED (light 3), #C7C0D5 (light 2), #8E88AB (li
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-violet-light.png');
-  --smtc-background-layer-solid: #faf9fb;
+  --smtc-background-layer-solid: #faf9fb4D;
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #5F5981;
   --smtc-background-ctrl-brand-hover: #7E789A;
