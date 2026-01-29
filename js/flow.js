@@ -229,8 +229,14 @@
       return null;
     }
 
-    // No children, regular next
-    return nextPageId(currentId);
+    // No children, go to next main page
+    const idx = vis.indexOf(currentId);
+    if (idx >= 0 && idx < vis.length - 1) {
+      return vis[idx + 1];
+    }
+
+    // Last page in flow - return null (don't go to desktop)
+    return null;
   }
 
   // Get the file path for a page (main or child)
@@ -317,13 +323,8 @@
         } else {
           skipLink.setAttribute('href', skipHref);
         }
-      } else {
-        if (skipLink.tagName.toLowerCase() === 'mai-button' || skipLink.tagName.toLowerCase().includes('-')) {
-          skipLink.onclick = () => window.location.href = '/desktop/';
-        } else {
-          skipLink.setAttribute('href', '/desktop/');
-        }
       }
+      // If skipId is null, skip button does nothing (not disabled, just no action)
     }
 
     // Handle "Add layout" button - navigates to keyboard_1.html

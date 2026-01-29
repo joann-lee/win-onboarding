@@ -1469,7 +1469,7 @@ body[data-page-id="fingerprint_setup"] .fingerprint-instruction {
   margin: 0;
 }
 
-body[data-page-id="fingerprint_setup"] .fingerprint-setup-hint {
+body[data-page-id="fingerprint_0"] .fingerprint-setup-hint {
   font-size: 12px;
   color: var(--smtc-foreground-ctrl-neutral-secondary-rest);
   text-align: center;
