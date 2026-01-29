@@ -1044,7 +1044,7 @@ body[data-page-id="msa_info"] .info-cards-list {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  flex: 1;
+  /* flex: 1; */
   /* justify-content: center; */
   background: var(--smtc-background-layer-solid);
   border-radius: var(--smtc-corner-window-default);

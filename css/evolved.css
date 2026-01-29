@@ -436,7 +436,7 @@
 }
 .evolved .oobe-card .lottie-container,
 .evolved .oobe-card .oobe-visual{
-  display: none;
+  max-width: 50%;
 }
 /* Variation: Container-based overlay for flexible content structure */
 .evolved .oobe-card-overlay {
