@@ -58,7 +58,6 @@ const OOBE_DEBUG_ENABLED = false;
       <div class="context-menu-item" data-action="back">
         <span class="context-menu-icon">←</span>
         <span class="context-menu-label">Go Back</span>
-        <span class="context-menu-shortcut">Backspace</span>
       </div>
       <div class="context-menu-item" data-action="home">
         <span class="context-menu-icon">⌂</span>
@@ -384,15 +383,7 @@ const OOBE_DEBUG_ENABLED = false;
       e.preventDefault();
       window.location.href = '/';
     }
-    // Backspace key goes back one page (when not in an input)
-    if (e.key === 'Backspace' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-      const activeEl = document.activeElement;
-      const isInput = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
-      if (!isInput) {
-        e.preventDefault();
-        window.history.back();
-      }
-    }
+
   });
 })();
 
