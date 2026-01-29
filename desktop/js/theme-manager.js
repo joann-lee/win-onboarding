@@ -121,8 +121,8 @@ class ThemeManager {
             const isDark = event.newValue === 'dark';
             document.documentElement.classList.toggle('dark', isDark);
             document.documentElement.classList.toggle('light', !isDark);
-            // Refresh wallpaper to update for new mode
-            this.setWallpaper(this.currentTheme, false);
+            // Refresh wallpaper to update for new mode with crossfade transition
+            this.crossfadeWallpaper(this.currentTheme);
         }
     }
     
@@ -197,6 +197,17 @@ class ThemeManager {
         });
     }
     
+    getWallpaperPath(theme, mode) {
+        if (theme === 'standard' && mode === 'light') {
+            return '../assets/wallpaper/background-standard-light.jpg';
+        } else if (theme === 'slate') {
+            // Slate uses black wallpapers as fallback
+            return `../assets/wallpaper/background-black-${mode}.png`;
+        } else {
+            return `../assets/wallpaper/background-${theme}-${mode}.png`;
+        }
+    }
+    
     setWallpaper(theme, animate = true) {
         return new Promise(resolve => {
             const wallpaperImg = document.getElementById('wallpaper-img');
@@ -208,17 +219,7 @@ class ThemeManager {
             
             // Get current mode from localStorage
             const mode = localStorage.getItem('themeMode') || 'light';
-            
-            // Set background image based on theme and mode
-            let backgroundImage;
-            if (theme === 'standard' && mode === 'light') {
-                backgroundImage = '../assets/wallpaper/background-standard-light.jpg';
-            } else if (theme === 'slate') {
-                // Slate uses black wallpapers as fallback
-                backgroundImage = `../assets/wallpaper/background-black-${mode}.png`;
-            } else {
-                backgroundImage = `../assets/wallpaper/background-${theme}-${mode}.png`;
-            }
+            const backgroundImage = this.getWallpaperPath(theme, mode);
             
             wallpaperImg.src = backgroundImage;
             
@@ -226,6 +227,54 @@ class ThemeManager {
             
             // Complete after animation
             setTimeout(resolve, animate ? 600 : 0);
+        });
+    }
+    
+    crossfadeWallpaper(theme, targetMode = null) {
+        return new Promise(resolve => {
+            const wallpaperImg = document.getElementById('wallpaper-img');
+            const wallpaperImgNext = document.getElementById('wallpaper-img-next');
+            
+            if (!wallpaperImg || !wallpaperImgNext) {
+                console.warn('Wallpaper image elements not found');
+                // Fallback to regular setWallpaper
+                this.setWallpaper(theme, true).then(resolve);
+                return;
+            }
+            
+            // Use targetMode if provided, otherwise get from localStorage
+            const mode = targetMode || localStorage.getItem('themeMode') || 'light';
+            const backgroundImage = this.getWallpaperPath(theme, mode);
+            
+            // Determine which image is currently active
+            const currentActive = wallpaperImg.classList.contains('active') ? wallpaperImg : wallpaperImgNext;
+            const nextActive = currentActive === wallpaperImg ? wallpaperImgNext : wallpaperImg;
+            
+            // Preload the new image
+            const preloadImg = new Image();
+            preloadImg.onload = () => {
+                // Set the new source on the inactive image
+                nextActive.src = backgroundImage;
+                
+                // After a brief moment for the browser to render, start crossfade
+                requestAnimationFrame(() => {
+                    // Crossfade: activate the new image, deactivate the old
+                    nextActive.classList.add('active');
+                    currentActive.classList.remove('active');
+                    
+                    console.log(`Crossfade wallpaper: ${theme}-${mode}, path: ${backgroundImage}`);
+                    
+                    // Complete after animation
+                    setTimeout(resolve, 600);
+                });
+            };
+            
+            preloadImg.onerror = () => {
+                console.warn('Failed to preload wallpaper, falling back to direct set');
+                this.setWallpaper(theme, true).then(resolve);
+            };
+            
+            preloadImg.src = backgroundImage;
         });
     }
     
@@ -283,6 +332,24 @@ class ThemeManager {
             this.switchTheme(theme);
         } else {
             console.warn('Invalid theme:', theme);
+        }
+    }
+    
+    // Public method to manually switch mode (light/dark)
+    setMode(mode) {
+        if (mode === 'light' || mode === 'dark') {
+            // Start wallpaper crossfade first with the target mode
+            this.crossfadeWallpaper(this.currentTheme, mode);
+            
+            // Delay theme class changes to let the background transition start first
+            setTimeout(() => {
+                const isDark = mode === 'dark';
+                document.documentElement.classList.toggle('dark', isDark);
+                document.documentElement.classList.toggle('light', !isDark);
+                console.log('Mode set to:', mode);
+            }, 300);
+        } else {
+            console.warn('Invalid mode:', mode);
         }
     }
 }
