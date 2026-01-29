@@ -2140,4 +2140,66 @@ function updatePaletteMenuSelection() {
   }
 })();
 
+// Fingerprint setup handler
+(function initFingerprintSetup() {
+  // Check if we're on the fingerprint setup page
+  const body = document.querySelector('body[data-page-id="fingerprint-setup"]');
+  if (!body) return;
+
+  let pressCount = 0;
+  const maxPresses = 4;
+  const fingerprintTimesEl = document.getElementById('fingerprint-times');
+  const fingerprintSvg = document.getElementById('fingerprint-svg');
+  const nextButton = document.querySelector('[data-cta="next"]');
+
+  if (!nextButton || !fingerprintSvg) return;
+
+  // Disable next button initially
+  nextButton.setAttribute('disabled', 'disabled');
+
+  // Calculate stroke lengths for each path and set CSS variables
+  const fingerprints = document.querySelectorAll('.fp-line');
+  fingerprints.forEach((line, index) => {
+    const length = line.getTotalLength();
+    line.style.setProperty('--stroke-length', length);
+  });
+
+  // Listen for F key press
+  document.addEventListener('keydown', (event) => {
+    if (event.key.toLowerCase() === 'f') {
+      pressCount++;
+      
+      // Update text element if it exists
+      if (fingerprintTimesEl) {
+        fingerprintTimesEl.textContent = pressCount;
+      }
+      
+      // Update SVG aria-label
+      fingerprintSvg.setAttribute('aria-label', `Pressed ${pressCount} of ${maxPresses} times`);
+
+      // Calculate how many lines should be filled
+      const linesPerPress = Math.ceil(fingerprints.length / maxPresses);
+      const linesToFill = pressCount * linesPerPress;
+
+      // Update fingerprint segments
+      fingerprints.forEach((line, index) => {
+        if (index < linesToFill) {
+          line.classList.add('filled');
+          line.classList.remove('unfilled');
+        } else {
+          line.classList.remove('filled');
+          line.classList.add('unfilled');
+        }
+      });
+
+      // Enable button when we reach 4 presses
+      if (pressCount >= maxPresses) {
+        nextButton.removeAttribute('disabled');
+      }
+    }
+  });
+
+  console.log('🔑 Fingerprint setup handler initialized. Press F to draw the fingerprint.');
+})();
+
 

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <title>💻 OOBE Sandbox | Fingerprint setup </title>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <script src="/js/theme-init.js"></script>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <style>
+    #fingerprint-svg {
+      transition: filter 200ms ease;
+    }
+
+    .fp-line {
+      stroke-dasharray: var(--stroke-length, 1000);
+      stroke-dashoffset: var(--stroke-length, 1000);
+      transition: stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fp-line.filled {
+      stroke-dashoffset: 0;
+      filter: drop-shadow(0 0 4px rgba(89, 62, 218, 0.6));
+    }
+  </style>
+</head>
+
+
+<body data-page-id="fingerprint-setup" data-oobe>
+  <div class="oobe-background"></div>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+        <div id="lottie" class="lottie-container"></div>
+
+        <div class="oobe-content">
+          <header class="oobe-header">
+            <h1>Set up your fingerprint </h1>
+            <div class="subtitle">Press the "F" key several times to set up your fingerprint.</div>
+          </header>
+          <div class="oobe-body">
+           
+
+<div style="padding: 20px;display: flex; flex-direction: column; align-items: center; gap: 24px;">
+<div style="position: relative; width: 308px; height: 330px;">
+  <!-- Grey background fingerprint -->
+  <svg style="position: absolute; top: 0; left: 0;" width="308" height="330" viewBox="0 0 308 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M105.282 142.822C105.282 142.822 110.702 135.228 115.286 131.963M126.779 124.725C126.779 124.725 151.49 109.594 179.892 124.074M110.402 183.054C110.402 183.054 102.66 147.333 140.829 134.1M155.059 131.906C155.059 131.906 192.928 132.619 192.453 171.604M130.14 199.834C130.14 199.834 113.489 165.601 137.375 151.235C161.261 136.87 175.465 157.601 175.465 157.601M152.858 175.043C152.858 175.043 154.977 190.395 163.883 202.65M148.45 205.128C148.45 205.128 125.81 167.478 149.611 161.115C164.126 158.669 165.948 167.275 169.66 182.791C171.582 189.954 177.073 194.896 177.073 194.896M178.992 171.191C178.992 171.191 178.502 178.077 187.123 184.834M80.9281 175.043C80.9281 175.043 76.8804 124.487 135.231 105.973M149.761 103.719C149.761 103.719 193.968 98.8845 214.039 139.173M219.487 154.215C227.643 186.319 222.523 227.141 202.338 245.331M190.37 253.904C190.37 253.904 146.846 275.683 113.371 229.06M105.997 215.752C105.997 215.752 88.0733 186.557 98.8517 154.871M193.793 134.723C193.793 134.723 209.451 147.405 209.005 190.467M156.488 214.83C156.488 214.83 169.392 222.349 177.702 207.574M136.392 212.605C136.392 212.605 145.459 230.364 165.116 231.033M191.678 196.761C191.678 196.761 195.132 218.063 177.745 227.263M206.922 203.647C206.922 203.647 201.027 259.426 148.035 241.148M82.35 189.623C82.35 189.623 90.1275 243.312 132.373 264.852M144.52 269.926C144.52 269.926 202.574 287.371 227.85 234.056C244.195 199.431 235.71 160.268 235.71 160.268M113.321 196.17C113.321 196.17 117.608 215.457 135.231 232.664M89.6809 116.387C89.6809 116.387 48.2391 150.922 76.1052 219.636M100.488 107.219C100.488 107.219 144.163 71.082 197.794 100.811M211.566 111.67C215.989 115.718 221.587 123.515 228.833 136.592C233.12 142.644 240.979 145.076 240.979 145.076M54.016 156.056C54.016 156.056 56.4525 140.134 61.4005 131.963M69.1387 118.911C69.1387 118.911 94.9791 79.3918 145.474 75.0019M52.3476 170.771C52.3476 170.771 48.6571 203.287 72.1146 243.64M81.6427 232.008C81.6427 232.008 93.0749 254.26 108.883 266.098M120.048 274.554C120.048 274.554 142.734 291.021 178.102 286.392M192.571 283.277C192.571 283.277 219.365 276.779 236.067 248.92M80.9281 257.525C80.9281 257.525 100.102 285.534 128.683 294.791M143.805 299.654C143.805 299.654 187.509 309.385 219.544 286.125M75.5693 90.4857C75.5693 90.4857 130.855 36.4579 207.844 73.5742M220.348 81.1399C220.348 81.1399 227.314 85.8573 231.869 91.7318M100.935 57.5528C100.935 57.5528 142.616 35.1228 195.608 53.0419M243.48 234.027C247.01 231.795 258.181 192.051 250.039 157.42M65.7447 100.188C65.7447 100.188 33.2343 131.874 38.2359 184.656M40.5581 200.5C40.5581 200.5 50.1147 257.554 94.5932 292.178M233.12 275.444C233.12 275.444 264.201 249.276 266.88 192.311C266.88 192.311 268.013 159.495 261.818 140.508M242.887 105.144C242.887 105.144 244.673 113.571 255.63 121.521M210.97 58.9769C210.97 58.9769 261.818 80.5774 274.322 135.285M86.3477 64.7339C86.3477 64.7339 41.9871 88.5276 28.4114 138.906M25.0782 155.227C25.0782 155.227 15.1929 197.121 44.37 252.779M106.058 300.132C106.058 300.132 139.165 324.103 190.728 313.305M207.04 309.032C207.04 309.032 248.482 295.386 269.56 246.371M275.04 231.535C278.141 215.702 285.922 180.679 278.08 149.43M45.4418 80.2213C45.4418 80.2213 81.0496 33.3426 154.645 31.6835M171.793 32.9866C171.793 32.9866 227.525 36.9029 261.822 80.5774M72.8005 39.5732C75.3085 37.7788 150.593 -9.20321 236.424 40.2852M52.4691 267.138C52.4691 267.138 80.453 312.949 129.397 326.001M273.132 93.277C273.132 93.277 287.73 111.673 291.949 143.716M34.4847 93.868C34.4847 93.868 -8.74336 145.404 17.097 225.482M59.2248 48.563C59.2248 48.563 19.212 75.3544 4.7431 119.413M250.982 48.83C250.982 48.83 291.235 71.8902 303.142 124.665M4 87.698C4 87.698 66.0448 -23.74 202.992 10.5566M245.624 131.846C245.624 131.846 239.432 128.286 235.738 121.165C225.021 103.958 211.563 81.2894 160.475 74.9984M294.107 159.677C294.107 159.677 305.693 241.614 259.56 292.181" stroke="#a5adba" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Animated gradient fingerprint on top -->
+  <svg id="fingerprint-svg" aria-label="Pressed 0 of 4 times" style="position: absolute; top: 0; left: 0;" width="308" height="330" viewBox="0 0 308 330" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="paint0_linear_1112_19324" x1="68.1172" y1="65.7738" x2="276.704" y2="292.896" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0873DA"/>
+        <stop offset="0.896577" stop-color="#593EDA"/>
+      </linearGradient>
+    </defs>
+    
+    <!-- Segment 1 -->
+    <path class="fp-line fp-line-1" d="M105.282 142.822C105.282 142.822 110.702 135.228 115.286 131.963M126.779 124.725C126.779 124.725 151.49 109.594 179.892 124.074M110.402 183.054C110.402 183.054 102.66 147.333 140.829 134.1M155.059 131.906C155.059 131.906 192.928 132.619 192.453 171.604M130.14 199.834C130.14 199.834 113.489 165.601 137.375 151.235C161.261 136.87 175.465 157.601 175.465 157.601M152.858 175.043C152.858 175.043 154.977 190.395 163.883 202.65" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 2 -->
+    <path class="fp-line fp-line-2" d="M148.45 205.128C148.45 205.128 125.81 167.478 149.611 161.115C164.126 158.669 165.948 167.275 169.66 182.791C171.582 189.954 177.073 194.896 177.073 194.896M178.992 171.191C178.992 171.191 178.502 178.077 187.123 184.834M80.9281 175.043C80.9281 175.043 76.8804 124.487 135.231 105.973M149.761 103.719C149.761 103.719 193.968 98.8845 214.039 139.173M219.487 154.215C227.643 186.319 222.523 227.141 202.338 245.331M190.37 253.904C190.37 253.904 146.846 275.683 113.371 229.06" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 3 -->
+    <path class="fp-line fp-line-3" d="M105.997 215.752C105.997 215.752 88.0733 186.557 98.8517 154.871M193.793 134.723C193.793 134.723 209.451 147.405 209.005 190.467M156.488 214.83C156.488 214.83 169.392 222.349 177.702 207.574M136.392 212.605C136.392 212.605 145.459 230.364 165.116 231.033M191.678 196.761C191.678 196.761 195.132 218.063 177.745 227.263M206.922 203.647C206.922 203.647 201.027 259.426 148.035 241.148M82.35 189.623C82.35 189.623 90.1275 243.312 132.373 264.852" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 4 -->
+    <path class="fp-line fp-line-4" d="M144.52 269.926C144.52 269.926 202.574 287.371 227.85 234.056C244.195 199.431 235.71 160.268 235.71 160.268M113.321 196.17C113.321 196.17 117.608 215.457 135.231 232.664M89.6809 116.387C89.6809 116.387 48.2391 150.922 76.1052 219.636M100.488 107.219C100.488 107.219 144.163 71.082 197.794 100.811M211.566 111.67C215.989 115.718 221.587 123.515 228.833 136.592C233.12 142.644 240.979 145.076 240.979 145.076M54.016 156.056C54.016 156.056 56.4525 140.134 61.4005 131.963M69.1387 118.911C69.1387 118.911 94.9791 79.3918 145.474 75.0019" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 5 -->
+    <path class="fp-line fp-line-5" d="M52.3476 170.771C52.3476 170.771 48.6571 203.287 72.1146 243.64M81.6427 232.008C81.6427 232.008 93.0749 254.26 108.883 266.098M120.048 274.554C120.048 274.554 142.734 291.021 178.102 286.392M192.571 283.277C192.571 283.277 219.365 276.779 236.067 248.92M80.9281 257.525C80.9281 257.525 100.102 285.534 128.683 294.791M143.805 299.654C143.805 299.654 187.509 309.385 219.544 286.125M75.5693 90.4857C75.5693 90.4857 130.855 36.4579 207.844 73.5742" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 6 -->
+    <path class="fp-line fp-line-6" d="M220.348 81.1399C220.348 81.1399 227.314 85.8573 231.869 91.7318M100.935 57.5528C100.935 57.5528 142.616 35.1228 195.608 53.0419M243.48 234.027C247.01 231.795 258.181 192.051 250.039 157.42M65.7447 100.188C65.7447 100.188 33.2343 131.874 38.2359 184.656M40.5581 200.5C40.5581 200.5 50.1147 257.554 94.5932 292.178M233.12 275.444C233.12 275.444 264.201 249.276 266.88 192.311C266.88 192.311 268.013 159.495 261.818 140.508M242.887 105.144C242.887 105.144 244.673 113.571 255.63 121.521M210.97 58.9769C210.97 58.9769 261.818 80.5774 274.322 135.285" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 7 -->
+    <path class="fp-line fp-line-7" d="M86.3477 64.7339C86.3477 64.7339 41.9871 88.5276 28.4114 138.906M25.0782 155.227C25.0782 155.227 15.1929 197.121 44.37 252.779M106.058 300.132C106.058 300.132 139.165 324.103 190.728 313.305M207.04 309.032C207.04 309.032 248.482 295.386 269.56 246.371M275.04 231.535C278.141 215.702 285.922 180.679 278.08 149.43M45.4418 80.2213C45.4418 80.2213 81.0496 33.3426 154.645 31.6835M171.793 32.9866C171.793 32.9866 227.525 36.9029 261.822 80.5774M72.8005 39.5732C75.3085 37.7788 150.593 -9.20321 236.424 40.2852" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+    
+    <!-- Segment 8 -->
+    <path class="fp-line fp-line-8" d="M52.4691 267.138C52.4691 267.138 80.453 312.949 129.397 326.001M273.132 93.277C273.132 93.277 287.73 111.673 291.949 143.716M34.4847 93.868C34.4847 93.868 -8.74336 145.404 17.097 225.482M59.2248 48.563C59.2248 48.563 19.212 75.3544 4.7431 119.413M250.982 48.83C250.982 48.83 291.235 71.8902 303.142 124.665M4 87.698C4 87.698 66.0448 -23.74 202.992 10.5566M245.624 131.846C245.624 131.846 239.432 128.286 235.738 121.165C225.021 103.958 211.563 81.2894 160.475 74.9984M294.107 159.677C294.107 159.677 305.693 241.614 259.56 292.181" stroke="url(#paint0_linear_1112_19324)" stroke-width="8" stroke-miterlimit="10" stroke-linecap="round"/>
+  </svg>
+</div>
+  <!-- <p>Pressed <span id="fingerprint-times">0</span> of 4 times</p> -->
+</div>
+
+          </div>
+          <div class="oobe-ctas">
+            <mai-button appearance="subtle" size="large" data-cta="skip">Skip for now</mai-button>
+            <mai-button appearance="primary" size="large" data-cta="next" disabled>Confirm</mai-button>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+  <!-- TODO: Set the correct Lottie animation -->
+  <script src="/assets/animations/Fingerprint.js"></script>
+  <script src="/js/web-components.min.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
+</body>
+
+</html>
