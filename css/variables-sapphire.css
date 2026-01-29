@@ -126,7 +126,7 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-foreground-ctrl-brand-pressed: #8995C0;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/electric-teal.webp');
+  --background-image: url('/assets/wallpaper/background-sapphire-light.png');
   --smtc-background-layer-solid: #f8fafc;
   --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
   --smtc-background-ctrl-brand-rest: #4D5990;
@@ -178,7 +178,7 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-foreground-ctrl-brand-pressed: #B3BDDC;
   
   /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/electric-teal.webp');
+  --background-image: url('/assets/wallpaper/background-sapphire-dark.png');
   --smtc-background-layer-solid: #0f1318;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #7987B8;
