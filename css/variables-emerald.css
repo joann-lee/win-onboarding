@@ -200,6 +200,9 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #6d7b84;
+  --color-hyperlink: #AFBEA3;
+  --color-hyperlink-hover: #6d7b84;
+  --color-hyperlink-active: #829178;
   
   /* ==================== STATUS COLORS (Emerald tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #6d7b84;

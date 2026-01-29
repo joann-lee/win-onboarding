@@ -211,6 +211,9 @@ Uses the violet color palette: #E7E1ED (light 3), #C7C0D5 (light 2), #8E88AB (li
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #C7C0D5;
+  --color-hyperlink: #C7C0D5;
+  --color-hyperlink-hover: #78719A;
+  --color-hyperlink-active: #3D385F;
   
   /* ==================== STATUS COLORS (Violet tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #C7C0D5;

@@ -195,6 +195,9 @@ Uses the dune color palette: #E8D4C4 (light 3), #C9A88E (light 2), #9B6E52 (ligh
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #9B6E52;
+  --color-hyperlink: #D4AC90;
+  --color-hyperlink-hover: #7A4328;
+  --color-hyperlink-active: #4A2210;
   
   /* ==================== STATUS COLORS (Dune tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #9B6E52;

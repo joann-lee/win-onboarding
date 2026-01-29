@@ -195,6 +195,9 @@ Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (lig
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #C5C4C4;
+  --color-hyperlink: #C5C4C4;
+  --color-hyperlink-hover: #747474;
+  --color-hyperlink-active: #3A3939;
   
   /* ==================== STATUS COLORS (Slate tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #C5C4C4;

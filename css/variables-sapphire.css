@@ -195,6 +195,13 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   
   /* ==================== LINKS & INTERACTIVE ==================== */
   --smtc-foreground-ctrl-hint-default: #7987B8;
+  --color-hyperlink: #B3BDDC;
+  --color-hyperlink-hover: #6271AA;
+  --color-hyperlink-active: #30396E;
+  --color-block-text-focus: #6271AA;
+  --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
+  
+
   
   /* ==================== STATUS COLORS (Sapphire tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #7987B8;

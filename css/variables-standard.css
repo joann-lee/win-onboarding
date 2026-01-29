@@ -190,6 +190,11 @@ Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399
   --smtc-stroke-ctrl-brand-pressed: #99CCF5;
   --smtc-ctrl-input-bottom-line-stroke-selected: #3399E5;
   
+  /* ==================== LINKS ==================== */
+  --color-hyperlink: #99C9EF;
+  --color-hyperlink-hover: #3399E5;
+  --color-hyperlink-active: #0078D4;
+  
   /* ==================== STATUS COLORS (Standard tint for info) ==================== */
   --smtc-status-brand-tint-foreground: #3399E5;
   --smtc-status-brand-tint-background: rgba(51, 153, 229, 0.1);
