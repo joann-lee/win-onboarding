@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
 
-  <title>💻 OOBE Sandbox | Set up pin</title>
+  <title>💻 OOBE Sandbox | PIN</title>
   <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
   <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
@@ -36,10 +36,10 @@
 
         <div class="oobe-content">
           <header class="oobe-header">
-            <h1>Set up a pin</h1>
-            <div class="subtitle">A Windows Hello PIN is a quick, secure way to sign in to your device, apps, and services.</div>
+            <h1>Set up a PIN</h1>
+            <div class="subtitle">A Windows Hello PIN is a quick, secure way to sign in to your device, apps, and services. It must be at least 4 characters.</div>
           </header>
-          <div class="oobe-body">
+          <div class="oobe-body pin-input-wrapper">
             <div class="pin-input-group">
               <mai-text-input 
                 type="password" 
@@ -47,7 +47,7 @@
                 placeholder="Enter PIN"
                 inputmode="numeric"
                 aria-label="New PIN"
-              >New PIN</mai-text-input>
+              >PIN</mai-text-input>
             </div>
 
             <div class="pin-input-group">
@@ -60,7 +60,7 @@
               >Confirm PIN</mai-text-input>
             </div>
 
-            <div class="pin-checkbox-group">
+            <!-- <div class="pin-checkbox-group">
               <mai-field label-position="above">
                 <label slot="label">Include letters and symbols</label>
                 <mai-checkbox 
@@ -69,11 +69,11 @@
                   aria-label="Include letters and symbols"
                 ></mai-checkbox>
               </mai-field>
-            </div>
+            </div> -->
           </div>
           <div class="oobe-ctas">
-             <mai-button appearance="subtle" size="large" id="cancel-btn" style="view-transition-name: none;">Cancel</mai-button>
-            <mai-button appearance="primary" size="large" data-cta="next">OK</mai-button>
+             <!-- <mai-button appearance="subtle" size="large" id="cancel-btn" style="view-transition-name: none;">Cancel</mai-button> -->
+            <mai-button appearance="primary" size="large" data-cta="next" disabled>Set PIN</mai-button>
           </div>
         </div>
 
@@ -98,94 +98,22 @@
 <script>
     const pinInput = document.getElementById('pin-input');
     const pinConfirm = document.getElementById('pin-confirm');
-    const pinToggle = document.getElementById('pin-toggle');
-    const pinConfirmToggle = document.getElementById('pin-confirm-toggle');
-    const lettersCheckbox = document.getElementById('pin-letters-checkbox');
     const nextBtn = document.querySelector('[data-cta="next"]');
-    const cancelBtn = document.getElementById('cancel-btn');
-
-    // Cancel button: go back to parent page (pin.html)
-    cancelBtn.addEventListener('click', () => {
-      window.location.href = 'pin.html';
-    });
-
-    // Password visibility toggle for first PIN input
-    pinToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (pinInput.type === 'password') {
-        pinInput.type = 'text';
-      } else {
-        pinInput.type = 'password';
-      }
-    });
-
-    // Password visibility toggle for confirm PIN input
-    pinConfirmToggle.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (pinConfirm.type === 'password') {
-        pinConfirm.type = 'text';
-      } else {
-        pinConfirm.type = 'password';
-      }
-    });
-
-    // Update visibility of toggle buttons based on content
-    function updateToggleVisibility() {
-      if (pinInput.value.length > 0) {
-        pinToggle.classList.add('has-content');
-      } else {
-        pinToggle.classList.remove('has-content');
-      }
-      
-      if (pinConfirm.value.length > 0) {
-        pinConfirmToggle.classList.add('has-content');
-      } else {
-        pinConfirmToggle.classList.remove('has-content');
-      }
-    }
-
-    function validatePin(value, allowLetters) {
-      if (allowLetters) {
-        // Allow letters, numbers, and common special characters
-        return /^[a-zA-Z0-9!@#$%^&*()_+=\-\[\]{};:'",.<>?/\\|`~]*$/.test(value);
-      } else {
-        // Only numbers
-        return /^[0-9]*$/.test(value);
-      }
-    }
 
     function checkPinMatch() {
-      const pin1 = pinInput.value;
-      const pin2 = pinConfirm.value;
+      const pin1 = pinInput.value.trim();
+      const pin2 = pinConfirm.value.trim();
       
-      if (pin1 && pin2 && pin1 === pin2 && pin1.length >= 4) {
+      // Enable button only if both fields have content, are at least 4 chars, and they match
+      if (pin1 && pin2 && pin1.length >= 4 && pin1 === pin2) {
         nextBtn.disabled = false;
       } else {
         nextBtn.disabled = true;
       }
     }
 
-    pinInput.addEventListener('input', (e) => {
-      const allowLetters = lettersCheckbox.checked;
-      if (!validatePin(e.target.value, allowLetters)) {
-        e.target.value = e.target.value.slice(0, -1);
-      }
-      updateToggleVisibility();
-      checkPinMatch();
-    });
-
-    pinConfirm.addEventListener('input', (e) => {
-      const allowLetters = lettersCheckbox.checked;
-      if (!validatePin(e.target.value, allowLetters)) {
-        e.target.value = e.target.value.slice(0, -1);
-      }
-      updateToggleVisibility();
-      checkPinMatch();
-    });
-
-    lettersCheckbox.addEventListener('change', () => {
-      checkPinMatch();
-    });
+    pinInput.addEventListener('input', checkPinMatch);
+    pinConfirm.addEventListener('input', checkPinMatch);
   </script>
 </body>
 

@@ -780,6 +780,11 @@ html:not(.evolved) .oobe-header h1 {
 }
 
 /* PIN Page Styles */
+.pin-input-wrapper{
+  display: flex;
+  gap: 30px;
+}
+
 .pin-input-group {
   display: flex;
   flex-direction: column;
