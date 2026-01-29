@@ -2,6 +2,18 @@
 Variables and other items used across all the pages
 */
 
+/* Use default cursor for all interactive elements */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn,
+mai-button {
+  cursor: default !important;
+}
+
 /* Prevent white flash during navigation by setting background on html and body */
 html {
   background-color: var(--smtc-background-web-page-secondary, #f0f5fa);
