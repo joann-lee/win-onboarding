@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | Region</title>
+  <title>💻 OOBE Sandbox | Keyboard 4</title>
   <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
   <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
@@ -18,46 +18,51 @@
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
-  </head>
+</head>
 
-<body data-page-id="ndup" data-oobe>
+<body data-page-id="keyboard_2" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
     <div class="oobe-main">
       <div class="oobe-card">
-
+        <!-- <div id="lottie" class="lottie-container"></div> -->
 
         <div class="oobe-content">
           <header class="oobe-header">
-            <h1>Getting things ready</h1>
+            <h1>Keyboard layout to use</h1>
+            <div class="subtitle">This applies to your additional keyboard layout.</div>
             <!-- <div class="subtitle">If you also use another keyboard layout, you can add that next.</div> -->
           </header>
           <div class="oobe-body">
 
-    <div>
-    <p>Your update is in progress. Please keep your PC on and plugged in.</p>
-    <br>
-    <p id="progress-label">Step 1 of 3: Downloading (0%)</p>
-    </div>
-      
-    <div class="ndup-progress-bar">
-      <div class="progress-segment">
-        <div class="progress-fill" id="segment-download"></div>
-      </div>
-      <div class="progress-segment">
-        <div class="progress-fill" id="segment-install"></div>
-      </div>
-      <div class="progress-segment">
-        <div class="progress-fill" id="segment-setup"></div>
-      </div>
-    </div>
- <a href="#" id="cancel-link" class="ndup-cancel-link">Update later</a>
+            <ul class="country-list" aria-label="Country or region choices" role="listbox" id="country-list">
+              <li role="option" aria-selected="true" data-value="English" class="is-active">US</li>
+              <li role="option" data-value="español">Canadian Multilingual Standard</li>
+              <li role="option" data-value="français">Colemak</li>
+              <li role="option" data-value="English">English (India)</li>
+              <li role="option" data-value="español">Irish</li>
+              <li role="option" data-value="français">American Samoa</li>
+              <li role="option" data-value="English">US</li>
+              <li role="option" data-value="español">Canadian Multilingual Standard</li>
+              <li role="option" data-value="français">Colemak</li>
+              <li role="option" data-value="English">English (India)</li>
+              <li role="option" data-value="español">Irish</li>
+              <li role="option" data-value="français">American Samoa</li>
+              <li role="option" data-value="español">Canadian Multilingual Standard</li>
+              <li role="option" data-value="français">Colemak</li>
+              <li role="option" data-value="English">English (India)</li>
+              <li role="option" data-value="español">Irish</li>
+              <li role="option" data-value="français">American Samoa</li>
 
+            </ul>
 
 
           </div>
-      
+          <div class="oobe-ctas">
+            <!-- <a class="button-secondary" data-cta="skip">Skip for now</a> -->
+            <mai-button appearance="primary" size="large" data-cta="next">Next</mai-button>
+          </div>
         </div>
 
       </div>
@@ -73,7 +78,7 @@
   </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-  <script src="/assets/animations/Region.js"></script>
+  <script src="/assets/animations/Keyboard.js"></script>
   <script src="/js/scrollbar.js"></script>
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
