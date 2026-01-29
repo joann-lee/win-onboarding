@@ -901,8 +901,8 @@ function updatePaletteMenuSelection() {
   // Network Data
   const networks = [
     { name: 'Netgear_24', secured: true, signal: 4 },
-    { name: 'ENet-5G', secured: true, signal: 4 },
-    { name: 'TP-LINK_5514A_EXT', secured: true, signal: 3 },
+    { name: 'Definitely not wifi', secured: false, signal: 4 },
+    { name: 'Home wifi', secured: false, signal: 3 },
     { name: 'CenturyLink_5515', secured: true, signal: 3 },
     { name: 'DirectAccess_555', secured: true, signal: 2 },
     { name: 'JohnLane_net', secured: true, signal: 1 },
