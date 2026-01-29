@@ -9,36 +9,7 @@ Uses the violet color palette: #E7E1ED (light 3), #C7C0D5 (light 2), #8E88AB (li
 
 :root.light.violet,
 .light.violet {
-  /* CONSTANTS: Design tokens that don't change across themes */
-  /* These values are shared by all theme variants */
-  
-  /* ==================== SHADOWS & EFFECTS ==================== */
-  --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
-  
-  /* ==================== TYPOGRAPHY ==================== */
-  --color-font-title: var(--smtc-typography-font-title, 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
-  --color-font-subtitle: var(--smtc-typography-font-subtitle, 400 16px/1.4 "Segoe UI", system-ui, sans-serif);
-  --color-font-body: var(--smtc-typography-font-body, 400 14px/1.5 "Segoe UI", system-ui, sans-serif);
-  
-  /* Typography component parts */
-  --font-weight-title: var(--smtc-typography-font-weight-semibold, 600);
-  --font-size-title: var(--smtc-typography-font-size-title, 32px);
-  --line-height-title: var(--smtc-typography-line-height-title, 1.25);
-  --font-family-title: var(--smtc-typography-font-family-primary, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
-  
-  --font-weight-subtitle: var(--smtc-typography-font-weight-regular, 400);
-  --font-size-subtitle: var(--smtc-typography-font-size-subtitle, 16px);
-  --line-height-subtitle: var(--smtc-typography-line-height-subtitle, 1.4);
-  --font-family-subtitle: var(--smtc-typography-font-family-primary, "Segoe UI", system-ui, sans-serif);
-  
-  --font-weight-body: var(--smtc-typography-font-weight-regular, 400);
-  --font-size-body: var(--smtc-typography-font-size-body, 14px);
-  --line-height-body: var(--smtc-typography-line-height-body, 1.5);
-  --font-family-body: var(--smtc-typography-font-family-primary, "Segoe UI", system-ui, sans-serif);
-  
-  /* ==================== TRANSITIONS ==================== */
-  --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
-  
+   
   /* ==================== BASE COLORS ==================== */
   --color-accent: #5F5981;
   --color-accent-hover: #78719A;

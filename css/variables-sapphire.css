@@ -9,19 +9,6 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
 
 :root.light.sapphire,
 .light.sapphire {
-  /* CONSTANTS: Design tokens that don't change across themes */
-  /* These values are shared by all theme variants */
-  
-  /* ==================== SHADOWS & EFFECTS ==================== */
-  --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
-  
-  /* ==================== TYPOGRAPHY ==================== */
-  --color-font-title: 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
-  --color-font-subtitle: 400 16px/1.4 "Segoe UI", system-ui, sans-serif;
-  --color-font-body: 400 14px/1.5 "Segoe UI", system-ui, sans-serif;
-  
-  /* ==================== TRANSITIONS ==================== */
-  --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
   
   /* ==================== BASE COLORS ==================== */
   --color-accent: #4D5990;

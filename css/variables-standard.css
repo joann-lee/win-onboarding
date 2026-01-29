@@ -18,7 +18,7 @@ Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399
   /* ==================== TYPOGRAPHY ==================== */
   --color-font-title: 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
   --color-font-subtitle: 400 16px/1.4 "Segoe UI", system-ui, sans-serif;
-  --color-font-body: 400 14px/1.5 "Segoe UI", system-ui, sans-serif;
+  --color-font-body: 400 16px/1.5 "Segoe UI", system-ui, sans-serif;
   
   /* ==================== TRANSITIONS ==================== */
   --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);

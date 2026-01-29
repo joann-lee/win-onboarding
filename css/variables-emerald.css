@@ -9,20 +9,7 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
 
 :root.light.emerald,
 .light.emerald {
-  /* CONSTANTS: Design tokens that don't change across themes */
-  /* These values are shared by all theme variants */
-  
-  /* ==================== SHADOWS & EFFECTS ==================== */
-  --color-shadow: 0 38.4px 86.4px 0 rgba(0, 0, 0, 0.11), 0 7.2px 21.6px 0 rgba(0, 0, 0, 0.09);
-  
-  /* ==================== TYPOGRAPHY ==================== */
-  --color-font-title: 600 32px/1.25 "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
-  --color-font-subtitle: 400 16px/1.4 "Segoe UI", system-ui, sans-serif;
-  --color-font-body: 400 14px/1.5 "Segoe UI", system-ui, sans-serif;
-  
-  /* ==================== TRANSITIONS ==================== */
-  --color-transition: 160ms cubic-bezier(.17, .67, .35, .93);
-  
+
   /* ==================== BASE COLORS ==================== */
   --color-accent: #131C11;
   --color-accent-hover: #374032;
