@@ -43,12 +43,11 @@
                        class="msft-logo dark-logo" 
                        alt="Microsoft" />
                 </div>
-                <div class="verification-email">emailyouentered@outlook.com</div>
               
 
                 <h2 class="signin-heading">Enter code</h2>
                 <div class="signin-info">
-                  <p>We emailed a code to emailyouentered@outlook.com<br/>Please enter the code to sign in.</p>
+                  <p>We emailed a code to <span style="font-weight: 500;"id="email-entered">emailyouentered@outlook.com</span><br/>Please enter the code to sign in.</p>
                 </div>
                 <mai-text-input
                   id="verification-code-input"
@@ -58,7 +57,7 @@
                   type="text"
                   inputmode="numeric"
                   aria-label="Enter verification code"
-                  value="123456"
+                  value=""
                 >
                 </mai-text-input>
 
@@ -90,6 +89,25 @@
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
   <script src="/js/page.js"></script>
+
+  <script>
+    // Retrieve email from sessionStorage and populate the page
+    window.addEventListener('load', () => {
+      const emailEntered = document.getElementById('email-entered');
+      const verificationEmail = document.querySelector('.verification-email');
+      
+      // Get email from sessionStorage (set by MSA_sisu page)
+      const email = sessionStorage.getItem('msaEmail');
+      
+      // Update both email display elements if email was found
+      if (email && emailEntered) {
+        emailEntered.textContent = email;
+      }
+      if (email && verificationEmail) {
+        verificationEmail.textContent = email;
+      }
+    });
+  </script>
 
 </body>
 

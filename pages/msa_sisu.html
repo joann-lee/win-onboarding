@@ -49,7 +49,7 @@
                   placeholder="Email, phone, or Skype"
                   aria-label="Email, phone, or Skype"
                   appearance="underline"
-                  value="emailyouentered@outlook.com"
+                  value=""
                 >
                 </mai-text-input>
 
@@ -88,6 +88,17 @@
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>
   <script src="/js/page.js"></script>
+
+  <script>
+    // Store email in sessionStorage when user enters it
+    const emailInput = document.getElementById('msa-email-input');
+    if (emailInput) {
+      emailInput.addEventListener('input', () => {
+        sessionStorage.setItem('msaEmail', emailInput.value);
+        console.log(emailInput.value);
+      });
+    }
+  </script>
 
 </body>
 
