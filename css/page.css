@@ -681,7 +681,7 @@ html:not(.evolved) .oobe-header h1 {
 .eula-box {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--color-border-default);
+  /* border: 1px solid var(--color-border-default); */
   border-radius: var(--smtc-corner-window-default);
   overflow: hidden;
   position: relative;
@@ -694,7 +694,7 @@ html:not(.evolved) .oobe-header h1 {
 
 .eula-box.thirdparty {
   background: transparent;
-  border: 1px solid var(--color-border-default);
+  /* border: 1px solid var(--color-border-default); */
   flex: 1;
   min-height: 0;
   margin-bottom: 4px;
@@ -726,9 +726,6 @@ html:not(.evolved) .oobe-header h1 {
   background: var(--smtc-background-ctrl-neutral-rest, #ffffff);
 }
 
-.eula-box.thirdparty .eula-content {
-  background: transparent;
-}
 
 .eula-content:focus {
   outline: none;
