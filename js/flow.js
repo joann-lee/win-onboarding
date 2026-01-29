@@ -22,7 +22,7 @@
     { id: 'msa_info', file: 'msa_info.html', label: 'MSA Info', type: 'interactive', children: [], restartAfter: false },
     { id: 'msa_sisu', file: 'msa_sisu.html', label: 'MSA Sign in / Sign Up (SISU)', type: 'interactive', children: ['msa_sisu_0.html'], restartAfter: false },
     { id: 'fingerprint', file: 'fingerprint.html', label: 'Fingerprint', type: 'interactive', children: ['fingerprint_0.html'], restartAfter: false },
-    { id: 'pin', file: 'pin_0.html', label: 'PIN', type: 'interactive', children: [], restartAfter: false },
+    { id: 'pin', file: 'pin.html', label: 'PIN', type: 'interactive', children: [], restartAfter: false },
     { id: 'privacy_settings', file: 'privacy_settings.html', label: 'Privacy Settings', type: 'interactive', children: [], restartAfter: false },
     { id: 'pc_restore', file: 'pc_restore.html', label: 'PC Restore', type: 'interactive', children: ["pc_restore_0.html"], restartAfter: false },
     { id: 'oem_registration', file: 'oem_registration.html', label: 'OEM Registration', type: 'interactive', children: ["oem_registration_0.html"], restartAfter: false },
