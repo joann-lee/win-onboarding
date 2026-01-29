@@ -53,6 +53,8 @@
       </div>
     </div>
  <a href="#" id="cancel-link" class="ndup-cancel-link">Update later</a>
+ <!-- Hidden next button for flow.js navigation -->
+ <button data-cta="next" style="display: none;"></button>
 
 
 
@@ -121,6 +123,7 @@
     let animationFrameId;
     let lastDisplayedPercentage = -5; // Track last displayed percentage
     let lastStepIndex = -1; // Track last step index to detect step changes
+    let completionHandled = false; // Track if completion has been handled
 
     function updateProgress() {
       const elapsedTime = Date.now() - startTime;
@@ -160,12 +163,34 @@
         // Continue animation if not finished
         if (elapsedTime < totalDuration) {
           animationFrameId = requestAnimationFrame(updateProgress);
+        } else if (!completionHandled) {
+          // All steps completed, wait 3 seconds then proceed via flow system
+          completionHandled = true;
+          setTimeout(() => {
+            const nextButton = document.querySelector('[data-cta=next]');
+            if (nextButton) {
+              nextButton.click();
+            }
+          }, 3000);
         }
       }
     }
 
     // Start the progress updates
     updateProgress();
+
+    // Handle "Update later" button click
+    const cancelLink = document.getElementById('cancel-link');
+    if (cancelLink) {
+      cancelLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Use flow.js navigation system by triggering the next button
+        const nextButton = document.querySelector('[data-cta=next]');
+        if (nextButton) {
+          nextButton.click();
+        }
+      });
+    }
   </script>
 
 </body>
