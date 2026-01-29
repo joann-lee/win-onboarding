@@ -6453,12 +6453,12 @@ html.dark .color-swatch.active {
 }
 
 /* ==================== DARK MODE TASKBAR & START MENU ==================== */
-/* Dark mode taskbar with theme accent color support using filters */
+/* Dark mode taskbar with theme accent color support - matches evolved oobe-card styling */
 
 html.dark .taskbar .acrylic-bg {
     background: var(--oobe-acrylic-bg-dark);
-    backdrop-filter: var(--oobe-acrylic-blur);
-    -webkit-backdrop-filter: var(--oobe-acrylic-blur);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
     border-top: var(--oobe-acrylic-border-dark);
 }
 
@@ -6468,14 +6468,17 @@ html.dark .taskbar .top-stroke {
 
 html.dark .start-menu-bg {
     background: var(--oobe-acrylic-bg-dark);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
 html.dark .phone-pane-bg {
     background: var(--oobe-acrylic-bg-dark);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
-/* Theme-specific accent colors for dark mode taskbar and start menu */
-/* Using semi-transparent backgrounds instead of filters to preserve acrylic transparency */
+/* Theme-specific accent colors for dark mode - matching evolved oobe-card backgrounds */
 html.dark.standard .taskbar .acrylic-bg,
 html.dark.theme-standard .taskbar .acrylic-bg,
 html.dark.standard .start-menu-bg,
@@ -6486,7 +6489,7 @@ html.dark.standard .start-menu-footer-bg,
 html.dark.theme-standard .start-menu-footer-bg,
 html.dark.standard .phone-footer-bg,
 html.dark.theme-standard .phone-footer-bg {
-    background: rgba(30, 40, 70, 0.65);
+    background: rgba(30, 31, 34, 0.65);
 }
 
 html.dark.violet .taskbar .acrylic-bg,
@@ -6499,7 +6502,7 @@ html.dark.violet .start-menu-footer-bg,
 html.dark.theme-violet .start-menu-footer-bg,
 html.dark.violet .phone-footer-bg,
 html.dark.theme-violet .phone-footer-bg {
-    background: rgba(45, 35, 75, 0.65);
+    background: rgba(40, 38, 44, 0.65);
 }
 
 html.dark.dune .taskbar .acrylic-bg,
@@ -6512,7 +6515,7 @@ html.dark.dune .start-menu-footer-bg,
 html.dark.theme-dune .start-menu-footer-bg,
 html.dark.dune .phone-footer-bg,
 html.dark.theme-dune .phone-footer-bg {
-    background: rgba(75, 38, 20, 0.65);
+    background: rgba(42, 40, 38, 0.65);
 }
 
 html.dark.sapphire .taskbar .acrylic-bg,
@@ -6525,7 +6528,7 @@ html.dark.sapphire .start-menu-footer-bg,
 html.dark.theme-sapphire .start-menu-footer-bg,
 html.dark.sapphire .phone-footer-bg,
 html.dark.theme-sapphire .phone-footer-bg {
-    background: rgba(25, 45, 65, 0.65);
+    background: rgba(30, 35, 45, 0.65);
 }
 
 html.dark.emerald .taskbar .acrylic-bg,
@@ -6538,10 +6541,23 @@ html.dark.emerald .start-menu-footer-bg,
 html.dark.theme-emerald .start-menu-footer-bg,
 html.dark.emerald .phone-footer-bg,
 html.dark.theme-emerald .phone-footer-bg {
-    background: rgba(35, 55, 40, 0.65);
+    background: rgba(19, 28, 17, 0.65);
 }
 
-/* Light mode theme-specific tints - subtle like OOBE acrylic cards */
+html.dark.slate .taskbar .acrylic-bg,
+html.dark.theme-slate .taskbar .acrylic-bg,
+html.dark.slate .start-menu-bg,
+html.dark.theme-slate .start-menu-bg,
+html.dark.slate .phone-pane-bg,
+html.dark.theme-slate .phone-pane-bg,
+html.dark.slate .start-menu-footer-bg,
+html.dark.theme-slate .start-menu-footer-bg,
+html.dark.slate .phone-footer-bg,
+html.dark.theme-slate .phone-footer-bg {
+    background: rgba(40, 40, 40, 0.65);
+}
+
+/* Light mode theme-specific tints - matching evolved oobe-card backgrounds */
 html.light.violet .taskbar .acrylic-bg,
 html.light.theme-violet .taskbar .acrylic-bg,
 html.light.violet .start-menu-bg,
@@ -6552,7 +6568,9 @@ html.light.violet .start-menu-footer-bg,
 html.light.theme-violet .start-menu-footer-bg,
 html.light.violet .phone-footer-bg,
 html.light.theme-violet .phone-footer-bg {
-    background: rgba(200, 195, 220, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
 html.light.dune .taskbar .acrylic-bg,
@@ -6565,7 +6583,9 @@ html.light.dune .start-menu-footer-bg,
 html.light.theme-dune .start-menu-footer-bg,
 html.light.dune .phone-footer-bg,
 html.light.theme-dune .phone-footer-bg {
-    background: rgba(220, 195, 175, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
 html.light.sapphire .taskbar .acrylic-bg,
@@ -6578,7 +6598,9 @@ html.light.sapphire .start-menu-footer-bg,
 html.light.theme-sapphire .start-menu-footer-bg,
 html.light.sapphire .phone-footer-bg,
 html.light.theme-sapphire .phone-footer-bg {
-    background: rgba(180, 200, 220, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
 html.light.slate .taskbar .acrylic-bg,
@@ -6591,7 +6613,9 @@ html.light.slate .start-menu-footer-bg,
 html.light.theme-slate .start-menu-footer-bg,
 html.light.slate .phone-footer-bg,
 html.light.theme-slate .phone-footer-bg {
-    background: rgba(200, 200, 200, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
 html.light.emerald .taskbar .acrylic-bg,
@@ -6604,7 +6628,9 @@ html.light.emerald .start-menu-footer-bg,
 html.light.theme-emerald .start-menu-footer-bg,
 html.light.emerald .phone-footer-bg,
 html.light.theme-emerald .phone-footer-bg {
-    background: rgba(200, 220, 200, 0.15);
+    background: rgba(220, 231, 210, 0.15);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
 }
 
 /* Dark mode taskbar text and icon colors */

@@ -44,6 +44,28 @@ const OOBE_DEBUG_ENABLED = false;
   }
 })();
 
+// Fullscreen toggle helper function (works in browsers, limited in Electron)
+function toggleFullscreenFallback() {
+  if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement) {
+    if (document.exitFullscreen) {
+      document.exitFullscreen().catch(err => console.log('Fullscreen API not supported:', err));
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    }
+  } else {
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen().catch(err => console.log('Fullscreen API not supported:', err));
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      elem.mozRequestFullScreen();
+    }
+  }
+}
+
 // Custom Right-Click Context Menu
 (function initContextMenu() {
   // Create context menu HTML
@@ -107,6 +129,11 @@ const OOBE_DEBUG_ENABLED = false;
         <span class="context-menu-icon">↻</span>
         <span class="context-menu-label">Reload Page</span>
         <span class="context-menu-shortcut">F5</span>
+      </div>
+      <div class="context-menu-item" data-action="toggle-fullscreen">
+        <span class="context-menu-icon">⛶</span>
+        <span class="context-menu-label">Exit Fullscreen</span>
+        <span class="context-menu-shortcut">F11</span>
       </div>
     </div>
   `;
@@ -331,6 +358,7 @@ const OOBE_DEBUG_ENABLED = false;
     // Skip if clicking on theme submenu parent
     if (action === 'theme') return;
 
+    e.stopPropagation(); // Prevent document click from interfering
     contextMenu.classList.remove('active');
 
     switch (action) {
@@ -345,6 +373,25 @@ const OOBE_DEBUG_ENABLED = false;
         break;
       case 'reload':
         window.location.reload();
+        break;
+      case 'toggle-fullscreen':
+        // Try Electron IPC first (if available)
+        if (window.electronAPI && window.electronAPI.toggleFullscreen) {
+          window.electronAPI.toggleFullscreen();
+        } else if (window.require) {
+          // Try Electron's remote module
+          try {
+            const { remote } = window.require('electron');
+            const win = remote.getCurrentWindow();
+            win.setFullScreen(!win.isFullScreen());
+          } catch (e) {
+            // Fall back to standard Fullscreen API
+            toggleFullscreenFallback();
+          }
+        } else {
+          // Standard browser Fullscreen API
+          toggleFullscreenFallback();
+        }
         break;
       case 'flow-editor':
         if (window.openFlowEditorPanel) {

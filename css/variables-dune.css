@@ -122,23 +122,23 @@ Uses the dune color palette: #E8D4C4 (light 3), #C9A88E (light 2), #9B6E52 (ligh
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #673018;
   --smtc-foreground-ctrl-brand-rest: #673018;
-  --smtc-foreground-ctrl-brand-hover: #4A2210;
-  --smtc-foreground-ctrl-brand-pressed: #9B6E52;
+  --smtc-foreground-ctrl-brand-hover: #8A4A2D;
+  --smtc-foreground-ctrl-brand-pressed: #B87A55;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-dune-light.png');
   --smtc-background-layer-solid: rgba(253, 251, 248, .3);
   --smtc-background-card-secondary-rest: #ffffff;
-  --smtc-background-ctrl-brand-rest: #673018;
-  --smtc-background-ctrl-brand-hover: #4A2210;
-  --smtc-background-ctrl-brand-pressed: #9B6E52;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #4A2210;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #9B6E52;
+  --smtc-background-ctrl-brand-rest: #773214;
+  --smtc-background-ctrl-brand-hover: #8A4A2D;
+  --smtc-background-ctrl-brand-pressed: #B87A55;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #8A4A2D;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #B87A55;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #673018;
-  --smtc-stroke-ctrl-brand-hover: #4A2210;
-  --smtc-stroke-ctrl-brand-pressed: #9B6E52;
+  --smtc-stroke-ctrl-brand-hover: #8A4A2D;
+  --smtc-stroke-ctrl-brand-pressed: #B87A55;
   --smtc-ctrl-input-bottom-line-stroke-selected: #673018;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -174,23 +174,23 @@ Uses the dune color palette: #E8D4C4 (light 3), #C9A88E (light 2), #9B6E52 (ligh
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #9B6E52;
   --smtc-foreground-ctrl-brand-rest: #9B6E52;
-  --smtc-foreground-ctrl-brand-hover: #7A4328;
-  --smtc-foreground-ctrl-brand-pressed: #C9A88E;
+  --smtc-foreground-ctrl-brand-hover: #B88A6E;
+  --smtc-foreground-ctrl-brand-pressed: #D4AC90;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-dune-dark.png');
   --smtc-background-layer-solid: #1a1612;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #9B6E52;
-  --smtc-background-ctrl-brand-hover: #7A4328;
-  --smtc-background-ctrl-brand-pressed: #C9A88E;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #7A4328;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #C9A88E;
+  --smtc-background-ctrl-brand-hover: #B88A6E;
+  --smtc-background-ctrl-brand-pressed: #D4AC90;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #B88A6E;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #D4AC90;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #9B6E52;
-  --smtc-stroke-ctrl-brand-hover: #7A4328;
-  --smtc-stroke-ctrl-brand-pressed: #C9A88E;
+  --smtc-stroke-ctrl-brand-hover: #B88A6E;
+  --smtc-stroke-ctrl-brand-pressed: #D4AC90;
   --smtc-ctrl-input-bottom-line-stroke-selected: #9B6E52;
   
   /* ==================== LINKS & INTERACTIVE ==================== */

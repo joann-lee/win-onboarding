@@ -122,23 +122,23 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #4D5990;
   --smtc-foreground-ctrl-brand-rest: #4D5990;
-  --smtc-foreground-ctrl-brand-hover: #30396E;
-  --smtc-foreground-ctrl-brand-pressed: #7987B8;
+  --smtc-foreground-ctrl-brand-hover: #6B77A8;
+  --smtc-foreground-ctrl-brand-pressed: #8995C0;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/electric-teal.webp');
   --smtc-background-layer-solid: #f8fafc;
   --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
   --smtc-background-ctrl-brand-rest: #4D5990;
-  --smtc-background-ctrl-brand-hover: #30396E;
-  --smtc-background-ctrl-brand-pressed: #7987B8;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #30396E;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #7987B8;
+  --smtc-background-ctrl-brand-hover: #6B77A8;
+  --smtc-background-ctrl-brand-pressed: #8995C0;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #6B77A8;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #8995C0;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #4D5990;
-  --smtc-stroke-ctrl-brand-hover: #30396E;
-  --smtc-stroke-ctrl-brand-pressed: #7987B8;
+  --smtc-stroke-ctrl-brand-hover: #6B77A8;
+  --smtc-stroke-ctrl-brand-pressed: #8995C0;
   --smtc-ctrl-input-bottom-line-stroke-selected: #4D5990;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -174,23 +174,23 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #7987B8;
   --smtc-foreground-ctrl-brand-rest: #7987B8;
-  --smtc-foreground-ctrl-brand-hover: #6271AA;
-  --smtc-foreground-ctrl-brand-pressed: #B5C2DB;
+  --smtc-foreground-ctrl-brand-hover: #96A2CA;
+  --smtc-foreground-ctrl-brand-pressed: #B3BDDC;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/electric-teal.webp');
   --smtc-background-layer-solid: #0f1318;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #7987B8;
-  --smtc-background-ctrl-brand-hover: #6271AA;
-  --smtc-background-ctrl-brand-pressed: #B5C2DB;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #6271AA;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #B5C2DB;
+  --smtc-background-ctrl-brand-hover: #96A2CA;
+  --smtc-background-ctrl-brand-pressed: #B3BDDC;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #96A2CA;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #B3BDDC;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #7987B8;
-  --smtc-stroke-ctrl-brand-hover: #6271AA;
-  --smtc-stroke-ctrl-brand-pressed: #B5C2DB;
+  --smtc-stroke-ctrl-brand-hover: #96A2CA;
+  --smtc-stroke-ctrl-brand-pressed: #B3BDDC;
   --smtc-ctrl-input-bottom-line-stroke-selected: #7987B8;
   
   /* ==================== LINKS & INTERACTIVE ==================== */

@@ -19,10 +19,48 @@
                 <span class="context-menu-shortcut"></span>
             </div>
             <div class="context-menu-divider"></div>
+            <div class="context-menu-item has-submenu" data-action="theme">
+                <span class="context-menu-icon">🎨</span>
+                <span class="context-menu-label">Theme Color</span>
+                <span class="context-menu-arrow">›</span>
+                <div class="context-submenu">
+                    <div class="context-menu-item" data-theme="standard">
+                        <span class="context-menu-color" style="background: #0078d4;"></span>
+                        <span class="context-menu-label">Standard</span>
+                    </div>
+                    <div class="context-menu-item" data-theme="dune">
+                        <span class="context-menu-color" style="background: #d4a574;"></span>
+                        <span class="context-menu-label">Dune</span>
+                    </div>
+                    <div class="context-menu-item" data-theme="sapphire">
+                        <span class="context-menu-color" style="background: #0066cc;"></span>
+                        <span class="context-menu-label">Sapphire</span>
+                    </div>
+                    <div class="context-menu-item" data-theme="violet">
+                        <span class="context-menu-color" style="background: #8b5cf6;"></span>
+                        <span class="context-menu-label">Violet</span>
+                    </div>
+                    <div class="context-menu-item" data-theme="slate">
+                        <span class="context-menu-color" style="background: #64748b;"></span>
+                        <span class="context-menu-label">Slate</span>
+                    </div>
+                    <div class="context-menu-item" data-theme="emerald">
+                        <span class="context-menu-color" style="background: #10b981;"></span>
+                        <span class="context-menu-label">Emerald</span>
+                    </div>
+                </div>
+            </div>
+            <div class="context-menu-divider"></div>
             <div class="context-menu-item" data-action="reload">
                 <span class="context-menu-icon">↻</span>
                 <span class="context-menu-label">Reload Page</span>
                 <span class="context-menu-shortcut">F5</span>
+            </div>
+            <div class="context-menu-divider"></div>
+            <div class="context-menu-item" data-action="toggle-fullscreen">
+                <span class="context-menu-icon">⛶</span>
+                <span class="context-menu-label">Exit Fullscreen</span>
+                <span class="context-menu-shortcut">F11</span>
             </div>
         </div>
     `;
@@ -91,6 +129,50 @@
                 margin: 4px 8px;
             }
 
+            .desktop-context-menu .context-menu-arrow {
+                opacity: 0.5;
+                font-size: 14px;
+            }
+
+            .desktop-context-menu .context-menu-color {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+
+            .desktop-context-menu .context-menu-item.has-submenu {
+                position: relative;
+            }
+
+            .desktop-context-menu .context-submenu {
+                position: absolute;
+                left: 100%;
+                top: -4px;
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+                padding: 4px;
+                min-width: 150px;
+                opacity: 0;
+                visibility: hidden;
+                transform: translateX(-10px);
+                transition: opacity 100ms ease, transform 100ms ease, visibility 100ms;
+            }
+
+            .desktop-context-menu .context-menu-item.has-submenu:hover > .context-submenu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+            }
+
+            .desktop-context-menu .context-submenu .context-menu-item[data-theme].active {
+                background: rgba(0, 120, 212, 0.1);
+            }
+
             /* Dark mode styles */
             html.dark .desktop-context-menu {
                 background: rgba(40, 40, 40, 0.9);
@@ -107,6 +189,15 @@
 
             html.dark .desktop-context-menu .context-menu-divider {
                 background: rgba(255, 255, 255, 0.1);
+            }
+
+            html.dark .desktop-context-menu .context-submenu {
+                background: rgba(40, 40, 40, 0.9);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            html.dark .desktop-context-menu .context-submenu .context-menu-item[data-theme].active {
+                background: rgba(255, 255, 255, 0.15);
             }
         </style>
     `;
@@ -158,12 +249,54 @@
             contextMenu.classList.remove('active');
         });
 
+        // Mark current theme as active
+        function updateActiveTheme() {
+            const currentPalette = localStorage.getItem('themePalette') || 'standard';
+            contextMenu.querySelectorAll('[data-theme]').forEach(item => {
+                item.classList.toggle('active', item.dataset.theme === currentPalette);
+            });
+        }
+
         // Handle menu item clicks
         contextMenu.addEventListener('click', (e) => {
             const item = e.target.closest('.context-menu-item');
             if (!item) return;
 
             const action = item.dataset.action;
+            const theme = item.dataset.theme;
+
+            // Handle theme selection
+            if (theme) {
+                e.stopPropagation();
+                const root = document.documentElement;
+                
+                // Remove all palette classes
+                root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+                
+                // Apply selected palette
+                if (theme !== 'standard') {
+                    root.classList.add(theme);
+                }
+                
+                // Save to localStorage
+                localStorage.setItem('themePalette', theme);
+                
+                // Update wallpaper using theme manager
+                if (window.themeManager) {
+                    window.themeManager.setTheme(theme);
+                }
+                
+                // Update active state
+                updateActiveTheme();
+                
+                contextMenu.classList.remove('active');
+                return;
+            }
+
+            // Skip if clicking on theme submenu parent
+            if (action === 'theme') return;
+
+            e.stopPropagation(); // Prevent document click from interfering
             contextMenu.classList.remove('active');
 
             switch (action) {
@@ -179,8 +312,18 @@
                 case 'reload':
                     window.location.reload();
                     break;
+                case 'toggle-fullscreen':
+                    if (document.fullscreenElement) {
+                        document.exitFullscreen().catch(err => console.log('Error exiting fullscreen:', err));
+                    } else {
+                        document.documentElement.requestFullscreen().catch(err => console.log('Error entering fullscreen:', err));
+                    }
+                    break;
             }
         });
+
+        // Initialize active theme state
+        updateActiveTheme();
     });
 })();
 
@@ -3834,58 +3977,13 @@ function closeSettingsFlyout() {
 }
 
 function updateSettingsFlyoutUI() {
-    // Update mode buttons
-    const currentMode = localStorage.getItem('themeMode') || 'light';
-    const modeBtns = document.querySelectorAll('.mode-btn');
-    modeBtns.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.mode === currentMode);
-    });
-    
-    // Update color swatches
-    const currentTheme = localStorage.getItem('themePalette') || 'standard';
-    const colorSwatches = document.querySelectorAll('.color-swatch');
-    colorSwatches.forEach(swatch => {
-        swatch.classList.toggle('active', swatch.dataset.theme === currentTheme);
-    });
+    // No longer needed - theme controls moved to context menu
 }
 
 function initializeSettingsFlyout() {
     const flyout = document.getElementById('settingsFlyout');
     
     if (!flyout) return;
-    
-    // Mode button click handlers
-    const modeBtns = document.querySelectorAll('.mode-btn');
-    modeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const mode = btn.dataset.mode;
-            localStorage.setItem('themeMode', mode);
-            document.documentElement.classList.toggle('dark', mode === 'dark');
-            
-            // Update wallpaper for new mode
-            if (window.themeManager) {
-                window.themeManager.setWallpaper(window.themeManager.currentTheme, false);
-            }
-            
-            updateSettingsFlyoutUI();
-        });
-    });
-    
-    // Color swatch click handlers
-    const colorSwatches = document.querySelectorAll('.color-swatch');
-    colorSwatches.forEach(swatch => {
-        swatch.addEventListener('click', () => {
-            const theme = swatch.dataset.theme;
-            localStorage.setItem('themePalette', theme);
-            
-            // Use theme manager to switch theme
-            if (window.themeManager) {
-                window.themeManager.setTheme(theme);
-            }
-            
-            updateSettingsFlyoutUI();
-        });
-    });
     
     // Restart flow button handler
     const restartFlowBtn = document.getElementById('restartFlowBtn');

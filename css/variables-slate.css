@@ -122,23 +122,23 @@ Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (lig
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #5B5A5A;
   --smtc-foreground-ctrl-brand-rest: #5B5A5A;
-  --smtc-foreground-ctrl-brand-hover: #3A3939;
-  --smtc-foreground-ctrl-brand-pressed: #8B8A8A;
+  --smtc-foreground-ctrl-brand-hover: #787777;
+  --smtc-foreground-ctrl-brand-pressed: #959494;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-black-light.png');
   --smtc-background-layer-solid: #f8f9fa;
   --smtc-background-card-secondary-rest: #ffffff;
   --smtc-background-ctrl-brand-rest: #5B5A5A;
-  --smtc-background-ctrl-brand-hover: #3A3939;
-  --smtc-background-ctrl-brand-pressed: #8B8A8A;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #3A3939;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #8B8A8A;
+  --smtc-background-ctrl-brand-hover: #787777;
+  --smtc-background-ctrl-brand-pressed: #959494;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #787777;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #959494;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #5B5A5A;
-  --smtc-stroke-ctrl-brand-hover: #3A3939;
-  --smtc-stroke-ctrl-brand-pressed: #8B8A8A;
+  --smtc-stroke-ctrl-brand-hover: #787777;
+  --smtc-stroke-ctrl-brand-pressed: #959494;
   --smtc-ctrl-input-bottom-line-stroke-selected: #5B5A5A;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -172,24 +172,24 @@ Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (lig
   --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
   
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #C5C4C4;
-  --smtc-foreground-ctrl-brand-rest: #C5C4C4;
-  --smtc-foreground-ctrl-brand-hover: #8B8A8A;
-  --smtc-foreground-ctrl-brand-pressed: #E6E5E5;
+  --smtc-foreground-ctrl-hint-default: #8B8A8A;
+  --smtc-foreground-ctrl-brand-rest: #8B8A8A;
+  --smtc-foreground-ctrl-brand-hover: #A8A7A7;
+  --smtc-foreground-ctrl-brand-pressed: #C5C4C4;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-black-dark.png');
   --smtc-background-layer-solid: #151414;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #8B8A8A;
-  --smtc-background-ctrl-brand-hover: #747474;
+  --smtc-background-ctrl-brand-hover: #A8A7A7;
   --smtc-background-ctrl-brand-pressed: #C5C4C4;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #747474;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #A8A7A7;
   --smtc-ctrl-slider-bar-foreground-filled-pressed: #C5C4C4;
   
   /* ==================== STROKES & BORDERS ==================== */
   --smtc-stroke-ctrl-brand-rest: #8B8A8A;
-  --smtc-stroke-ctrl-brand-hover: #747474;
+  --smtc-stroke-ctrl-brand-hover: #A8A7A7;
   --smtc-stroke-ctrl-brand-pressed: #C5C4C4;
   --smtc-ctrl-input-bottom-line-stroke-selected: #8B8A8A;
   

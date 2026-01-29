@@ -122,23 +122,23 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #55614F;
   --smtc-foreground-ctrl-brand-rest: #55614F;
-  --smtc-foreground-ctrl-brand-hover: #6d7b84;
-  --smtc-foreground-ctrl-brand-pressed: #829178;
+  --smtc-foreground-ctrl-brand-hover: #6D7A65;
+  --smtc-foreground-ctrl-brand-pressed: #85937B;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-emerald-light.png');
   --smtc-background-layer-solid: #f7fbf9;
   --smtc-background-card-secondary-rest: #ffffff;
-  --smtc-background-ctrl-brand-rest: #43552C;
-  --smtc-background-ctrl-brand-hover: #374032;
-  --smtc-background-ctrl-brand-pressed: #6d7b65;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #374032;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #6d7b65;
+  --smtc-background-ctrl-brand-rest: #425A32;
+  --smtc-background-ctrl-brand-hover: #5A7248;
+  --smtc-background-ctrl-brand-pressed: #728A5E;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #5A7248;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #728A5E;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #131C11;
-  --smtc-stroke-ctrl-brand-hover: #0a0f09;
-  --smtc-stroke-ctrl-brand-pressed: #374032;
+  --smtc-stroke-ctrl-brand-rest: #55614F;
+  --smtc-stroke-ctrl-brand-hover: #6D7A65;
+  --smtc-stroke-ctrl-brand-pressed: #85937B;
   --smtc-ctrl-input-bottom-line-stroke-selected: #131C11;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
@@ -172,10 +172,10 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
   
   /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #6d7b84;
-  --smtc-foreground-ctrl-brand-rest: #55614F;
-  --smtc-foreground-ctrl-brand-hover: #6d7b84;
-  --smtc-foreground-ctrl-brand-pressed: #829178;
+  --smtc-foreground-ctrl-hint-default: #7B926B;
+  --smtc-foreground-ctrl-brand-rest: #7B926B;
+  --smtc-foreground-ctrl-brand-hover: #95A887;
+  --smtc-foreground-ctrl-brand-pressed: #AFBEA3;
   
   /* Button/brand text - white text on emerald green backgrounds */
   --smtc-foreground-ctrl-on-brand-rest: #000000;
@@ -186,16 +186,16 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   --background-image: url('/assets/wallpaper/background-emerald-dark.png');
   --smtc-background-layer-solid: #0c1410;
   --smtc-background-card-secondary-rest: #1e1f22;
-  --smtc-background-ctrl-brand-rest: #7D9069;
-  --smtc-background-ctrl-brand-hover: #374032;
-  --smtc-background-ctrl-brand-pressed: #6d7b65;
-  --smtc-ctrl-slider-bar-foreground-filled-hover: #374032;
-  --smtc-ctrl-slider-bar-foreground-filled-pressed: #6d7b65;
+  --smtc-background-ctrl-brand-rest: #7B926B;
+  --smtc-background-ctrl-brand-hover: #95A887;
+  --smtc-background-ctrl-brand-pressed: #AFBEA3;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #95A887;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #AFBEA3;
   
   /* ==================== STROKES & BORDERS ==================== */
-  --smtc-stroke-ctrl-brand-rest: #55614F;
-  --smtc-stroke-ctrl-brand-hover: #374032;
-  --smtc-stroke-ctrl-brand-pressed: #6d7b65;
+  --smtc-stroke-ctrl-brand-rest: #7B926B;
+  --smtc-stroke-ctrl-brand-hover: #95A887;
+  --smtc-stroke-ctrl-brand-pressed: #AFBEA3;
   --smtc-ctrl-input-bottom-line-stroke-selected: #55614F;
   
   /* ==================== LINKS & INTERACTIVE ==================== */
