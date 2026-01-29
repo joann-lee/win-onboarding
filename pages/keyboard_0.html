@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | Wifi</title>
+  <title>💻 OOBE Sandbox | Keybaord 2</title>
   <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
   <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
@@ -20,7 +20,7 @@
   <meta name="view-transition" content="same-origin" />
 </head>
 
-<body data-page-id="wifi" data-oobe>
+<body data-page-id="keyboard_0" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
@@ -30,24 +30,18 @@
 
         <div class="oobe-content">
           <header class="oobe-header">
-            <h1>Network</h1>
-            <div class="subtitle">You’ll need an internet connection to continue setting up your device. Once connected,
-              you’ll get the latest features and security updates.</div>
+            <h1>Add a second keyboard</h1>
+            <!-- <div class="subtitle">If you also use another keyboard layout, you can add that next.</div> -->
           </header>
           <div class="oobe-body">
-            <ul class="wifi-list" id="wifi-list">
-              <!-- Networks will be populated by JS -->
-            </ul>
-            <hr>
-            <div class="troubleshoot-link">
-              <!-- <hr> -->
-              <span style="font-weight: 600">Having trouble getting connected?</span><br>
-              For troubleshooting tips, use another device and visit aka.ms/networksetup
-            </div>
+
+     
+
+
           </div>
           <div class="oobe-ctas">
-            <!-- <a class="button-secondary" data-cta="skip">Skip for now</a> -->
-            <mai-button appearance="primary" size="large" data-cta="next" disabled>Next</mai-button>
+            <a class="button-secondary" data-cta="next">Add layout</a>
+            <mai-button appearance="primary" size="large" data-cta="skip">Skip</mai-button>
           </div>
         </div>
 
@@ -62,11 +56,9 @@
     </div>
 
   </div>
-  </div>
+  </div> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-
-  <!-- TODO: Set the correct Lottie animation -->
-  <script src="/assets/animations/Wifi.js"></script>
+  <script src="/assets/animations/Keyboard.js"></script>
   <script src="/js/scrollbar.js"></script>
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>

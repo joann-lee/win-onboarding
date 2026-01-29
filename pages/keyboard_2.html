@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>💻 OOBE Sandbox | Wifi</title>
+  <title>💻 OOBE Sandbox | Keyboard 4</title>
   <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
   <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
   <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
@@ -20,34 +20,48 @@
   <meta name="view-transition" content="same-origin" />
 </head>
 
-<body data-page-id="wifi" data-oobe>
+<body data-page-id="keyboard_2" data-oobe>
   <div class="oobe-background"></div>
   <div id="oobe-nav-root"></div>
   <div class="oobe-shell">
     <div class="oobe-main">
       <div class="oobe-card">
-        <div id="lottie" class="lottie-container"></div>
+        <!-- <div id="lottie" class="lottie-container"></div> -->
 
         <div class="oobe-content">
           <header class="oobe-header">
-            <h1>Network</h1>
-            <div class="subtitle">You’ll need an internet connection to continue setting up your device. Once connected,
-              you’ll get the latest features and security updates.</div>
+            <h1>Keyboard layout to use</h1>
+            <div class="subtitle">This applies to your additional keyboard layout.</div>
+            <!-- <div class="subtitle">If you also use another keyboard layout, you can add that next.</div> -->
           </header>
           <div class="oobe-body">
-            <ul class="wifi-list" id="wifi-list">
-              <!-- Networks will be populated by JS -->
+
+            <ul class="country-list" aria-label="Country or region choices" role="listbox" id="country-list">
+              <li role="option" aria-selected="true" data-value="English" class="is-active">US</li>
+              <li role="option" data-value="español">Canadian Multilingual Standard</li>
+              <li role="option" data-value="français">Colemak</li>
+              <li role="option" data-value="English">English (India)</li>
+              <li role="option" data-value="español">Irish</li>
+              <li role="option" data-value="français">American Samoa</li>
+              <li role="option" data-value="English">US</li>
+              <li role="option" data-value="español">Canadian Multilingual Standard</li>
+              <li role="option" data-value="français">Colemak</li>
+              <li role="option" data-value="English">English (India)</li>
+              <li role="option" data-value="español">Irish</li>
+              <li role="option" data-value="français">American Samoa</li>
+              <li role="option" data-value="español">Canadian Multilingual Standard</li>
+              <li role="option" data-value="français">Colemak</li>
+              <li role="option" data-value="English">English (India)</li>
+              <li role="option" data-value="español">Irish</li>
+              <li role="option" data-value="français">American Samoa</li>
+
             </ul>
-            <hr>
-            <div class="troubleshoot-link">
-              <!-- <hr> -->
-              <span style="font-weight: 600">Having trouble getting connected?</span><br>
-              For troubleshooting tips, use another device and visit aka.ms/networksetup
-            </div>
+
+
           </div>
           <div class="oobe-ctas">
             <!-- <a class="button-secondary" data-cta="skip">Skip for now</a> -->
-            <mai-button appearance="primary" size="large" data-cta="next" disabled>Next</mai-button>
+            <mai-button appearance="primary" size="large" data-cta="next">Next</mai-button>
           </div>
         </div>
 
@@ -64,9 +78,7 @@
   </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-
-  <!-- TODO: Set the correct Lottie animation -->
-  <script src="/assets/animations/Wifi.js"></script>
+  <script src="/assets/animations/Keyboard.js"></script>
   <script src="/js/scrollbar.js"></script>
   <script src="/js/web-components.min.js"></script>
   <script src="/js/flow.js"></script>

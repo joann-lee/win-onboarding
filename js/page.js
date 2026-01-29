@@ -80,7 +80,6 @@ function toggleFullscreenFallback() {
       <div class="context-menu-item" data-action="back">
         <span class="context-menu-icon">←</span>
         <span class="context-menu-label">Go Back</span>
-        <span class="context-menu-shortcut">Backspace</span>
       </div>
       <div class="context-menu-item" data-action="home">
         <span class="context-menu-icon">⌂</span>
@@ -431,15 +430,7 @@ function toggleFullscreenFallback() {
       e.preventDefault();
       window.location.href = '/';
     }
-    // Backspace key goes back one page (when not in an input)
-    if (e.key === 'Backspace' && !e.ctrlKey && !e.altKey && !e.shiftKey) {
-      const activeEl = document.activeElement;
-      const isInput = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable);
-      if (!isInput) {
-        e.preventDefault();
-        window.history.back();
-      }
-    }
+
   });
 })();
 
@@ -948,8 +939,8 @@ function updatePaletteMenuSelection() {
   // Network Data
   const networks = [
     { name: 'Netgear_24', secured: true, signal: 4 },
-    { name: 'ENet-5G', secured: true, signal: 4 },
-    { name: 'TP-LINK_5514A_EXT', secured: true, signal: 3 },
+    { name: 'Definitely not wifi', secured: false, signal: 4 },
+    { name: 'Home wifi', secured: false, signal: 3 },
     { name: 'CenturyLink_5515', secured: true, signal: 3 },
     { name: 'DirectAccess_555', secured: true, signal: 2 },
     { name: 'JohnLane_net', secured: true, signal: 1 },
