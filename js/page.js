@@ -3,6 +3,19 @@
 // Debug Configuration - Set to true to enable debugging features
 const OOBE_DEBUG_ENABLED = false;
 
+// Handle back button navigation (data-cta="back")
+(function initBackButton() {
+  window.addEventListener('load', () => {
+    const backButton = document.querySelector('[data-cta="back"]');
+    if (backButton) {
+      backButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.history.back();
+      });
+    }
+  });
+})();
+
 // Electron IPC: Handle system resume events (e.g., wake from sleep)
 (function initElectronResumeHandler() {
   // Check if running in Electron environment
