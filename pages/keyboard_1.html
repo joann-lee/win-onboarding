@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>💻 OOBE Sandbox | Keyboard 3</title>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <script src="/js/theme-init.js"></script>
+  <link rel="stylesheet" href="/css/main.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+</head>
+
+<body data-page-id="keyboard_1" data-oobe>
+  <div class="oobe-background"></div>
+  <div id="oobe-nav-root"></div>
+  <div class="oobe-shell">
+    <div class="oobe-main">
+      <div class="oobe-card">
+
+        <div class="oobe-content">
+          <header class="oobe-header">
+            <h1>Language for keyboard layout</h1>
+            <div class="subtitle">This applies to your additional keyboard layout.</div>
+            <!-- <div class="subtitle">If you also use another keyboard layout, you can add that next.</div> -->
+          </header>
+          <div class="oobe-body">
+
+            <ul class="country-list" aria-label="Country or region choices" role="listbox" id="country-list">
+              <li role="option" aria-selected="true" data-value="English" class="is-active">English</li>
+              <li role="option" data-value="español">español</li>
+              <li role="option" data-value="français">français</li>
+
+            </ul>
+          </div>
+          <div class="oobe-ctas">
+            <!-- <a class="button-secondary" data-cta="skip">Skip for now</a> -->
+            <mai-button appearance="primary" size="large" data-cta="next">Next</mai-button>
+          </div>
+        </div>
+
+      </div>
+      <div class="oobe-below-actions">
+        <!-- Accessibility section, no need to update -->
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-pressed aria-label="Mode settings"><img src="/assets/icons/mode.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Keyboard settings"><img src="/assets/icons/keyboard.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Accessibility options"><img src="/assets/icons/accessibility.svg" alt="" /></mai-button>
+        <mai-button type="button a11y" appearance="subtle" size="medium" aria-label="Volume settings"><img src="/assets/icons/volume.svg" alt="" /></mai-button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <script src="/js/scrollbar.js"></script>
+  <script src="/js/web-components.min.js"></script>
+  <script src="/js/flow.js"></script>
+  <script src="/js/page.js"></script>
+
+</body>
+
+</html>
