@@ -683,7 +683,7 @@ html:not(.evolved) .oobe-header h1 {
   flex-direction: column;
   /* border: 1px solid var(--color-border-default); */
   border-radius: var(--smtc-corner-window-default);
-  overflow: hidden;
+  /* overflow: auto; */
   position: relative;
 }
 
