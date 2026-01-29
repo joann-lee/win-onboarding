@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
+  <link rel="stylesheet" href="/css/ndup.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
   </head>
@@ -31,15 +32,11 @@
         <div class="oobe-content">
           <header class="oobe-header">
             <h1>Getting things ready</h1>
-            <!-- <div class="subtitle">If you also use another keyboard layout, you can add that next.</div> -->
+            <div class="subtitle">Your update is in progress. Please keep your PC on and plugged in.</div>
           </header>
           <div class="oobe-body">
-
-    <div>
-    <p>Your update is in progress. Please keep your PC on and plugged in.</p>
-    <br>
-    <p id="progress-label">Step 1 of 3: Downloading</p>
-    </div>
+      
+    <p id="progress-label">Step 1 of 3: Downloading (0%)</p>
       
     <div class="ndup-progress-bar">
       <div class="progress-segment" data-step="1">
@@ -52,12 +49,12 @@
         <div class="progress-fill" id="segment-setup" data-step="3"></div>
       </div>
     </div>
- <a href="#" id="cancel-link" class="ndup-cancel-link">Update later</a>
- <!-- Hidden next button for flow.js navigation -->
- <button data-cta="next" style="display: none;"></button>
 
 
 
+          </div>
+          <div class="oobe-ctas">
+            <mai-button appearance="subtle" size="large" id="cancel-link" data-cta="next">Update later</mai-button>
           </div>
       
         </div>
@@ -178,19 +175,6 @@
 
     // Start the progress updates
     updateProgress();
-
-    // Handle "Update later" button click
-    const cancelLink = document.getElementById('cancel-link');
-    if (cancelLink) {
-      cancelLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        // Use flow.js navigation system by triggering the next button
-        const nextButton = document.querySelector('[data-cta=next]');
-        if (nextButton) {
-          nextButton.click();
-        }
-      });
-    }
   </script>
 
 </body>

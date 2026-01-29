@@ -1,0 +1,467 @@
+:root{
+    --ndup-footer-height: 165px;
+    --ndup-footer-gap: 21px;
+}
+
+/* NDUP Page Styles */
+
+body[data-page-id="ndup"] .oobe-main,
+body[data-page-id="ndup_0"] .oobe-main {
+  width: auto;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page-id="ndup"] .oobe-card,
+body[data-page-id="ndup_0"] .oobe-card {
+  height: var(--color-card-height);
+  min-width: 600px;
+}
+
+body[data-page-id="ndup"] .oobe-below-actions,
+body[data-page-id="ndup_0"] .oobe-below-actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+}
+
+body[data-page-id="ndup"] .oobe-header,
+body[data-page-id="ndup_0"] .oobe-header {
+  text-align: left;
+}
+
+body[data-page-id="ndup"] .oobe-body,
+body[data-page-id="ndup_0"] .oobe-body {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.oobe-card{
+  background: var(--smtc-background-card-secondary-rest, #ffffff);
+  /* border-radius: var(--radius-l); */
+  box-shadow: var(--smtc-shadow-elevation-card, 0 4px 24px rgba(0, 0, 0, 0.08));
+  width: 100%;
+}
+
+/* Account for spacing - other pages have .oobe-below-actions below the card */
+/* Add invisible placeholder to maintain consistent card positioning */
+.oobe-main::after {
+  content: "";
+  display: block;
+  height: 30px;
+  margin-top: auto;
+}
+
+.ndup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 100%;
+  padding-top: 40px;
+  padding-bottom: 24px;
+}
+
+.ndup-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ndup-footer{
+  height: var(--ndup-footer-height);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 32px;
+  background: var(--smtc-background-card-secondary-rest, #ffffff);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--smtc-shadow-elevation-card, 0 4px 24px rgba(0, 0, 0, 0.08));
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: var(--smtc-corner-card-rest, 8px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Evolved theme overlay for ndup-footer - matches oobe-card-overlay styling */
+.evolved .ndup-footer.has-contained-overlay {
+  padding: 0;
+}
+
+.evolved .ndup-footer-overlay {
+  margin: 4px;
+  pointer-events: none;
+  border-radius: var(--smtc-corner-ctrl-sm-rest, 8px);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 32px;
+  box-sizing: border-box;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: calc(100% - 8px);
+  width: calc(100% - 8px);
+}
+
+/* Evolved theme: Narrow the NDUP layout to match other oobe-card widths */
+.evolved body[data-page-id="ndup"] .oobe-main,
+.evolved body[data-page-id="ndup_0"] .oobe-main,
+body.evolved[data-page-id="ndup"] .oobe-main,
+body.evolved[data-page-id="ndup_0"] .oobe-main {
+  width: auto;
+  max-width: 600px;
+}
+
+/* Evolved theme: Full-size footer matching oobe-card dimensions */
+.evolved body[data-page-id="ndup"] .ndup-footer,
+.evolved body[data-page-id="ndup_0"] .ndup-footer,
+body.evolved[data-page-id="ndup"] .ndup-footer,
+body.evolved[data-page-id="ndup_0"] .ndup-footer {
+  height: var(--color-card-height, 750px);
+  max-height: var(--color-card-height, 750px);
+  min-height: 480px;
+  width: 100%;
+  max-width: 600px;
+  padding: 0;
+}
+
+.evolved body[data-page-id="ndup"] .ndup-footer-overlay,
+.evolved body[data-page-id="ndup_0"] .ndup-footer-overlay,
+body.evolved[data-page-id="ndup"] .ndup-footer-overlay,
+body.evolved[data-page-id="ndup_0"] .ndup-footer-overlay {
+  padding: 40px 44px;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Evolved theme: Position cancel link at bottom right like oobe-ctas */
+.evolved body[data-page-id="ndup"] .ndup-cancel-link,
+.evolved body[data-page-id="ndup_0"] .ndup-cancel-link,
+body.evolved[data-page-id="ndup"] .ndup-cancel-link,
+body.evolved[data-page-id="ndup_0"] .ndup-cancel-link {
+  position: static;
+  transform: none;
+}
+
+/* NDUP evolved header - hidden by default, shown only in evolved theme */
+.ndup-evolved-header {
+  display: none;
+}
+
+.evolved body[data-page-id="ndup"] .ndup-evolved-header,
+.evolved body[data-page-id="ndup_0"] .ndup-evolved-header,
+body.evolved[data-page-id="ndup"] .ndup-evolved-header,
+body.evolved[data-page-id="ndup_0"] .ndup-evolved-header {
+  display: block;
+  font-size: var(--smtc-text-global-title2-font-size, 28px);
+  line-height: var(--smtc-text-global-title2-line-height, 36px);
+  font-weight: var(--smtc-text-style-default-header-weight, 600);
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+/* Evolved theme: Match progress-label size to spinner-text (checking for updates) */
+.evolved body[data-page-id="ndup"] #progress-label,
+.evolved body[data-page-id="ndup_0"] #progress-label,
+body.evolved[data-page-id="ndup"] #progress-label,
+body.evolved[data-page-id="ndup_0"] #progress-label {
+  font-size: var(--smtc-text-global-body1-font-size, 18px);
+  font-weight: 500;
+}
+
+.evolved .ndup-footer-overlay * {
+  pointer-events: auto;
+}
+
+.evolved.light .ndup-footer {
+  background-color: rgba(229, 229, 229, 0.35);
+  background-image: url('/assets/noise.png');
+  background-repeat: repeat;
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(60px);
+}
+
+.evolved.light .ndup-footer-overlay {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.evolved.dark .ndup-footer {
+  background-color: rgba(46, 46, 46, 0.65);
+  background-image: url('/assets/noise.png');
+  background-repeat: repeat;
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(60px);
+}
+
+.evolved.dark .ndup-footer-overlay {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ndup-footer-header {
+  /* font-size: 16px; */
+  font-weight: var(--smtc-text-style-default-regular-weight, 500);
+  color: var(--color-text-primary, #1a1a1e);
+}
+
+#progress-label {
+  font-size: var(--smtc-text-global-body2-font-size, 14px);
+  line-height: var(--smtc-text-global-body2-line-height, 24px);
+  /* font-weight: 500; */
+  color: var(--color-text-primary, #1a1a1e);
+}
+
+
+.ndup-progress-bar {
+  display: flex;
+  gap: 4px;
+  height: 4px;
+  width: 25%;
+  margin: 0 auto;
+}
+
+.progress-segment {
+  flex: 1;
+  background: var(--color-border-default, #d0d0d0);
+  overflow: hidden;
+}
+
+.progress-segment:first-child {
+  border-radius: 2px 0 0 2px;
+}
+
+.progress-segment:last-child {
+  border-radius: 0 2px 2px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-accent, #005FB8);
+  transition: width 0.6s ease;
+}
+
+@keyframes pulse-progress {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Win11: Upper card height for two-card layout */
+.oobe-card:not(.ndup-footer) {
+  height: var(--oobe-card-height-ndup);
+}
+
+.ndup-carousel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding: 40px 0; */
+  position: relative;
+}
+
+.carousel-arrows {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.carousel-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary, #585860);
+  transition: color 0.2s;
+  pointer-events: all;
+}
+
+.carousel-arrow:hover {
+  color: var(--color-text-primary, #1a1a1e);
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.carousel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.carousel-icon {
+  width: 160px;
+  height: 160px;
+}
+
+.carousel-video {
+  width: 600px;
+  height: 338px;
+  aspect-ratio: 16/9;
+  background: var(--smtc-background-ctrl-neutral-rest, #f5f5f5);
+  border-radius: var(--smtc-corner-card-rest, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary, #585860);
+  font-size: var(--smtc-text-global-body2-font-size, 14px);
+  overflow: hidden;
+}
+
+.carousel-header {
+  text-align: center;
+}
+
+.carousel-header h2 {
+  font-size: var(--smtc-text-ramp-subsection-header-font-size, 20px);
+  font-weight: var(--smtc-text-style-default-header-weight, 600);
+  margin: 0 0 12px 0;
+  color: var(--color-text-primary, #1a1a1e);
+}
+
+.carousel-header p {
+  font-size: var(--smtc-text-ramp-subsection-header-font-size, 16px);
+  color: var(--color-text-secondary, #585860);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  height: 6px;
+}
+
+.carousel-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-text-secondary, #808080);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-dot.active {
+  background: var(--color-accent, #005FB8);
+  width: 6px;
+  height: 6px;
+}
+
+.progress-label {
+  font-size: var(--smtc-text-global-caption1-font-size, 12px);
+  color: var(--color-text-secondary, #585860);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-sections {
+  display: flex;
+  gap: 0;
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-section {
+  flex: 1;
+  background: var(--color-border-default, #e0e0e0);
+  transition: background 0.3s;
+}
+
+.progress-section.downloading {
+  background: var(--color-accent, #005FB8);
+}
+
+.progress-section.installing {
+  background: var(--color-accent, #005FB8);
+}
+
+.progress-section.setting-up {
+  background: var(--color-accent, #005FB8);
+}
+
+.progress-info {
+  font-size: var(--smtc-text-global-caption1-font-size, 12px);
+  color: var(--color-text-secondary, #585860);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Progress Bar Styles */
+.ndup-progress-bar {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+}
+
+.progress-segment {
+  flex: 1;
+  background-color: var(--smtc-background-ctrl-neutral-disabled, #e0e0e0);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-accent, #005FB8);
+  width: 0%;
+  border-radius: 4px;
+  animation: fillProgress 60s ease-in-out forwards;
+}
+
+/* Stagger animations for each segment */
+.progress-segment:nth-child(1) .progress-fill {
+  animation-delay: 0s;
+}
+
+.progress-segment:nth-child(2) .progress-fill {
+  animation-delay: 20s;
+}
+
+.progress-segment:nth-child(3) .progress-fill {
+  animation-delay: 40s;
+}
+
+@keyframes fillProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
