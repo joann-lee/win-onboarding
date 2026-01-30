@@ -24,8 +24,8 @@
     { id: 'fingerprint', file: 'fingerprint.html', label: 'Fingerprint', type: 'interactive', children: ['fingerprint_0.html'], restartAfter: false },
     { id: 'pin', file: 'pin.html', label: 'PIN', type: 'interactive', children: [], restartAfter: false },
     { id: 'privacy_settings', file: 'privacy_settings.html', label: 'Privacy Settings', type: 'interactive', children: [], restartAfter: false },
-    { id: 'pc_restore', file: 'pc_restore.html', label: 'PC Restore', type: 'interactive', children: ["pc_restore_0.html"], restartAfter: false },
-    { id: 'oem_registration', file: 'oem_registration.html', label: 'OEM Registration', type: 'interactive', children: ["oem_registration_0.html"], restartAfter: false },
+    { id: 'pc_restore', file: 'pc_restore.html', label: 'PC Restore', type: 'interactive', children: [], restartAfter: false },
+    // { id: 'oem_registration', file: 'oem_registration.html', label: 'OEM Registration', type: 'interactive', children: ["oem_registration_0.html"], restartAfter: false },
     { id: 'getting_ready', file: 'getting_ready.html', label: 'Getting everything ready', type: 'scanner', children: [], restartAfter: false },
 
   ];
