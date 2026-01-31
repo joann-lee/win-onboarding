@@ -223,9 +223,10 @@ a:active {
 }
 
 .oobe-body {
-  flex: 1;
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
+  height: 0; /* Force flex to calculate height properly in Electron */
   min-height: 0;
   overflow: hidden;
   background-color: transparent;
@@ -463,10 +464,11 @@ html:not(.evolved) .oobe-header h1 {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1;
+  flex: 1 1 0;
+  height: 0; /* Force flex to calculate height properly in Electron */
+  min-height: 0; /* Allow shrinking below content height */
   overflow-y: auto;
   border: 1px solid transparent;
-
 }
 
 .wifi-item {
