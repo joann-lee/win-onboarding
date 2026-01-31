@@ -497,3 +497,56 @@
 .evolved .oobe-card .footer {
   margin-top: auto;
 }
+
+/* ===== Evolved Language Page Layout ===== */
+/* Hide logo area by default (non-evolved themes) */
+.language-logo-area {
+  display: none;
+}
+
+/* Evolved language page: Show logo area centered, options at bottom */
+.evolved body[data-page-id="language"] .oobe-content,
+body.evolved[data-page-id="language"] .oobe-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+.evolved body[data-page-id="language"] .language-logo-area,
+body.evolved[data-page-id="language"] .language-logo-area {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.evolved body[data-page-id="language"] .language-logo-area .microsoft-logo,
+body.evolved[data-page-id="language"] .language-logo-area .microsoft-logo {
+  width: 85px;
+  height: 85px;
+  margin-top: -88px;
+  opacity: 0.6;
+}
+
+/* Logo fill uses the theme accent color */
+.evolved body[data-page-id="language"] .language-logo-area .logo-fill,
+body.evolved[data-page-id="language"] .language-logo-area .logo-fill {
+  fill: var(--color-accent, #0078D4);
+}
+
+/* Evolved language page: Options stay at bottom, no flex growth */
+.evolved body[data-page-id="language"] .country-list,
+body.evolved[data-page-id="language"] .country-list {
+  flex: 0 0 auto;
+  max-height: none;
+  overflow-y: visible;
+  padding-bottom: 40px;
+}
+
+/* Override the flex:1 rule from .oobe-content children */
+.evolved body[data-page-id="language"] .oobe-content:not([style*="grid"]) > :not(.oobe-header):not(.oobe-ctas):not(.language-logo-area),
+body.evolved[data-page-id="language"] .oobe-content:not([style*="grid"]) > :not(.oobe-header):not(.oobe-ctas):not(.language-logo-area) {
+  flex: 0 0 auto;
+}
