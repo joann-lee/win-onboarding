@@ -223,10 +223,9 @@ a:active {
 }
 
 .oobe-body {
-  flex: 1 1 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 0; /* Force flex to calculate height properly in Electron */
   min-height: 0;
   overflow: hidden;
   background-color: transparent;
@@ -460,13 +459,30 @@ html:not(.evolved) .oobe-header h1 {
 }
 
 /* Wi-Fi Page Specific Styles */
+
+/* WiFi page oobe-body needs special handling because the wifi-list is dynamically populated.
+   Unlike other lists (language, region) which have static HTML content, the wifi-list starts
+   empty and is populated by JavaScript. This can cause flex layout issues on some devices. */
+body[data-page-id="wifi"] .oobe-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Ensure troubleshoot section doesn't grow/shrink and stays at bottom */
+body[data-page-id="wifi"] .oobe-body > hr,
+body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
+  flex: 0 0 auto;
+}
+
 .wifi-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1 1 0;
-  height: 0; /* Force flex to calculate height properly in Electron */
-  min-height: 0; /* Allow shrinking below content height */
+  flex: 1 1 0px;  /* Take all remaining space */
+  min-height: 0;  /* Allow shrinking */
   overflow-y: auto;
   border: 1px solid transparent;
 }

@@ -1063,6 +1063,13 @@ function updatePaletteMenuSelection() {
       `;
       wifiList.appendChild(li);
     });
+    
+    // Refresh scrollbar visibility after populating the list
+    if (typeof window.refreshScrollbarVisibility === 'function') {
+      requestAnimationFrame(() => {
+        window.refreshScrollbarVisibility();
+      });
+    }
   }
 
   function resetItems() {
