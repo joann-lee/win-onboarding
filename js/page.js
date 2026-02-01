@@ -3,6 +3,60 @@
 // Debug Configuration - Set to true to enable debugging features
 const OOBE_DEBUG_ENABLED = false;
 
+// ===== ELECTRON RENDER FIX =====
+// Force a repaint on page load to fix rendering issues on some Electron devices
+// This addresses cases where flex containers, scroll areas, and animations don't render properly
+(function initElectronRenderFix() {
+  function forceRepaint() {
+    // Force layout recalculation by toggling a property
+    document.body.style.display = 'none';
+    // Reading offsetHeight forces a synchronous reflow
+    void document.body.offsetHeight;
+    document.body.style.display = '';
+    
+    // Additional fix: ensure scrollable containers are properly sized
+    const scrollables = document.querySelectorAll('.wifi-list, .country-list, #keyboard-list, #language-list, .eula-content');
+    scrollables.forEach(el => {
+      if (el) {
+        el.style.overflow = 'hidden';
+        void el.offsetHeight;
+        el.style.overflow = '';
+      }
+    });
+    
+    // Trigger lottie refresh if available
+    const lottieContainers = document.querySelectorAll('.lottie-container');
+    lottieContainers.forEach(container => {
+      if (container._lottieInstance) {
+        container._lottieInstance.resize();
+      }
+    });
+  }
+  
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      // Small delay to let initial render complete
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          forceRepaint();
+        });
+      });
+    });
+  }
+  
+  // Also run on window load for slower devices
+  window.addEventListener('load', () => {
+    // Multiple attempts with increasing delays for problematic devices
+    setTimeout(forceRepaint, 50);
+    setTimeout(forceRepaint, 200);
+    setTimeout(forceRepaint, 500);
+  });
+  
+  // Expose for manual triggering if needed
+  window.forceRepaint = forceRepaint;
+})();
+
 // Handle back button navigation (data-cta="back")
 (function initBackButton() {
   window.addEventListener('load', () => {
@@ -889,6 +943,19 @@ function updatePaletteMenuSelection() {
       // Store reference for potential cleanup
       lottieContainer._lottieInstance = anim;
       
+      // Force repaint after lottie loads to ensure it's visible
+      requestAnimationFrame(() => {
+        lottieContainer.style.display = 'none';
+        void lottieContainer.offsetHeight;
+        lottieContainer.style.display = '';
+        anim.resize();
+        
+        // Also trigger global forceRepaint if available
+        if (typeof window.forceRepaint === 'function') {
+          setTimeout(window.forceRepaint, 50);
+        }
+      });
+      
       return true;
     }
     return false;
@@ -1104,12 +1171,22 @@ function updatePaletteMenuSelection() {
       wifiList.appendChild(li);
     });
     
-    // Refresh scrollbar visibility after populating the list
-    if (typeof window.refreshScrollbarVisibility === 'function') {
-      requestAnimationFrame(() => {
+    // Force repaint and refresh scrollbar visibility after populating the list
+    requestAnimationFrame(() => {
+      // Force the wifi list to repaint
+      wifiList.style.display = 'none';
+      void wifiList.offsetHeight;
+      wifiList.style.display = '';
+      
+      if (typeof window.refreshScrollbarVisibility === 'function') {
         window.refreshScrollbarVisibility();
-      });
-    }
+      }
+      
+      // Also call global forceRepaint if available
+      if (typeof window.forceRepaint === 'function') {
+        setTimeout(window.forceRepaint, 50);
+      }
+    });
   }
 
   function resetItems() {

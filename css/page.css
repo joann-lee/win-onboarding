@@ -9,6 +9,28 @@ html.dark body {
   opacity: 1;
 }
 
+/* ===== Electron Rendering Fixes ===== */
+/* Force GPU layer creation for elements that have rendering issues in Electron on some devices */
+/* Using will-change and backface-visibility to ensure proper compositing */
+.oobe-card,
+.oobe-content,
+.oobe-body {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Ensure scrollable content has proper stacking context */
+.wifi-list,
+.country-list,
+#keyboard-list,
+#language-list,
+.eula-content {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Ensure the element is rendered even when empty */
+  min-height: 1px;
+}
+
 /* Hyperlink styling */
 a {
   color: var(--color-hyperlink);
