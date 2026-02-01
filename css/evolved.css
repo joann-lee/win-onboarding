@@ -504,6 +504,12 @@
   display: none;
 }
 
+/* Hide welcome text by default */
+.language-welcome-title,
+.language-welcome-subtitle {
+  display: none;
+}
+
 /* Evolved language page: Show logo area centered, options at bottom */
 .evolved body[data-page-id="language"] .oobe-content,
 body.evolved[data-page-id="language"] .oobe-content {
@@ -522,11 +528,41 @@ body.evolved[data-page-id="language"] .language-logo-area {
   min-height: 200px;
 }
 
+/* Welcome container - holds logo and text centered */
+.evolved body[data-page-id="language"] .language-welcome-container,
+body.evolved[data-page-id="language"] .language-welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: -80px;
+}
+
+/* Welcome title - uses header h1 styles */
+.evolved body[data-page-id="language"] .language-welcome-title,
+body.evolved[data-page-id="language"] .language-welcome-title {
+  display: block;
+  font-size: var(--font-size-title, 28px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin: 48px 0 8px 0;
+}
+
+/* Welcome subtitle - uses header subtitle styles */
+.evolved body[data-page-id="language"] .language-welcome-subtitle,
+body.evolved[data-page-id="language"] .language-welcome-subtitle {
+  display: block;
+  font-size: var(--smtc-text-global-subtitle2-font-size);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
 .evolved body[data-page-id="language"] .language-logo-area .microsoft-logo,
 body.evolved[data-page-id="language"] .language-logo-area .microsoft-logo {
   width: 85px;
   height: 85px;
-  margin-top: -88px;
   opacity: 0.6;
 }
 

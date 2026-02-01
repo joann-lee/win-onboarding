@@ -35,15 +35,19 @@
 
             <!-- Microsoft logo area - shown only in evolved theme -->
             <div class="language-logo-area">
-              <svg class="microsoft-logo" width="92" height="92" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0H21.739V21.737H0V0ZM24.0056 0H45.7426V21.737H24.0056V0ZM0 24.0066H21.739V45.7426H0V24.0066ZM24.0056 24.0066H45.7426V45.7426H24.0056V24.0066Z" class="logo-fill"/>
-              </svg>
+              <div class="language-welcome-container">
+                <svg class="microsoft-logo" width="92" height="92" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 0H21.739V21.737H0V0ZM24.0056 0H45.7426V21.737H24.0056V0ZM0 24.0066H21.739V45.7426H0V24.0066ZM24.0056 24.0066H45.7426V45.7426H24.0056V24.0066Z" class="logo-fill"/>
+                </svg>
+                <h1 class="language-welcome-title">Welcome to Windows 11</h1>
+                <p class="language-welcome-subtitle">Set up your new PC</p>
+              </div>
             </div>
 
             <ul class="country-list" aria-label="Country or region choices" role="listbox" id="country-list">
               <li role="option" aria-selected="true" data-value="English" class="is-active">English</li>
-              <li role="option" data-value="español">español</li>
-              <li role="option" data-value="français">français</li>
+              <li role="option" data-value="español">Español</li>
+              <li role="option" data-value="français">Français</li>
 
             </ul>
           </div>
@@ -69,6 +73,53 @@
   <script src="/js/scrollbar.js"></script>
   <script src="/js/flow.js"></script>
   <script src="/js/page.js"></script>
+  <script>
+    // Language translations
+    const translations = {
+      'English': {
+        welcomeTitle: 'Welcome to Windows 11',
+        welcomeSubtitle: 'Set up your new PC',
+        buttonText: 'Continue in English'
+      },
+      'español': {
+        welcomeTitle: 'Bienvenido a Windows 11',
+        welcomeSubtitle: 'Configura tu nuevo PC',
+        buttonText: 'Continuar en español'
+      },
+      'français': {
+        welcomeTitle: 'Bienvenue dans Windows 11',
+        welcomeSubtitle: 'Configurez votre nouveau PC',
+        buttonText: 'Continuer en français'
+      }
+    };
+
+    // Update UI based on selected language
+    function updateLanguageStrings(langValue) {
+      const t = translations[langValue] || translations['English'];
+      
+      const welcomeTitle = document.querySelector('.language-welcome-title');
+      const welcomeSubtitle = document.querySelector('.language-welcome-subtitle');
+      const continueButton = document.getElementById('region-yes');
+      
+      if (welcomeTitle) welcomeTitle.textContent = t.welcomeTitle;
+      if (welcomeSubtitle) welcomeSubtitle.textContent = t.welcomeSubtitle;
+      if (continueButton) continueButton.textContent = t.buttonText;
+    }
+
+    // Listen for language selection changes
+    document.addEventListener('DOMContentLoaded', () => {
+      const countryList = document.getElementById('country-list');
+      if (countryList) {
+        countryList.addEventListener('click', (e) => {
+          const item = e.target.closest('li[role="option"]');
+          if (item) {
+            const langValue = item.getAttribute('data-value');
+            updateLanguageStrings(langValue);
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
