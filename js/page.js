@@ -860,25 +860,65 @@ function updatePaletteMenuSelection() {
 
 // Shared per-page initialization: lottie animation & accessibility
 (function initLottie() {
-  // Load Lottie animation if container exists and animation data is available
-  const lottieContainer = document.getElementById('lottie');
-  if (lottieContainer && window.lottie && window.lottieAnimationData) {
-    const anim = window.lottie.loadAnimation({
-      container: lottieContainer,
-      renderer: 'svg',
-      loop: false,
-      autoplay: false,
-      animationData: window.lottieAnimationData
-    });
+  function loadLottieAnimation() {
+    const lottieContainer = document.getElementById('lottie');
+    if (!lottieContainer) return false;
+    
+    // Check if already initialized
+    if (lottieContainer.hasAttribute('data-lottie-initialized')) return true;
+    
+    if (window.lottie && window.lottieAnimationData) {
+      lottieContainer.setAttribute('data-lottie-initialized', 'true');
+      
+      const anim = window.lottie.loadAnimation({
+        container: lottieContainer,
+        renderer: 'svg',
+        loop: false,
+        autoplay: false,
+        animationData: window.lottieAnimationData
+      });
 
-    // Play from start to middle (frame 120) where illustration is visible
-    // The full animation fades out at the end, so we stop early to keep the illustration on screen
-    anim.playSegments([0, 120], true);
-
-    lottieContainer.addEventListener('mouseenter', () => {
+      // Play from start to middle (frame 120) where illustration is visible
+      // The full animation fades out at the end, so we stop early to keep the illustration on screen
       anim.playSegments([0, 120], true);
-    });
+
+      lottieContainer.addEventListener('mouseenter', () => {
+        anim.playSegments([0, 120], true);
+      });
+      
+      // Store reference for potential cleanup
+      lottieContainer._lottieInstance = anim;
+      
+      return true;
+    }
+    return false;
   }
+  
+  // Try immediately
+  if (loadLottieAnimation()) return;
+  
+  // If DOM not ready, wait for it
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      if (loadLottieAnimation()) return;
+      // Retry after a short delay for slower devices
+      setTimeout(loadLottieAnimation, 100);
+    });
+  } else {
+    // DOM ready but lottie may not be loaded yet, retry after short delay
+    setTimeout(() => {
+      if (loadLottieAnimation()) return;
+      // One more retry for very slow devices
+      setTimeout(loadLottieAnimation, 200);
+    }, 50);
+  }
+  
+  // Also try on window load as a final fallback
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      loadLottieAnimation();
+    });
+  });
 })();
 
 (function initNavigation() {

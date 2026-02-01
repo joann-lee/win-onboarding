@@ -78,6 +78,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Ensure container has dimensions even before animation loads */
+  min-width: 200px;
+  min-height: 200px;
+  /* Force GPU compositing for consistent rendering in Electron */
+  transform: translateZ(0);
 }
 
 /* Ensure .oobe-content doesn't accidentally trigger a nested transition */
