@@ -37,7 +37,7 @@
     // Handle boot sequence then navigate to first OOBE page
     document.addEventListener('DOMContentLoaded', function() {
       // Wait for boot animation then continue to first OOBE page
-      // 8s logo only + 8s loader = 16s total
+      // 2s logo only + 2s loader = 4s total
       setTimeout(() => {
         const currentId = document.body.getAttribute('data-page-id');
         const nextId = window.nextPageId(currentId);
@@ -49,7 +49,7 @@
           // End of flow - go to desktop
           window.location.href = '/desktop/';
         }
-      }, 16000);
+      }, 4000);
     });
   </script>
 
@@ -126,7 +126,7 @@
       transform: translate(-50%, -50%);
       margin-top: 240px;
       opacity: 0;
-      animation: fadeInLoader 1s ease-in-out 8s forwards;
+      animation: fadeInLoader 1s ease-in-out 2s forwards;
     }
 
     @keyframes fadeInLoader {
