@@ -11,15 +11,18 @@ html.dark body {
 
 /* ===== Electron Rendering Fixes ===== */
 /* Force GPU layer creation for elements that have rendering issues in Electron on some devices */
-/* Using will-change and backface-visibility to ensure proper compositing */
+/* Using transform: translateZ(0) to force hardware acceleration and proper compositing */
+/* This is especially important for ARM-based devices (Surface Pro 11, etc.) running Windows 11 */
 .oobe-card,
 .oobe-content,
 .oobe-body {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
-/* Ensure scrollable content has proper stacking context */
+/* Ensure scrollable content has proper stacking context and GPU compositing */
 .wifi-list,
 .country-list,
 #keyboard-list,
@@ -27,8 +30,29 @@ html.dark body {
 .eula-content {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
   /* Ensure the element is rendered even when empty */
   min-height: 1px;
+  /* Isolation creates a new stacking context to prevent backdrop-filter issues */
+  isolation: isolate;
+}
+
+/* Force lottie container to use GPU compositing in Electron */
+/* Some ARM devices have issues rendering SVG animations without explicit layer promotion */
+.lottie-container {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Ensure SVG content is visible */
+  overflow: visible;
+}
+
+/* Ensure SVG elements within lottie are properly rendered */
+.lottie-container svg {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 /* Hyperlink styling */

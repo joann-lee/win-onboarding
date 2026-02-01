@@ -6,6 +6,7 @@ const OOBE_DEBUG_ENABLED = false;
 // ===== ELECTRON RENDER FIX =====
 // Force a repaint on page load to fix rendering issues on some Electron devices
 // This addresses cases where flex containers, scroll areas, and animations don't render properly
+// Critical for ARM-based devices (Surface Pro 11, etc.) running Windows 11
 (function initElectronRenderFix() {
   function forceRepaint() {
     // Force layout recalculation by toggling a property
@@ -14,13 +15,35 @@ const OOBE_DEBUG_ENABLED = false;
     void document.body.offsetHeight;
     document.body.style.display = '';
     
-    // Additional fix: ensure scrollable containers are properly sized
+    // Force GPU layer recreation for the card (helps with backdrop-filter issues)
+    const card = document.querySelector('.oobe-card');
+    if (card) {
+      card.style.transform = 'translateZ(1px)';
+      void card.offsetHeight;
+      card.style.transform = 'translateZ(0)';
+    }
+    
+    // Additional fix: ensure scrollable containers are properly sized and visible
     const scrollables = document.querySelectorAll('.wifi-list, .country-list, #keyboard-list, #language-list, .eula-content');
     scrollables.forEach(el => {
       if (el) {
+        // Force overflow toggle
         el.style.overflow = 'hidden';
         void el.offsetHeight;
         el.style.overflow = '';
+        
+        // Force GPU layer recreation
+        el.style.transform = 'translateZ(1px)';
+        void el.offsetHeight;
+        el.style.transform = 'translateZ(0)';
+        
+        // Force children to repaint
+        const children = el.children;
+        for (let i = 0; i < children.length; i++) {
+          children[i].style.visibility = 'hidden';
+          void children[i].offsetHeight;
+          children[i].style.visibility = 'visible';
+        }
       }
     });
     
@@ -29,6 +52,13 @@ const OOBE_DEBUG_ENABLED = false;
     lottieContainers.forEach(container => {
       if (container._lottieInstance) {
         container._lottieInstance.resize();
+      }
+      // Force SVG to repaint
+      const svg = container.querySelector('svg');
+      if (svg) {
+        svg.style.visibility = 'hidden';
+        void svg.offsetHeight;
+        svg.style.visibility = 'visible';
       }
     });
   }
@@ -944,16 +974,36 @@ function updatePaletteMenuSelection() {
       lottieContainer._lottieInstance = anim;
       
       // Force repaint after lottie loads to ensure it's visible
+      // This is critical for Electron on ARM devices (Surface Pro 11, etc.)
       requestAnimationFrame(() => {
+        // Force layout recalculation
         lottieContainer.style.display = 'none';
         void lottieContainer.offsetHeight;
         lottieContainer.style.display = '';
+        
+        // Force GPU layer recreation
+        lottieContainer.style.transform = 'translateZ(1px)';
+        void lottieContainer.offsetHeight;
+        lottieContainer.style.transform = 'translateZ(0)';
+        
         anim.resize();
         
         // Also trigger global forceRepaint if available
         if (typeof window.forceRepaint === 'function') {
           setTimeout(window.forceRepaint, 50);
         }
+        
+        // Additional repaint for Electron on ARM devices
+        setTimeout(() => {
+          anim.resize();
+          // Force SVG visibility
+          const svg = lottieContainer.querySelector('svg');
+          if (svg) {
+            svg.style.visibility = 'hidden';
+            void svg.offsetHeight;
+            svg.style.visibility = 'visible';
+          }
+        }, 100);
       });
       
       return true;
@@ -1172,11 +1222,25 @@ function updatePaletteMenuSelection() {
     });
     
     // Force repaint and refresh scrollbar visibility after populating the list
+    // Critical for Electron on ARM devices (Surface Pro 11, etc.)
     requestAnimationFrame(() => {
-      // Force the wifi list to repaint
+      // Force the wifi list to repaint using multiple techniques
       wifiList.style.display = 'none';
       void wifiList.offsetHeight;
       wifiList.style.display = '';
+      
+      // Force GPU layer recreation (helps with backdrop-filter issues)
+      wifiList.style.transform = 'translateZ(1px)';
+      void wifiList.offsetHeight;
+      wifiList.style.transform = 'translateZ(0)';
+      
+      // Force each wifi item to repaint
+      const items = wifiList.querySelectorAll('.wifi-item');
+      items.forEach(item => {
+        item.style.visibility = 'hidden';
+        void item.offsetHeight;
+        item.style.visibility = 'visible';
+      });
       
       if (typeof window.refreshScrollbarVisibility === 'function') {
         window.refreshScrollbarVisibility();
@@ -1186,6 +1250,13 @@ function updatePaletteMenuSelection() {
       if (typeof window.forceRepaint === 'function') {
         setTimeout(window.forceRepaint, 50);
       }
+      
+      // Additional delayed repaint for slow Electron rendering
+      setTimeout(() => {
+        wifiList.style.opacity = '0.99';
+        void wifiList.offsetHeight;
+        wifiList.style.opacity = '1';
+      }, 100);
     });
   }
 

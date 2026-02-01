@@ -395,3 +395,48 @@
   --curveLinear: cubic-bezier(0,0,1,1);
 }
 
+/* ===== Win11 Theme Electron Rendering Fixes ===== */
+/* Fix for ARM devices (Surface Pro 11, etc.) where backdrop-filter causes */
+/* child elements to not render properly in Electron/Chromium */
+.win11 .oobe-card {
+  /* Ensure card creates proper stacking context */
+  isolation: isolate;
+  /* Force GPU layer to prevent backdrop-filter from hiding children */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Ensure lottie animations render above the backdrop-filter layer */
+.win11 .lottie-container {
+  position: relative;
+  z-index: 1;
+  /* Force repaint/composite layer for SVG animations */
+  will-change: transform;
+}
+
+/* Ensure lottie SVG elements are properly composited */
+.win11 .lottie-container svg {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  position: relative;
+  z-index: 1;
+}
+
+/* Fix wifi list and other scrollable content not rendering */
+.win11 .wifi-list,
+.win11 .country-list,
+.win11 #keyboard-list,
+.win11 #language-list,
+.win11 .eula-content {
+  position: relative;
+  z-index: 1;
+  /* Force layer creation */
+  will-change: scroll-position;
+}
+
+/* Ensure wifi items are visible */
+.win11 .wifi-item {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+

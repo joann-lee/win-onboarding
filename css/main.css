@@ -82,7 +82,13 @@ body {
   min-width: 200px;
   min-height: 200px;
   /* Force GPU compositing for consistent rendering in Electron */
+  /* Critical for ARM devices (Surface Pro 11, etc.) with Windows 11 */
   transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Ensure SVG animations are visible and not clipped */
+  overflow: visible;
 }
 
 /* Ensure .oobe-content doesn't accidentally trigger a nested transition */
