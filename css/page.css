@@ -22,6 +22,11 @@ html.dark body {
   -webkit-transform: translateZ(0);
 }
 
+/* ===== ARM64 Specific Fixes ===== */
+/* On ARM devices (Surface Pro 11, Snapdragon X), dynamically generated content */
+/* may not render properly. These rules force the browser to create proper layers */
+/* and ensure content is painted even when added after initial page load. */
+
 /* Ensure scrollable content has proper stacking context and GPU compositing */
 .wifi-list,
 .country-list,
@@ -30,29 +35,61 @@ html.dark body {
 .eula-content {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  /* Force a new layer - critical for ARM */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
   /* Ensure the element is rendered even when empty */
   min-height: 1px;
-  /* Isolation creates a new stacking context to prevent backdrop-filter issues */
+  /* Isolation creates a new stacking context */
   isolation: isolate;
+  /* Force the element to be painted */
+  will-change: contents;
+  /* Ensure visibility */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Force wifi items to render on ARM */
+.wifi-item {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: transform;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Force lottie container to use GPU compositing in Electron */
 /* Some ARM devices have issues rendering SVG animations without explicit layer promotion */
 .lottie-container {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   /* Ensure SVG content is visible */
   overflow: visible;
+  /* Force layer creation */
+  will-change: transform, contents;
+  /* Ensure visibility on ARM */
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-/* Ensure SVG elements within lottie are properly rendered */
+/* Ensure SVG elements within lottie are properly rendered on ARM */
 .lottie-container svg {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  visibility: visible !important;
+  opacity: 1 !important;
+  /* Force SVG to have explicit dimensions */
+  min-width: 1px;
+  min-height: 1px;
+}
+
+/* Force all g and path elements in lottie to be visible */
+.lottie-container svg g,
+.lottie-container svg path {
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Hyperlink styling */
