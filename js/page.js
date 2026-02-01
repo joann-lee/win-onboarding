@@ -1022,10 +1022,14 @@ function updatePaletteMenuSelection() {
     // Check if already initialized
     if (lottieContainer.hasAttribute('data-lottie-initialized')) return true;
     
-    if (window.lottie && window.lottieAnimationData) {
+    // Check for lottie library - it can be window.lottie or window.bodymovin
+    const lottieLib = window.lottie || window.bodymovin;
+    
+    // Ensure the library is loaded and has the loadAnimation method
+    if (lottieLib && typeof lottieLib.loadAnimation === 'function' && window.lottieAnimationData) {
       lottieContainer.setAttribute('data-lottie-initialized', 'true');
       
-      const anim = window.lottie.loadAnimation({
+      const anim = lottieLib.loadAnimation({
         container: lottieContainer,
         renderer: 'svg',
         loop: false,

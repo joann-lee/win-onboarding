@@ -2,7 +2,7 @@
 
 (function () {
   // Global scanner timeout in milliseconds
-  const SCANNER_PAGE_TIMEOUT = 5000; // 10 seconds
+  const SCANNER_PAGE_TIMEOUT = 1500; // 1.5 seconds (shortened by 70%)
 
   // Always prepend pages/ for iframe compatibility
   const shouldPrependPages = true;

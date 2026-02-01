@@ -9,87 +9,51 @@ html.dark body {
   opacity: 1;
 }
 
-/* ===== Electron Rendering Fixes ===== */
-/* Force GPU layer creation for elements that have rendering issues in Electron on some devices */
-/* Using transform: translateZ(0) to force hardware acceleration and proper compositing */
-/* This is especially important for ARM-based devices (Surface Pro 11, etc.) running Windows 11 */
+/* ===== Electron/ARM Rendering Fixes ===== */
+/* On ARM devices (Surface Pro 11, Snapdragon X), dynamically generated content */
+/* may not render properly. Avoid transforms that create compositor layers. */
+/* Instead, use explicit visibility and dimensions. */
+
 .oobe-card,
 .oobe-content,
 .oobe-body {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
+  /* Removed transforms - they can cause invisible layers on ARM */
 }
 
-/* ===== ARM64 Specific Fixes ===== */
-/* On ARM devices (Surface Pro 11, Snapdragon X), dynamically generated content */
-/* may not render properly. These rules force the browser to create proper layers */
-/* and ensure content is painted even when added after initial page load. */
-
-/* Ensure scrollable content has proper stacking context and GPU compositing */
+/* Ensure scrollable content is visible */
 .wifi-list,
 .country-list,
 #keyboard-list,
 #language-list,
 .eula-content {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  /* Force a new layer - critical for ARM */
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  /* Ensure the element is rendered even when empty */
-  min-height: 1px;
-  /* Isolation creates a new stacking context */
-  isolation: isolate;
-  /* Force the element to be painted */
-  will-change: contents;
-  /* Ensure visibility */
+  /* ARM fix: ensure visibility without transforms */
   visibility: visible !important;
   opacity: 1 !important;
 }
 
 /* Force wifi items to render on ARM */
 .wifi-item {
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  will-change: transform;
   visibility: visible !important;
   opacity: 1 !important;
 }
 
-/* Force lottie container to use GPU compositing in Electron */
-/* Some ARM devices have issues rendering SVG animations without explicit layer promotion */
+/* Force lottie container to be visible */
 .lottie-container {
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  /* Ensure SVG content is visible */
-  overflow: visible;
-  /* Force layer creation */
-  will-change: transform, contents;
-  /* Ensure visibility on ARM */
   visibility: visible !important;
   opacity: 1 !important;
+  overflow: visible;
 }
 
-/* Ensure SVG elements within lottie are properly rendered on ARM */
+/* Ensure SVG elements within lottie are visible */
 .lottie-container svg {
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
   visibility: visible !important;
   opacity: 1 !important;
-  /* Force SVG to have explicit dimensions */
-  min-width: 1px;
-  min-height: 1px;
 }
 
 /* Force all g and path elements in lottie to be visible */
 .lottie-container svg g,
 .lottie-container svg path {
   visibility: visible !important;
-  opacity: 1 !important;
 }
 
 /* Hyperlink styling */
@@ -552,6 +516,8 @@ body[data-page-id="wifi"] .oobe-body {
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
+  /* ARM fix: ensure the body has a minimum computed height */
+  min-height: 200px;
 }
 
 /* Ensure troubleshoot section doesn't grow/shrink and stays at bottom */
@@ -564,10 +530,15 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1 1 0px;  /* Take all remaining space */
-  min-height: 0;  /* Allow shrinking */
+  flex: 1 1 auto;  /* Changed from 0px to auto for ARM compatibility */
+  min-height: 100px;  /* Explicit min-height for ARM */
+  max-height: 350px;  /* Prevent overflow */
   overflow-y: auto;
   border: 1px solid transparent;
+  /* ARM fix: force the list to be visible and painted */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .wifi-item {
@@ -579,6 +550,10 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   transition: background-color 0.1s;
   border-radius: 4px;
   position: relative;
+  /* ARM fix: force items to be visible and have explicit dimensions */
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-height: 48px;
 }
 
 .wifi-item::before {

@@ -81,14 +81,19 @@ body {
   /* Ensure container has dimensions even before animation loads */
   min-width: 200px;
   min-height: 200px;
-  /* Force GPU compositing for consistent rendering in Electron */
-  /* Critical for ARM devices (Surface Pro 11, etc.) with Windows 11 */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+  /* ARM fix: Remove transforms that may cause layer issues */
+  /* and ensure visibility */
+  visibility: visible !important;
+  opacity: 1 !important;
   /* Ensure SVG animations are visible and not clipped */
   overflow: visible;
+}
+
+/* ARM fix: ensure lottie SVG is visible */
+.lottie-container svg {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
 }
 
 /* Ensure .oobe-content doesn't accidentally trigger a nested transition */
