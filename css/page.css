@@ -488,8 +488,8 @@ html:not(.evolved) .oobe-header h1 {
 }
 
 .country-list li.is-active {
-  background: var(--smtc-background-ctrl-brand-rest, #005FB8);
-  color: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  background: var(--smtc-background-card-on-primary-alt-rest, #ffffff73);
+  color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 }
 
 
@@ -774,7 +774,7 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   background: transparent;
   flex: 1;
   min-height: 0;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
 .eula-box.microsoft::before {

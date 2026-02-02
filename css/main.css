@@ -585,8 +585,9 @@ html.dark .oobe-background {
 }
 
 /* 
- * Default scrollbar hiding - prevents flash of unstyled scrollbar on page load
+ * Default scrollbar styling - shows styled scrollbar immediately on page load
  * These styles apply BEFORE JavaScript adds the data-scrollbar-visible attribute
+ * This prevents flash of unstyled browser scrollbar
  */
 .eula-content,
 .wifi-list,
@@ -595,7 +596,8 @@ html.dark .oobe-background {
 #language-list,
 .info-cards-list,
 .oobe-body {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5) var(--smtc-scrollbar-track, transparent);
 }
 
 .eula-content::-webkit-scrollbar,
@@ -606,7 +608,7 @@ html.dark .oobe-background {
 .info-cards-list::-webkit-scrollbar,
 .oobe-body::-webkit-scrollbar {
   width: 10px;
-  background: transparent;
+  background: var(--smtc-scrollbar-track, transparent);
 }
 
 .eula-content::-webkit-scrollbar-thumb,
@@ -616,12 +618,26 @@ html.dark .oobe-background {
 #language-list::-webkit-scrollbar-thumb,
 .info-cards-list::-webkit-scrollbar-thumb,
 .oobe-body::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
-/* Scrollbar styling - visible on hover only */
+.eula-content::-webkit-scrollbar-thumb:hover,
+.wifi-list::-webkit-scrollbar-thumb:hover,
+#country-list::-webkit-scrollbar-thumb:hover,
+#keyboard-list::-webkit-scrollbar-thumb:hover,
+#language-list::-webkit-scrollbar-thumb:hover,
+.info-cards-list::-webkit-scrollbar-thumb:hover,
+.oobe-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--smtc-scrollbar-thumb-hover, #a0a0a0);
+}
+
+/* Scrollbar styling via data attribute (JS-controlled) */
+/* When JS sets data-scrollbar-visible, these rules take over */
 [data-scrollbar-visible] {
-  scrollbar-color: transparent var(--smtc-scrollbar-track, transparent);
+  scrollbar-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5) var(--smtc-scrollbar-track, transparent);
   scrollbar-width: thin;
 }
 
@@ -658,7 +674,10 @@ html.dark .oobe-background {
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 /* Hide focus underlines on form controls */

@@ -1,5 +1,5 @@
 // Global scrollbar visibility control
-// Shows scrollbars on hover and keeps them permanently visible on that page
+// Shows scrollbars automatically when content overflows
 
 (function initScrollbarVisibility() {
   function setupScrollableElements() {
@@ -21,48 +21,23 @@
         // Skip if already initialized
         if (el.hasAttribute('data-scrollbar-initialized')) return;
         el.setAttribute('data-scrollbar-initialized', 'true');
-        
-        let scrollbarVisibleOnPage = false;
 
         // Check if element has overflow (actually needs scrolling)
+        // and immediately show scrollbar if it does
         function updateScrollbarVisibility() {
           const hasOverflow = el.scrollHeight > el.clientHeight;
           if (hasOverflow) {
+            el.setAttribute('data-scrollbar-visible', 'true');
+          } else {
             el.setAttribute('data-scrollbar-visible', 'false');
           }
         }
 
-        // Initial check
+        // Initial check - show scrollbar immediately if needed
         updateScrollbarVisibility();
 
         // Re-check on resize
         window.addEventListener('resize', updateScrollbarVisibility);
-
-        // Show scrollbar on hover - make it permanently visible on this page
-        el.addEventListener('mouseenter', () => {
-          const hasOverflow = el.scrollHeight > el.clientHeight;
-          if (hasOverflow && !scrollbarVisibleOnPage) {
-            el.setAttribute('data-scrollbar-visible', 'true');
-            scrollbarVisibleOnPage = true;
-          }
-        });
-
-        // Keep scrollbar visible - don't hide it once shown
-        el.addEventListener('mousemove', (e) => {
-          const hasOverflow = el.scrollHeight > el.clientHeight;
-          if (!hasOverflow) return;
-
-          // Check if mouse is over the scrollbar area
-          const rect = el.getBoundingClientRect();
-          const isNearRightEdge = e.clientX > rect.right - 15;
-
-          if (isNearRightEdge) {
-            el.setAttribute('data-scrollbar-visible', 'true');
-            scrollbarVisibleOnPage = true;
-          }
-        });
-
-        // Don't hide on mouseleave - scrollbar stays visible once shown on this page
       });
     });
   }
