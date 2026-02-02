@@ -1617,7 +1617,6 @@ body[data-page-id="fingerprint_setup"] .oobe-below-actions {
 
 /* Privacy Settings Page */
 body[data-page-id="privacy_settings"] .oobe-body {
-  max-height: 400px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
