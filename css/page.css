@@ -522,7 +522,11 @@ body[data-page-id="wifi"] .oobe-body {
 }
 
 /* Ensure troubleshoot section doesn't grow/shrink and stays at bottom */
-body[data-page-id="wifi"] .oobe-body > hr,
+body[data-page-id="wifi"] .oobe-body > hr {
+  flex: 0 0 auto;
+  margin-top: auto;
+}
+
 body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   flex: 0 0 auto;
 }
@@ -533,7 +537,6 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   margin: 0;
   flex: 1 1 auto;  /* Changed from 0px to auto for ARM compatibility */
   min-height: 100px;  /* Explicit min-height for ARM */
-  max-height: 350px;  /* Prevent overflow */
   overflow-y: auto;
   border: 1px solid transparent;
   /* ARM fix: force the list to be visible and painted */
@@ -1613,7 +1616,6 @@ body[data-page-id="fingerprint_setup"] .oobe-below-actions {
 
 /* Privacy Settings Page */
 body[data-page-id="privacy_settings"] .oobe-body {
-  max-height: 400px;
   overflow-y: auto;
   scroll-behavior: smooth;
 }
