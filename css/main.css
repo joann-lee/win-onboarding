@@ -584,6 +584,41 @@ html.dark .oobe-background {
   display: none !important;
 }
 
+/* 
+ * Default scrollbar hiding - prevents flash of unstyled scrollbar on page load
+ * These styles apply BEFORE JavaScript adds the data-scrollbar-visible attribute
+ */
+.eula-content,
+.wifi-list,
+#country-list,
+#keyboard-list,
+#language-list,
+.info-cards-list,
+.oobe-body {
+  scrollbar-width: none; /* Firefox */
+}
+
+.eula-content::-webkit-scrollbar,
+.wifi-list::-webkit-scrollbar,
+#country-list::-webkit-scrollbar,
+#keyboard-list::-webkit-scrollbar,
+#language-list::-webkit-scrollbar,
+.info-cards-list::-webkit-scrollbar,
+.oobe-body::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+.eula-content::-webkit-scrollbar-thumb,
+.wifi-list::-webkit-scrollbar-thumb,
+#country-list::-webkit-scrollbar-thumb,
+#keyboard-list::-webkit-scrollbar-thumb,
+#language-list::-webkit-scrollbar-thumb,
+.info-cards-list::-webkit-scrollbar-thumb,
+.oobe-body::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
 /* Scrollbar styling - visible on hover only */
 [data-scrollbar-visible] {
   scrollbar-color: transparent var(--smtc-scrollbar-track, transparent);

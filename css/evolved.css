@@ -578,7 +578,7 @@ body.evolved[data-page-id="language"] .country-list {
   flex: 0 0 auto;
   max-height: none;
   overflow-y: visible;
-  padding-bottom: 40px;
+  padding-bottom: 88px;
 }
 
 /* Override the flex:1 rule from .oobe-content children */
