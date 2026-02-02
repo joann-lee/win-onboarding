@@ -473,7 +473,6 @@ html:not(.evolved) .oobe-header h1 {
   overflow-y: auto;
   flex: 1;
   min-height: 0;
-  max-height: 400px; /* Ensure scrolling when content exceeds height */
 }
 
 .country-list li {
