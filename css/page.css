@@ -56,6 +56,8 @@ html.dark body {
   visibility: visible !important;
 }
 
+
+
 /* Hyperlink styling */
 a {
   color: var(--color-hyperlink);
@@ -902,35 +904,39 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   gap: 24px;
 }
 
-.spinner {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* SVG Spinner - replaces mai-spinner for smoother animation */
+.oobe-spinner {
+  width: 36px;
+  height: 36px;
+  animation: oobe-spin 2.4s linear infinite;
 }
 
-.spinner-circle {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
+.oobe-spinner .spinner-ring {
+  /* Circle circumference = 2 * PI * r = 2 * 3.14159 * 20 ≈ 125.66 */
+  stroke-dasharray: 1, 126;
+  stroke-dashoffset: 0;
+  animation: oobe-dash 2.4s ease-in-out infinite;
+  stroke: var(--smtc-foreground-ctrl-brand-rest, var(--color-accent, #0078D4));
+  stroke-width: 3;
+  stroke-linecap: round;
 }
 
-.spinner-bg {
-  opacity: 0.3;
+@keyframes oobe-spin {
+  100% { transform: rotate(360deg); }
 }
 
-.spinner-fg {
-  animation: spin 1.5s linear infinite;
-  stroke-dasharray: 62.83, 125.66;
-}
-
-@keyframes spin {
+@keyframes oobe-dash {
   0% {
+    stroke-dasharray: 1, 126;
     stroke-dashoffset: 0;
   }
+  50% {
+    stroke-dasharray: 82, 126;
+    stroke-dashoffset: -35;
+  }
   100% {
-    stroke-dashoffset: -125.66;
+    stroke-dasharray: 82, 126;
+    stroke-dashoffset: -124;
   }
 }
 

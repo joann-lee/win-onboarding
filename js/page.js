@@ -3,50 +3,6 @@
 // Debug Configuration - Set to true to enable debugging features
 const OOBE_DEBUG_ENABLED = false;
 
-// ===== ELECTRON RENDER FIX =====
-// Force a repaint on page load to fix rendering issues on some Electron devices
-// This addresses cases where flex containers, scroll areas, and animations don't render properly
-// Critical for ARM-based devices (Surface Pro 11, etc.) running Windows 11
-(function initElectronRenderFix() {
-  function forceRepaint() {
-    // Force layout recalculation by toggling a property
-    document.body.style.display = 'none';
-    // Reading offsetHeight forces a synchronous reflow
-    void document.body.offsetHeight;
-    document.body.style.display = '';
-    
-    // Force GPU layer recreation for the card (helps with backdrop-filter issues)
-    const card = document.querySelector('.oobe-card');
-    if (card) {
-      card.style.transform = 'translateZ(1px)';
-      void card.offsetHeight;
-      card.style.transform = 'translateZ(0)';
-    }
-    
-    // Additional fix: ensure scrollable containers are properly sized and visible
-    const scrollables = document.querySelectorAll('.wifi-list, .country-list, #keyboard-list, #language-list, .eula-content');
-    scrollables.forEach(el => {
-      if (el) {
-        // Force overflow toggle
-        el.style.overflow = 'hidden';
-        void el.offsetHeight;
-        el.style.overflow = '';
-        
-        // Force GPU layer recreation
-        el.style.transform = 'translateZ(1px)';
-        void el.offsetHeight;
-        el.style.transform = 'translateZ(0)';
-        
-        // Force children to repaint
-        const children = el.children;
-        for (let i = 0; i < children.length; i++) {
-          children[i].style.visibility = 'hidden';
-          void children[i].offsetHeight;
-          children[i].style.visibility = 'visible';
-        }
-      }
-    });
-    
     // Trigger lottie refresh if available
     const lottieContainers = document.querySelectorAll('.lottie-container');
     lottieContainers.forEach(container => {
