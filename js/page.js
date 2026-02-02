@@ -1579,11 +1579,11 @@ function updatePaletteMenuSelection() {
       <div class="flow-editor-backdrop"></div>
       <div class="flow-editor-container">
         <div class="flow-editor-header">
-          <span class="flow-editor-title">OOBE Sandbox</span>
+          <span class="flow-editor-title">Flow editor</span>
           <button class="flow-editor-close" aria-label="Close panel">✕</button>
         </div>
         <div class="flow-editor-content">
-          <p class="flow-editor-subtitle">Flow Editor - Drag to reorder, toggle visibility</p>
+          <p class="flow-editor-subtitle">Drag to reorder or toggle visibility.</p>
           
           <div class="flow-editor-list-container">
             <ul class="flow-editor-list" id="flow-editor-list"></ul>
@@ -1767,6 +1767,7 @@ function updatePaletteMenuSelection() {
       }
       .flow-editor-list li:hover {
         background: var(--color-bg-inset, rgba(0, 0, 0, 0.05));
+        cursor: pointer;
       }
       html.dark .flow-editor-list li:hover {
         background: rgba(255, 255, 255, 0.05);
@@ -2016,12 +2017,17 @@ function updatePaletteMenuSelection() {
 
         let pageLabel = id;
         let pageData = null;
+        let pageFile = null;
         if (window.OOBEFlow.getPage) {
           const page = window.OOBEFlow.getPage(id);
           if (page) {
             pageLabel = page.label;
             pageData = page;
           }
+        }
+        if (window.OOBEFlow.getPageFile) {
+          pageFile = window.OOBEFlow.getPageFile(id);
+          li.setAttribute('data-page-file', pageFile);
         }
 
         const show = !hidden.includes(id);
@@ -2062,6 +2068,22 @@ function updatePaletteMenuSelection() {
           renderFlowList();
         };
         li.appendChild(eye);
+        
+        // Add click handler to navigate to page
+        li.addEventListener('click', (e) => {
+          // Don't navigate if clicking on the eye toggle or drag handle
+          if (e.target === eye || e.target.closest('.flow-item-toggle') || e.target.closest('.drag-handle')) {
+            return;
+          }
+          
+          // Navigate to the clicked page
+          const file = li.getAttribute('data-page-file');
+          if (file) {
+            const pagePath = window.getPagePath ? window.getPagePath(file) : '/pages/' + file;
+            closePanel();
+            window.location.href = pagePath;
+          }
+        });
         
         flowList.appendChild(li);
       });
