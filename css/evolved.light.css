@@ -409,7 +409,6 @@
 
 .evolved.light .oobe-card {
   background-color: rgba(229, 229, 229, 0.25);
-  background-image: url('/assets/noise.png');
   background-repeat: repeat;
   background-blend-mode: luminosity;
   backdrop-filter: blur(60px);
