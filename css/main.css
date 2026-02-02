@@ -382,6 +382,7 @@ html.dark .oobe-background {
   gap: var(--space-m);
   margin-top: var(--space-xl);
   padding-top: var(--space-xl);
+  height: 40px;
 }
 
 .button-primary,
