@@ -19,7 +19,7 @@
     { id: 'lcu', file: 'lcu.html', label: 'LCU update', type: 'scanner', children: [], restartAfter: false },
     { id: 'ndup', file: 'ndup.html', label: 'NDUP', type: 'interactive', children: [], restartAfter: true },
     // { id: 'disambig', file: 'disambig.html', label: 'Disambiguation', type: 'interactive', children: [], restartAfter: false },
-    { id: 'msa_info', file: 'msa_info.html', label: 'MSA Info', type: 'interactive', children: [], restartAfter: false },
+    // { id: 'msa_info', file: 'msa_info.html', label: 'MSA Info', type: 'interactive', children: [], restartAfter: false },
     { id: 'msa_sisu', file: 'msa_sisu.html', label: 'MSA Sign in / Sign Up (SISU)', type: 'interactive', children: ['msa_sisu_0.html'], restartAfter: false },
     { id: 'fingerprint', file: 'fingerprint.html', label: 'Fingerprint', type: 'interactive', children: ['fingerprint_0.html'], restartAfter: false },
     { id: 'pin', file: 'pin.html', label: 'PIN', type: 'interactive', children: [], restartAfter: false },
