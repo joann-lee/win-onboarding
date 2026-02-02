@@ -65,20 +65,7 @@
   var colors = paletteColors[savedPalette] || paletteColors['standard'];
   var modeColors = colors[savedMode] || colors['light'];
   
-  var criticalStyle = document.createElement('style');
-  criticalStyle.id = 'theme-critical-css';
-  criticalStyle.textContent = ':root{' +
-    '--smtc-background-ctrl-brand-rest:' + modeColors.brand + ';' +
-    '--smtc-background-ctrl-brand-hover:' + modeColors.brandHover + ';' +
-    '--smtc-background-ctrl-brand-pressed:' + modeColors.brandPressed + ';' +
-    '--smtc-stroke-ctrl-brand-rest:' + modeColors.brand + ';' +
-    '--smtc-stroke-ctrl-brand-hover:' + modeColors.brandHover + ';' +
-    '--smtc-foreground-ctrl-brand-rest:' + modeColors.brand + ';' +
-    '--smtc-foreground-ctrl-hint-default:' + modeColors.brand + ';' +
-  '}';
-  document.head.appendChild(criticalStyle);
-  
-  // Preload background image to ensure it's ready when page renders
+  // Background images for each palette/mode combination
   var backgroundImages = {
     'violet': {
       'light': '/assets/wallpaper/background-violet-light.png',
@@ -89,8 +76,8 @@
       'dark': '/assets/wallpaper/background-dune-dark.png'
     },
     'sapphire': {
-      'light': '/assets/wallpaper/electric-teal.webp',
-      'dark': '/assets/wallpaper/electric-teal.webp'
+      'light': '/assets/wallpaper/background-sapphire-light.png',
+      'dark': '/assets/wallpaper/background-sapphire-dark.png'
     },
     'slate': {
       'light': '/assets/wallpaper/background-black-light.png',
@@ -109,8 +96,23 @@
   var paletteImages = backgroundImages[savedPalette] || backgroundImages['standard'];
   var bgUrl = paletteImages ? paletteImages[savedMode] : null;
   
+  // Inject critical CSS variables immediately, including background image
+  var criticalStyle = document.createElement('style');
+  criticalStyle.id = 'theme-critical-css';
+  criticalStyle.textContent = ':root{' +
+    '--smtc-background-ctrl-brand-rest:' + modeColors.brand + ';' +
+    '--smtc-background-ctrl-brand-hover:' + modeColors.brandHover + ';' +
+    '--smtc-background-ctrl-brand-pressed:' + modeColors.brandPressed + ';' +
+    '--smtc-stroke-ctrl-brand-rest:' + modeColors.brand + ';' +
+    '--smtc-stroke-ctrl-brand-hover:' + modeColors.brandHover + ';' +
+    '--smtc-foreground-ctrl-brand-rest:' + modeColors.brand + ';' +
+    '--smtc-foreground-ctrl-hint-default:' + modeColors.brand + ';' +
+    (bgUrl ? '--background-image:url(\'' + bgUrl + '\');' : '') +
+  '}';
+  document.head.appendChild(criticalStyle);
+  
   if (bgUrl) {
-    // Create a preload link for the background image
+    // Create a preload link for the background image for faster loading
     var preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';

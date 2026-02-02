@@ -440,3 +440,9 @@
   -webkit-transform: translateZ(0);
 }
 
+/* Win11 language page: Ensure footer alignment is consistent with oobe-ctas on other pages */
+.win11 body[data-page-id="language"] .footer,
+body.win11[data-page-id="language"] .footer {
+  margin-top: auto;
+}
+
