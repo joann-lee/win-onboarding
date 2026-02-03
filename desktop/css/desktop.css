@@ -6837,6 +6837,9 @@ html.dark .start-search-box:focus-within {
     border-color: rgba(96, 165, 250, 0.6);
 }
 
+html.dark .start-search-icon {
+filter: invert(1);
+}
 
 html.dark .start-search-copilot {
     filter: brightness(1.2);
