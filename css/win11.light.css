@@ -248,3 +248,23 @@
   --smtc-material-mica-default-solid: #ffffff00;
   --smtc-material-mica-default-lum-blend: #ffffff00;
 }
+
+.win11.light .oobe-background {
+  background-image: none;
+}
+
+.win11.light .oobe-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: var(--background-image);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.5;
+  z-index: 0;
+}

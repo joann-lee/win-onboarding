@@ -401,3 +401,30 @@ body.win11[data-page-id="language"] .footer {
   margin-top: auto;
 }
 
+/* Win11 language page: Hide welcome text */
+.win11 body[data-page-id="language"] .language-welcome-title,
+body.win11[data-page-id="language"] .language-welcome-title,
+.win11 body[data-page-id="language"] .language-welcome-subtitle,
+body.win11[data-page-id="language"] .language-welcome-subtitle {
+  display: none !important;
+}
+
+/* Win11 language page: Hide logo area */
+.win11 body[data-page-id="language"] .language-logo-area,
+body.win11[data-page-id="language"] .language-logo-area {
+  display: none !important;
+}
+
+/* Win11 language page: Vertically center the language selector */
+.win11 body[data-page-id="language"] .oobe-body,
+body.win11[data-page-id="language"] .oobe-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.win11 body[data-page-id="language"] .country-list,
+body.win11[data-page-id="language"] .country-list {
+  flex: 0 0 auto;
+}
