@@ -436,7 +436,12 @@ function toggleFullscreenFallback() {
         window.location.href = '/';
         break;
       case 'restart-oobe':
-        window.location.href = '/pages/boot.html';
+        // Fade to black before navigating to boot
+        if (window.navigateToRebootWithFade) {
+          window.navigateToRebootWithFade('/pages/boot.html');
+        } else {
+          window.location.href = '/pages/boot.html';
+        }
         break;
       case 'reload':
         window.location.reload();
@@ -988,6 +993,42 @@ function updatePaletteMenuSelection() {
     }
   };
 
+  // Special navigation to reboot/boot pages - fades to black first
+  window.navigateToRebootWithFade = function(url) {
+    // Create a black overlay that fades in, covering everything
+    const overlay = document.createElement('div');
+    overlay.id = 'reboot-fade-overlay';
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      opacity: 0;
+      z-index: 2147483647;
+      pointer-events: all;
+      transition: opacity 0.6s ease-out;
+    `;
+    document.body.appendChild(overlay);
+    
+    // Force a reflow to ensure the overlay is rendered before transitioning
+    overlay.offsetHeight;
+    
+    // Trigger the fade to black
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        overlay.style.opacity = '1';
+      });
+    });
+    
+    // Navigate after fade completes - use direct location change, no view transition
+    setTimeout(() => {
+      // Bypass view transitions entirely for boot/reboot
+      window.location.href = url;
+    }, 650);
+  };
+
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-cta]');
     const link = e.target.closest('a[href]');
@@ -1070,7 +1111,6 @@ function updatePaletteMenuSelection() {
   // Network Data
   const networks = [
     { name: 'Netgear_24', secured: true, signal: 4 },
-    { name: 'Definitely not wifi', secured: false, signal: 4 },
     { name: 'Home wifi', secured: false, signal: 3 },
     { name: 'CenturyLink_5515', secured: true, signal: 3 },
     { name: 'DirectAccess_555', secured: true, signal: 2 },
@@ -1081,6 +1121,7 @@ function updatePaletteMenuSelection() {
     { name: 'No_More_Mr_WiFi', secured: false, signal: 1 },
     { name: 'Bill_Wi_the_Science_Fi', secured: true, signal: 3 },
     { name: 'My_House_My_Rules_My_Wifi', secured: true, signal: 3 },
+    { name: 'Definitely not wifi', secured: false, signal: 4 },
     { name: 'PleaseDoNotConnect', secured: true, signal: 1 },
     { name: 'Samsung TV', secured: true, signal: 3 }
   ];
@@ -1487,8 +1528,8 @@ function updatePaletteMenuSelection() {
       if (nextId) {
         sessionStorage.setItem('oobeRestartDestination', nextId);
       }
-      // Go to reboot page
-      window.navigateWithTransition(window.getPagePath('reboot.html'));
+      // Go to reboot page with fade to black
+      window.navigateToRebootWithFade(window.getPagePath('reboot.html'));
     } else {
       // Navigate directly using flow.js functions
       const nextId = window.nextPageId && window.nextPageId(currentId);

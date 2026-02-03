@@ -3,10 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.style.backgroundColor=localStorage.getItem('themeMode')==='light'?'#f0f5fa':'#0a0a0a';</script>
   <title>💻 OOBE Sandbox | Set up</title>
-  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
-  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
-  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
       // Set defaults on first load
@@ -20,6 +18,16 @@
         localStorage.setItem('themeMode', 'dark');
       }
       
+      // IMMEDIATELY set background color to prevent white flash
+      var mode = localStorage.getItem('themeMode') || 'dark';
+      document.documentElement.style.backgroundColor = mode === 'dark' ? '#0a0a0a' : '#f0f5fa';
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <script>
+    (function() {
       var style = localStorage.getItem('cssStyle');
       if (style === 'evolved') {
         document.getElementById('style-base').href = '/css/evolved.css';

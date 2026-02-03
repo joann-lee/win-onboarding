@@ -3,10 +3,69 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.style.backgroundColor='#000';</script>
   <title>💻 OOBE Sandbox | Reboot</title>
-  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
-  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
-  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <style>
+    /* Critical styles - must load before anything else to prevent layout shift */
+    html, body {
+      background: #000 !important;
+      margin: 0;
+      padding: 0;
+    }
+    body[data-page-id="reboot"],
+    body[data-page-id="reboot"] * {
+      view-transition-name: none !important;
+    }
+    body[data-page-id="reboot"] {
+      background: #000 !important;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    body[data-page-id="reboot"] .oobe-background {
+      display: none !important;
+    }
+    .reboot-container {
+      width: 100%;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999999;
+    }
+    .reboot-content {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .microsoft-logo-frame {
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .microsoft-logo {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+      animation: logoPulse 2s cubic-bezier(0.33,0,0.67,1) infinite alternate;
+    }
+    @keyframes logoPulse {
+      0% { opacity: 1; }
+      100% { opacity: 0.85; }
+    }
+  </style>
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
@@ -21,7 +80,7 @@
 </head>
 
 <body data-page-id="reboot" data-oobe>
-  <div class="oobe-background"></div>
+  <!-- No oobe-background on reboot - pure black screen -->
   <div class="reboot-container">
     <div class="reboot-content">
       <div class="microsoft-logo-frame">
@@ -37,65 +96,39 @@
   <script>
     // Handle reboot continuation
     document.addEventListener('DOMContentLoaded', function() {
-      // Wait for reboot animation then continue to next page
+      // Wait for reboot animation then fade out and continue to next page
       setTimeout(() => {
-        const nextPageId = sessionStorage.getItem('oobeRestartDestination');
-        if (nextPageId) {
-          sessionStorage.removeItem('oobeRestartDestination');
-          const nextFile = window.getPageFile(nextPageId);
-          if (nextFile) {
-            const nextHref = window.getPagePath(nextFile);
-            window.location.href = nextHref;
+        // Fade out the reboot content before navigating
+        const rebootContent = document.querySelector('.reboot-content');
+        if (rebootContent) {
+          rebootContent.style.transition = 'opacity 0.5s ease-out';
+          rebootContent.style.opacity = '0';
+        }
+        
+        // Navigate after fade completes
+        setTimeout(() => {
+          const nextPageId = sessionStorage.getItem('oobeRestartDestination');
+          if (nextPageId) {
+            sessionStorage.removeItem('oobeRestartDestination');
+            const nextFile = window.getPageFile(nextPageId);
+            if (nextFile) {
+              const nextHref = window.getPagePath(nextFile);
+              window.location.href = nextHref;
+            } else {
+              // If no file found, go to desktop as fallback
+              window.location.href = '/desktop/';
+            }
           } else {
-            // If no file found, go to desktop as fallback
+            // No destination set, go to desktop
             window.location.href = '/desktop/';
           }
-        } else {
-          // No destination set, go to desktop
-          window.location.href = '/desktop/';
-        }
-      }, 1900); // 1.9 second reboot animation
+        }, 500);
+      }, 1400); // 1.4s reboot animation + 0.5s fade = ~1.9s total
     });
   </script>
+</body>
 
-  <style>
-    body[data-page-id="reboot"] {
-      background: #000;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .reboot-container {
-      width: 100%;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-
-    .reboot-content {
-      opacity: 1;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .microsoft-logo-frame {
-      width: 140px;
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .microsoft-logo {
+</html>    .microsoft-logo {
       width: 100%;
       height: 100%;
       filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));

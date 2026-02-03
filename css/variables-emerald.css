@@ -167,7 +167,7 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
   /* Button/brand text - white text on emerald green backgrounds */
   --smtc-foreground-ctrl-on-brand-rest: #000000;
   --smtc-foreground-ctrl-on-brand-hover: #000000;
-  --smtc-foreground-ctrl-on-brand-pressed: #000000n;
+  --smtc-foreground-ctrl-on-brand-pressed: #000000;
   
   /* ==================== BACKGROUNDS ==================== */
   --background-image: url('/assets/wallpaper/background-emerald-dark.png');

@@ -485,11 +485,11 @@ html:not(.evolved) .oobe-header h1 {
 }
 
 .country-list li:hover {
-  background: var(--smtc-background-ctrl-subtle-hover, #f5f5f5);
+  background: var(--smtc-background-card-on-primary-alt-hover, #f5f5f5);
 }
 
 .country-list li.is-active {
-  background: var(--smtc-background-card-on-primary-alt-rest, #ffffff73);
+  background: var(--smtc-background-card-on-primary-alt-pressed, #ffffff73);
   color: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 }
 
@@ -574,12 +574,12 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
 }
 
 .wifi-item:hover {
-  background-color: var(--color-wifi-item-bg-hover);
+  background-color: var(--smtc-background-card-on-primary-alt-hover);
   border-radius: var(--smtc-corner-ctrl-sm-rest, 8px);
 }
 
 .wifi-item.selected {
-  background-color: var(--smtc-background-layer-solid);
+  background-color: var(--smtc-background-card-on-primary-alt-pressed);
   border-radius: var(--smtc-corner-ctrl-sm-rest, 8px);
 }
 

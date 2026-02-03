@@ -141,6 +141,28 @@ body {
   }
 }
 
+/* Boot/Reboot pages - DISABLE view transitions completely */
+/* We use JavaScript fade overlays for these transitions instead */
+body[data-page-id="boot"],
+body[data-page-id="reboot"],
+body[data-page-id="boot"] *,
+body[data-page-id="reboot"] * {
+  view-transition-name: none !important;
+}
+
+/* Ensure boot/reboot pages have solid black backgrounds */
+body[data-page-id="boot"],
+body[data-page-id="reboot"] {
+  background: #000 !important;
+}
+
+/* Hide any OOBE background elements on boot/reboot */
+body[data-page-id="boot"] .oobe-background,
+body[data-page-id="reboot"] .oobe-background {
+  display: none !important;
+  opacity: 0 !important;
+}
+
 :root {
   --font-family: var(--smtc-typography-font-family-primary, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif);
   --font-size-body: var(--smtc-typography-font-size-body, 14px);
@@ -215,7 +237,7 @@ body.dark{
 
 hr {
   border: none;
-  border-top: 1px solid var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
+  border-top: 1px solid var( --smtc-stroke-ctrl-on-outline-rest);
   margin: 0;
 }
 

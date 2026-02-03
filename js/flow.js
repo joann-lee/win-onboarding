@@ -283,11 +283,26 @@
           const rebootHref = window.getPagePath('reboot.html');
           sessionStorage.setItem('oobeRestartDestination', nextId);
           
-          // Handle both regular links and web components
+          // Handle both regular links and web components - use fade to black for reboot
           if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
-            nextLink.onclick = () => window.location.href = rebootHref;
+            nextLink.onclick = (e) => {
+              e.preventDefault();
+              if (window.navigateToRebootWithFade) {
+                window.navigateToRebootWithFade(rebootHref);
+              } else {
+                window.location.href = rebootHref;
+              }
+            };
           } else {
-            nextLink.setAttribute('href', rebootHref);
+            nextLink.setAttribute('href', '#');
+            nextLink.onclick = (e) => {
+              e.preventDefault();
+              if (window.navigateToRebootWithFade) {
+                window.navigateToRebootWithFade(rebootHref);
+              } else {
+                window.location.href = rebootHref;
+              }
+            };
           }
         } else {
           const nextFile = getPageFile(nextId);

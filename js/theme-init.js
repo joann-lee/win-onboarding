@@ -12,22 +12,31 @@
   var savedCssStyle = localStorage.getItem('cssStyle') || 'win11';
   var root = document.documentElement;
   
-  // Apply CSS style links based on preference
-  var styleBase = document.getElementById('style-base');
-  var styleLight = document.getElementById('style-light');
-  var styleDark = document.getElementById('style-dark');
+  // IMMEDIATELY set background color on html to prevent white flash
+  // This must happen before any CSS loads
+  var bgColors = {
+    'light': '#f0f5fa',
+    'dark': '#0a0a0a'
+  };
+  root.style.backgroundColor = bgColors[savedMode] || bgColors['light'];
   
-  if (styleBase && styleLight && styleDark) {
-    if (savedCssStyle === 'evolved') {
-      styleBase.href = '/css/evolved.css';
-      styleLight.href = '/css/evolved.light.css';
-      styleDark.href = '/css/evolved.dark.css';
-    } else {
-      styleBase.href = '/css/win11.css';
-      styleLight.href = '/css/win11.light.css';
-      styleDark.href = '/css/win11.dark.css';
-    }
+  // Dynamically write the correct CSS files based on preference
+  // This runs synchronously before any other CSS loads
+  var cssBase, cssLight, cssDark;
+  if (savedCssStyle === 'evolved') {
+    cssBase = '/css/evolved.css';
+    cssLight = '/css/evolved.light.css';
+    cssDark = '/css/evolved.dark.css';
+  } else {
+    cssBase = '/css/win11.css';
+    cssLight = '/css/win11.light.css';
+    cssDark = '/css/win11.dark.css';
   }
+  
+  // Write CSS links directly - this happens synchronously during parse
+  document.write('<link rel="stylesheet" href="' + cssBase + '" type="text/css" id="style-base" />');
+  document.write('<link rel="stylesheet" href="' + cssLight + '" type="text/css" id="style-light" />');
+  document.write('<link rel="stylesheet" href="' + cssDark + '" type="text/css" id="style-dark" />');
   
   // Apply all theme classes immediately to prevent flash
   root.classList.remove('dark', 'light', 'standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'win11', 'evolved');
@@ -99,7 +108,16 @@
   // Inject critical CSS variables immediately, including background image
   var criticalStyle = document.createElement('style');
   criticalStyle.id = 'theme-critical-css';
-  criticalStyle.textContent = ':root{' +
+  var bgColor = savedMode === 'dark' ? '#0a0a0a' : '#f0f5fa';
+  criticalStyle.textContent = 
+    // Set html background immediately to prevent white flash
+    'html{background-color:' + bgColor + ';' +
+    (bgUrl ? 'background-image:url(\'' + bgUrl + '\');background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat;' : '') +
+    '}' +
+    // Body should be transparent
+    'body{background:transparent !important;}' +
+    // Root variables
+    ':root{' +
     '--smtc-background-ctrl-brand-rest:' + modeColors.brand + ';' +
     '--smtc-background-ctrl-brand-hover:' + modeColors.brandHover + ';' +
     '--smtc-background-ctrl-brand-pressed:' + modeColors.brandPressed + ';' +

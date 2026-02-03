@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.style.backgroundColor=localStorage.getItem('themeMode')==='light'?'#f0f5fa':'#0a0a0a';</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows 11 Desktop</title>
     
@@ -1017,14 +1018,19 @@
         
         <!-- Main Content Area -->
         <div class="start-menu-main">
-            <!-- Search Box -->
-            <div class="start-search-box">
-                <div class="start-search-box-bg"></div>
-                <img class="start-search-icon" src="assets/Search.svg" alt="Search" />
-                <input type="text" class="start-search-input" placeholder="Search for apps, settings, and documents" />
-            </div>
-
             <div class="start-scroll-area">
+                <!-- Search Box with Phone Button -->
+                <div class="start-search-row">
+                    <div class="start-search-box">
+                        <div class="start-search-box-bg"></div>
+                        <img class="start-search-icon" src="assets/Search.svg" alt="Search" />
+                        <input type="text" class="start-search-input" placeholder="Search for apps, settings, and documents" />
+                    </div>
+                    <mai-button appearance="secondary" size="large" class="start-phone-btn" aria-label="Phone link">
+                        <img src="../assets/icons/phone.svg" alt="Phone" />
+                    </mai-button>
+                </div>
+
                 <!-- Pinned Section -->
                 <div class="start-section-header">
                     <span class="start-section-title">Pinned</span>

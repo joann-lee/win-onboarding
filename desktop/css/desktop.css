@@ -696,19 +696,17 @@ body {
     z-index: 1000;
     overflow: hidden;
     font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
-    /* Position for bottom taskbar - centered with phone pane */
-    /* Combined width: 680 (start) + 4 (gap) + 220 (phone) = 904px */
-    left: calc(50% - 452px);
+    /* Center horizontally */
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
     bottom: calc(48px + 12px);
-    /* Start completely hidden below taskbar */
-    transform: translateY(100%);
     display: flex;
     flex-direction: row;
 }
 
 .start-menu.active {
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
     transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0ms;
 }
 
@@ -1101,11 +1099,50 @@ body {
 }
 
 /* ====== START MENU LAYOUT STYLES (SliverV3) ====== */
+/* Search Row - Container for search box and phone button */
+.start-search-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 40px 22px 40px;
+}
+
+/* Phone Button - Large round secondary button */
+.start-phone-btn {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.start-phone-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.start-phone-btn:active {
+    transform: scale(0.96);
+}
+
+.start-phone-btn img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+}
+
 /* Search Box - Mica Style */
 .start-search-box {
-    margin: 22px 40px 22px 40px;
+    flex: 1;
+    margin: 0;
     height: 40px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.7);
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -1113,27 +1150,16 @@ body {
     gap: 10px;
     box-sizing: border-box;
     cursor: text;
-    transition: border-color 0.15s;
+    transition: background-color 0.2s ease;
     position: relative;
 }
 
+.start-search-box:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
 .start-search-box-bg {
-    position: absolute;
-    inset: 0;
-    /* Container background - white */
-    background-color: #ffffff;
-    border-radius: 20px;
-    z-index: -1;
-    transition: background-color 0.15s;
-}
-
-
-.start-search-box:focus-within {
-    border-color: var(--color-accent, #0078d4);
-}
-
-.start-search-box:focus-within .start-search-box-bg {
-    /* background: rgba(243, 243, 243, 0.8); */
+    display: none;
 }
 
 .start-search-icon {
@@ -1176,8 +1202,8 @@ body {
     /* Content area background - lighter than header/footer */
     background-color: rgba(255, 255, 255, 0.4);
     position: relative;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 22px;
 }
 
 .start-scroll-area::-webkit-scrollbar {
@@ -1512,30 +1538,7 @@ body {
 
 /* Phone Link Panel - Mobile Device Pane */
 .phone-pane {
-    position: fixed;
-    /* Position to the right of start menu - centered together */
-    /* Start menu left edge at calc(50% - 452px), width 680px, gap 4px */
-    left: calc(50% + 232px); /* 50% - 452px + 680px + 4px = 50% + 232px */
-    bottom: calc(48px + 12px);
-    border-radius: 8px;
-    overflow: hidden;
-    width: 220px;
-    height: 672px;
-    max-height: calc(100vh - 80px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: 8px 8px 32px rgba(0, 0, 0, 0.24);
-    padding: 0;
-    box-sizing: border-box;
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    /* Match start menu animation timing for sync */
-    transition: opacity 250ms ease-out, transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 250ms;
-    /* Start completely hidden below taskbar */
-    transform: translateY(100%);
+    display: none;
 }
 
 /* Acrylic Background for Phone Pane */
@@ -6818,23 +6821,24 @@ html.dark .start-category-card:hover {
 
 /* ====== DARK MODE START MENU STYLES (SliverV3) ====== */
 html.dark .start-search-box {
-    border-color: rgba(255, 255, 255, 0.12);
-}
-
-html.dark .start-search-box-bg {
-    /* Container background - white */
-    /* background-color: #ffffff; */
-    background-color: var(--oobe-acrylic-bg-dark);
-   color: rgba(0, 0, 0, 0.9);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 html.dark .start-search-box:hover {
-    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.12);
 }
 
+html.dark .start-phone-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.1);
+}
 
-html.dark .start-search-box:focus-within {
-    border-color: rgba(96, 165, 250, 0.6);
+html.dark .start-phone-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+html.dark .start-phone-btn img {
+    filter: invert(1);
 }
 
 html.dark .start-search-icon {
@@ -6843,6 +6847,10 @@ filter: invert(1);
 
 html.dark .start-search-copilot {
     filter: brightness(1.2);
+}
+
+html.dark .start-search-icon {
+    filter: invert(1) opacity(0.7);
 }
 
 html.dark .start-section-title {

@@ -3,10 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>document.documentElement.style.backgroundColor=localStorage.getItem('themeMode')==='light'?'#f0f5fa':'#0a0a0a';</script>
   <title>💻 OOBE Sandbox | Boot</title>
-  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
-  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
-  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
@@ -36,26 +34,42 @@
   <script>
     // Handle boot sequence then navigate to first OOBE page
     document.addEventListener('DOMContentLoaded', function() {
-      // Wait for boot animation then continue to first OOBE page
-      // 2s logo only + 2s loader = 4s total
+      // Wait for boot animation then fade out and continue to first OOBE page
+      // 2s logo only + 2s loader = 4s total, then fade out
       setTimeout(() => {
-        const currentId = document.body.getAttribute('data-page-id');
-        const nextId = window.nextPageId(currentId);
-        if (nextId) {
-          const nextFile = window.getPageFile(nextId);
-          const nextHref = window.getPagePath(nextFile);
-          window.location.href = nextHref;
-        } else {
-          // End of flow - go to desktop
-          window.location.href = '/desktop/';
+        // Fade out the boot content before navigating
+        const bootContent = document.querySelector('.boot-content');
+        if (bootContent) {
+          bootContent.style.transition = 'opacity 0.5s ease-out';
+          bootContent.style.opacity = '0';
         }
+        
+        // Navigate after fade completes
+        setTimeout(() => {
+          const currentId = document.body.getAttribute('data-page-id');
+          const nextId = window.nextPageId(currentId);
+          if (nextId) {
+            const nextFile = window.getPageFile(nextId);
+            const nextHref = window.getPagePath(nextFile);
+            window.location.href = nextHref;
+          } else {
+            // End of flow - go to desktop
+            window.location.href = '/desktop/';
+          }
+        }, 500);
       }, 4000);
     });
   </script>
 
   <style>
+    /* Disable all view transitions on boot page */
+    body[data-page-id="boot"],
+    body[data-page-id="boot"] * {
+      view-transition-name: none !important;
+    }
+    
     body[data-page-id="boot"] {
-      background: #000;
+      background: #000 !important;
       margin: 0;
       padding: 0;
       display: flex;
@@ -81,6 +95,7 @@
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 999999;
     }
 
     .boot-content {
