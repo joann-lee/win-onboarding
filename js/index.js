@@ -315,6 +315,33 @@ function initThemeControls() {
 function applyTheme(mode, palette, cssStyle) {
   console.log('applyTheme called with:', mode, palette, cssStyle);
   const root = document.documentElement;
+
+  const getAssetBasePath = () => {
+    if (window.__OOBE_ASSET_BASE_PATH__) {
+      return window.__OOBE_ASSET_BASE_PATH__;
+    }
+
+    const pathname = window.location.pathname || '/';
+    const hasFileExtension = /\/[^/]+\.[^/]+$/.test(pathname);
+    let basePath;
+
+    if (pathname.endsWith('/')) {
+      basePath = pathname;
+    } else if (hasFileExtension) {
+      const lastSlash = pathname.lastIndexOf('/');
+      basePath = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
+    } else {
+      basePath = `${pathname}/`;
+    }
+
+    window.__OOBE_ASSET_BASE_PATH__ = basePath;
+    return basePath;
+  };
+
+  const toAssetUrl = (relativePath) => {
+    const cleanPath = (relativePath || '').replace(/^\/+/, '');
+    return `${getAssetBasePath()}${cleanPath}`;
+  };
   
   // Remove all theme classes from html element
   root.classList.remove('dune', 'sapphire', 'violet', 'dark', 'light', 'win11', 'evolved');
@@ -332,14 +359,14 @@ function applyTheme(mode, palette, cssStyle) {
   
   if (styleBase && styleLight && styleDark) {
     if (savedCssStyle === 'evolved') {
-      styleBase.href = '/css/evolved.css';
-      styleLight.href = '/css/evolved.light.css';
-      styleDark.href = '/css/evolved.dark.css';
+      styleBase.href = toAssetUrl('css/evolved.css');
+      styleLight.href = toAssetUrl('css/evolved.light.css');
+      styleDark.href = toAssetUrl('css/evolved.dark.css');
     } else {
       // Default to win11
-      styleBase.href = '/css/win11.css';
-      styleLight.href = '/css/win11.light.css';
-      styleDark.href = '/css/win11.dark.css';
+      styleBase.href = toAssetUrl('css/win11.css');
+      styleLight.href = toAssetUrl('css/win11.light.css');
+      styleDark.href = toAssetUrl('css/win11.dark.css');
     }
   }
   

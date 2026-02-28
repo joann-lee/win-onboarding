@@ -561,6 +561,33 @@ function toggleFullscreenFallback() {
 
 // Mode toggle button functionality
 (function initModeToggle() {
+  const getAssetBasePath = () => {
+    if (window.__OOBE_ASSET_BASE_PATH__) {
+      return window.__OOBE_ASSET_BASE_PATH__;
+    }
+
+    const pathname = window.location.pathname || '/';
+    const hasFileExtension = /\/[^/]+\.[^/]+$/.test(pathname);
+    let basePath;
+
+    if (pathname.endsWith('/')) {
+      basePath = pathname;
+    } else if (hasFileExtension) {
+      const lastSlash = pathname.lastIndexOf('/');
+      basePath = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
+    } else {
+      basePath = `${pathname}/`;
+    }
+
+    window.__OOBE_ASSET_BASE_PATH__ = basePath;
+    return basePath;
+  };
+
+  const toAssetUrl = (relativePath) => {
+    const cleanPath = (relativePath || '').replace(/^\/+/, '');
+    return `${getAssetBasePath()}${cleanPath}`;
+  };
+
   // Palette colors for updating critical CSS (must match theme-init.js)
   const paletteColors = {
     'violet': {
@@ -592,28 +619,28 @@ function toggleFullscreenFallback() {
   // Background images for each palette
   const backgroundImages = {
     'violet': {
-      'light': '/assets/wallpaper/background-violet-light.png',
-      'dark': '/assets/wallpaper/background-violet-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-violet-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-violet-dark.png')
     },
     'dune': {
-      'light': '/assets/wallpaper/background-dune-light.png',
-      'dark': '/assets/wallpaper/background-dune-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-dune-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-dune-dark.png')
     },
     'sapphire': {
-      'light': '/assets/wallpaper/electric-teal.webp',
-      'dark': '/assets/wallpaper/electric-teal.webp'
+      'light': toAssetUrl('assets/wallpaper/electric-teal.webp'),
+      'dark': toAssetUrl('assets/wallpaper/electric-teal.webp')
     },
     'slate': {
-      'light': '/assets/wallpaper/background-black-light.png',
-      'dark': '/assets/wallpaper/background-black-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-black-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-black-dark.png')
     },
     'emerald': {
-      'light': '/assets/wallpaper/background-emerald-light.png',
-      'dark': '/assets/wallpaper/background-emerald-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-emerald-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-emerald-dark.png')
     },
     'standard': {
-      'light': '/assets/wallpaper/background-standard-light.jpg',
-      'dark': '/assets/wallpaper/background-standard-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-standard-light.jpg'),
+      'dark': toAssetUrl('assets/wallpaper/background-standard-dark.png')
     }
   };
 
@@ -2221,6 +2248,33 @@ function updatePaletteMenuSelection() {
       btn.addEventListener('click', () => {
         const style = btn.dataset.style;
         const root = document.documentElement;
+
+        const getAssetBasePath = () => {
+          if (window.__OOBE_ASSET_BASE_PATH__) {
+            return window.__OOBE_ASSET_BASE_PATH__;
+          }
+
+          const pathname = window.location.pathname || '/';
+          const hasFileExtension = /\/[^/]+\.[^/]+$/.test(pathname);
+          let basePath;
+
+          if (pathname.endsWith('/')) {
+            basePath = pathname;
+          } else if (hasFileExtension) {
+            const lastSlash = pathname.lastIndexOf('/');
+            basePath = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
+          } else {
+            basePath = `${pathname}/`;
+          }
+
+          window.__OOBE_ASSET_BASE_PATH__ = basePath;
+          return basePath;
+        };
+
+        const toAssetUrl = (relativePath) => {
+          const cleanPath = (relativePath || '').replace(/^\/+/, '');
+          return `${getAssetBasePath()}${cleanPath}`;
+        };
         
         root.classList.remove('win11', 'evolved');
         root.classList.add(style);
@@ -2234,13 +2288,13 @@ function updatePaletteMenuSelection() {
         
         if (styleBase && styleLight && styleDark) {
           if (style === 'evolved') {
-            styleBase.href = '/css/evolved.css';
-            styleLight.href = '/css/evolved.light.css';
-            styleDark.href = '/css/evolved.dark.css';
+            styleBase.href = toAssetUrl('css/evolved.css');
+            styleLight.href = toAssetUrl('css/evolved.light.css');
+            styleDark.href = toAssetUrl('css/evolved.dark.css');
           } else {
-            styleBase.href = '/css/win11.css';
-            styleLight.href = '/css/win11.light.css';
-            styleDark.href = '/css/win11.dark.css';
+            styleBase.href = toAssetUrl('css/win11.css');
+            styleLight.href = toAssetUrl('css/win11.light.css');
+            styleDark.href = toAssetUrl('css/win11.dark.css');
           }
         }
         
