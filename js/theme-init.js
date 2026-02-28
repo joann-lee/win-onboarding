@@ -11,6 +11,15 @@
       return window.__OOBE_ASSET_BASE_PATH__;
     }
 
+    // On localhost/127.0.0.1 the dev server serves files relative to the repo root,
+    // so pages in /pages/ would incorrectly resolve assets under /pages/css/.
+    // Use root-relative paths so everything resolves from the server root.
+    var hostname = window.location.hostname;
+    if (hostname === '127.0.0.1' || hostname === 'localhost' || hostname === '::1') {
+      window.__OOBE_ASSET_BASE_PATH__ = '/';
+      return '/';
+    }
+
     var pathname = window.location.pathname || '/';
     var hasFileExtension = /\/[^\/]+\.[^\/]+$/.test(pathname);
     var basePath;
