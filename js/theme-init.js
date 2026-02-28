@@ -5,6 +5,33 @@
  */
 (function() {
   'use strict';
+
+  function getAssetBasePath() {
+    if (window.__OOBE_ASSET_BASE_PATH__) {
+      return window.__OOBE_ASSET_BASE_PATH__;
+    }
+
+    var pathname = window.location.pathname || '/';
+    var hasFileExtension = /\/[^\/]+\.[^\/]+$/.test(pathname);
+    var basePath;
+
+    if (pathname.endsWith('/')) {
+      basePath = pathname;
+    } else if (hasFileExtension) {
+      var lastSlash = pathname.lastIndexOf('/');
+      basePath = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
+    } else {
+      basePath = pathname + '/';
+    }
+
+    window.__OOBE_ASSET_BASE_PATH__ = basePath;
+    return basePath;
+  }
+
+  function toAssetUrl(relativePath) {
+    var cleanPath = (relativePath || '').replace(/^\/+/, '');
+    return getAssetBasePath() + cleanPath;
+  }
   
   // Get saved preferences with defaults
   var savedMode = localStorage.getItem('themeMode') || 'light';
@@ -24,13 +51,13 @@
   // This runs synchronously before any other CSS loads
   var cssBase, cssLight, cssDark;
   if (savedCssStyle === 'evolved') {
-    cssBase = '/css/evolved.css';
-    cssLight = '/css/evolved.light.css';
-    cssDark = '/css/evolved.dark.css';
+    cssBase = toAssetUrl('css/evolved.css');
+    cssLight = toAssetUrl('css/evolved.light.css');
+    cssDark = toAssetUrl('css/evolved.dark.css');
   } else {
-    cssBase = '/css/win11.css';
-    cssLight = '/css/win11.light.css';
-    cssDark = '/css/win11.dark.css';
+    cssBase = toAssetUrl('css/win11.css');
+    cssLight = toAssetUrl('css/win11.light.css');
+    cssDark = toAssetUrl('css/win11.dark.css');
   }
   
   // Write CSS links directly - this happens synchronously during parse
@@ -77,28 +104,28 @@
   // Background images for each palette/mode combination
   var backgroundImages = {
     'violet': {
-      'light': '/assets/wallpaper/background-violet-light.png',
-      'dark': '/assets/wallpaper/background-violet-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-violet-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-violet-dark.png')
     },
     'dune': {
-      'light': '/assets/wallpaper/background-dune-light.png',
-      'dark': '/assets/wallpaper/background-dune-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-dune-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-dune-dark.png')
     },
     'sapphire': {
-      'light': '/assets/wallpaper/background-sapphire-light.png',
-      'dark': '/assets/wallpaper/background-sapphire-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-sapphire-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-sapphire-dark.png')
     },
     'slate': {
-      'light': '/assets/wallpaper/background-black-light.png',
-      'dark': '/assets/wallpaper/background-black-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-black-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-black-dark.png')
     },
     'emerald': {
-      'light': '/assets/wallpaper/background-emerald-light.png',
-      'dark': '/assets/wallpaper/background-emerald-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-emerald-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-emerald-dark.png')
     },
     'standard': {
-      'light': '/assets/wallpaper/background-standard-light.jpg',
-      'dark': '/assets/wallpaper/background-standard-dark.png'
+      'light': toAssetUrl('assets/wallpaper/background-standard-light.jpg'),
+      'dark': toAssetUrl('assets/wallpaper/background-standard-dark.png')
     }
   };
   

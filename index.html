@@ -23,35 +23,62 @@
       document.documentElement.style.backgroundColor = mode === 'dark' ? '#0a0a0a' : '#f0f5fa';
     })();
   </script>
-  <link rel="stylesheet" href="/css/win11.css" type="text/css" id="style-base" />
-  <link rel="stylesheet" href="/css/win11.light.css" type="text/css" id="style-light" />
-  <link rel="stylesheet" href="/css/win11.dark.css" type="text/css" id="style-dark" />
+  <link rel="stylesheet" href="css/win11.css" type="text/css" id="style-base" />
+  <link rel="stylesheet" href="css/win11.light.css" type="text/css" id="style-light" />
+  <link rel="stylesheet" href="css/win11.dark.css" type="text/css" id="style-dark" />
   <script>
     (function() {
+      function getAssetBasePath() {
+        if (window.__OOBE_ASSET_BASE_PATH__) {
+          return window.__OOBE_ASSET_BASE_PATH__;
+        }
+
+        var pathname = window.location.pathname || '/';
+        var hasFileExtension = /\/[^\/]+\.[^\/]+$/.test(pathname);
+        var basePath;
+
+        if (pathname.endsWith('/')) {
+          basePath = pathname;
+        } else if (hasFileExtension) {
+          var lastSlash = pathname.lastIndexOf('/');
+          basePath = lastSlash >= 0 ? pathname.substring(0, lastSlash + 1) : '/';
+        } else {
+          basePath = pathname + '/';
+        }
+
+        window.__OOBE_ASSET_BASE_PATH__ = basePath;
+        return basePath;
+      }
+
+      function toAssetUrl(relativePath) {
+        var cleanPath = (relativePath || '').replace(/^\/+/, '');
+        return getAssetBasePath() + cleanPath;
+      }
+
       var style = localStorage.getItem('cssStyle');
       if (style === 'evolved') {
-        document.getElementById('style-base').href = '/css/evolved.css';
-        document.getElementById('style-light').href = '/css/evolved.light.css';
-        document.getElementById('style-dark').href = '/css/evolved.dark.css';
+        document.getElementById('style-base').href = toAssetUrl('css/evolved.css');
+        document.getElementById('style-light').href = toAssetUrl('css/evolved.light.css');
+        document.getElementById('style-dark').href = toAssetUrl('css/evolved.dark.css');
       } else {
         // Explicitly set win11 as default
-        document.getElementById('style-base').href = '/css/win11.css';
-        document.getElementById('style-light').href = '/css/win11.light.css';
-        document.getElementById('style-dark').href = '/css/win11.dark.css';
+        document.getElementById('style-base').href = toAssetUrl('css/win11.css');
+        document.getElementById('style-light').href = toAssetUrl('css/win11.light.css');
+        document.getElementById('style-dark').href = toAssetUrl('css/win11.dark.css');
       }
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
-  <link rel="stylesheet" href="/css/main.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-standard.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-violet.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-dune.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
-  <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
-  <link rel="stylesheet" href="/css/page.css" type="text/css" />
-  <link rel="stylesheet" href="/css/index.css" type="text/css" />
+  <link rel="stylesheet" href="css/main.css" type="text/css" />
+  <link rel="stylesheet" href="css/variables-standard.css" type="text/css" />
+  <link rel="stylesheet" href="css/variables-violet.css" type="text/css" />
+  <link rel="stylesheet" href="css/variables-dune.css" type="text/css" />
+  <link rel="stylesheet" href="css/variables-sapphire.css" type="text/css" />
+  <link rel="stylesheet" href="css/variables-slate.css" type="text/css" />
+  <link rel="stylesheet" href="css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="css/page.css" type="text/css" />
+  <link rel="stylesheet" href="css/index.css" type="text/css" />
 </head>
 
 <body>
@@ -110,10 +137,10 @@
     </div>
   </div>
 
-  <script src="/js/web-components.min.js"></script>
-  <script src="/js/flow.js"></script>
-  <script src="/js/page.js"></script>
-  <script src="/js/index.js"></script>
+  <script src="js/web-components.min.js"></script>
+  <script src="js/flow.js"></script>
+  <script src="js/page.js"></script>
+  <script src="js/index.js"></script>
 </body>
 
 </html>
