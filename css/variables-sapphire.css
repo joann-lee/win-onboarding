@@ -9,111 +9,14 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
 
 :root.light.sapphire,
 .light.sapphire {
-  
-  /* ==================== BASE COLORS ==================== */
-  --color-accent: #4D5990;
-  --color-accent-hover: #6271AA;
-  --color-accent-active: #30396E;
-  --color-bg-primary: var(--smtc-background-layer-solid, #f8fafc);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(181, 194, 219, 0.55), rgba(248, 250, 252, 0.85));
-  --color-card-bg: rgba(255, 255, 255, 0.9);
-  
-  /* ==================== TEXT COLORS ==================== */
-  --color-text-primary: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
-  --color-text-secondary: var(--smtc-foreground-ctrl-neutral-secondary-rest, #585860);
-  --color-text-error: var(--smtc-status-danger-tint-foreground, #e81b23);
-  --color-text-warning: var(--smtc-status-warning-tint-foreground, #ffb03b);
-  --color-text-success: var(--smtc-status-success-tint-foreground, #107c10);
-  --color-text-disabled: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
-  
-  /* ==================== BORDER & STROKE COLORS ==================== */
-  --color-border-default: var(--smtc-stroke-divider-default, #d4dae2);
-  --color-border-input: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-border-strong: var(--smtc-stroke-ctrl-neutral-stroke-rest, #1a1a1e);
-  
-  /* ==================== PRIMARY BUTTON ==================== */
-  --color-button-primary-bg: #4D5990;
-  --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-button-primary-bg-hover: #6271AA;
-  --color-button-primary-bg-active: #30396E;
-  --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-button-primary-border: #4D5990;
-  --color-button-primary-border-hover: #6271AA;
-  --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #cccccc);
-  
-  /* ==================== SECONDARY BUTTON ==================== */
-  --color-button-secondary-text: #4D5990;
-  --color-button-secondary-bg: transparent;
-  --color-button-secondary-text-hover: #30396E;
-  --color-button-secondary-text-active: #30396E;
-  --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
-  --color-button-secondary-bg-hover: transparent;
-  --color-button-secondary-bg-focus: transparent;
-  
-  /* ==================== INPUT FIELDS ==================== */
-  --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
-  --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
-  --color-input-border: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
-  --color-input-border-focus: #4D5990;
-  --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
-  --color-input-disabled-bg: var(--smtc-background-ctrl-neutral-disabled, #f5f5f5);
-  --color-input-disabled-text: var(--smtc-foreground-ctrl-neutral-primary-disabled, #9aa1ab);
-  
-  /* ==================== FORM COMPONENTS ==================== */
-  --color-checkbox-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
-  --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
-  --color-checkbox-bg-checked: #4D5990;
-  --color-checkbox-border-checked: #4D5990;
-  --color-checkbox-text-checked: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  
-  --color-radio-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
-  --color-radio-border: var(--smtc-stroke-ctrl-neutral-border-rest, #e0e0e0);
-  --color-radio-bg-checked: #4D5990;
-  --color-radio-border-checked: #4D5990;
-  
-  --color-toggle-bg: var(--smtc-background-ctrl-neutral-disabled, #cccccc);
-  --color-toggle-bg-checked: #4D5990;
-  --color-toggle-handle-bg: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  
-  /* ==================== LINKS ==================== */
-  --color-hyperlink: #6271AA;
-  --color-hyperlink-hover: #6271AA;
-  --color-hyperlink-active: #30396E;
-  --color-block-text-focus: #6271AA;
-  --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
-  
-  /* ==================== MESSAGE STATES ==================== */
-  --color-error-text: var(--smtc-status-danger-tint-foreground, #c42b1c);
-  --color-error-bg: var(--smtc-status-danger-tint-background, rgba(232, 27, 35, 0.1));
-  --color-warning-text: var(--smtc-status-warning-tint-foreground, #9d5d00);
-  --color-warning-bg: var(--smtc-status-warning-tint-background, rgba(255, 176, 59, 0.1));
-  --color-success-text: var(--smtc-status-success-tint-foreground, #0f7b0f);
-  --color-info-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-info-bg: rgba(77, 89, 144, 0.1);
-  --color-info-border: #6271AA;
-  
-  /* ==================== COMPONENT SPECIFIC ==================== */
-  --color-country-pill-bg: #4D5990;
-  --color-country-pill-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  --color-country-pill-bg-hover: #6271AA;
-  --color-country-list-hover: var(--smtc-background-ctrl-subtle-hover, #e7f1fb);
-  --color-country-list-active-bg: #6271AA;
-  --color-country-list-active-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
-  
-  --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
-  --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #4D5990);
-  
-  --color-device-name-note: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
 
-  /* ==================== BRAND & ACCENT COLORS ==================== */
-  --smtc-foreground-ctrl-hint-default: #4D5990;
+  /* ==================== SMTC Brand Colors ==================== */
+  --smtc-foreground-ctrl-hint-default: #6271AA;
   --smtc-foreground-ctrl-brand-rest: #4D5990;
   --smtc-foreground-ctrl-brand-hover: #6B77A8;
   --smtc-foreground-ctrl-brand-pressed: #8995C0;
-  
-  /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/background-sapphire-light.png');
+
+  /* ==================== SMTC Backgrounds ==================== */
   --smtc-background-layer-solid: #f8fafc4D;
   --smtc-background-card-secondary-rest: rgba(255, 255, 255, 0.9);
   --smtc-background-ctrl-brand-rest: #4D5990;
@@ -121,51 +24,38 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-background-ctrl-brand-pressed: #8995C0;
   --smtc-ctrl-slider-bar-foreground-filled-hover: #6B77A8;
   --smtc-ctrl-slider-bar-foreground-filled-pressed: #8995C0;
-  
-  /* ==================== STROKES & BORDERS ==================== */
+
+  /* ==================== SMTC Strokes ==================== */
   --smtc-stroke-ctrl-brand-rest: #4D5990;
   --smtc-stroke-ctrl-brand-hover: #6B77A8;
   --smtc-stroke-ctrl-brand-pressed: #8995C0;
   --smtc-ctrl-input-bottom-line-stroke-selected: #4D5990;
-  
-  /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #6271AA;
-  
-  /* ==================== SCROLLBAR ==================== */
+
+  /* ==================== SMTC Scrollbar ==================== */
   --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #7987B8);
   --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #4D5990);
   --smtc-scrollbar-track: transparent;
-  
-  /* ==================== STATUS COLORS (keep original) ==================== */
-  /* Error, warning, success colors remain unchanged */
+
+  /* ==================== Custom Tokens ==================== */
+  --background-image: url('/assets/wallpaper/background-sapphire-light.png');
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(181, 194, 219, 0.55), rgba(248, 250, 252, 0.85));
 }
 
 :root.dark.sapphire,
 .dark.sapphire {
-  /* ==================== BASE COLORS ==================== */
-  --color-accent: #7987B8;
-  --color-accent-hover: #B5C2DB;
-  --color-accent-active: #6271AA;
-  --color-bg-primary: var(--smtc-background-layer-solid, #0f1318);
-  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(121, 135, 184, 0.2), rgba(15, 19, 24, 0.6));
-  --color-card-bg: #1e1f22;
 
-  /* ==================== TEXT COLORS ==================== */
+  /* ==================== SMTC Brand Colors ==================== */
   --smtc-foreground-content-neutral-primary: #ffffff;
   --smtc-foreground-ctrl-neutral-secondary-rest: #b3b3ba;
   --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
-  
-  /* ==================== BORDER & STROKE COLORS ==================== */
-  --color-border-default: var(--smtc-stroke-divider-default, #3c3c3c);
-  
-  /* ==================== BRAND & ACCENT COLORS ==================== */
   --smtc-foreground-ctrl-hint-default: #7987B8;
   --smtc-foreground-ctrl-brand-rest: #7987B8;
   --smtc-foreground-ctrl-brand-hover: #96A2CA;
   --smtc-foreground-ctrl-brand-pressed: #B3BDDC;
-  
-  /* ==================== BACKGROUNDS ==================== */
-  --background-image: url('/assets/wallpaper/background-sapphire-dark.png');
+  --smtc-status-brand-tint-foreground: #7987B8;
+  --smtc-status-brand-tint-background: rgba(121, 135, 184, 0.1);
+
+  /* ==================== SMTC Backgrounds ==================== */
   --smtc-background-layer-solid: #0f1318;
   --smtc-background-card-secondary-rest: #1e1f22;
   --smtc-background-ctrl-brand-rest: #7987B8;
@@ -173,36 +63,21 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   --smtc-background-ctrl-brand-pressed: #B3BDDC;
   --smtc-ctrl-slider-bar-foreground-filled-hover: #96A2CA;
   --smtc-ctrl-slider-bar-foreground-filled-pressed: #B3BDDC;
-  
-  /* ==================== STROKES & BORDERS ==================== */
+
+  /* ==================== SMTC Strokes ==================== */
   --smtc-stroke-ctrl-brand-rest: #7987B8;
   --smtc-stroke-ctrl-brand-hover: #96A2CA;
   --smtc-stroke-ctrl-brand-pressed: #B3BDDC;
   --smtc-ctrl-input-bottom-line-stroke-selected: #7987B8;
-  
-  /* ==================== LINKS & INTERACTIVE ==================== */
-  --smtc-foreground-ctrl-hint-default: #7987B8;
-  --color-hyperlink: #B3BDDC;
-  --color-hyperlink-hover: #6271AA;
-  --color-hyperlink-active: #30396E;
-  --color-block-text-focus: #6271AA;
-  --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
-  
 
-  
-  /* ==================== STATUS COLORS (Sapphire tint for info) ==================== */
-  --smtc-status-brand-tint-foreground: #7987B8;
-  --smtc-status-brand-tint-background: rgba(121, 135, 184, 0.1);
-
-  /* ==================== SCROLLBAR ==================== */
+  /* ==================== SMTC Scrollbar ==================== */
   --smtc-scrollbar-thumb-rest: var(--smtc-foreground-ctrl-neutral-secondary-rest, #6271AA);
   --smtc-scrollbar-thumb-hover: var(--smtc-foreground-ctrl-brand-rest, #B5C2DB);
   --smtc-scrollbar-track: transparent;
 
-  /* ==================== WIFI COMPONENTS ==================== */
-  --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
-  --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
-  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #7987B8);
+  /* ==================== Custom Tokens ==================== */
+  --background-image: url('/assets/wallpaper/background-sapphire-dark.png');
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(121, 135, 184, 0.2), rgba(15, 19, 24, 0.6));
 }
 
 
