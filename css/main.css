@@ -218,6 +218,66 @@ body[data-page-id="reboot"] .oobe-background {
   --color-shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
+/* =====================================================================
+   Bridge tokens — maps page.css --color-* names → --smtc-* tokens.
+   These are not palette-specific; the --smtc-* tokens they reference
+   are already overridden per mode/palette by the variables-{palette}.css files.
+   ===================================================================== */
+:root {
+  /* Card / surface */
+  --color-card-bg: var(--smtc-background-card-secondary-rest, #ffffff);
+
+  /* Borders */
+  --color-border-default: var(--smtc-stroke-divider-default, #d0d7e2);
+  --color-border-input: var(--smtc-stroke-ctrl-neutral-border-rest, #8a8886);
+
+  /* Primary button */
+  --color-button-primary-bg: var(--smtc-background-ctrl-brand-rest, #005a9e);
+  --color-button-primary-border: var(--smtc-stroke-ctrl-brand-rest, #005a9e);
+  --color-button-primary-text: var(--smtc-foreground-ctrl-on-brand-rest, #ffffff);
+  --color-button-primary-bg-hover: var(--smtc-background-ctrl-brand-hover, #0078d4);
+  --color-button-primary-border-hover: var(--smtc-stroke-ctrl-brand-hover, #0078d4);
+  --color-button-primary-bg-active: var(--smtc-background-ctrl-brand-pressed, #004578);
+  --color-button-primary-bg-disabled: var(--smtc-background-ctrl-neutral-disabled, #f0f0f0);
+  --color-button-primary-border-disabled: var(--smtc-stroke-ctrl-neutral-disabled, #d0d0d0);
+
+  /* Secondary button */
+  --color-button-secondary-bg: transparent;
+  --color-button-secondary-text: var(--smtc-foreground-ctrl-brand-rest, #005a9e);
+  --color-button-secondary-bg-hover: transparent;
+  --color-button-secondary-text-active: var(--smtc-foreground-ctrl-brand-pressed, #004578);
+  --color-button-secondary-text-disabled: var(--smtc-foreground-ctrl-neutral-secondary-disabled, #9aa1ab);
+
+  /* Inputs */
+  --color-input-bg: var(--smtc-background-ctrl-neutral-rest, #ffffff);
+  --color-input-text: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  --color-input-placeholder: var(--smtc-foreground-ctrl-neutral-secondary-rest, #999999);
+
+  /* Form controls */
+  --color-toggle-bg-checked: var(--smtc-background-ctrl-brand-rest, #005a9e);
+  --color-checkbox-border: var(--smtc-stroke-ctrl-neutral-border-rest, #d4dae2);
+  --color-checkbox-item-hover: var(--smtc-background-ctrl-neutral-hover, #f0f4f8);
+
+  /* Status */
+  --color-error-text: var(--smtc-status-danger-tint-foreground, #c42b1c);
+  --color-success-text: var(--smtc-status-success-tint-foreground, #107c10);
+
+  /* Scrollbar */
+  --color-scrollbar-thumb: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
+  --color-scrollbar-thumb-hover: var(--smtc-scrollbar-thumb-hover, #a0a0a0);
+  --color-scrollbar-track: transparent;
+
+  /* Links */
+  --color-hyperlink: var(--smtc-foreground-ctrl-hint-default, #0078d4);
+  --color-hyperlink-active: var(--smtc-foreground-ctrl-brand-pressed, #004578);
+
+  /* Misc */
+  --color-wifi-accent-line: var(--smtc-foreground-ctrl-brand-rest, #005a9e);
+  --color-neutral-foreground-1: var(--smtc-foreground-content-neutral-primary, #1a1a1e);
+  --color-focus-ring: 2px solid var(--smtc-foreground-ctrl-brand-rest, #005a9e);
+  --color-focus-ring-text: var(--smtc-foreground-ctrl-brand-rest, #005a9e);
+}
+
 html,
 body {
   height: 100%;
