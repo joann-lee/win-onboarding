@@ -1,0 +1,132 @@
+/*
+
+NOVA THEME - SMTC Token Overrides
+
+This file overrides Win11 SMTC design tokens to create the Nova color theme.
+Inspired by the Nova wallpaper: luminous abstract blooms in hot pink/magenta
+and periwinkle blue on a soft lavender-gray background.
+
+Nova color scale:
+  #FAE8F0 (light 3) · #F0BFDA (light 2) · #E880B0 (light 1)
+  #D94080 (base) · #B82568 (dark 1) · #8C1448 (dark 2) · #5A0A2E (dark 3)
+*/
+
+/* ═══════════════════════════════════════════════════════ LIGHT ══ */
+:root.light.nova,
+.light.nova {
+  /* ==================== SMTC Brand Colors ==================== */
+  --smtc-foreground-ctrl-hint-default: #D94080;
+  --smtc-foreground-ctrl-brand-rest: #B82568;
+  --smtc-foreground-ctrl-brand-hover: #D94080;
+  --smtc-foreground-ctrl-brand-pressed: #8C1448;
+
+  /* ==================== SMTC Backgrounds ==================== */
+  --smtc-background-layer-solid: rgba(253, 241, 247, 0.5);
+  --smtc-background-web-page-secondary: #fdf5f9;
+  --smtc-background-card-secondary-rest: #ffffff;
+  --smtc-background-ctrl-brand-rest: #B82568;
+  --smtc-background-ctrl-brand-hover: #D94080;
+  --smtc-background-ctrl-brand-pressed: #8C1448;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #D94080;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #8C1448;
+
+  /* ==================== SMTC Strokes ==================== */
+  --smtc-stroke-ctrl-brand-rest: #B82568;
+  --smtc-stroke-ctrl-brand-hover: #D94080;
+  --smtc-stroke-ctrl-brand-pressed: #8C1448;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #B82568;
+
+  /* ==================== SMTC Scrollbar ==================== */
+  --smtc-scrollbar-thumb-rest: #E880B0;
+  --smtc-scrollbar-thumb-hover: #D94080;
+  --smtc-scrollbar-track: transparent;
+
+  /* ==================== Custom Tokens ==================== */
+  --background-image: url('/assets/wallpaper/background-nova.png');
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(240, 191, 218, 0.5), rgba(253, 245, 249, 0.85));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #F0BFDA;
+  --logo-grad-2: #E880B0;
+  --logo-grad-3: #D94080;
+  --logo-grad-4: #B82568;
+  --logo-glow-1: #FAE8F0;
+  --logo-glow-2: #F0BFDA;
+  --logo-glow-3: #E880B0;
+}
+
+/* ═══════════════════════════════════════════════════════ DARK ═══ */
+:root.dark.nova,
+.dark.nova {
+  /* ==================== SMTC Brand Colors ==================== */
+  --smtc-foreground-content-neutral-primary: #ffffff;
+  --smtc-foreground-ctrl-neutral-secondary-rest: #c4b4be;
+  --smtc-foreground-ctrl-neutral-primary-disabled: #5c5c5c;
+  --smtc-foreground-ctrl-hint-default: #F0BFDA;
+  --smtc-foreground-ctrl-brand-rest: #E880B0;
+  --smtc-foreground-ctrl-brand-hover: #F0A0C8;
+  --smtc-foreground-ctrl-brand-pressed: #D96098;
+
+  /* ==================== SMTC Backgrounds ==================== */
+  --smtc-background-layer-solid: #3A0A20;
+  --smtc-background-card-secondary-rest: #1e1820;
+  --smtc-background-ctrl-brand-rest: #E880B0;
+  --smtc-background-ctrl-brand-hover: #F0A0C8;
+  --smtc-background-ctrl-brand-pressed: #D96098;
+  --smtc-ctrl-slider-bar-foreground-filled-hover: #F0A0C8;
+  --smtc-ctrl-slider-bar-foreground-filled-pressed: #D96098;
+
+  /* ==================== SMTC Strokes ==================== */
+  --smtc-stroke-ctrl-brand-rest: #E880B0;
+  --smtc-stroke-ctrl-brand-hover: #F0A0C8;
+  --smtc-stroke-ctrl-brand-pressed: #D96098;
+  --smtc-ctrl-input-bottom-line-stroke-selected: #E880B0;
+
+  /* ==================== SMTC Scrollbar ==================== */
+  --smtc-scrollbar-thumb-rest: #D94080;
+  --smtc-scrollbar-thumb-hover: #F0BFDA;
+  --smtc-scrollbar-track: transparent;
+
+  /* ==================== SMTC Status ==================== */
+  --smtc-status-brand-tint-foreground: #F0BFDA;
+  --smtc-status-brand-tint-background: rgba(232, 128, 176, 0.1);
+
+  /* ==================== Custom Tokens ==================== */
+  --background-image: url('/assets/wallpaper/background-nova.png');
+  --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(140, 20, 72, 0.2), rgba(58, 10, 32, 0.6));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #FAE8F0;
+  --logo-grad-2: #F0BFDA;
+  --logo-grad-3: #E880B0;
+  --logo-grad-4: #D94080;
+  --logo-glow-1: #FAE8F0;
+  --logo-glow-2: #F0BFDA;
+  --logo-glow-3: #E880B0;
+}
+
+
+/* ==================== VISUAL EFFECTS & FILTERS ==================== */
+
+/* Shift lottie animations toward the pink/magenta range */
+.nova #lottie {
+  filter: hue-rotate(-20deg) saturate(1.15) brightness(1.0);
+}
+
+.nova .oobe-visual {
+  background: linear-gradient(180deg, rgba(253, 241, 247, 0.85), rgba(240, 191, 218, 0.8));
+}
+
+.dark.nova .oobe-visual {
+  background: linear-gradient(180deg, rgba(58, 10, 32, 0.8), rgba(140, 20, 72, 0.8));
+}
+
+.evolved.dark.nova .oobe-card {
+  background-color: rgba(38, 28, 35, 0.65);
+}
+.evolved.light.nova .oobe-card {
+  background-color: rgba(255, 255, 255, 0.82);
+}
+.win11.light.nova .oobe-card {
+  background-color: rgba(255, 255, 255, 0.82);
+}

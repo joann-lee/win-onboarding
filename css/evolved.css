@@ -563,14 +563,17 @@ body.evolved[data-page-id="language"] .language-welcome-subtitle {
 body.evolved[data-page-id="language"] .language-logo-area .microsoft-logo {
   width: 85px;
   height: 85px;
-  opacity: 0.6;
 }
 
-/* Logo fill uses the theme accent color */
-.evolved body[data-page-id="language"] .language-logo-area .logo-fill,
-body.evolved[data-page-id="language"] .language-logo-area .logo-fill {
-  fill: var(--color-accent, #0078D4);
-}
+/* Animated logo gradient stops - colors from theme variables */
+.microsoft-logo .logo-grad-stop-1 { stop-color: var(--logo-grad-1, #99C9EF); }
+.microsoft-logo .logo-grad-stop-2 { stop-color: var(--logo-grad-2, #3399E5); }
+.microsoft-logo .logo-grad-stop-3 { stop-color: var(--logo-grad-3, #0078D4); }
+.microsoft-logo .logo-grad-stop-4 { stop-color: var(--logo-grad-4, #005A9E); }
+.microsoft-logo .logo-glow-stop-1 { stop-color: var(--logo-glow-1, #CCE4F7); stop-opacity: 0.22; }
+.microsoft-logo .logo-glow-stop-2 { stop-color: var(--logo-glow-2, #99C9EF); stop-opacity: 0.12; }
+.microsoft-logo .logo-glow-stop-3 { stop-color: var(--logo-glow-3, #3399E5); stop-opacity: 0.05; }
+.microsoft-logo .logo-glow-stop-4 { stop-color: var(--logo-glow-3, #3399E5); stop-opacity: 0; }
 
 /* Evolved language page: Options stay at bottom, no flex growth */
 .evolved body[data-page-id="language"] .country-list,

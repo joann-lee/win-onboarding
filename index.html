@@ -77,6 +77,7 @@
   <link rel="stylesheet" href="css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="css/variables-slate.css" type="text/css" />
   <link rel="stylesheet" href="css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-nova.css" type="text/css" />
   <link rel="stylesheet" href="css/page.css" type="text/css" />
   <link rel="stylesheet" href="css/index.css" type="text/css" />
 </head>
@@ -99,11 +100,7 @@
           </div>
           <!-- <div class="presets-subtitle">Presets</div> -->
           <div class="presets-row">
-            <div class="theme-controls">
-              <mai-field label-position="after">
-                <label slot="label">Dark mode</label>
-                <mai-switch id="mode-toggle" name="mode-toggle" slot="input"></mai-switch>
-              </mai-field>
+            <div class="theme-dropdowns">
               <mai-dropdown id="css-style" placeholder="Win11">
                 <mai-listbox>
                   <mai-option value="win11">Win11</mai-option>
@@ -118,8 +115,21 @@
                   <mai-option value="sapphire">Sapphire</mai-option>
                   <mai-option value="slate">Slate</mai-option>
                   <mai-option value="emerald">Emerald</mai-option>
+                  <mai-option value="nova">Nova</mai-option>
                 </mai-listbox>
               </mai-dropdown>
+              <mai-dropdown id="post-oobe-path" placeholder="Start Menu">
+                <mai-listbox>
+                  <mai-option value="start-menu">Start Menu</mai-option>
+                  <mai-option value="get-started">Get Started</mai-option>
+                </mai-listbox>
+              </mai-dropdown>
+            </div>
+            <div class="theme-controls">
+              <mai-field label-position="after">
+                <label slot="label">Dark mode</label>
+                <mai-switch id="mode-toggle" name="mode-toggle" slot="input"></mai-switch>
+              </mai-field>
             </div>
             <!-- <a id="holiday-25" class="button-secondary" href="#">Holiday 25</a> -->
             <!-- <a id="spring-26" class="button-secondary" href="#">Spring 26</a> -->

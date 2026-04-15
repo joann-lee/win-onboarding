@@ -14,12 +14,19 @@
   <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-nova.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
 <style>
     body[data-page-id="pin_0"] .oobe-body {
       margin-top: 100px;
+    }
+
+    /* Remove blue text-selection highlight inside PIN inputs */
+    .pin-input-group mai-text-input {
+      --smtc-ctrl-input-text-selection-background: rgba(0, 0, 0, 0.08);
+      --smtc-ctrl-input-text-selection-foreground: inherit;
     }
   </style>
   </head>

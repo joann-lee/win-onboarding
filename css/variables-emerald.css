@@ -39,6 +39,15 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
 
   /* ==================== Custom Tokens ==================== */
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(168, 223, 201, 0.55), rgba(247, 251, 249, 0.85));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #A8DFC9;
+  --logo-grad-2: #5CBB95;
+  --logo-grad-3: #3AA876;
+  --logo-grad-4: #2D8A5F;
+  --logo-glow-1: #D4EFE4;
+  --logo-glow-2: #A8DFC9;
+  --logo-glow-3: #5CBB95;
 }
 
 :root.dark.emerald,
@@ -81,6 +90,15 @@ Uses the emerald color palette: #D4EFE4 (light 3), #A8DFC9 (light 2), #5CBB95 (l
 
   /* ==================== Custom Tokens ==================== */
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(31, 102, 71, 0.2), rgba(12, 20, 16, 0.6));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #D4EFE4;
+  --logo-grad-2: #A8DFC9;
+  --logo-grad-3: #5CBB95;
+  --logo-grad-4: #3AA876;
+  --logo-glow-1: #D4EFE4;
+  --logo-glow-2: #A8DFC9;
+  --logo-glow-3: #5CBB95;
 }
 
 

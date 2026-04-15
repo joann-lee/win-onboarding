@@ -39,6 +39,15 @@ Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (lig
 
   /* ==================== Custom Tokens ==================== */
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(196, 200, 206, 0.55), rgba(248, 249, 250, 0.85));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #C5C4C4;
+  --logo-grad-2: #8B8A8A;
+  --logo-grad-3: #747474;
+  --logo-grad-4: #5B5A5A;
+  --logo-glow-1: #E6E5E5;
+  --logo-glow-2: #C5C4C4;
+  --logo-glow-3: #8B8A8A;
 }
 
 :root.dark.slate,
@@ -78,6 +87,15 @@ Uses the slate color palette: #E6E5E5 (light 3), #C5C4C4 (light 2), #8B8A8A (lig
 
   /* ==================== Custom Tokens ==================== */
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(58, 57, 57, 0.2), rgba(21, 20, 20, 0.6));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #E6E5E5;
+  --logo-grad-2: #C5C4C4;
+  --logo-grad-3: #8B8A8A;
+  --logo-grad-4: #747474;
+  --logo-glow-1: #E6E5E5;
+  --logo-glow-2: #C5C4C4;
+  --logo-glow-3: #8B8A8A;
 }
 
 

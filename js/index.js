@@ -143,10 +143,10 @@ function eyeSvgDisabled() {
   return '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 2l20 20"/><path d="M10.73 5.08A10.94 10.94 0 0 1 12 5c7 0 11 7 11 7a21.86 21.86 0 0 1-3.17 3.88M6.12 6.11A21.86 21.86 0 0 0 1 12s4 8 11 8a10.66 10.66 0 0 0 4.4-.9"/><path d="M15 12a3 3 0 0 1-3 3"/><path d="M9 9a3 3 0 0 1 3-3"/></svg>';
 }
 function windowsSvgShown() {
-  return '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" fill="#000"/><rect x="13" y="3" width="8" height="8" fill="#000"/><rect x="3" y="13" width="8" height="8" fill="#000"/><rect x="13" y="13" width="8" height="8" fill="#000"/></svg>';
+  return '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" fill="currentColor"/><rect x="13" y="3" width="8" height="8" fill="currentColor"/><rect x="3" y="13" width="8" height="8" fill="currentColor"/><rect x="13" y="13" width="8" height="8" fill="currentColor"/></svg>';
 }
 function windowsSvgDisabled() {
-  return '<svg viewBox="0 0 24 24" fill="currentColor"><defs><mask id="mask"><rect width="24" height="24" fill="white"/><line x1="2" y1="2" x2="22" y2="22" stroke="black" stroke-width="2.5" stroke-linecap="round"/></mask></defs><rect x="3" y="3" width="8" height="8" fill="#000" mask="url(#mask)"/><rect x="13" y="3" width="8" height="8" fill="#000" mask="url(#mask)"/><rect x="3" y="13" width="8" height="8" fill="#000" mask="url(#mask)"/><rect x="13" y="13" width="8" height="8" fill="#000" mask="url(#mask)"/><line x1="2" y1="2" x2="22" y2="22" stroke="#000" stroke-width="2.5" stroke-linecap="round"/></svg>';
+  return '<svg viewBox="0 0 24 24" fill="currentColor"><defs><mask id="mask"><rect width="24" height="24" fill="white"/><line x1="2" y1="2" x2="22" y2="22" stroke="black" stroke-width="2.5" stroke-linecap="round"/></mask></defs><rect x="3" y="3" width="8" height="8" fill="currentColor" mask="url(#mask)"/><rect x="13" y="3" width="8" height="8" fill="currentColor" mask="url(#mask)"/><rect x="3" y="13" width="8" height="8" fill="currentColor" mask="url(#mask)"/><rect x="13" y="13" width="8" height="8" fill="currentColor" mask="url(#mask)"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>';
 }
 function firstPageSvgShown() {
   return '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" font-size="12" font-weight="bold" fill="currentColor">1</text></svg>';
@@ -203,10 +203,12 @@ function initThemeControls() {
   const modeToggle = document.getElementById('mode-toggle');
   const colorPalette = document.getElementById('color-palette');
   const cssStyle = document.getElementById('css-style');
+  const postOobePath = document.getElementById('post-oobe-path');
   
   const savedMode = localStorage.getItem('themeMode') || 'light';
   const savedPalette = localStorage.getItem('themePalette') || 'violet';
   const savedCssStyle = localStorage.getItem('cssStyle') || 'evolved';
+  const savedPostOobe = localStorage.getItem('postOobePath') || 'start-menu';
   
   console.log('initThemeControls - savedMode:', savedMode);
   console.log('initThemeControls - savedPalette:', savedPalette);
@@ -258,6 +260,13 @@ function initThemeControls() {
           console.warn('Could not set CSS style value:', error);
         }
       }
+      if (postOobePath) {
+        try {
+          postOobePath.value = savedPostOobe;
+        } catch (error) {
+          console.warn('Could not set post-OOBE path value:', error);
+        }
+      }
     }, 100); // Small delay to ensure components are ready
     
     // Handle color palette dropdown - try 'change' event for mai-dropdown
@@ -307,6 +316,16 @@ function initThemeControls() {
         applyTheme(mode, palette, style);
       });
     }
+    
+    // Handle post-OOBE path dropdown
+    if (postOobePath) {
+      postOobePath.addEventListener('change', (e) => {
+        localStorage.setItem('postOobePath', e.target.value);
+      });
+      postOobePath.addEventListener('input', (e) => {
+        localStorage.setItem('postOobePath', e.target.value);
+      });
+    }
   });
   
   // Theme already applied at the start of this function
@@ -344,7 +363,7 @@ function applyTheme(mode, palette, cssStyle) {
   };
   
   // Remove all theme classes from html element
-  root.classList.remove('dune', 'sapphire', 'violet', 'dark', 'light', 'win11', 'evolved');
+  root.classList.remove('standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova', 'dark', 'light', 'win11', 'evolved');
   console.log('Removed all theme classes');
   
   // Apply CSS style to html element
@@ -374,23 +393,103 @@ function applyTheme(mode, palette, cssStyle) {
   root.classList.add(mode);
   console.log('Added mode:', mode);
   
-  // Apply palette to html element (standard has no class, others need the class)
-  if (palette === 'dune') {
-    root.classList.add('dune');
-    console.log('Added dune palette');
-  } else if (palette === 'sapphire') {
-    root.classList.add('sapphire');
-    console.log('Added sapphire palette');
-  } else if (palette === 'violet') {
-    root.classList.add('violet');
-    console.log('Added violet palette');
-  } else if (palette === 'slate') {
-    root.classList.add('slate');
-    console.log('Added slate palette');
-  } else if (palette === 'emerald') {
-    root.classList.add('emerald');
-    console.log('Added emerald palette');
+  // Apply palette to html element
+  root.classList.add(palette);
+  console.log('Added palette:', palette);
+
+  // Update critical CSS variables for the new palette
+  const paletteColors = {
+    'violet': {
+      'light': { brand: '#6D45A0', brandHover: '#8B5DC0', brandPressed: '#4E2D80' },
+      'dark': { brand: '#9B6FD0', brandHover: '#B08BE0', brandPressed: '#7A4FB0' }
+    },
+    'dune': {
+      'light': { brand: '#7D554A', brandHover: '#9A6B5D', brandPressed: '#5C3A32' },
+      'dark': { brand: '#A87B6F', brandHover: '#C09588', brandPressed: '#8B6156' }
+    },
+    'sapphire': {
+      'light': { brand: '#4D5990', brandHover: '#6271AA', brandPressed: '#30396E' },
+      'dark': { brand: '#7B8AC0', brandHover: '#95A3D4', brandPressed: '#5A6AA0' }
+    },
+    'slate': {
+      'light': { brand: '#525B68', brandHover: '#6B7280', brandPressed: '#3A4150' },
+      'dark': { brand: '#8A929E', brandHover: '#A3AAB4', brandPressed: '#6B7380' }
+    },
+    'emerald': {
+      'light': { brand: '#2D8A5F', brandHover: '#3AA876', brandPressed: '#1F6647' },
+      'dark': { brand: '#4DB87F', brandHover: '#65C992', brandPressed: '#3A9A68' }
+    },
+    'nova': {
+      'light': { brand: '#B82568', brandHover: '#D94080', brandPressed: '#8C1448' },
+      'dark': { brand: '#E880B0', brandHover: '#F0A0C8', brandPressed: '#D96098' }
+    },
+    'standard': {
+      'light': { brand: '#005FB8', brandHover: '#006cbe', brandPressed: '#005fa8' },
+      'dark': { brand: '#4090ff', brandHover: '#5ca3ff', brandPressed: '#3385ff' }
+    }
+  };
+
+  const backgroundImages = {
+    'violet': {
+      'light': toAssetUrl('assets/wallpaper/background-violet-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-violet-dark.png')
+    },
+    'dune': {
+      'light': toAssetUrl('assets/wallpaper/background-dune-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-dune-dark.png')
+    },
+    'sapphire': {
+      'light': toAssetUrl('assets/wallpaper/background-sapphire-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-sapphire-dark.png')
+    },
+    'slate': {
+      'light': toAssetUrl('assets/wallpaper/background-black-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-black-dark.png')
+    },
+    'emerald': {
+      'light': toAssetUrl('assets/wallpaper/background-emerald-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-emerald-dark.png')
+    },
+    'nova': {
+      'light': toAssetUrl('assets/wallpaper/background-nova.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-nova.png')
+    },
+    'standard': {
+      'light': toAssetUrl('assets/wallpaper/background-standard-light.jpg'),
+      'dark': toAssetUrl('assets/wallpaper/background-standard-dark.png')
+    }
+  };
+
+  // Update critical CSS style element
+  const colors = paletteColors[palette] || paletteColors['standard'];
+  const modeColors = colors[mode] || colors['light'];
+  const paletteImages = backgroundImages[palette] || backgroundImages['standard'];
+  const bgUrl = paletteImages ? paletteImages[mode] : null;
+  const bgColor = mode === 'dark' ? '#0a0a0a' : '#f0f5fa';
+
+  let criticalStyle = document.getElementById('theme-critical-css');
+  if (!criticalStyle) {
+    criticalStyle = document.createElement('style');
+    criticalStyle.id = 'theme-critical-css';
+    document.head.appendChild(criticalStyle);
   }
+  criticalStyle.textContent =
+    'html{background-color:' + bgColor + ';' +
+    (bgUrl ? 'background-image:url(\'' + bgUrl + '\');background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat;' : '') +
+    '}' +
+    'body{background:transparent !important;}' +
+    ':root{' +
+    '--smtc-background-ctrl-brand-rest:' + modeColors.brand + ';' +
+    '--smtc-background-ctrl-brand-hover:' + modeColors.brandHover + ';' +
+    '--smtc-background-ctrl-brand-pressed:' + modeColors.brandPressed + ';' +
+    '--smtc-stroke-ctrl-brand-rest:' + modeColors.brand + ';' +
+    '--smtc-stroke-ctrl-brand-hover:' + modeColors.brandHover + ';' +
+    '--smtc-foreground-ctrl-brand-rest:' + modeColors.brand + ';' +
+    '--smtc-foreground-ctrl-hint-default:' + modeColors.brand + ';' +
+    (bgUrl ? '--background-image:url(\'' + bgUrl + '\');' : '') +
+    '}';
+
+  root.style.backgroundColor = bgColor;
   
   console.log('Final html classes:', root.classList.toString());
 }

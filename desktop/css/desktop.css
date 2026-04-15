@@ -276,14 +276,11 @@ body {
 }
 
 .start-icon {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     position: relative;
     z-index: 1;
-    background-image: url('../assets/Start.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    color: rgba(0, 0, 0, 0.89);
 }
 
 /* Hide the CSS-created Windows logo when using SVG */
@@ -576,6 +573,12 @@ body {
     height: 24px;
 }
 
+/* Get Started Icon */
+.get-started-icon {
+    width: 24px;
+    height: 24px;
+}
+
 /* Excel Icon */
 .excel-icon {
     width: 24px;
@@ -693,7 +696,7 @@ body {
     box-shadow: -8px 8px 32px rgba(0, 0, 0, 0.24), 0 8px 16px rgba(0, 0, 0, 0.12);
     visibility: hidden;
     transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0ms 350ms;
-    z-index: 1000;
+    z-index: 9000;
     overflow: hidden;
     font-family: 'Segoe UI Variable', 'Segoe UI', sans-serif;
     /* Center horizontally */
@@ -6695,33 +6698,33 @@ html.dark .taskbar .gleam-effect {
 
 /* Invert Start icon for dark mode */
 html.dark .taskbar .start-icon{
-    filter: brightness(0) invert(1); /* Make the icon white */
+    color: rgba(255, 255, 255, 1);
 }
 
 /* Light mode theme-specific Start icon colors for WCAG contrast */
 html.light.dune .taskbar .start-icon,
 html.light.theme-dune .taskbar .start-icon {
-    filter: brightness(0) saturate(100%) invert(18%) sepia(45%) saturate(1200%) hue-rotate(356deg) brightness(95%) contrast(95%); /* #673018 */
+    color: #673018;
 }
 
 html.light.emerald .taskbar .start-icon,
 html.light.theme-emerald .taskbar .start-icon {
-    filter: brightness(0) saturate(100%) invert(10%) sepia(15%) saturate(600%) hue-rotate(70deg) brightness(95%) contrast(95%); /* #131C11 */
+    color: #131C11;
 }
 
 html.light.violet .taskbar .start-icon,
 html.light.theme-violet .taskbar .start-icon {
-    filter: brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(800%) hue-rotate(210deg) brightness(95%) contrast(90%); /* #3D385F */
+    color: #3D385F;
 }
 
 html.light.sapphire .taskbar .start-icon,
 html.light.theme-sapphire .taskbar .start-icon {
-    filter: brightness(0) saturate(100%) invert(18%) sepia(35%) saturate(900%) hue-rotate(200deg) brightness(95%) contrast(95%); /* #30396E */
+    color: #30396E;
 }
 
 html.light.slate .taskbar .start-icon,
 html.light.theme-slate .taskbar .start-icon {
-    filter: brightness(0) saturate(100%) invert(22%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(95%); /* #3A3939 */
+    color: #3A3939;
 }
 
 /* ============ DARK MODE START MENU STYLES ============ */
@@ -7054,4 +7057,242 @@ html.dark .phone-pane .phone-device-status .status-battery-icon {
 html.dark .phone-pane .phone-device-image {
     border: none;
     background: transparent;
+}
+
+/* ================================================
+   Get Started App Window
+   ================================================ */
+.get-started-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    height: 600px;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: none;
+    z-index: 2000;
+    overflow: hidden;
+}
+
+.get-started-window.show {
+    display: block;
+    animation: windowOpen 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.get-started-app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--wui-mica, rgba(255, 255, 255, 0.87));
+    border: 1px solid var(--wui-stroke-surface-flyout, rgba(0, 0, 0, 0.06));
+    border-radius: var(--wui-radius-lg, 8px);
+    backdrop-filter: blur(var(--wui-blur-mica, 120px)) saturate(150%);
+    -webkit-backdrop-filter: blur(var(--wui-blur-mica, 120px)) saturate(150%);
+    box-shadow: var(--wui-shadow-active-window, 0px 2px 21px rgba(0,0,0,0.22), 0px 32px 64px rgba(0,0,0,0.28));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: var(--wui-font-sans, "Segoe UI Variable", system-ui, sans-serif);
+}
+
+/* Title Bar */
+.get-started-title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--wui-space-2, 8px);
+    height: 40px;
+    flex-shrink: 0;
+    -webkit-app-region: drag;
+}
+
+.get-started-title-bar .title-bar-left {
+    display: flex;
+    align-items: center;
+    gap: var(--wui-space-2, 8px);
+    padding-left: var(--wui-space-2, 8px);
+}
+
+.get-started-title-bar .title-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.get-started-title-bar .title-text {
+    font-size: var(--wui-text-xs, 12px);
+    line-height: var(--wui-lh-xs, 16px);
+    font-weight: 400;
+    color: var(--wui-text-primary, #1a1a1a);
+}
+
+/* Main layout */
+.get-started-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Sidebar / NavigationView */
+.get-started-sidebar {
+    width: 200px;
+    padding: var(--wui-space-2, 8px);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.gs-nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--wui-space-3, 12px);
+    padding: 10px var(--wui-space-4, 16px);
+    border-radius: var(--wui-radius-sm, 4px);
+    font-size: var(--wui-text-sm, 14px);
+    line-height: var(--wui-lh-sm, 20px);
+    color: var(--wui-text-primary, #1a1a1a);
+    cursor: pointer;
+    transition: background var(--wui-duration-fast, 150ms) var(--wui-ease-fast, ease);
+}
+
+.gs-nav-item:hover {
+    background: var(--wui-subtle-secondary, rgba(0, 0, 0, 0.04));
+}
+
+.gs-nav-item.active {
+    background: var(--wui-subtle-tertiary, rgba(0, 0, 0, 0.024));
+    font-weight: 600;
+    position: relative;
+}
+
+.gs-nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 16px;
+    border-radius: var(--wui-radius-full, 9999px);
+    background: var(--wui-accent, oklch(49.18% 0.1596 254.57));
+}
+
+.gs-nav-icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Content area */
+.get-started-content {
+    flex: 1;
+    padding: var(--wui-space-8, 32px) var(--wui-space-10, 40px);
+    overflow-y: auto;
+}
+
+/* Hero */
+.gs-hero {
+    margin-bottom: var(--wui-space-8, 32px);
+}
+
+.gs-hero h1 {
+    font-size: var(--wui-text-3xl, 28px);
+    line-height: var(--wui-lh-3xl, 36px);
+    font-weight: 600;
+    color: var(--wui-text-primary, #1a1a1a);
+    margin: 0 0 var(--wui-space-2, 8px);
+}
+
+.gs-hero p {
+    font-size: var(--wui-text-sm, 14px);
+    line-height: var(--wui-lh-sm, 20px);
+    color: var(--wui-text-secondary, #5a5a62);
+    margin: 0;
+}
+
+/* Action cards */
+.gs-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--wui-space-2, 8px);
+}
+
+.gs-card {
+    display: flex;
+    align-items: center;
+    gap: var(--wui-space-4, 16px);
+    padding: var(--wui-space-4, 16px) var(--wui-space-5, 20px);
+    border-radius: var(--wui-radius-sm, 4px);
+    background: var(--wui-card, rgba(255, 255, 255, 0.7));
+    border: 1px solid var(--wui-stroke-card, rgba(0, 0, 0, 0.06));
+    box-shadow: var(--wui-shadow-card-rest, 0px 2px 4px rgba(0,0,0,0.04));
+    cursor: pointer;
+    transition:
+        background var(--wui-duration-fast, 150ms) var(--wui-ease-fast, ease),
+        box-shadow var(--wui-duration-fast, 150ms) var(--wui-ease-fast, ease);
+}
+
+.gs-card:hover {
+    background: var(--wui-card-secondary, rgba(0, 0, 0, 0.06));
+    box-shadow: var(--wui-shadow-card-hover, 0px 2px 4px rgba(0,0,0,0.1));
+}
+
+.gs-card-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--wui-subtle-secondary, rgba(0, 0, 0, 0.04));
+    border-radius: var(--wui-radius-sm, 4px);
+}
+
+.gs-card-info {
+    flex: 1;
+}
+
+.gs-card-info h3 {
+    font-size: var(--wui-text-sm, 14px);
+    line-height: var(--wui-lh-sm, 20px);
+    font-weight: 600;
+    color: var(--wui-text-primary, #1a1a1a);
+    margin: 0 0 2px;
+}
+
+.gs-card-info p {
+    font-size: var(--wui-text-xs, 12px);
+    line-height: var(--wui-lh-xs, 16px);
+    color: var(--wui-text-secondary, #5a5a62);
+    margin: 0;
+}
+
+.gs-card-action {
+    font-size: 18px;
+    color: var(--wui-text-tertiary, #8a8a8a);
+    flex-shrink: 0;
+}
+
+/* Dark mode — all colors driven by WinUI tokens, only overrides that can't use tokens */
+html.dark .get-started-app {
+    box-shadow: var(--wui-shadow-active-window, 0px 2px 21px rgba(0,0,0,0.55), 0px 32px 64px rgba(0,0,0,0.56));
+}
+
+html.dark .get-started-title-bar .title-text,
+html.dark .gs-nav-item,
+html.dark .gs-hero h1,
+html.dark .gs-card-info h3 {
+    color: var(--wui-text-primary);
+}
+
+html.dark .gs-hero p,
+html.dark .gs-card-info p {
+    color: var(--wui-text-secondary);
+}
+
+html.dark .gs-card-action {
+    color: var(--wui-text-tertiary);
 }

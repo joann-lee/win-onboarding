@@ -310,7 +310,13 @@
           
           // Handle both regular links and web components
           if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
-            nextLink.onclick = () => window.location.href = nextHref;
+            nextLink.onclick = () => {
+              if (window.navigateWithTransition) {
+                window.navigateWithTransition(nextHref);
+              } else {
+                window.location.href = nextHref;
+              }
+            };
           } else {
             nextLink.setAttribute('href', nextHref);
           }
@@ -318,10 +324,17 @@
         nextLink.classList.remove('disabled');
       } else {
         // End of flow - go to desktop
+        const desktopUrl = localStorage.getItem('postOobePath') === 'get-started' ? '/desktop/get-started.html' : '/desktop/';
         if (nextLink.tagName.toLowerCase() === 'mai-button' || nextLink.tagName.toLowerCase().includes('-')) {
-          nextLink.onclick = () => window.location.href = '/desktop/';
+          nextLink.onclick = () => {
+            if (window.navigateWithTransition) {
+              window.navigateWithTransition(desktopUrl);
+            } else {
+              window.location.href = desktopUrl;
+            }
+          };
         } else {
-          nextLink.setAttribute('href', '/desktop/');
+          nextLink.setAttribute('href', desktopUrl);
         }
         nextLink.classList.remove('disabled');
       }
@@ -334,7 +347,13 @@
         
         // Handle both regular links and web components
         if (skipLink.tagName.toLowerCase() === 'mai-button' || skipLink.tagName.toLowerCase().includes('-')) {
-          skipLink.onclick = () => window.location.href = skipHref;
+          skipLink.onclick = () => {
+            if (window.navigateWithTransition) {
+              window.navigateWithTransition(skipHref);
+            } else {
+              window.location.href = skipHref;
+            }
+          };
         } else {
           skipLink.setAttribute('href', skipHref);
         }
@@ -346,7 +365,13 @@
     if (addLayoutLink) {
       const addLayoutHref = window.getPagePath('keyboard_1.html');
       if (addLayoutLink.tagName.toLowerCase() === 'mai-button' || addLayoutLink.tagName.toLowerCase().includes('-')) {
-        addLayoutLink.onclick = () => window.location.href = addLayoutHref;
+        addLayoutLink.onclick = () => {
+          if (window.navigateWithTransition) {
+            window.navigateWithTransition(addLayoutHref);
+          } else {
+            window.location.href = addLayoutHref;
+          }
+        };
       } else {
         addLayoutLink.setAttribute('href', addLayoutHref);
       }

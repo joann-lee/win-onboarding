@@ -175,8 +175,8 @@ body.evolved[data-page-id="ndup_0"] .ndup-evolved-header {
 .evolved body[data-page-id="ndup_0"] #progress-label,
 body.evolved[data-page-id="ndup"] #progress-label,
 body.evolved[data-page-id="ndup_0"] #progress-label {
-  font-size: var(--smtc-text-global-body1-font-size, 18px);
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .evolved .ndup-footer-overlay * {
@@ -212,9 +212,9 @@ body.evolved[data-page-id="ndup_0"] #progress-label {
 }
 
 #progress-label {
-  font-size: var(--smtc-text-global-body2-font-size, 14px);
-  line-height: var(--smtc-text-global-body2-line-height, 24px);
-  /* font-weight: 500; */
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
   color: var(--color-text-primary, #1a1a1e);
 }
 
@@ -223,22 +223,15 @@ body.evolved[data-page-id="ndup_0"] #progress-label {
   display: flex;
   gap: 4px;
   height: 4px;
-  width: 25%;
+  width: 300px;
   margin: 0 auto;
 }
 
 .progress-segment {
   flex: 1;
   background: var(--color-border-default, #d0d0d0);
+  border-radius: 2px;
   overflow: hidden;
-}
-
-.progress-segment:first-child {
-  border-radius: 2px 0 0 2px;
-}
-
-.progress-segment:last-child {
-  border-radius: 0 2px 2px 0;
 }
 
 .progress-fill {
@@ -420,16 +413,15 @@ body.evolved[data-page-id="ndup_0"] #progress-label {
 /* Progress Bar Styles */
 .ndup-progress-bar {
   display: flex;
-  gap: 8px;
-  width: 100%;
-  max-width: 300px;
-  height: 8px;
+  gap: 4px;
+  width: 300px;
+  height: 4px;
 }
 
 .progress-segment {
   flex: 1;
   background-color: var(--smtc-background-ctrl-neutral-disabled, #e0e0e0);
-  border-radius: 4px;
+  border-radius: 2px;
   overflow: hidden;
   position: relative;
 }

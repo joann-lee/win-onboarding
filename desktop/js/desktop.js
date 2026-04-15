@@ -3830,13 +3830,18 @@ function initializeStartMenu() {
     const startButton = document.querySelector('.start-button');
     const startMenu = document.getElementById('startMenu');
     const phonePane = document.getElementById('phonePane');
+    const isGetStartedMode = document.body.dataset.desktopMode === 'get-started';
     
-    if (startButton && startMenu) {
-        // Wait for desktop fade-in to complete before opening start menu
-        window.addEventListener('desktopReady', () => {
+    // Wait for desktop fade-in to complete before opening start menu or get started
+    window.addEventListener('desktopReady', () => {
+        if (isGetStartedMode) {
+            openGetStartedWindow();
+        } else if (startButton && startMenu) {
             openStartMenu();
-        }, { once: true });
-        
+        }
+    }, { once: true });
+
+    if (startButton && startMenu) {
         // Toggle start menu on start button click
         startButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -3892,6 +3897,21 @@ function closeStartMenu() {
     startMenu.classList.remove('active');
     startButton.classList.remove('active');
     if (phonePane) phonePane.classList.remove('active');
+}
+
+// Get Started Window Functions
+function openGetStartedWindow() {
+    const win = document.getElementById('getStartedWindow');
+    if (win) {
+        win.classList.add('show');
+    }
+}
+
+function closeGetStartedWindow() {
+    const win = document.getElementById('getStartedWindow');
+    if (win) {
+        win.classList.remove('show');
+    }
 }
 
 // Phone Pane View Switching

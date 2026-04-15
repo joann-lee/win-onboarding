@@ -171,6 +171,7 @@ a:active {
   display: flex;
   flex-direction: column;
   padding: 40px 32px;
+  overflow: hidden;
 }
 
 /* Two-column state (With Visual) */
@@ -276,7 +277,8 @@ a:active {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-color: transparent;
 }
 
@@ -649,7 +651,7 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
   overflow: hidden;
   max-height: 0;
   opacity: 0;
-  transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+  transition: max-height 0.35s ease-out, opacity 0.25s ease-out;
 }
 
 .wifi-dynamic-container.open {
@@ -659,8 +661,8 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
 }
 
 .wifi-body {
-  padding: 0 12px 12px 40px;
-  /* Indent to align with text */
+  padding: 0 12px 12px 48px;
+  /* Indent to align with text (12px header padding + 24px icon + 12px gap) */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -675,7 +677,7 @@ body[data-page-id="wifi"] .oobe-body > .troubleshoot-link {
 }
 
 .wifi-password-entry {
-  padding: 0 12px 12px 40px;
+  padding: 0 12px 12px 48px;
   display: none;
   /* Hidden by default */
   flex-direction: column;

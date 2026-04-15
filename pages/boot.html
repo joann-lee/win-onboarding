@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <script>document.documentElement.style.backgroundColor=localStorage.getItem('themeMode')==='light'?'#f0f5fa':'#0a0a0a';</script>
+  <script>document.documentElement.style.backgroundColor='#000';</script>
   <title>💻 OOBE Sandbox | Boot</title>
   <script src="/js/theme-init.js"></script>
   <link rel="stylesheet" href="/css/main.css" type="text/css" />
@@ -23,7 +23,7 @@
       </div>
       <div class="boot-loader">
         <svg class="boot-spinner" viewBox="0 0 50 50">
-          <circle class="spinner-ring" cx="25" cy="25" r="20" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" />
+          <circle class="spinner-ring" cx="25" cy="25" r="20" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-dasharray="1, 126" />
         </svg>
       </div>
     </div>
@@ -46,15 +46,25 @@
         
         // Navigate after fade completes
         setTimeout(() => {
-          const currentId = document.body.getAttribute('data-page-id');
-          const nextId = window.nextPageId(currentId);
-          if (nextId) {
-            const nextFile = window.getPageFile(nextId);
-            const nextHref = window.getPagePath(nextFile);
-            window.location.href = nextHref;
-          } else {
-            // End of flow - go to desktop
-            window.location.href = '/desktop/';
+          try {
+            const currentId = document.body.getAttribute('data-page-id');
+            if (typeof window.nextPageId !== 'function' || typeof window.getPageFile !== 'function' || typeof window.getPagePath !== 'function') {
+              // flow.js didn't load — fall back to first page directly
+              window.location.href = 'language.html';
+              return;
+            }
+            const nextId = window.nextPageId(currentId);
+            if (nextId) {
+              const nextFile = window.getPageFile(nextId);
+              const nextHref = window.getPagePath(nextFile);
+              window.location.href = nextHref;
+            } else {
+              // End of flow - go to desktop
+              window.location.href = '/desktop/';
+            }
+          } catch (e) {
+            console.error('Boot navigation error:', e);
+            window.location.href = 'language.html';
           }
         }, 500);
       }, 4000);
@@ -62,10 +72,25 @@
   </script>
 
   <style>
-    /* Disable all view transitions on boot page */
+    /* Opt out of cross-document view transitions entirely on the boot page.
+       The boot screen has no oobe-card / oobe-background elements, so any
+       named-layer captures from the landing page would appear with no old
+       counterpart — causing white corner artifacts on a black background.
+       Disabling here prevents the transition from firing in both directions. */
+    @view-transition {
+      navigation: none;
+    }
+
+    /* Belt-and-suspenders: also clear all names in case any are inherited */
     body[data-page-id="boot"],
     body[data-page-id="boot"] * {
       view-transition-name: none !important;
+    }
+
+    /* Force black background, hide themed wallpaper */
+    html {
+      background: #000 !important;
+      background-image: none !important;
     }
     
     body[data-page-id="boot"] {

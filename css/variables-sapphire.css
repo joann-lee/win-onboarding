@@ -39,6 +39,15 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== Custom Tokens ==================== */
   --background-image: url('/assets/wallpaper/background-sapphire-light.png');
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(181, 194, 219, 0.55), rgba(248, 250, 252, 0.85));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #B5C2DB;
+  --logo-grad-2: #7987B8;
+  --logo-grad-3: #6271AA;
+  --logo-grad-4: #4D5990;
+  --logo-glow-1: #D6E2F0;
+  --logo-glow-2: #B5C2DB;
+  --logo-glow-3: #7987B8;
 }
 
 :root.dark.sapphire,
@@ -78,6 +87,15 @@ Uses the sapphire color palette: #D6E2F0 (light 3), #B5C2DB (light 2), #7987B8 (
   /* ==================== Custom Tokens ==================== */
   --background-image: url('/assets/wallpaper/background-sapphire-dark.png');
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(121, 135, 184, 0.2), rgba(15, 19, 24, 0.6));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #D6E2F0;
+  --logo-grad-2: #B5C2DB;
+  --logo-grad-3: #7987B8;
+  --logo-grad-4: #6271AA;
+  --logo-glow-1: #D6E2F0;
+  --logo-glow-2: #B5C2DB;
+  --logo-glow-3: #7987B8;
 }
 
 

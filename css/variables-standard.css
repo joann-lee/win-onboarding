@@ -45,6 +45,15 @@ Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(153, 201, 239, 0.55), rgba(243, 247, 251, 0.85));
   --color-wifi-item-bg-selected: rgba(240, 244, 248, 0.8);
   --color-wifi-item-bg-hover: rgba(255, 255, 255, 0.5);
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #99C9EF;
+  --logo-grad-2: #3399E5;
+  --logo-grad-3: #0078D4;
+  --logo-grad-4: #005A9E;
+  --logo-glow-1: #CCE4F7;
+  --logo-glow-2: #99C9EF;
+  --logo-glow-3: #3399E5;
 }
 
 :root.dark.standard,
@@ -87,6 +96,15 @@ Uses the Windows blue color palette: #CCE4F7 (light 3), #99C9EF (light 2), #3399
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(51, 153, 229, 0.2), rgba(15, 17, 19, 0.6));
   --color-wifi-item-bg-selected: rgba(40, 42, 46, 0.8);
   --color-wifi-item-bg-hover: rgba(30, 31, 34, 0.5);
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #CCE4F7;
+  --logo-grad-2: #99C9EF;
+  --logo-grad-3: #3399E5;
+  --logo-grad-4: #0078D4;
+  --logo-glow-1: #CCE4F7;
+  --logo-glow-2: #99C9EF;
+  --logo-glow-3: #3399E5;
 }
 
 

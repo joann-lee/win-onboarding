@@ -40,6 +40,15 @@ Uses the violet color palette: #E7E1ED (light 3), #C7C0D5 (light 2), #8E88AB (li
   /* ==================== Custom Tokens ==================== */
   --background-image: url('/assets/wallpaper/background-violet-light.png');
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(201, 177, 224, 0.55), rgba(250, 249, 251, 0.85));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #C7C0D5;
+  --logo-grad-2: #8E88AB;
+  --logo-grad-3: #78719A;
+  --logo-grad-4: #5F5981;
+  --logo-glow-1: #E7E1ED;
+  --logo-glow-2: #C7C0D5;
+  --logo-glow-3: #8E88AB;
 }
 
 :root.dark.violet,
@@ -81,6 +90,15 @@ Uses the violet color palette: #E7E1ED (light 3), #C7C0D5 (light 2), #8E88AB (li
   /* ==================== Custom Tokens ==================== */
   --background-image: url('/assets/wallpaper/background-violet-dark.png');
   --color-bg-gradient: radial-gradient(circle at 50% 30%, rgba(61, 56, 95, 0.2), rgba(24, 21, 57, 0.6));
+
+  /* ==================== Logo Gradient ==================== */
+  --logo-grad-1: #E7E1ED;
+  --logo-grad-2: #C7C0D5;
+  --logo-grad-3: #8E88AB;
+  --logo-grad-4: #78719A;
+  --logo-glow-1: #E7E1ED;
+  --logo-glow-2: #C7C0D5;
+  --logo-glow-3: #8E88AB;
 }
 
 

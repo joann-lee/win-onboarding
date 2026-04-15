@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-nova.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <link rel="stylesheet" href="/css/ndup.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,8 +48,7 @@
         <div class="progress-fill" id="segment-setup" data-step="3"></div>
       </div>
     </div>
-
-
+    <p id="time-remaining" style="margin-top: 24px; font-size: 14px; color: var(--color-text-secondary, #5a5a62);">Estimated time remaining: 2 minutes</p>
 
           </div>
           <div class="oobe-ctas">
@@ -89,12 +89,13 @@
       let css = '';
       let delayAccumulated = 0;
 
-      steps.forEach((stepData) => {
+      steps.forEach((stepData, index) => {
         const durationSeconds = stepData.duration / 1000;
         const delaySeconds = delayAccumulated / 1000;
+        const easing = index === steps.length - 1 ? 'ease-in' : 'ease-in-out';
         
         css += `.progress-segment[data-step="${stepData.step}"] .progress-fill {
-  animation: fillProgress ${durationSeconds}s ease-in-out forwards;
+  animation: fillProgress ${durationSeconds}s ${easing} forwards;
   animation-delay: ${delaySeconds}s;
 }\n\n`;
         
@@ -173,6 +174,22 @@
 
     // Start the progress updates
     updateProgress();
+
+    // Estimated time remaining countdown
+    const timeRemainingEl = document.getElementById('time-remaining');
+    const totalDurationMs = steps.reduce((sum, s) => sum + s.duration, 0);
+    let minutesLeft = 2; // Start at ~1.5 min, rounded up to 2
+    timeRemainingEl.textContent = 'Estimated time remaining: 2 minutes';
+
+    const countdownInterval = setInterval(() => {
+      minutesLeft--;
+      if (minutesLeft <= 0) {
+        timeRemainingEl.textContent = 'Estimated time remaining: Less than a minute';
+        clearInterval(countdownInterval);
+      } else {
+        timeRemainingEl.textContent = `Estimated time remaining: ${minutesLeft} minute${minutesLeft > 1 ? 's' : ''}`;
+      }
+    }, 60000 / 2); // Tick every 30s to match ~90s total
   </script>
 
 </body>

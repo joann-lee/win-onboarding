@@ -75,7 +75,7 @@
   document.write('<link rel="stylesheet" href="' + cssDark + '" type="text/css" id="style-dark" />');
   
   // Apply all theme classes immediately to prevent flash
-  root.classList.remove('dark', 'light', 'standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'win11', 'evolved');
+  root.classList.remove('dark', 'light', 'standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova', 'win11', 'evolved');
   root.classList.add(savedCssStyle, savedMode, savedPalette);
   
   // Critical CSS variables for each palette (button backgrounds)
@@ -99,6 +99,10 @@
     'emerald': {
       'light': { brand: '#2D8A5F', brandHover: '#3AA876', brandPressed: '#1F6647' },
       'dark': { brand: '#4DB87F', brandHover: '#65C992', brandPressed: '#3A9A68' }
+    },
+    'nova': {
+      'light': { brand: '#B82568', brandHover: '#D94080', brandPressed: '#8C1448' },
+      'dark': { brand: '#E880B0', brandHover: '#F0A0C8', brandPressed: '#D96098' }
     },
     'standard': {
       'light': { brand: '#005FB8', brandHover: '#006cbe', brandPressed: '#005fa8' },
@@ -131,6 +135,10 @@
     'emerald': {
       'light': toAssetUrl('assets/wallpaper/background-emerald-light.png'),
       'dark': toAssetUrl('assets/wallpaper/background-emerald-dark.png')
+    },
+    'nova': {
+      'light': toAssetUrl('assets/wallpaper/background-nova.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-nova.png')
     },
     'standard': {
       'light': toAssetUrl('assets/wallpaper/background-standard-light.jpg'),
@@ -166,11 +174,21 @@
   document.head.appendChild(criticalStyle);
   
   if (bgUrl) {
-    // Create a preload link for the background image for faster loading
+    // Preload the wallpaper as high-priority so it's ready before first paint
     var preloadLink = document.createElement('link');
     preloadLink.rel = 'preload';
     preloadLink.as = 'image';
     preloadLink.href = bgUrl;
     document.head.appendChild(preloadLink);
+  }
+
+  // Register service worker to cache wallpapers for instant loads on every page
+  if ('serviceWorker' in navigator) {
+    var swUrl = toAssetUrl('sw.js');
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register(swUrl).catch(function() {
+        // SW registration is optional; silently ignore failures
+      });
+    });
   }
 })();

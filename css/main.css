@@ -56,19 +56,93 @@ html.theme-transitioning *::after {
   mix-blend-mode: normal;
 }
 
-/* Exclude background and shell elements from view transitions entirely */
-.oobe-background,
+/* Page content fade-in on initial load (non-VT navigations, e.g. boot→language).
+   Kept SHORT (0.15s) so it completes before any VT ends, ensuring the real
+   element is already at opacity:1 when the VT pseudo-element disappears. */
+.content-wrapper,
+.lottie-container,
+.oobe-card > :nth-child(2) {
+  animation: page-content-enter 0.15s ease-out both;
+}
+
+@keyframes page-content-enter {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Layout wrappers with no visible chrome — excluded from named transitions */
 .oobe-shell,
-.oobe-card,
 html,
 body {
   view-transition-name: none;
 }
 
-/* Target the card contents for the transition, NOT the card itself */
-/* We target the second child to handle both .oobe-content and .content-wrapper structures */
-.oobe-card> :nth-child(2) {
+/* ── Persistent layers ─────────────────────────────────────────────────────
+   The background and card chrome are identical on every page, so we give
+   each a named group and freeze it (animation: none). Named children are
+   excluded from their parent's snapshot automatically, so the card snapshot
+   captures ONLY the chrome (background color, border, shadow, rounded
+   corners) with transparent holes where the content lives. The result:
+   both the wallpaper and the glass card panel feel permanently present —
+   only the content inside the card actually changes.
+─────────────────────────────────────────────────────────────────────────── */
+.oobe-background {
+  view-transition-name: oobe-background-layer;
+}
+::view-transition-old(oobe-background-layer),
+::view-transition-new(oobe-background-layer) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+.oobe-card {
+  view-transition-name: oobe-card;
+}
+::view-transition-old(oobe-card),
+::view-transition-new(oobe-card) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* ── Content inside the card ───────────────────────────────────────────────
+   These are the only things that visually change — explicit animations give
+   smooth exit/entry without relying on browser defaults.
+─────────────────────────────────────────────────────────────────────────── */
+.oobe-card > :nth-child(2) {
   view-transition-name: oobe-content-area;
+}
+
+/* Old content: fast fade-up out */
+::view-transition-old(oobe-content-area) {
+  animation: oobe-content-out 0.18s cubic-bezier(0.4, 0, 1, 1) both;
+}
+/* New content: smooth fade-up in, tiny delay so exit leads the entrance */
+::view-transition-new(oobe-content-area) {
+  animation: oobe-content-in 0.32s cubic-bezier(0, 0, 0.2, 1) 0.08s both;
+}
+
+@keyframes oobe-content-out {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes oobe-content-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Lottie/visual panel: simple crossfade, slightly staggered */
+::view-transition-old(oobe-lottie) {
+  animation: oobe-fade-out 0.18s ease-in both;
+}
+::view-transition-new(oobe-lottie) {
+  animation: oobe-fade-in 0.32s ease-out 0.08s both;
+}
+
+@keyframes oobe-fade-out {
+  to { opacity: 0; }
+}
+@keyframes oobe-fade-in {
+  from { opacity: 0; }
 }
 
 .lottie-container {
@@ -667,53 +741,47 @@ html.dark .oobe-background {
 }
 
 /* 
- * Default scrollbar styling - shows styled scrollbar immediately on page load
- * These styles apply BEFORE JavaScript adds the data-scrollbar-visible attribute
- * This prevents flash of unstyled browser scrollbar
+ * Global scrollbar styling - applies to all scrollable elements
+ * Uses theme-aware colors for light/dark mode support
  */
-.eula-content,
-.wifi-list,
-#country-list,
-#keyboard-list,
-#language-list,
-.info-cards-list,
-.oobe-body {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5) var(--smtc-scrollbar-track, transparent);
+
+/* Webkit (Chrome, Edge, Safari) */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
 }
 
-.eula-content::-webkit-scrollbar,
-.wifi-list::-webkit-scrollbar,
-#country-list::-webkit-scrollbar,
-#keyboard-list::-webkit-scrollbar,
-#language-list::-webkit-scrollbar,
-.info-cards-list::-webkit-scrollbar,
-.oobe-body::-webkit-scrollbar {
-  width: 10px;
-  background: var(--smtc-scrollbar-track, transparent);
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
 }
 
-.eula-content::-webkit-scrollbar-thumb,
-.wifi-list::-webkit-scrollbar-thumb,
-#country-list::-webkit-scrollbar-thumb,
-#keyboard-list::-webkit-scrollbar-thumb,
-#language-list::-webkit-scrollbar-thumb,
-.info-cards-list::-webkit-scrollbar-thumb,
-.oobe-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  border-radius: 3px;
 }
 
-.eula-content::-webkit-scrollbar-thumb:hover,
-.wifi-list::-webkit-scrollbar-thumb:hover,
-#country-list::-webkit-scrollbar-thumb:hover,
-#keyboard-list::-webkit-scrollbar-thumb:hover,
-#language-list::-webkit-scrollbar-thumb:hover,
-.info-cards-list::-webkit-scrollbar-thumb:hover,
-.oobe-body::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background-color: var(--smtc-scrollbar-thumb-hover, #a0a0a0);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--smtc-scrollbar-thumb-hover, #a0a0a0);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5) transparent;
 }
 
 /* Scrollbar styling via data attribute (JS-controlled) */
@@ -729,18 +797,16 @@ html.dark .oobe-background {
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar-track {
-  background: var(--smtc-scrollbar-track, transparent);
+  background: transparent;
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar-thumb {
   background-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  border-radius: 3px;
 }
 
 [data-scrollbar-visible="true"]::-webkit-scrollbar-thumb:hover {
@@ -748,18 +814,16 @@ html.dark .oobe-background {
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar-track {
-  background: var(--smtc-scrollbar-track, transparent);
+  background: transparent;
 }
 
 [data-scrollbar-visible="false"]::-webkit-scrollbar-thumb {
   background-color: var(--smtc-scrollbar-thumb-rest, #c5c5c5);
-  border-radius: 5px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  border-radius: 3px;
 }
 
 /* Hide focus underlines on form controls */

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-nova.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
@@ -34,8 +35,28 @@
             <!-- Microsoft logo area - shown only in evolved theme -->
             <div class="language-logo-area">
               <div class="language-welcome-container">
-                <svg class="microsoft-logo" width="92" height="92" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 0H21.739V21.737H0V0ZM24.0056 0H45.7426V21.737H24.0056V0ZM0 24.0066H21.739V45.7426H0V24.0066ZM24.0056 24.0066H45.7426V45.7426H24.0056V24.0066Z" class="logo-fill"/>
+                <svg class="microsoft-logo" width="92" height="92" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="logoBaseGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" class="logo-grad-stop-1"/>
+                      <stop offset="35%" class="logo-grad-stop-2"/>
+                      <stop offset="70%" class="logo-grad-stop-3"/>
+                      <stop offset="100%" class="logo-grad-stop-4"/>
+                    </linearGradient>
+                    <radialGradient id="logoAmbientGlow" cx="-20%" cy="-20%" r="140%">
+                      <stop offset="0%" class="logo-glow-stop-1"/>
+                      <stop offset="28%" class="logo-glow-stop-2"/>
+                      <stop offset="55%" class="logo-glow-stop-3"/>
+                      <stop offset="100%" class="logo-glow-stop-4"/>
+                      <animate attributeName="cx" values="-20%;120%" dur="3.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+                      <animate attributeName="cy" values="-20%;120%" dur="3.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+                    </radialGradient>
+                    <filter id="logoSoften" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="0.9"/>
+                    </filter>
+                  </defs>
+                  <path d="M0 0H21.739V21.737H0V0ZM24.0056 0H45.7426V21.737H24.0056V0ZM0 24.0066H21.739V45.7426H0V24.0066ZM24.0056 24.0066H45.7426V45.7426H24.0056V24.0066Z" fill="url(#logoBaseGrad)"/>
+                  <path d="M0 0H21.739V21.737H0V0ZM24.0056 0H45.7426V21.737H24.0056V0ZM0 24.0066H21.739V45.7426H0V24.0066ZM24.0056 24.0066H45.7426V45.7426H24.0056V24.0066Z" fill="url(#logoAmbientGlow)" filter="url(#logoSoften)"/>
                 </svg>
                 <h1 class="language-welcome-title">Welcome to Windows 11</h1>
                 <p class="language-welcome-subtitle">Set up your new PC</p>
@@ -91,6 +112,44 @@
       }
     };
 
+    // Fade an element's text: fade out, swap content, fade in
+    function fadeText(el, newText, duration) {
+      if (!el || el.textContent === newText) return;
+      const half = (duration || 300) / 2;
+      el.style.transition = 'opacity ' + half + 'ms ease';
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.textContent = newText;
+        // Force reflow so the browser registers opacity:0 before transitioning to 1
+        void el.offsetWidth;
+        el.style.opacity = '1';
+      }, half);
+    }
+
+    // Fade only the text inside a web component (e.g. mai-button) via an inner span
+    function fadeButtonText(el, newText, duration) {
+      if (!el) return;
+      // Ensure text is wrapped in a span we can fade
+      let span = el.querySelector('.btn-text-fade');
+      if (!span) {
+        span = document.createElement('span');
+        span.className = 'btn-text-fade';
+        span.style.display = 'inline-block';
+        span.textContent = el.textContent;
+        el.textContent = '';
+        el.appendChild(span);
+      }
+      if (span.textContent === newText) return;
+      const half = (duration || 300) / 2;
+      span.style.transition = 'opacity ' + half + 'ms ease';
+      span.style.opacity = '0';
+      setTimeout(() => {
+        span.textContent = newText;
+        void span.offsetWidth;
+        span.style.opacity = '1';
+      }, half);
+    }
+
     // Update UI based on selected language
     function updateLanguageStrings(langValue) {
       const t = translations[langValue] || translations['English'];
@@ -99,9 +158,9 @@
       const welcomeSubtitle = document.querySelector('.language-welcome-subtitle');
       const continueButton = document.getElementById('region-yes');
       
-      if (welcomeTitle) welcomeTitle.textContent = t.welcomeTitle;
-      if (welcomeSubtitle) welcomeSubtitle.textContent = t.welcomeSubtitle;
-      if (continueButton) continueButton.textContent = t.buttonText;
+      fadeText(welcomeTitle, t.welcomeTitle, 500);
+      fadeText(welcomeSubtitle, t.welcomeSubtitle, 500);
+      fadeButtonText(continueButton, t.buttonText, 500);
     }
 
     // Listen for language selection changes

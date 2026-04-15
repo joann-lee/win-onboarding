@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>document.documentElement.style.backgroundColor=localStorage.getItem('themeMode')==='light'?'#f0f5fa':'#0a0a0a';</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Desktop - Get Started</title>
+    
+    <!-- OOBE Theme Integration -->
+    <link rel="stylesheet" href="../css/variables-standard.css" id="theme-variables">
+    <link rel="stylesheet" href="css/winui-tokens.css">
+    <link rel="stylesheet" href="css/desktop.css">
+</head>
+<body data-desktop-mode="get-started">
+    <!-- Loading screen to prevent wallpaper flash -->
+    <div id="desktop-loading" class="desktop-loading"></div>
+    
+    <!-- Theme transition overlay -->
+    <div id="theme-overlay" class="fixed inset-0 bg-black opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
+
+    <!-- Desktop Background -->
+    <div class="desktop">
+        <div class="background-image">
+            <img id="wallpaper-img" class="wallpaper active" src="../assets/wallpaper/background-standard-light.jpg" alt="Desktop wallpaper">
+            <img id="wallpaper-img-next" class="wallpaper" src="" alt="Desktop wallpaper next">
+        </div>
+        
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <!-- Light Acrylic Background -->
+            <div class="acrylic-bg">
+                <div class="top-stroke"></div>
+            </div>
+            
+            <!-- Weather Widget -->
+            <div class="weather-ticker">
+                <div class="weather-icon">
+                    <div class="sun-icon"></div>
+                </div>
+                <div class="weather-text">
+                    71°F<br>
+                    Sunny
+                </div>
+            </div>
+            
+            <!-- Main Tasklist -->
+            <div class="tasklist">
+                <!-- Start Button -->
+                <div class="start-button">
+                    <svg class="start-icon" width="18" height="18" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0H21.739V21.737H0V0ZM24.0056 0H45.7426V21.737H24.0056V0ZM0 24.0066H21.739V45.7426H0V24.0066ZM24.0056 24.0066H45.7426V45.7426H24.0056V24.0066Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                
+                <!-- Search Box -->
+                <div class="search-box">
+                    <img src="assets/Search.svg" alt="Search" class="search-icon">
+                    <div class="search-text">Search</div>
+                    <div class="gleam-effect">
+                        <div class="lotus-logo"></div>
+                    </div>
+                </div>
+                
+                <!-- Task View Button -->
+                <div class="task-view-button">
+                    <img src="assets/TaskSwitcher.svg" alt="Task View" class="task-view-icon">
+                </div>
+                
+                <!-- App Icons -->
+                <div class="app-icon file-explorer">
+                    <img src="assets/FileExplorer.svg" alt="File Explorer" class="folder-icon">
+                </div>
+                
+                <div class="app-icon edge-browser">
+                    <img src="assets/Edge.svg" alt="Microsoft Edge" class="edge-icon">
+                </div>
+                
+                <div class="app-icon copilot">
+                    <div class="copilot-icon"></div>
+                </div>
+                
+                <div class="app-icon get-started active" onclick="openGetStartedWindow()">
+                    <img src="assets/Get%20Started.svg" alt="Get Started" class="get-started-icon">
+                </div>
+                
+                <div class="app-icon teams">
+                    <img src="assets/teams.svg" alt="Microsoft Teams" class="teams-icon">
+                </div>
+                
+                <div class="app-icon microsoft-store">
+                    <img src="assets/Store.svg" alt="Microsoft Store" class="store-icon">
+                </div>
+                
+                <div class="app-icon settings" onclick="toggleSettingsFlyout(event)">
+                    <img src="assets/Settings.svg" alt="Settings" class="settings-icon">
+                </div>
+            </div>
+            
+            <!-- System Tray -->
+            <div class="system-tray">
+                <!-- Quick Settings -->
+                <div class="quick-settings">
+                    <img src="assets/Network.svg" alt="Network" class="wifi-icon">
+                    <img src="assets/Volume.svg" alt="Volume" class="volume-icon">
+                    <img src="assets/Battery.svg" alt="Battery" class="battery-icon">
+                </div>
+                
+                <!-- Notification Center -->
+                <div class="notification-center">
+                    <div class="date-time">
+                        <span id="taskbarTime">10:40 AM</span><br>
+                        <span id="taskbarDate">8/21/2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-bg"></div>
+        <div class="start-menu-main">
+            <div class="start-scroll-area">
+                <div class="start-search-row">
+                    <div class="start-search-box">
+                        <div class="start-search-box-bg"></div>
+                        <img class="start-search-icon" src="assets/Search.svg" alt="Search" />
+                        <input type="text" class="start-search-input" placeholder="Search for apps, settings, and documents" />
+                    </div>
+                </div>
+                <div class="start-section-header">
+                    <span class="start-section-title">Pinned</span>
+                    <button class="start-section-action">Show all <span class="chevron">›</span></button>
+                </div>
+                <div class="pinned-grid">
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/word.svg" alt="Word" /></span><span class="pinned-name">Word</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/excelapp.svg" alt="Excel" /></span><span class="pinned-name">Excel</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/powerpointapp.svg" alt="PowerPoint" /></span><span class="pinned-name">PowerPoint</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/outlookapp.svg" alt="Outlook" /></span><span class="pinned-name">Outlook</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/teams.svg" alt="Teams" /></span><span class="pinned-name">Teams</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/onenoteapp.svg" alt="OneNote" /></span><span class="pinned-name">OneNote</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/spotify.svg" alt="Spotify" /></span><span class="pinned-name">Spotify</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/Store.svg" alt="Microsoft Store" /></span><span class="pinned-name">Store</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/Settings.svg" alt="Settings" /></span><span class="pinned-name">Settings</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/calculator.svg" alt="Calculator" /></span><span class="pinned-name">Calculator</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/Edge.svg" alt="Edge" /></span><span class="pinned-name">Edge</span></div>
+                    <div class="pinned-item"><span class="pinned-icon"><img src="assets/3rd-Party-Netflix.svg" alt="Netflix" /></span><span class="pinned-name">Netflix</span></div>
+                </div>
+                <div class="all-section-header">
+                    <span class="start-section-title">All</span>
+                    <button class="category-dropdown">View: Category <span class="chevron">▾</span></button>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/word.svg" alt="" /></span><span class="category-icon"><img src="assets/excelapp.svg" alt="" /></span><span class="category-icon"><img src="assets/powerpointapp.svg" alt="" /></span><span class="category-icon"><img src="assets/onenoteapp.svg" alt="" /></span></div><span class="category-name">Productivity</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/calculator.svg" alt="" /></span><span class="category-icon"><img src="assets/Settings.svg" alt="" /></span><span class="category-icon"><img src="assets/clipchamp.svg" alt="" /></span><span class="category-icon"><img src="assets/FileExplorer.svg" alt="" /></span></div><span class="category-name">Utilities & Tools</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/teams.svg" alt="" /></span><span class="category-icon"><img src="assets/outlookapp.svg" alt="" /></span><span class="category-icon"><img src="assets/WhatsApp.svg" alt="" /></span></div><span class="category-name">Communication</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/3rd-Party-Netflix.svg" alt="" /></span><span class="category-icon"><img src="assets/spotify.svg" alt="" /></span><span class="category-icon"><img src="assets/YouTube.svg" alt="" /></span><span class="category-icon"><img src="assets/Prime Video.svg" alt="" /></span></div><span class="category-name">Entertainment</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/Amazon.svg" alt="" /></span><span class="category-icon"><img src="assets/Store.svg" alt="" /></span><span class="category-icon"><img src="assets/Expedia.svg" alt="" /></span></div><span class="category-name">Shopping</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/CopilotM365.svg" alt="" /></span><span class="category-icon"><img src="assets/Copilot.svg" alt="" /></span></div><span class="category-name">AI & Copilot</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/Settings.svg" alt="" /></span><span class="category-icon"><img src="assets/FileExplorer.svg" alt="" /></span></div><span class="category-name">System</span></div>
+                    <div class="category-card"><div class="category-icons"><span class="category-icon"><img src="assets/Edge.svg" alt="" /></span></div><span class="category-name">Web Browsers</span></div>
+                </div>
+            </div>
+            <div class="start-menu-footer">
+                <div class="start-menu-footer-bg"></div>
+                <div class="footer-user">
+                    <span class="footer-avatar"><span class="footer-avatar-placeholder">T</span></span>
+                    <span class="footer-username">Tia</span>
+                </div>
+                <div class="footer-actions">
+                    <button class="footer-action-btn" title="Power">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 1V8H7V1H8ZM4.5 3.06C3.0029 4.17287 2 5.97099 2 8C2 11.3137 4.68629 14 8 14C11.3137 14 14 11.3137 14 8C14 5.97099 12.9971 4.17287 11.5 3.06V4.26C12.6128 5.17672 13.3333 6.50347 13.3333 8C13.3333 10.9455 10.9455 13.3333 8 13.3333C5.05448 13.3333 2.66667 10.9455 2.66667 8C2.66667 6.50347 3.38724 5.17672 4.5 4.26V3.06Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Get Started App Window -->
+    <div class="get-started-window" id="getStartedWindow">
+        <div class="get-started-app">
+            <!-- Title Bar -->
+            <div class="get-started-title-bar">
+                <div class="title-bar-left">
+                    <img src="assets/Get Started.svg" alt="Get Started" class="title-icon">
+                    <span class="title-text">Get Started</span>
+                </div>
+                <div class="title-bar-right">
+                    <button class="window-control minimize-btn" onclick="closeGetStartedWindow()">−</button>
+                    <button class="window-control maximize-btn">□</button>
+                    <button class="window-control close-btn" onclick="closeGetStartedWindow()">×</button>
+                </div>
+            </div>
+
+            <!-- Get Started Content -->
+            <div class="get-started-main">
+                <div class="get-started-sidebar">
+                    <div class="gs-nav-item active">
+                        <span class="gs-nav-icon">🏠</span>
+                        <span class="gs-nav-label">Home</span>
+                    </div>
+                    <div class="gs-nav-item">
+                        <span class="gs-nav-icon">⚙️</span>
+                        <span class="gs-nav-label">Settings</span>
+                    </div>
+                    <div class="gs-nav-item">
+                        <span class="gs-nav-icon">🔒</span>
+                        <span class="gs-nav-label">Privacy</span>
+                    </div>
+                    <div class="gs-nav-item">
+                        <span class="gs-nav-icon">🎨</span>
+                        <span class="gs-nav-label">Personalize</span>
+                    </div>
+                    <div class="gs-nav-item">
+                        <span class="gs-nav-icon">📱</span>
+                        <span class="gs-nav-label">Apps</span>
+                    </div>
+                </div>
+                <div class="get-started-content">
+                    <div class="gs-hero">
+                        <h1>Welcome to your new PC</h1>
+                        <p>Let's get you set up with the essentials so you can make the most of Windows.</p>
+                    </div>
+                    <div class="gs-cards">
+                        <div class="gs-card">
+                            <div class="gs-card-icon">🌐</div>
+                            <div class="gs-card-info">
+                                <h3>Set up Microsoft Edge</h3>
+                                <p>Browse faster with built-in AI features</p>
+                            </div>
+                            <div class="gs-card-action">›</div>
+                        </div>
+                        <div class="gs-card">
+                            <div class="gs-card-icon">☁️</div>
+                            <div class="gs-card-info">
+                                <h3>Back up with OneDrive</h3>
+                                <p>Keep your files safe and accessible anywhere</p>
+                            </div>
+                            <div class="gs-card-action">›</div>
+                        </div>
+                        <div class="gs-card">
+                            <div class="gs-card-icon">📱</div>
+                            <div class="gs-card-info">
+                                <h3>Link your phone</h3>
+                                <p>Access calls, messages, and photos from your PC</p>
+                            </div>
+                            <div class="gs-card-action">›</div>
+                        </div>
+                        <div class="gs-card">
+                            <div class="gs-card-icon">🎮</div>
+                            <div class="gs-card-info">
+                                <h3>Xbox Game Pass</h3>
+                                <p>Play hundreds of games on day one</p>
+                            </div>
+                            <div class="gs-card-action">›</div>
+                        </div>
+                        <div class="gs-card">
+                            <div class="gs-card-icon">🛡️</div>
+                            <div class="gs-card-info">
+                                <h3>Windows Security</h3>
+                                <p>Review your device protection settings</p>
+                            </div>
+                            <div class="gs-card-action">›</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Flyout -->
+    <div class="settings-flyout" id="settingsFlyout">
+        <div class="settings-flyout-header">Settings</div>
+        
+        <!-- Restart Flow -->
+        <div class="settings-section">
+            <button class="restart-flow-btn" id="restartFlowBtn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2.5 8C2.5 4.96243 4.96243 2.5 8 2.5C9.72 2.5 11.25 3.28 12.25 4.5H10.5V5.5H14V2H13V3.75C11.78 2.35 9.99 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5C11.0376 14.5 13.5829 12.4291 14.2992 9.5H13.2656C12.5907 11.8556 10.4946 13.5 8 13.5C4.96243 13.5 2.5 11.0376 2.5 8Z" fill="currentColor"/>
+                </svg>
+                <span>Restart Flow</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/theme-manager.js"></script>
+    <script src="js/desktop.js"></script>
+</body>
+</html>

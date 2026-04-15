@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/css/variables-sapphire.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-slate.css" type="text/css" />
   <link rel="stylesheet" href="/css/variables-emerald.css" type="text/css" />
+  <link rel="stylesheet" href="/css/variables-nova.css" type="text/css" />
   <link rel="stylesheet" href="/css/page.css" type="text/css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="view-transition" content="same-origin" />
@@ -51,6 +52,12 @@
       font-weight: 600;
       color: var(--text-primary);
       margin: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    
+    body[data-page-id="getting_ready"] .spinner-text.visible {
+      opacity: 1;
     }
     
     body[data-page-id="getting_ready"] .lottie-container {
@@ -91,7 +98,6 @@
         <div class="oobe-content">
           <div class="oobe-body">
             <div class="spinner-section">
-              <mai-spinner size="large"></mai-spinner>
               <p class="spinner-text">Getting everything ready</p>
             </div>
           </div>
@@ -117,16 +123,61 @@
   <script src="/js/page.js"></script>
   
   <script>
-    // Override the scanner page behavior for this page to add fade-to-black
     (function initGettingReadyFade() {
       const pageId = document.body.getAttribute('data-page-id');
       if (pageId !== 'getting_ready') return;
       
-      // Get timeout from flow.js or use default
-      const timeout = window.OOBEFlow && window.OOBEFlow.scannerTimeout ? window.OOBEFlow.scannerTimeout : 5000;
-      const fadeDuration = 1000; // 1 second fade
+      const messages = [
+        'Getting everything ready',
+        'Setting up your preferences',
+        'Preparing your experience',
+        'Almost there',
+        'Just a moment'
+      ];
       
+      const textEl = document.querySelector('.spinner-text');
+      if (!textEl) return;
+      
+      const fadeDuration = 600;   // matches CSS transition
+      const displayTime = 2400;   // time each message is visible
+      const totalTime = window.OOBEFlow && window.OOBEFlow.scannerTimeout ? window.OOBEFlow.scannerTimeout : 12000;
+      const fadeToBlackDuration = 1000;
+      let currentIndex = 0;
+      let stopped = false;
+      
+      // Set first message and fade in
+      textEl.textContent = messages[0];
+      requestAnimationFrame(() => {
+        textEl.classList.add('visible');
+      });
+      
+      function cycleMessage() {
+        if (stopped) return;
+        
+        // Fade out
+        textEl.classList.remove('visible');
+        
+        setTimeout(() => {
+          if (stopped) return;
+          currentIndex = (currentIndex + 1) % messages.length;
+          textEl.textContent = messages[currentIndex];
+          // Fade in
+          textEl.classList.add('visible');
+          
+          // Schedule next cycle
+          setTimeout(cycleMessage, displayTime);
+        }, fadeDuration);
+      }
+      
+      // Start cycling after first message displays
+      setTimeout(cycleMessage, displayTime);
+      
+      // Navigate to desktop after total time
       setTimeout(() => {
+        stopped = true;
+        // Fade out current text
+        textEl.classList.remove('visible');
+        
         // Start fade to black
         const overlay = document.getElementById('fadeOverlay');
         if (overlay) {
@@ -134,10 +185,11 @@
         }
         
         // After fade completes, navigate to desktop
+        const desktopUrl = localStorage.getItem('postOobePath') === 'get-started' ? '/desktop/get-started.html' : '/desktop/';
         setTimeout(() => {
-          window.location.href = '/desktop/';
-        }, fadeDuration);
-      }, timeout);
+          window.location.href = desktopUrl;
+        }, fadeToBlackDuration);
+      }, totalTime);
     })();
   </script>
 

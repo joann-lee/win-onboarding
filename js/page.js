@@ -148,6 +148,10 @@ function toggleFullscreenFallback() {
             <span class="context-menu-color" style="background: #10b981;"></span>
             <span class="context-menu-label">Emerald</span>
           </div>
+          <div class="context-menu-item" data-theme="nova">
+            <span class="context-menu-color" style="background: #D94080;"></span>
+            <span class="context-menu-label">Nova</span>
+          </div>
         </div>
       </div>
       <div class="context-menu-divider"></div>
@@ -378,16 +382,17 @@ function toggleFullscreenFallback() {
     // Handle mode selection (light/dark)
     if (mode) {
       e.stopPropagation();
-      const root = document.documentElement;
       
-      // Remove existing mode classes
-      root.classList.remove('light', 'dark');
-      
-      // Apply selected mode
-      root.classList.add(mode);
-      
-      // Save to localStorage
-      localStorage.setItem('themeMode', mode);
+      // Use the global applyThemeMode to update classes, critical CSS, and background
+      if (window.applyThemeMode) {
+        window.applyThemeMode(mode);
+      } else {
+        // Fallback: just toggle classes
+        const root = document.documentElement;
+        root.classList.remove('light', 'dark');
+        root.classList.add(mode);
+        localStorage.setItem('themeMode', mode);
+      }
       
       // Update active state
       updateActiveMode();
@@ -399,18 +404,17 @@ function toggleFullscreenFallback() {
     // Handle theme selection
     if (theme) {
       e.stopPropagation();
-      const root = document.documentElement;
       
-      // Remove all palette classes
-      root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
-      
-      // Apply selected palette
-      if (theme !== 'standard') {
+      // Use global applyColorPalette to update classes, critical CSS, and background
+      if (window.applyColorPalette) {
+        window.applyColorPalette(theme);
+      } else {
+        // Fallback: just toggle classes
+        const root = document.documentElement;
+        root.classList.remove('standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova');
         root.classList.add(theme);
+        localStorage.setItem('themePalette', theme);
       }
-      
-      // Save to localStorage
-      localStorage.setItem('themePalette', theme);
       
       // Update active state
       updateActiveTheme();
@@ -433,7 +437,11 @@ function toggleFullscreenFallback() {
         window.history.back();
         break;
       case 'home':
-        window.location.href = '/';
+        if (window.navigateWithTransition) {
+          window.navigateWithTransition('/');
+        } else {
+          window.location.href = '/';
+        }
         break;
       case 'restart-oobe':
         // Fade to black before navigating to boot
@@ -501,7 +509,7 @@ function toggleFullscreenFallback() {
   const root = document.documentElement;
   
   // Remove all theme classes from html element
-  root.classList.remove('dark', 'light', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'win11', 'evolved');
+  root.classList.remove('dark', 'light', 'standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova', 'win11', 'evolved');
   
   // Apply saved CSS style to html element
   root.classList.add(savedCssStyle);
@@ -510,17 +518,7 @@ function toggleFullscreenFallback() {
   root.classList.add(savedMode);
   
   // Apply saved palette to html element
-  if (savedPalette === 'dune') {
-    root.classList.add('dune');
-  } else if (savedPalette === 'sapphire') {
-    root.classList.add('sapphire');
-  } else if (savedPalette === 'violet') {
-    root.classList.add('violet');
-  } else if (savedPalette === 'slate') {
-    root.classList.add('slate');
-  } else if (savedPalette === 'emerald') {
-    root.classList.add('emerald');
-  }
+  root.classList.add(savedPalette);
 })();
 
 // Debug controls for NDUP progression
@@ -610,6 +608,10 @@ function toggleFullscreenFallback() {
       'light': { brand: '#2D8A5F', brandHover: '#3AA876', brandPressed: '#1F6647' },
       'dark': { brand: '#4DB87F', brandHover: '#65C992', brandPressed: '#3A9A68' }
     },
+    'nova': {
+      'light': { brand: '#B82568', brandHover: '#D94080', brandPressed: '#8C1448' },
+      'dark': { brand: '#E880B0', brandHover: '#F0A0C8', brandPressed: '#D96098' }
+    },
     'standard': {
       'light': { brand: '#005FB8', brandHover: '#006cbe', brandPressed: '#005fa8' },
       'dark': { brand: '#4090ff', brandHover: '#5ca3ff', brandPressed: '#3385ff' }
@@ -627,8 +629,8 @@ function toggleFullscreenFallback() {
       'dark': toAssetUrl('assets/wallpaper/background-dune-dark.png')
     },
     'sapphire': {
-      'light': toAssetUrl('assets/wallpaper/electric-teal.webp'),
-      'dark': toAssetUrl('assets/wallpaper/electric-teal.webp')
+      'light': toAssetUrl('assets/wallpaper/background-sapphire-light.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-sapphire-dark.png')
     },
     'slate': {
       'light': toAssetUrl('assets/wallpaper/background-black-light.png'),
@@ -637,6 +639,10 @@ function toggleFullscreenFallback() {
     'emerald': {
       'light': toAssetUrl('assets/wallpaper/background-emerald-light.png'),
       'dark': toAssetUrl('assets/wallpaper/background-emerald-dark.png')
+    },
+    'nova': {
+      'light': toAssetUrl('assets/wallpaper/background-nova.png'),
+      'dark': toAssetUrl('assets/wallpaper/background-nova.png')
     },
     'standard': {
       'light': toAssetUrl('assets/wallpaper/background-standard-light.jpg'),
@@ -740,7 +746,8 @@ function initColorPaletteMenu(modeButton) {
     { id: 'sapphire', label: 'Sapphire' },
     { id: 'violet', label: 'Violet' },
     { id: 'slate', label: 'Slate' },
-    { id: 'emerald', label: 'Emerald' }
+    { id: 'emerald', label: 'Emerald' },
+    { id: 'nova', label: 'Nova' }
   ];
 
   // Add tooltip to the mode button - try multiple approaches for web components
@@ -850,14 +857,12 @@ function applyColorPalette(paletteId) {
   root.classList.add('theme-transitioning');
   
   // Remove all palette classes
-  root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
-  body.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+  root.classList.remove('standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova');
+  body.classList.remove('standard', 'dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova');
   
-  // Apply the selected palette (standard has no class)
-  if (paletteId !== 'standard') {
-    root.classList.add(paletteId);
-    body.classList.add(paletteId);
-  }
+  // Apply the selected palette
+  root.classList.add(paletteId);
+  body.classList.add(paletteId);
   
   // Save preference
   localStorage.setItem('themePalette', paletteId);
@@ -876,6 +881,9 @@ function applyColorPalette(paletteId) {
     root.classList.remove('theme-transitioning');
   }, 350);
 }
+
+// Expose applyColorPalette globally for context menu to use
+window.applyColorPalette = applyColorPalette;
 
 function updatePaletteMenuSelection() {
   const currentPalette = localStorage.getItem('themePalette') || 'standard';
@@ -993,31 +1001,12 @@ function updatePaletteMenuSelection() {
 (function initNavigation() {
   // Add the navigation helper function to global scope for use by other navigation code
   window.navigateWithTransition = function(url) {
-    // Check if view transitions are supported and enabled
-    if (!document.startViewTransition || !CSS.supports('view-transition-name', 'none')) {
-      window.location.href = url;
-      return;
-    }
-    
-    try {
-      const transition = document.startViewTransition(() => {
-        window.location.href = url;
-      });
-      
-      // Handle transition failures gracefully
-      if (transition && transition.ready) {
-        transition.ready.catch(() => {
-          // If transition fails, navigate normally
-          window.location.href = url;
-        });
-      }
-      
-      return transition;
-    } catch (error) {
-      // Fallback to normal navigation if anything goes wrong
-      console.warn('View transition failed, falling back to normal navigation:', error);
-      window.location.href = url;
-    }
+    // Navigate directly. The cross-document @view-transition { navigation: auto }
+    // rule in main.css captures the old page at FULL opacity before navigating,
+    // then runs the ::view-transition-old/new animations defined in CSS.
+    // Adding page-exiting + setTimeout caused the VT to capture already-faded
+    // content as its old state, producing double-fade flicker.
+    window.location.href = url;
   };
 
   // Special navigation to reboot/boot pages - fades to black first
@@ -1198,7 +1187,7 @@ function updatePaletteMenuSelection() {
               <mai-button appearance="secondary" size="medium" class="wifi-cancel-btn">Cancel</mai-button>
             </div>
           </div>
-          <div class="wifi-connecting" style="display:none; padding: 0 12px 12px 40px;">
+          <div class="wifi-connecting" style="display:none; padding: 0 12px 12px 48px;">
             <div style="margin-bottom: 12px; font-size: 14px;">Connecting...</div>
             <div class="progress-bar-track">
               <div class="progress-bar-indicator"></div>
@@ -1378,7 +1367,7 @@ function updatePaletteMenuSelection() {
               <mai-button appearance="secondary" size="medium" class="wifi-cancel-btn">Cancel</mai-button>
             </div>
           </div>
-          <div class="wifi-connecting" style="display:none; padding: 0 12px 12px 40px;">
+          <div class="wifi-connecting" style="display:none; padding: 0 12px 12px 48px;">
             <div style="margin-bottom: 12px; font-size: 14px;">Connecting...</div>
             <div class="progress-bar-track">
               <div class="progress-bar-indicator"></div>
@@ -1490,6 +1479,13 @@ function updatePaletteMenuSelection() {
     
     input.addEventListener('input', updateUI);
     
+    // Enter key to proceed when valid
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && nextBtn && !nextBtn.disabled) {
+        nextBtn.click();
+      }
+    });
+    
     if (clearBtn) {
       clearBtn.addEventListener('click', () => {
         input.value = '';
@@ -1526,6 +1522,13 @@ function updatePaletteMenuSelection() {
   
   // Real-time validation
   codeInput.addEventListener('input', updateUI);
+  
+  // Enter key to proceed when valid
+  codeInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && nextBtn && !nextBtn.disabled) {
+      nextBtn.click();
+    }
+  });
   
   // Initial state
   updateUI();
@@ -1671,6 +1674,7 @@ function updatePaletteMenuSelection() {
                 <button class="palette-btn" data-palette="sapphire" style="--palette-color: #0066cc;" title="Sapphire"></button>
                 <button class="palette-btn" data-palette="slate" style="--palette-color: #64748b;" title="Slate"></button>
                 <button class="palette-btn" data-palette="emerald" style="--palette-color: #10b981;" title="Emerald"></button>
+                <button class="palette-btn" data-palette="nova" style="--palette-color: #D94080;" title="Nova"></button>
               </div>
             </div>
           </div>
@@ -2149,7 +2153,11 @@ function updatePaletteMenuSelection() {
           if (file) {
             const pagePath = window.getPagePath ? window.getPagePath(file) : '/pages/' + file;
             closePanel();
-            window.location.href = pagePath;
+            if (window.navigateWithTransition) {
+              window.navigateWithTransition(pagePath);
+            } else {
+              window.location.href = pagePath;
+            }
           }
         });
         
@@ -2331,7 +2339,11 @@ function updatePaletteMenuSelection() {
           const file = window.OOBEFlow.getPageFile(firstId);
           const path = window.getPagePath ? window.getPagePath(file) : '/pages/' + file;
           closePanel();
-          window.location.href = path;
+          if (window.navigateWithTransition) {
+            window.navigateWithTransition(path);
+          } else {
+            window.location.href = path;
+          }
         }
       }
     });
