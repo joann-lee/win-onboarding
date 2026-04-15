@@ -6,7 +6,7 @@
 class ThemeManager {
     constructor() {
         this.currentTheme = 'standard';
-        this.themes = ['standard', 'sapphire', 'violet', 'dune', 'slate', 'emerald'];
+        this.themes = ['standard', 'sapphire', 'violet', 'dune', 'slate', 'emerald', 'nova'];
         this.themeOverlay = document.getElementById('theme-overlay');
         this.themeVariablesLink = document.getElementById('theme-variables');
         this.isTransitioning = false;
@@ -200,6 +200,9 @@ class ThemeManager {
     getWallpaperPath(theme, mode) {
         if (theme === 'standard' && mode === 'light') {
             return '../assets/wallpaper/background-standard-light.jpg';
+        } else if (theme === 'nova') {
+            // Nova has a single wallpaper for both light and dark
+            return '../assets/wallpaper/background-nova.png';
         } else if (theme === 'slate') {
             // Slate uses black wallpapers as fallback
             return `../assets/wallpaper/background-black-${mode}.png`;
