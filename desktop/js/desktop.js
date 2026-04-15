@@ -61,6 +61,10 @@
                         <span class="context-menu-color" style="background: #10b981;"></span>
                         <span class="context-menu-label">Emerald</span>
                     </div>
+                    <div class="context-menu-item" data-theme="nova">
+                        <span class="context-menu-color" style="background: #D94080;"></span>
+                        <span class="context-menu-label">Nova</span>
+                    </div>
                 </div>
             </div>
             <div class="context-menu-divider"></div>
@@ -327,7 +331,7 @@
                 const root = document.documentElement;
                 
                 // Remove all palette classes
-                root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald');
+                root.classList.remove('dune', 'sapphire', 'violet', 'slate', 'emerald', 'nova');
                 
                 // Apply selected palette
                 if (theme !== 'standard') {
